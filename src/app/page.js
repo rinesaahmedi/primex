@@ -1,7 +1,6 @@
-export default function Home() {
-  return (
-    <main>
-      <h1>Primex Website</h1>
-    </main>
-  );
+import { useTranslations } from "next-intl";
+
+export default function HomePage() {
+  const t = useTranslations("HomePage");
+  return <h1>{t("title")}</h1>;
 }
