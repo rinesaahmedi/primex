@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 import Header from '../components/Header.jsx'; // Import the Header component
 import Hero from '../components/Hero.jsx'; // Import the Hero component
 import About from '../components/About.jsx'; // Import the Hero component
+import Services from '../components/Services.jsx'; // Import the Services component
+import JoinBusinessSection from '../components/JoinBusinessSection.jsx'; // Import the JoinBusinessSection component  
 
 
 export default function Home() {
@@ -31,6 +33,10 @@ export default function Home() {
       <Hero darkMode={darkMode} />
 
       <About/>
+
+      <Services/>
+
+      <JoinBusinessSection/>
 
       {/* Content Below Hero */}
       <div className="px-6 py-12">

@@ -41,7 +41,7 @@ const Header = ({ darkMode, toggleDarkMode, changeLanguage }) => {
         {/* Right: Navigation Links */}
         <div className="flex space-x-6 items-center">
           <a href="#about" className="hover:text-blue-600">{t('aboutUs')}</a>
-          <a href="#services" className="hover:text-blue-600">{t('services')}</a>
+          <a href="#services" className="hover:text-blue-600">{t('Services')}</a>
           <a href="#partners" className="hover:text-blue-600">{t('ourPartners')}</a>
           <a href="#contact" className="hover:text-blue-600">{t('contactUs')}</a>
 

@@ -9,6 +9,8 @@
   "contactUs": "Contact Us",
   "english": "English",
   "german": "German",
+
+
   "about": {
     "mainTitle": "From Family Tradition to an AI Leader in the Furniture Industry",
     "intro": "With over 40 years of family experience, PRIMEX bridges tradition and modern technology, leading the digital transformation in the furniture industry for the DACH region and beyond.",
@@ -58,5 +60,49 @@
       "description": "We see the future as a combination of human knowledge and artificial intelligence. Our mission is to help companies optimize processes, increase efficiency, and build a competitive advantage in the European market."
     },
     "tagline": "At PRIMEX, tradition meets innovation."
+  },
+
+
+  "services": {
+  "mainTitle": "Our Services",
+  "intro": "Tailored solutions designed to optimize your business operations and support your growth.",
+  "items": [
+    {
+      "title": "Software Developer & IT Support",
+      "description": "We deliver tailored software solutions and integrate virtual agents that support tasks such as order processing, customer service, logistics, and data management. Our team also ensures data protection concepts and strong cyber-security measures."
+    },
+    {
+      "title": "Graphic Designer",
+      "description": "Our experienced design team creates high-quality and visually stunning designs that exceed expectations. We focus on creativity, precision, and fast turnaround times. Whether you need branding, web design, or marketing materials, we deliver results tailored to your vision."
+    },
+    {
+      "title": "Assistant Administrator",
+      "description": "Our administrative services streamline your daily operations—conducting research, preparing reports, managing communications, and coordinating schedules. We ensure that essential administrative tasks are handled efficiently and professionally."
+    },
+    {
+      "title": "Sales & Bookkeeping",
+      "description": "PrimEx provides global wholesale and retail sales management, production planning, logistics coordination, and advanced e-commerce solutions for B2B and B2C. Our bookkeeping services include accurate transaction recording, financial reporting, and compliance with accounting standards to ensure smooth financial operations."
+    },
+    {
+      "title": "E-Commerce",
+      "description": "Our skilled developers build customized e-commerce websites that effectively promote your brand. We focus on tailored solutions that strengthen your online presence and drive continuous business growth."
+    }
+  ]
+},
+
+
+  "joinBusiness": {
+    "joinLabel": "JOIN OUR TEAM",
+    "joinTitle": "Want to join us?",
+    "joinDescription": "Become part of our growing team and build your future with us.",
+    "joinButton": "Join Us",
+
+    "businessLabel": "BUSINESS INQUIRY",
+    "businessTitle": "Let’s talk about business.",
+    "businessDescription": "Tell us what you want to build. We help companies scale with modern digital solutions.",
+    "businessButton": "Let’s Talk"
   }
+
+
+
 }

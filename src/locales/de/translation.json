@@ -58,5 +58,47 @@
       "description": "Wir sehen die Zukunft als eine Kombination aus menschlichem Wissen und künstlicher Intelligenz. Unsere Mission ist es, Unternehmen dabei zu helfen, Prozesse zu optimieren, die Effizienz zu steigern und einen Wettbewerbsvorteil auf dem europäischen Markt aufzubauen."
     },
     "tagline": "Bei PRIMEX trifft Tradition auf Innovation."
+  },
+
+  "services": {
+  "mainTitle": "Unsere Dienstleistungen",
+  "intro": "Maßgeschneiderte Lösungen, die darauf ausgelegt sind, Ihre Geschäftsprozesse zu optimieren und Ihr Wachstum zu unterstützen.",
+  "items": [
+    {
+      "title": "Softwareentwicklung & IT-Support",
+      "description": "Wir entwickeln maßgeschneiderte Softwarelösungen und integrieren virtuelle Agenten, die Aufgaben wie Auftragsabwicklung, Kundenservice, Logistik und Datenmanagement unterstützen. Zudem stellen wir Datenschutzkonzepte und starke Cybersicherheitsmaßnahmen sicher."
+    },
+    {
+      "title": "Grafikdesign",
+      "description": "Unser erfahrenes Designteam erstellt hochwertige, visuell beeindruckende Designs, die Ihre Erwartungen übertreffen. Wir legen Wert auf Kreativität, Präzision und schnelle Umsetzung. Ob Branding, Webdesign oder Marketingmaterialien – wir liefern Ergebnisse, die perfekt auf Ihre Vision abgestimmt sind."
+    },
+    {
+      "title": "Assistenz & Administration",
+      "description": "Unsere administrativen Dienstleistungen optimieren Ihre täglichen Abläufe – von Recherche und Berichtserstellung bis hin zur Kommunikationsverwaltung und Terminplanung. Wir sorgen dafür, dass alle administrativen Aufgaben professionell und effizient abgewickelt werden."
+    },
+    {
+      "title": "Vertrieb & Buchhaltung",
+      "description": "PrimEx bietet globales Groß- und Einzelhandelsmanagement, Produktionsplanung, Logistikkoordination und moderne E-Commerce-Lösungen für B2B und B2C. Unsere Buchhaltungsservices umfassen präzise Transaktionsaufzeichnungen, Finanzberichte und die Einhaltung von Rechnungslegungsstandards, um reibungslose Finanzprozesse sicherzustellen."
+    },
+    {
+      "title": "E-Commerce",
+      "description": "Unsere erfahrenen Entwickler erstellen maßgeschneiderte E-Commerce-Websites, die Ihre Marke optimal präsentieren. Wir bieten individuelle Lösungen, die Ihre Online-Präsenz stärken und nachhaltiges Unternehmenswachstum fördern."
+    }
+  ]
+},
+
+
+  "joinBusiness": {
+    "joinLabel": "WERDE TEIL UNSERES TEAMS",
+    "joinTitle": "Möchtest du bei uns einsteigen?",
+    "joinDescription": "Werde Teil unseres wachsenden Teams und gestalte deine Zukunft mit uns.",
+    "joinButton": "Jetzt bewerben",
+
+    "businessLabel": "GESCHÄFTSANFRAGE",
+    "businessTitle": "Lassen Sie uns über Ihr Unternehmen sprechen.",
+    "businessDescription": "Erzählen Sie uns, was Sie aufbauen möchten. Wir helfen Unternehmen dabei, mit modernen digitalen Lösungen zu skalieren.",
+    "businessButton": "Kontakt aufnehmen"
   }
 }
+
+
