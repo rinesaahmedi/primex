@@ -98,7 +98,28 @@
     "businessTitle": "Lassen Sie uns über Ihr Unternehmen sprechen.",
     "businessDescription": "Erzählen Sie uns, was Sie aufbauen möchten. Wir helfen Unternehmen dabei, mit modernen digitalen Lösungen zu skalieren.",
     "businessButton": "Kontakt aufnehmen"
-  }
+  },
+
+  "partners": {
+  "testimonials": [
+    {
+      "quote": "Wir haben Cotopaxi von Anfang an mit Shopify aufgebaut. ",
+      "company": "Cotopaxi",
+      "person": "Davis Smith",
+      "role": "Gründer und CEO",
+      "image": "src/images/client2.webp"
+    },
+    {
+      "quote": "Ein weiterer Kundenerfahrungsbericht kommt hier hin...",
+      "company": "Ein anderes Unternehmen",
+      "person": "Max Mustermann",
+      "role": "CTO",
+      "image": "src/images/client2.webp"
+    }
+  ]
+}
+
+
 }
 
 

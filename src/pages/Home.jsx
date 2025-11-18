@@ -6,7 +6,7 @@ import Hero from '../components/Hero.jsx'; // Import the Hero component
 import About from '../components/About.jsx'; // Import the Hero component
 import Services from '../components/Services.jsx'; // Import the Services component
 import JoinBusinessSection from '../components/JoinBusinessSection.jsx'; // Import the JoinBusinessSection component  
-
+import PartnerTestimonials from "../components/PartnerTestimonials.jsx";
 
 export default function Home() {
   const { t, i18n } = useTranslation();
@@ -37,6 +37,9 @@ export default function Home() {
       <Services/>
 
       <JoinBusinessSection/>
+
+      <PartnerTestimonials t={t} />
+
 
       {/* Content Below Hero */}
       <div className="px-6 py-12">

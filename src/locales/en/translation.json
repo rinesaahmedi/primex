@@ -101,8 +101,26 @@
     "businessTitle": "Let’s talk about business.",
     "businessDescription": "Tell us what you want to build. We help companies scale with modern digital solutions.",
     "businessButton": "Let’s Talk"
-  }
+  },
 
+  "partners": {
+  "testimonials": [
+    {
+      "quote": "We built Cotopaxi with Shopify from day one.",
+      "company": "Cotopaxi",
+      "person": "Davis Smith",
+      "role": "Founder and CEO",
+      "image": "src/images/client2.webp"
+    },
+    {
+      "quote": "Another customer testimonial will be added here...",
+      "company": "Another Company",
+      "person": "John Doe",
+      "role": "CTO",
+      "image": "src/images/client2.webp"
+    }
+  ]
+}
 
 
 }
