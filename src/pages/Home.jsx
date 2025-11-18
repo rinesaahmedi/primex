@@ -34,6 +34,7 @@ export default function Home() {
       {/* Welcome Message */}
       <h1>{t("welcome")}</h1>
       <p>{t("intro")}</p>
+    <div className="bg-black">HELLOO</div>
 
       {/* Dark Mode Toggle */}
       <div style={{ marginTop: 20 }}>
