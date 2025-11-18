@@ -1,11 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const Header = ({ darkMode, toggleDarkMode, changeLanguage }) => {
   const { t } = useTranslation();
 
+  // State to track scroll position and change header background color
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // Handle scroll event to change header background color
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    // Clean up the event listener
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
-    <header className={`w-full ${darkMode ? 'bg-black text-white' : 'bg-white text-black'} py-4`}>
+    <header
+      className={`w-full py-4 fixed top-0 left-0 right-0 transition-all duration-300 ${
+        darkMode ? 'text-white' : 'text-black'
+      } ${isScrolled ? (darkMode ? 'bg-black' : 'bg-white') : 'bg-transparent'}`}
+      style={{ zIndex: 1000 }}
+    >
       <div className="container mx-auto flex justify-between items-center px-6">
         {/* Left: Logo */}
         <div className="text-3xl font-bold">
