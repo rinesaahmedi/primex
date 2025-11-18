@@ -1,5 +1,10 @@
 {
-  "welcome": "Welcome to Primex",
-  "intro": "This is the Home page with routing and i18n set up.",
-  "aboutLink": "Learn more"
+  "welcome": "Welcome to the Homepage!",
+  "intro": "This is the main content of the website.",
+  "darkMode": "Switch to Dark Mode",
+  "lightMode": "Switch to Light Mode",
+  "listTitle": "Dynamically Generated List",
+  "listItem1": "Item 1: Learn React",
+  "listItem2": "Item 2: Learn i18next",
+  "listItem3": "Item 3: Build Awesome Apps"
 }

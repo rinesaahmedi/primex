@@ -1,5 +1,10 @@
 {
-  "welcome": "Willkommen bei Primex",
-  "intro": "Dies ist die Startseite mit Routing und i18n.",
-  "aboutLink": "Mehr erfahren"
+  "welcome": "¡Bienvenido a la página de inicio!",
+  "intro": "Este es el contenido principal del sitio web.",
+  "darkMode": "Cambiar a modo oscuro",
+  "lightMode": "Cambiar a modo claro",
+  "listTitle": "Lista Generada Dinámicamente",
+  "listItem1": "Elemento 1: Aprende React",
+  "listItem2": "Elemento 2: Aprende i18next",
+  "listItem3": "Elemento 3: Construye aplicaciones geniales"
 }
