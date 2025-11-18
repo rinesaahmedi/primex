@@ -1,10 +1,62 @@
 {
-  "welcome": "Welcome to the Homepage!",
+  "welcome": "Welcome to the Home Page!",
   "intro": "This is the main content of the website.",
   "darkMode": "Switch to Dark Mode",
   "lightMode": "Switch to Light Mode",
-  "listTitle": "Dynamically Generated List",
-  "listItem1": "Item 1: Learn React",
-  "listItem2": "Item 2: Learn i18next",
-  "listItem3": "Item 3: Build Awesome Apps"
+  "aboutUs": "About Us",
+  "services": "Services",
+  "ourPartners": "Our Partners",
+  "contactUs": "Contact Us",
+  "english": "English",
+  "german": "German",
+  "about": {
+    "mainTitle": "From Family Tradition to an AI Leader in the Furniture Industry",
+    "intro": "With over 40 years of family experience, PRIMEX bridges tradition and modern technology, leading the digital transformation in the furniture industry for the DACH region and beyond.",
+    "whoWeAre": {
+      "title": "Who We Are",
+      "description": "PRIMEX is a company from Kosovo offering complete Backoffice services for the furniture and retail industry. For over a decade, we have been a trusted partner for major companies in Germany, Austria, and Switzerland, supporting both traditional stores and online platforms."
+    },
+    "expertise": {
+      "title": "Our Expertise",
+      "items": [
+        "Order Processing",
+        "Customer Service",
+        "Product Data & Content Management",
+        "Logistics & Dropshipping",
+        "Bookkeeping",
+        "IT Solutions & Software Development"
+      ]
+    },
+    "aiEvolution": {
+      "title": "From Manual Services to Artificial Intelligence",
+      "description": "The world of furniture is changing. Old systems and manual processes are slowing the industry down. PRIMEX turned this challenge into an opportunity, creating one of Europe's most advanced innovations."
+    },
+    "aiAgent": {
+      "title": "AI Agent for Complaints – 70 Seconds",
+      "subtitle": "Where a human spends 60–90 minutes, our AI completes the process in 70 seconds. This is the transformation redesigning the industry standard.",
+      "features": [
+        "Reads and analyzes emails & PDFs",
+        "Analyzes images to identify damages",
+        "Compares parts with assembly manuals",
+        "Synchronizes data with your ERP",
+        "Sends confirmations and automatic follow-ups"
+      ]
+    },
+    "whyPrimex": {
+      "title": "Why PRIMEX?",
+      "points": [
+        "40+ years of industry knowledge",
+        "10+ years of experience in DACH",
+        "Dynamic, multilingual team",
+        "Modern, standardized processes",
+        "Low costs, high quality",
+        "Customized & scalable solutions"
+      ]
+    },
+    "visionMission": {
+      "title": "Our Vision & Mission",
+      "description": "We see the future as a combination of human knowledge and artificial intelligence. Our mission is to help companies optimize processes, increase efficiency, and build a competitive advantage in the European market."
+    },
+    "tagline": "At PRIMEX, tradition meets innovation."
+  }
 }

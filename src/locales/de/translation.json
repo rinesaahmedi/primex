@@ -1,10 +1,62 @@
 {
-  "welcome": "¡Bienvenido a la página de inicio!",
-  "intro": "Este es el contenido principal del sitio web.",
-  "darkMode": "Cambiar a modo oscuro",
-  "lightMode": "Cambiar a modo claro",
-  "listTitle": "Lista Generada Dinámicamente",
-  "listItem1": "Elemento 1: Aprende React",
-  "listItem2": "Elemento 2: Aprende i18next",
-  "listItem3": "Elemento 3: Construye aplicaciones geniales"
+  "welcome": "Willkommen auf der Startseite!",
+  "intro": "Dies ist der Hauptinhalt der Webseite.",
+  "darkMode": "In den Dunkelmodus wechseln",
+  "lightMode": "In den hellen Modus wechseln",
+  "aboutUs": "Über uns",
+  "services": "Dienstleistungen",
+  "ourPartners": "Unsere Partner",
+  "contactUs": "Kontakt",
+  "english": "Englisch",
+  "german": "Deutsch",
+  "about": {
+    "mainTitle": "Von der Familientradition zum KI-Führer in der Möbelindustrie",
+    "intro": "Mit über 40 Jahren Familienerfahrung schlägt PRIMEX Brücken zwischen Tradition und moderner Technologie und führt die digitale Transformation in der Möbelindustrie für die DACH-Region und darüber hinaus an.",
+    "whoWeAre": {
+      "title": "Wer wir sind",
+      "description": "PRIMEX ist ein Unternehmen aus dem Kosovo, das umfassende Backoffice-Dienstleistungen für die Möbel- und Einzelhandelsbranche anbietet. Seit über einem Jahrzehnt sind wir ein verlässlicher Partner für große Unternehmen in Deutschland, Österreich und der Schweiz und unterstützen sowohl traditionelle Geschäfte als auch Online-Plattformen."
+    },
+    "expertise": {
+      "title": "Unsere Expertise",
+      "items": [
+        "Auftragsabwicklung",
+        "Kundenservice",
+        "Produktdaten- & Content-Management",
+        "Logistik & Dropshipping",
+        "Buchhaltung",
+        "IT-Lösungen & Softwareentwicklung"
+      ]
+    },
+    "aiEvolution": {
+      "title": "Vom manuellen Service zur künstlichen Intelligenz",
+      "description": "Die Welt der Möbel verändert sich. Alte Systeme und manuelle Prozesse verlangsamen die Branche. PRIMEX hat diese Herausforderung in eine Chance verwandelt und eine der fortschrittlichsten Innovationen Europas geschaffen."
+    },
+    "aiAgent": {
+      "title": "KI-Agent für Reklamationen – 70 Sekunden",
+      "subtitle": "Wo ein Mensch 60–90 Minuten braucht, erledigt unsere KI den Prozess in 70 Sekunden. Das ist die Transformation, die den Branchenstandard neu definiert.",
+      "features": [
+        "Liest und analysiert E-Mails & PDFs",
+        "Analysiert Bilder zur Schadenserkennung",
+        "Vergleicht Teile mit Montageanleitungen",
+        "Synchronisiert Daten mit Ihrem ERP-System",
+        "Versendet Bestätigungen und automatische Follow-ups"
+      ]
+    },
+    "whyPrimex": {
+      "title": "Warum PRIMEX?",
+      "points": [
+        "40+ Jahre Branchenkenntnis",
+        "10+ Jahre Erfahrung in der DACH-Region",
+        "Dynamisches, mehrsprachiges Team",
+        "Moderne, standardisierte Prozesse",
+        "Niedrige Kosten, hohe Qualität",
+        "Maßgeschneiderte & skalierbare Lösungen"
+      ]
+    },
+    "visionMission": {
+      "title": "Unsere Vision & Mission",
+      "description": "Wir sehen die Zukunft als eine Kombination aus menschlichem Wissen und künstlicher Intelligenz. Unsere Mission ist es, Unternehmen dabei zu helfen, Prozesse zu optimieren, die Effizienz zu steigern und einen Wettbewerbsvorteil auf dem europäischen Markt aufzubauen."
+    },
+    "tagline": "Bei PRIMEX trifft Tradition auf Innovation."
+  }
 }
