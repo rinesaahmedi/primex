@@ -117,9 +117,43 @@
       "image": "src/images/client2.webp"
     }
   ]
+},
+
+
+  "footer": {
+  "company": {
+    "name": "PrimEx",
+    "description": "Prime Team, Prime Solution. Hervorragende IT- und Geschäftslösungen seit 1985."
+  },
+  "pages": {
+    "title": "Seiten",
+    "links": [
+      { "name": "Startseite", "url": "/#home", "external": true },
+      { "name": "Über uns", "url": "/#about", "external": true },
+      { "name": "Dienstleistungen", "url": "/#services", "external": true },
+      { "name": "Unsere Partner", "url": "/#partners", "external": true },
+      { "name": "Kontakt", "url": "/#contact", "external": true },
+      { "name": "AGB", "url": "/terms", "external": false },
+      { "name": "Zertifikate", "url": "/certificates", "external": false }
+    ]
+  },
+  "hours": {
+    "title": "Öffnungszeiten",
+    "times": ["Montag - Freitag:", "8:00 - 16:30 Uhr"]
+  },
+  "social": { "title": "Folgen Sie uns auf" },
+  "contact": {
+    "title": "Kontaktieren Sie uns",
+    "email": "E-Mail: info@primexeu.com",
+    "phone": "Telefon: +383 49 937 863"
+  },
+  "copyright": "Alle Rechte vorbehalten."
+}
+
 }
 
 
-}
+
+
 
 
