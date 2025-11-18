@@ -1,64 +1,47 @@
+// src/pages/Home.jsx
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
+import Header from '../components/Header.jsx'; // Import the Header component
+import Hero from '../components/Hero.jsx'; // Import the Hero component
+import About from '../components/About.jsx'; // Import the Hero component
 
-// Counter component to increment on button click
-const Counter = () => {
-  const [count, setCount] = useState(0);
-  
-  const increment = () => {
-    setCount(count + 1);
-  };
-  
-  return (
-    <div style={{ marginTop: 20 }}>
-      <button onClick={increment}>
-        Increment Count
-      </button>
-      <p>Current count: {count}</p>
-    </div>
-  );
-};
 
 export default function Home() {
-  const { t } = useTranslation();
-  
+  const { t, i18n } = useTranslation();
+
   // State for dark mode toggle
   const [darkMode, setDarkMode] = useState(false);
-  
+
+  // Dark mode toggle function
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
   };
 
+  // Change language function
+  const changeLanguage = (e) => {
+    i18n.changeLanguage(e.target.value);
+  };
+
   return (
-    <div style={{ padding: 24, backgroundColor: darkMode ? '#2c2c2c' : '#fff', color: darkMode ? '#fff' : '#000' }}>
-      {/* Welcome Message */}
-      <h1>{t("welcome")}</h1>
-      <p>{t("intro")}</p>
-    <div className="bg-black">HELLOO</div>
+    <div className={`${darkMode ? 'bg-gray-900 text-white' : 'bg-white text-black'}`}>
+      {/* Header Component */}
+      <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} changeLanguage={changeLanguage} />
+      
+      {/* Hero Section */}
+      <Hero darkMode={darkMode} />
 
-      {/* Dark Mode Toggle */}
-      <div style={{ marginTop: 20 }}>
-        <button onClick={toggleDarkMode}>
-          {darkMode ? t("lightMode") : t("darkMode")}
-        </button>
-      </div>
+      <About/>
 
-      {/* Counter */}
-      <Counter />
-
-      {/* Dynamic List (using translation keys for list items) */}
-      <div style={{ marginTop: 30 }}>
-        <h2>{t("listTitle")}</h2>
-        <ul>
-          <li>{t("listItem1")}</li>
-          <li>{t("listItem2")}</li>
-          <li>{t("listItem3")}</li>
-        </ul>
-      </div>
-
-      {/* Image/ Icon */}
-      <div style={{ marginTop: 20 }}>
-        <img src={darkMode ? "/dark-mode-image.png" : "/light-mode-image.png"} alt="Mode Image" style={{ width: '200px', height: 'auto' }} />
+      {/* Content Below Hero */}
+      <div className="px-6 py-12">
+        {/* This section was removed per your request (Counter and list) */}
+        <div className="mt-5">
+          <img
+            src={darkMode ? "/dark-mode-image.png" : "/light-mode-image.png"}
+            alt="Mode Image"
+            className="w-48 h-auto mx-auto"
+          />
+        </div>
       </div>
     </div>
   );
