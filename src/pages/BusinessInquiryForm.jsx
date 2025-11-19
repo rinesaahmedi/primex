@@ -56,24 +56,24 @@ const BusinessInquiryForm = () => {
   };
 
   return (
-    <section className="bg-slate-950 text-white py-16">
+    <section className="bg-gradient-to-r from-[#2378FF] via-[#91A6EB] to-[#CDABFF] text-white py-16">
       <div className="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-start">
         {/* LEFT TEXT */}
         <div>
-          <p className="text-sm font-semibold tracking-[0.2em] text-lime-300 mb-3">
+          <p className="text-sm font-semibold tracking-[0.2em] text-[#FADEBC] mb-3">
             {t("forms.business.sectionLabel")}
           </p>
-          <h2 className="text-3xl md:text-4xl font-extrabold mb-4">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-[#2378FF] mb-4">
             {t("forms.business.title")}
           </h2>
-          <p className="text-slate-300">
+          <p className="text-[#FADEBC]">
             {t("forms.business.subtitle")}
           </p>
         </div>
 
         {/* RIGHT FORM */}
         <form
-          className="bg-white text-slate-900 rounded-3xl shadow-xl p-6 md:p-8 space-y-4"
+          className="bg-white/10 text-white rounded-3xl shadow-xl p-6 md:p-8 space-y-4 backdrop-blur-md"
           onSubmit={handleSubmit}
         >
           <div className="grid md:grid-cols-2 gap-4">
@@ -84,7 +84,7 @@ const BusinessInquiryForm = () => {
               value={formData.companyName}
               onChange={handleChange}
               required
-              className="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full rounded-xl border border-[#2378FF] bg-white/20 px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-[#2378FF]"
             />
             <input
               type="text"
@@ -93,7 +93,7 @@ const BusinessInquiryForm = () => {
               value={formData.contactPerson}
               onChange={handleChange}
               required
-              className="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full rounded-xl border border-[#2378FF] bg-white/20 px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-[#2378FF]"
             />
           </div>
 
@@ -105,7 +105,7 @@ const BusinessInquiryForm = () => {
               value={formData.email}
               onChange={handleChange}
               required
-              className="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full rounded-xl border border-[#2378FF] bg-white/20 px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-[#2378FF]"
             />
             <input
               type="tel"
@@ -113,7 +113,7 @@ const BusinessInquiryForm = () => {
               placeholder={t("forms.business.fields.phone")}
               value={formData.phone}
               onChange={handleChange}
-              className="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full rounded-xl border border-[#2378FF] bg-white/20 px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-[#2378FF]"
             />
           </div>
 
@@ -123,7 +123,7 @@ const BusinessInquiryForm = () => {
               value={formData.businessType}
               onChange={handleChange}
               required
-              className="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full rounded-xl border border-[#2378FF] bg-white/20 px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-[#2378FF]"
             >
               <option value="">{t("forms.business.fields.businessType")}</option>
               <option value="IT Services">IT Services</option>
@@ -138,7 +138,7 @@ const BusinessInquiryForm = () => {
               placeholder={t("forms.business.fields.website")}
               value={formData.website}
               onChange={handleChange}
-              className="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full rounded-xl border border-[#2378FF] bg-white/20 px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-[#2378FF]"
             />
           </div>
 
@@ -149,12 +149,12 @@ const BusinessInquiryForm = () => {
             value={formData.message}
             onChange={handleChange}
             required
-            className="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="w-full rounded-xl border border-[#2378FF] bg-white/20 px-3 py-2 text-sm text-white resize-none focus:outline-none focus:ring-2 focus:ring-[#2378FF]"
           />
 
           <button
             type="submit"
-            className="w-full rounded-full bg-lime-400 px-4 py-2.5 text-sm font-semibold text-slate-900 hover:bg-lime-300 transition-colors"
+            className="w-full rounded-full bg-[#2378FF] text-white font-semibold hover:bg-[#1a63bf] transition-all"
           >
             {t("forms.business.submit")}
           </button>

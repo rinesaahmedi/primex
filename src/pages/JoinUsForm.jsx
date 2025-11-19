@@ -94,24 +94,22 @@ function JoinUsForm() {
   };
 
   return (
-    <section className="bg-slate-950 text-white py-16">
+    <section className="bg-gradient-to-r from-[#2378FF] via-[#91A6EB] to-[#CDABFF] text-white py-16">
       <div className="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-start">
         {/* LEFT TEXT */}
         <div>
-          <p className="text-sm font-semibold tracking-[0.2em] text-lime-300 mb-3">
+          <p className="text-sm font-semibold tracking-[0.2em] text-[#FADEBC] mb-3">
             {t("forms.join.sectionLabel")}
           </p>
-          <h2 className="text-3xl md:text-4xl font-extrabold mb-4">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-[#2378FF] mb-4">
             {t("forms.join.title")}
           </h2>
-          <p className="text-slate-300">
-            {t("forms.join.subtitle")}
-          </p>
+          <p className="text-[#FADEBC]">{t("forms.join.subtitle")}</p>
         </div>
 
         {/* RIGHT FORM */}
         <form
-          className="bg-white text-slate-900 rounded-3xl shadow-xl p-6 md:p-8 space-y-4"
+          className="bg-white/10 text-white rounded-3xl shadow-xl p-6 md:p-8 space-y-4 backdrop-blur-md"
           onSubmit={handleSubmit}
         >
           <div className="grid md:grid-cols-2 gap-4">
@@ -122,7 +120,7 @@ function JoinUsForm() {
               value={formData.name}
               onChange={handleChange}
               required
-              className="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full rounded-xl border border-[#2378FF] bg-white/20 px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-[#2378FF]"
             />
             <input
               type="email"
@@ -131,7 +129,7 @@ function JoinUsForm() {
               value={formData.email}
               onChange={handleChange}
               required
-              className="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full rounded-xl border border-[#2378FF] bg-white/20 px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-[#2378FF]"
             />
           </div>
 
@@ -142,7 +140,7 @@ function JoinUsForm() {
               placeholder={t("forms.join.fields.phone")}
               value={formData.phone}
               onChange={handleChange}
-              className="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full rounded-xl border border-[#2378FF] bg-white/20 px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-[#2378FF]"
             />
             <input
               type="url"
@@ -150,7 +148,7 @@ function JoinUsForm() {
               placeholder={t("forms.join.fields.linkedin")}
               value={formData.linkedin}
               onChange={handleChange}
-              className="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full rounded-xl border border-[#2378FF] bg-white/20 px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-[#2378FF]"
             />
           </div>
 
@@ -159,7 +157,7 @@ function JoinUsForm() {
             value={formData.country}
             onChange={handleChange}
             required
-            className="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="w-full rounded-xl border border-[#2378FF] bg-white/20 px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-[#2378FF]"
           >
             <option value="">{t("forms.join.fields.country")}</option>
             {loading && <option disabled>Loading countries...</option>}
@@ -179,10 +177,10 @@ function JoinUsForm() {
             placeholder={t("forms.join.fields.description")}
             value={formData.description}
             onChange={handleChange}
-            className="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="w-full rounded-xl border border-[#2378FF] bg-white/20 px-3 py-2 text-sm text-white resize-none focus:outline-none focus:ring-2 focus:ring-[#2378FF]"
           />
 
-          <label className="flex items-start gap-2 text-xs text-slate-600">
+          <label className="flex items-start gap-2 text-xs text-[#FADEBC]">
             <input
               type="checkbox"
               name="privacyAccepted"
@@ -192,7 +190,7 @@ function JoinUsForm() {
             />
             <span>
               {t("forms.join.fields.privacy")}{" "}
-              <span className="text-indigo-600 underline cursor-pointer">
+              <span className="text-[#2378FF] underline cursor-pointer">
                 Privacy Policy
               </span>
             </span>
@@ -200,7 +198,7 @@ function JoinUsForm() {
 
           <button
             type="submit"
-            className="w-full rounded-full bg-lime-400 px-4 py-2.5 text-sm font-semibold text-slate-900 hover:bg-lime-300 transition-colors"
+            className="w-full rounded-full bg-[#2378FF] text-white font-semibold hover:bg-[#1a63bf] transition-all"
           >
             {t("forms.join.submit")}
           </button>
