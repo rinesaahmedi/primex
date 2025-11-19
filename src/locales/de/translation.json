@@ -28,6 +28,13 @@
       }
     ]
   },
+  "partnersGrid": {
+    "kicker": "Vertrauenspartner",
+    "title": "In der Möbelindustrie verwurzelt, für andere Branchen bereit",
+    "body": "Wir kennen jede Facette der Möbel-Wertschöpfung – und passen unsere KI-Agenten ebenso auf Logistik, Retail-Tech, Produktion und ähnliche Workflows an.",
+    "moreLabel": "+5 weitere",
+    "moreTag": "Branchen"
+  },
   "darkMode": "In den Dunkelmodus wechseln",
   "lightMode": "In den hellen Modus wechseln",
   "aboutUs": "Über uns",
