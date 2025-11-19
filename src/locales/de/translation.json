@@ -2,69 +2,31 @@
   "welcome": "Willkommen auf der Startseite!",
   "intro": "Dies ist der Hauptinhalt der Webseite.",
   "hero": {
-    "kicker": "AI + Operations Plattform · DACH Möbelmarkt",
+    "kicker": "Maßgeschneiderte KI-Operationen · gebaut von Primex",
     "headline": {
-      "emphasis": "Operative KI",
-      "rest": "für Möbel- und Living-Marken"
+      "emphasis": "AI Operations",
+      "rest": "für die Möbelindustrie"
     },
-    "body": "Primex verwandelt 40+ Jahre Betriebserfahrung in KI-Agenten, die Reklamationen, Produktdaten, Logistik und ERP-Workflows für Händler und Lieferanten automatisieren.",
-    "primaryCta": "AI Agents entdecken",
+    "body": "Wir entwerfen individuelle KI-Agenten, die sich mit Ihrem ERP, Produktdaten, der Logistik und dem Service verknüpfen – basierend auf 40+ Jahren operativem Know-how.",
+    "primaryCta": "Agent entwerfen",
     "secondaryCta": "Mit Primex sprechen",
-    "statCards": [
+    "statsText": "Von 90-minütigen Reklamationen zu 70-sekündigen Automationen – ohne zusätzliches Personal.",
+    "rightTitle": "Wo Primex andockt",
+    "rightBody": "Wir entwickeln jeden Agenten gemeinsam mit Ihrem Team, damit alle Workflows mit ERP, Marktplätzen und Service-SLAs harmonieren.",
+    "highlights": [
       {
-        "label": "Reklamationen automatisiert",
-        "value": "3.200+/Monat",
-        "delta": "−70 Min. pro Fall"
+        "title": "Produktdaten",
+        "description": "SKUs normalisieren, Attribute anreichern und Inhalte in Echtzeit auf Marktplätze spielen."
       },
       {
-        "label": "Produkt-SKUs gepflegt",
-        "value": "1,5 Mio.",
-        "delta": "+120 aktive Kataloge"
+        "title": "Reklamationen",
+        "description": "E-Mails lesen, Fotos/PDFs prüfen und Tickets direkt im ERP abschließen."
       },
       {
-        "label": "ERP-Workflows automatisiert",
-        "value": "60+",
-        "delta": "24/7 Abdeckung"
+        "title": "Logistik & Service",
+        "description": "Sendungen verfolgen, Ersatzteile anstoßen und Kund:innen rund um die Uhr informieren."
       }
-    ],
-    "dashboard": {
-      "badge": "Primex Control Room",
-      "title": "Claims Agent · Live",
-      "summary": "KI prüft mehrsprachige Reklamationen, validiert Assets und synchronisiert ERP-Tickets in unter 70 Sekunden.",
-      "statusLabel": "Queue",
-      "statusValue": "12 Fälle",
-      "metrics": [
-        {
-          "label": "Ø Bearbeitungszeit",
-          "value": "70 Sek."
-        },
-        {
-          "label": "Automatisierungsrate",
-          "value": "80 %"
-        },
-        {
-          "label": "Sprachen",
-          "value": "DE / EN"
-        }
-      ],
-      "events": [
-        {
-          "time": "Jetzt",
-          "text": "Wayfair DE · Fehlendes Panel ersetzt"
-        },
-        {
-          "time": "2 Min",
-          "text": "Home24 AT · Schaden via Foto bestätigt"
-        },
-        {
-          "time": "6 Min",
-          "text": "Otto · Ersatzteil im ERP verbucht"
-        }
-      ],
-      "image": "",
-      "imageAlt": "Primex Agent Dashboard"
-    },
-    "placeholderNote": "Dashboard-Preview folgt in Kürze"
+    ]
   },
   "darkMode": "In den Dunkelmodus wechseln",
   "lightMode": "In den hellen Modus wechseln",

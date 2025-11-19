@@ -2,44 +2,31 @@
   "welcome": "Welcome to the Home Page!",
   "intro": "This is the main content of the website.",
   "hero": {
-    "kicker": "Tailored AI operations · built for you by Primex",
+    "kicker": "Custom AI operations · built for you by Primex",
     "headline": {
-      "emphasis": "Custom agents",
-      "rest": "for furniture & living leaders"
+      "emphasis": "AI operations",
+      "rest": "for furniture industry"
     },
-    "body": "We partner with DACH retailers, suppliers, and manufacturers to design AI + automation workflows that match your ERP, your data, and your service model.",
+    "body": "We design custom AI agents that connect to your ERP, product data, logistics, and service workflows — built on 40+ years of operational know-how.",
     "primaryCta": "Design your agent",
     "secondaryCta": "Talk to Primex",
-    "statCards": [
+    "statsText": "From 90-minute claim cases to 70-second automated resolutions — without extra headcount.",
+    "rightTitle": "Where Primex plugs in",
+    "rightBody": "We co-design every agent with your teams, so each workflow stays compliant with your ERP, marketplaces, and service SLAs.",
+    "highlights": [
       {
-        "label": "Claims cycle time",
-        "value": "70s",
-        "delta": "−90% vs manual"
+        "title": "Product data ops",
+        "description": "Normalize SKUs, enrich attributes, and sync content to marketplaces in real time."
       },
       {
-        "label": "Product data coverage",
-        "value": "1.5M SKUs",
-        "delta": "+120 live catalogs"
+        "title": "Claims automation",
+        "description": "Read emails, analyze photos/PDFs, and close tickets directly in your ERP."
+      },
+      {
+        "title": "Logistics & service",
+        "description": "Track shipments, trigger spare parts, and keep customers updated 24/7."
       }
-    ],
-    "agents": [
-      {
-        "badge": "Claims / Reklamationen",
-        "title": "Claims Agent",
-        "description": "Reads emails, validates photos & PDFs, syncs ERP tickets, and follows up automatically."
-      },
-      {
-        "badge": "Product Data Ops",
-        "title": "Catalog Agent",
-        "description": "Standardizes attributes, enriches content, and pushes structured data to marketplaces."
-      },
-      {
-        "badge": "Logistics & Service",
-        "title": "Logistics Agent",
-        "description": "Tracks shipments, triggers spare-part workflows, and keeps customers informed 24/7."
-      }
-    ],
-    "placeholderNote": "Bring your own dashboard preview soon"
+    ]
   },
   "darkMode": "Switch to Dark Mode",
   "lightMode": "Switch to Light Mode",
