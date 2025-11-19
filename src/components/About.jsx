@@ -1,4 +1,4 @@
-// src/components/About.jsx  (HOME VERSION – improved teaser)
+// src/components/About.jsx  (HOME VERSION – gradient cards with hover effect)
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
@@ -7,11 +7,19 @@ const About = () => {
   const { t } = useTranslation();
   const points = t("about.whyPrimex.points", { returnObjects: true }) || [];
 
+  // Light gradients for each card
+  const gradientClasses = [
+    "bg-gradient-to-br from-indigo-50 via-blue-50 to-slate-50",
+    "bg-gradient-to-br from-blue-50 via-sky-50 to-cyan-50",
+    "bg-gradient-to-br from-violet-50 via-indigo-50 to-blue-50",
+    "bg-gradient-to-br from-slate-50 via-indigo-50 to-purple-50",
+  ];
+
   return (
     <section id="about" className="py-20 bg-white">
       <div className="container mx-auto px-6 max-w-6xl">
         <div className="grid gap-12 lg:grid-cols-2 items-center">
-          {/* LEFT: Text + CTA */}
+          {/* LEFT SIDE */}
           <div>
             <p className="text-xs font-semibold tracking-[0.25em] uppercase text-blue-500 mb-3">
               {t("aboutUs")}
@@ -33,14 +41,19 @@ const About = () => {
             </Link>
           </div>
 
-          {/* RIGHT: Key reasons in cards */}
+          {/* RIGHT SIDE — gradient hover cards */}
           <div className="grid sm:grid-cols-2 gap-4">
             {points.slice(0, 4).map((point, index) => (
               <div
                 key={index}
-                className="h-full p-5 bg-gray-50 rounded-2xl border border-gray-100 flex items-center"
+                className={`
+                  p-5 rounded-2xl border border-gray-200 shadow-sm 
+                  flex items-center transition-all duration-300 cursor-pointer
+                  hover:shadow-xl hover:-translate-y-1 hover:border-gray-300
+                  ${gradientClasses[index % gradientClasses.length]}
+                `}
               >
-                <p className="font-semibold text-gray-800 text-sm md:text-base leading-snug">
+                <p className="font-semibold text-gray-900 text-sm md:text-base leading-snug">
                   {point}
                 </p>
               </div>
