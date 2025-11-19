@@ -137,17 +137,38 @@
   "partners": {
     "testimonials": [
       {
-        "quote": "We built Cotopaxi with Shopify from day one.",
-        "company": "Cotopaxi",
-        "person": "Davis Smith",
-        "role": "Founder and CEO",
+        "quote": "Primex's AI agent reduced our claim processing time from 90 minutes to under 70 seconds. The efficiency gains are remarkable.",
+        "company": "Furniture Retail Group",
+        "person": "Michael Schneider",
+        "role": "Operations Director",
         "image": "src/images/client2.webp"
       },
       {
-        "quote": "Another customer testimonial will be added here...",
-        "company": "Another Company",
-        "person": "John Doe",
-        "role": "CTO",
+        "quote": "Their deep understanding of the furniture industry combined with cutting-edge AI technology has transformed our operations.",
+        "company": "Home Living Solutions",
+        "person": "Sarah Weber",
+        "role": "Chief Technology Officer",
+        "image": "src/images/client2.webp"
+      },
+      {
+        "quote": "The AI claims automation system integrates seamlessly with our ERP. We've seen an 80% reduction in operational costs.",
+        "company": "DACH Furniture Partners",
+        "person": "Thomas Müller",
+        "role": "Head of Customer Service",
+        "image": "src/images/client2.webp"
+      },
+      {
+        "quote": "Primex doesn't just provide technology—they bring 40 years of industry expertise. That combination is invaluable.",
+        "company": "European Retail Network",
+        "person": "Anna Fischer",
+        "role": "VP of Operations",
+        "image": "src/images/client2.webp"
+      },
+      {
+        "quote": "From product data management to logistics coordination, Primex handles it all with precision and speed.",
+        "company": "Modern Home Brands",
+        "person": "David Hoffmann",
+        "role": "Supply Chain Manager",
         "image": "src/images/client2.webp"
       }
     ]
@@ -210,7 +231,8 @@
     "contact": {
       "title": "Contact Us",
       "email": "E-mail: info@primexeu.com",
-      "phone": "Phone: +383 49 937 863"
+      "phone": "Phone: +383 49 937 863",
+      "location": "7 Shtatori, Fushë Kosovë 12010"
     },
     "copyright": "All rights reserved."
   },

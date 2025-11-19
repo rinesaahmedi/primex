@@ -21,6 +21,7 @@ const Footer = () => {
   const contactTitle = t("footer.contact.title", "Contact Us");
   const contactEmail = t("footer.contact.email", "info@primexeu.com");
   const contactPhone = t("footer.contact.phone", "+383 49 937 863");
+  const contactLocation = t("footer.contact.location", "7 Shtatori, Fushë Kosovë 12010");
   const copyright = t("footer.copyright", "All rights reserved.");
 
   return (
@@ -90,6 +91,16 @@ const Footer = () => {
             <h4 className="text-lg font-semibold mb-1">{contactTitle}</h4>
             <p>{contactEmail}</p>
             <p>{contactPhone}</p>
+            <p className="mt-2">
+              <a
+                href="https://maps.app.goo.gl/1AvD5MdteLP1Zy5n8"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#2378FF] hover:text-[#1f5fcc] hover:underline transition-colors"
+              >
+                {contactLocation}
+              </a>
+            </p>
           </div>
         </div>
 

@@ -192,3 +192,18 @@
     line-height: 1.4;
     font-size: 0.95rem;
 }
+
+/* Partners infinite scroll animation */
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.partners-scroll {
+    animation: scroll 18s linear infinite;
+}

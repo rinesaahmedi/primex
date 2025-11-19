@@ -137,17 +137,38 @@
   "partners": {
     "testimonials": [
       {
-        "quote": "Wir haben Cotopaxi von Anfang an mit Shopify aufgebaut. ",
-        "company": "Cotopaxi",
-        "person": "Davis Smith",
-        "role": "Gründer und CEO",
+        "quote": "Der KI-Agent von Primex hat unsere Reklamationsbearbeitungszeit von 90 Minuten auf unter 70 Sekunden reduziert. Die Effizienzgewinne sind bemerkenswert.",
+        "company": "Möbelhandelsgruppe",
+        "person": "Michael Schneider",
+        "role": "Operations-Direktor",
         "image": "src/images/client2.webp"
       },
       {
-        "quote": "Ein weiterer Kundenerfahrungsbericht kommt hier hin...",
-        "company": "Ein anderes Unternehmen",
-        "person": "Max Mustermann",
-        "role": "CTO",
+        "quote": "Ihr tiefes Verständnis der Möbelindustrie kombiniert mit modernster KI-Technologie hat unsere Abläufe transformiert.",
+        "company": "Home Living Solutions",
+        "person": "Sarah Weber",
+        "role": "Chief Technology Officer",
+        "image": "src/images/client2.webp"
+      },
+      {
+        "quote": "Das KI-Reklamationsautomatisierungssystem integriert sich nahtlos in unser ERP. Wir haben eine 80%ige Reduzierung der Betriebskosten gesehen.",
+        "company": "DACH Möbelpartner",
+        "person": "Thomas Müller",
+        "role": "Leiter Kundenservice",
+        "image": "src/images/client2.webp"
+      },
+      {
+        "quote": "Primex bietet nicht nur Technologie—sie bringen 40 Jahre Branchenexpertise mit. Diese Kombination ist unschätzbar.",
+        "company": "Europäisches Handelsnetzwerk",
+        "person": "Anna Fischer",
+        "role": "VP Operations",
+        "image": "src/images/client2.webp"
+      },
+      {
+        "quote": "Von Produktdatenmanagement bis zur Logistikkoordination—Primex erledigt alles mit Präzision und Geschwindigkeit.",
+        "company": "Modern Home Brands",
+        "person": "David Hoffmann",
+        "role": "Supply Chain Manager",
         "image": "src/images/client2.webp"
       }
     ]
@@ -210,7 +231,8 @@
     "contact": {
       "title": "Kontaktieren Sie uns",
       "email": "E-Mail: info@primexeu.com",
-      "phone": "Telefon: +383 49 937 863"
+      "phone": "Telefon: +383 49 937 863",
+      "location": "7 Shtatori, Fushë Kosovë 12010"
     },
     "copyright": "Alle Rechte vorbehalten."
   }

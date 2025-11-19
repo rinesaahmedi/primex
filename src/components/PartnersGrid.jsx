@@ -22,10 +22,13 @@ const partnerLogos = [
 export default function PartnersGrid() {
     const { t } = useTranslation();
 
+    // Duplicate logos for seamless infinite scroll
+    const duplicatedLogos = [...partnerLogos, ...partnerLogos];
+
     return (
-        <section id="partners" className="w-full py-20 bg-white">
-            <div className="max-w-6xl mx-auto px-6">
-                <div className="text-center mb-14 space-y-4">
+        <section id="partners" className="w-full py-20 bg-white overflow-hidden">
+            <div className="max-w-6xl mx-auto px-6 mb-14">
+                <div className="text-center space-y-4">
                     <p className="text-xs uppercase tracking-[0.4em] text-slate-500">
                         {t("partnersGrid.kicker")}
                     </p>
@@ -36,31 +39,23 @@ export default function PartnersGrid() {
                         {t("partnersGrid.body")}
                     </p>
                 </div>
+            </div>
 
-                {/* Vertical gap reduced to gap-y-2. Container heights reduced. */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-10 gap-y-2 items-center">
-                    {partnerLogos.map((partner) => (
+            {/* Infinite Slider - Full width with narrow margins */}
+            <div className="relative overflow-hidden px-2">
+                <div className="flex partners-scroll gap-16 items-center">
+                    {duplicatedLogos.map((partner, index) => (
                         <div
-                            key={partner.name}
-                            className="flex items-center justify-center h-36 sm:h-48 lg:h-56"
+                            key={`${partner.name}-${index}`}
+                            className="shrink-0 flex items-center justify-center h-48 md:h-64 lg:h-72"
                         >
                             <img
                                 src={partner.logo}
                                 alt={partner.name}
-                                className="max-h-28 sm:max-h-36 lg:max-h-48 w-auto object-contain opacity-80"
+                                className="max-h-40 md:max-h-56 lg:max-h-64 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
                             />
                         </div>
                     ))}
-
-                    {/* Enhanced 'More Partners' design */}
-                    <div className="flex flex-col gap-2 items-center justify-center h-36 sm:h-48 lg:h-56 rounded-3xl border-2 border-dashed border-slate-300 transition duration-300 hover:border-slate-500">
-                        <span className="text-lg font-bold text-slate-700 tracking-wide">
-                            {t("partnersGrid.moreLabel")}
-                        </span>
-                        <span className="text-sm uppercase tracking-[0.4em] text-slate-500">
-                            {t("partnersGrid.moreTag")}
-                        </span>
-                    </div>
                 </div>
             </div>
         </section>
