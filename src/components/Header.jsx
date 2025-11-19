@@ -114,12 +114,9 @@ const Header = ({ darkMode, toggleDarkMode, changeLanguage }) => {
   }, []);
 
   // Handle Language Selection
+  // inside Header
   const handleLanguageSelect = (lang) => {
-    // Create a synthetic event to match your original prop signature if it expects an event object
-    // Or simply call changeLanguage(lang) if your parent function supports string input.
-    // Assuming the original code used: onChange={(e) => changeLanguage(e)}
-    const syntheticEvent = { target: { value: lang } };
-    changeLanguage(syntheticEvent);
+    changeLanguage(lang); // now send just "en" or "de"
     setIsLangOpen(false);
   };
 
@@ -139,13 +136,11 @@ const Header = ({ darkMode, toggleDarkMode, changeLanguage }) => {
         : "bg-white shadow-md"
       : "bg-transparent";
 
-  const textColorClass =
-    darkMode || overlayMode ? "text-white" : "text-black";
+  const textColorClass = darkMode || overlayMode ? "text-white" : "text-black";
   const logoSrc = darkMode || overlayMode ? primexLogoWhite : primexLogo;
   const borderColorClass =
     darkMode || overlayMode ? "border-white/30" : "border-gray-200";
-  const dropdownBgClass =
-    darkMode || overlayMode ? "bg-gray-900" : "bg-white";
+  const dropdownBgClass = darkMode || overlayMode ? "bg-gray-900" : "bg-white";
 
   return (
     <header
@@ -191,15 +186,17 @@ const Header = ({ darkMode, toggleDarkMode, changeLanguage }) => {
               >
                 <button
                   onClick={() => handleLanguageSelect("en")}
-                  className={`w-full text-left px-4 py-2 text-sm hover:bg-blue-500 hover:text-white transition-colors ${darkMode ? "hover:bg-blue-600" : "hover:bg-blue-50"
-                    }`}
+                  className={`w-full text-left px-4 py-2 text-sm hover:bg-blue-500 hover:text-white transition-colors ${
+                    darkMode ? "hover:bg-blue-600" : "hover:bg-blue-50"
+                  }`}
                 >
                   {t("english")}
                 </button>
                 <button
                   onClick={() => handleLanguageSelect("de")}
-                  className={`w-full text-left px-4 py-2 text-sm hover:bg-blue-500 hover:text-white transition-colors ${darkMode ? "hover:bg-blue-600" : "hover:bg-blue-50"
-                    }`}
+                  className={`w-full text-left px-4 py-2 text-sm hover:bg-blue-500 hover:text-white transition-colors ${
+                    darkMode ? "hover:bg-blue-600" : "hover:bg-blue-50"
+                  }`}
                 >
                   {t("german")}
                 </button>
@@ -210,10 +207,11 @@ const Header = ({ darkMode, toggleDarkMode, changeLanguage }) => {
           {/* Dark Mode Toggle (Icon) */}
           <button
             onClick={toggleDarkMode}
-            className={`p-2 rounded-full transition-colors ${darkMode
-              ? "bg-gray-800 hover:bg-gray-700 text-yellow-300"
-              : "bg-gray-100 hover:bg-gray-200 text-gray-600"
-              }`}
+            className={`p-2 rounded-full transition-colors ${
+              darkMode
+                ? "bg-gray-800 hover:bg-gray-700 text-yellow-300"
+                : "bg-gray-100 hover:bg-gray-200 text-gray-600"
+            }`}
             aria-label="Toggle Dark Mode"
           >
             {darkMode ? <SunIcon /> : <MoonIcon />}
@@ -231,8 +229,9 @@ const Header = ({ darkMode, toggleDarkMode, changeLanguage }) => {
 
       {/* --- Mobile Navigation Menu --- */}
       <div
-        className={`fixed inset-0 bg-opacity-95 backdrop-blur-sm transition-transform duration-300 ease-in-out md:hidden ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
-          } ${darkMode ? "bg-black" : "bg-white"}`}
+        className={`fixed inset-0 bg-opacity-95 backdrop-blur-sm transition-transform duration-300 ease-in-out md:hidden ${
+          isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+        } ${darkMode ? "bg-black" : "bg-white"}`}
         style={{
           top: "64px" /* Adjust based on header height */,
           height: "calc(100vh - 64px)",
@@ -256,15 +255,17 @@ const Header = ({ darkMode, toggleDarkMode, changeLanguage }) => {
             <div className="flex border rounded-lg overflow-hidden">
               <button
                 onClick={() => handleLanguageSelect("en")}
-                className={`px-4 py-2 ${i18n.language === "en" ? "bg-blue-600 text-white" : ""
-                  }`}
+                className={`px-4 py-2 ${
+                  i18n.language === "en" ? "bg-blue-600 text-white" : ""
+                }`}
               >
                 EN
               </button>
               <button
                 onClick={() => handleLanguageSelect("de")}
-                className={`px-4 py-2 ${i18n.language === "de" ? "bg-blue-600 text-white" : ""
-                  }`}
+                className={`px-4 py-2 ${
+                  i18n.language === "de" ? "bg-blue-600 text-white" : ""
+                }`}
               >
                 DE
               </button>
@@ -273,10 +274,11 @@ const Header = ({ darkMode, toggleDarkMode, changeLanguage }) => {
             {/* Theme Toggle */}
             <button
               onClick={toggleDarkMode}
-              className={`p-3 rounded-full ${darkMode
-                ? "bg-gray-800 text-yellow-300"
-                : "bg-gray-200 text-gray-600"
-                }`}
+              className={`p-3 rounded-full ${
+                darkMode
+                  ? "bg-gray-800 text-yellow-300"
+                  : "bg-gray-200 text-gray-600"
+              }`}
             >
               {darkMode ? <SunIcon /> : <MoonIcon />}
             </button>
