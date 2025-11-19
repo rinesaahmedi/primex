@@ -1,6 +1,71 @@
 {
   "welcome": "Willkommen auf der Startseite!",
   "intro": "Dies ist der Hauptinhalt der Webseite.",
+  "hero": {
+    "kicker": "AI + Operations Plattform · DACH Möbelmarkt",
+    "headline": {
+      "emphasis": "Operative KI",
+      "rest": "für Möbel- und Living-Marken"
+    },
+    "body": "Primex verwandelt 40+ Jahre Betriebserfahrung in KI-Agenten, die Reklamationen, Produktdaten, Logistik und ERP-Workflows für Händler und Lieferanten automatisieren.",
+    "primaryCta": "AI Agents entdecken",
+    "secondaryCta": "Mit Primex sprechen",
+    "statCards": [
+      {
+        "label": "Reklamationen automatisiert",
+        "value": "3.200+/Monat",
+        "delta": "−70 Min. pro Fall"
+      },
+      {
+        "label": "Produkt-SKUs gepflegt",
+        "value": "1,5 Mio.",
+        "delta": "+120 aktive Kataloge"
+      },
+      {
+        "label": "ERP-Workflows automatisiert",
+        "value": "60+",
+        "delta": "24/7 Abdeckung"
+      }
+    ],
+    "dashboard": {
+      "badge": "Primex Control Room",
+      "title": "Claims Agent · Live",
+      "summary": "KI prüft mehrsprachige Reklamationen, validiert Assets und synchronisiert ERP-Tickets in unter 70 Sekunden.",
+      "statusLabel": "Queue",
+      "statusValue": "12 Fälle",
+      "metrics": [
+        {
+          "label": "Ø Bearbeitungszeit",
+          "value": "70 Sek."
+        },
+        {
+          "label": "Automatisierungsrate",
+          "value": "80 %"
+        },
+        {
+          "label": "Sprachen",
+          "value": "DE / EN"
+        }
+      ],
+      "events": [
+        {
+          "time": "Jetzt",
+          "text": "Wayfair DE · Fehlendes Panel ersetzt"
+        },
+        {
+          "time": "2 Min",
+          "text": "Home24 AT · Schaden via Foto bestätigt"
+        },
+        {
+          "time": "6 Min",
+          "text": "Otto · Ersatzteil im ERP verbucht"
+        }
+      ],
+      "image": "",
+      "imageAlt": "Primex Agent Dashboard"
+    },
+    "placeholderNote": "Dashboard-Preview folgt in Kürze"
+  },
   "darkMode": "In den Dunkelmodus wechseln",
   "lightMode": "In den hellen Modus wechseln",
   "aboutUs": "Über uns",
@@ -59,101 +124,120 @@
     },
     "tagline": "Bei PRIMEX trifft Tradition auf Innovation."
   },
-
   "services": {
-  "mainTitle": "Unsere Dienstleistungen",
-  "intro": "Maßgeschneiderte Lösungen, die darauf ausgelegt sind, Ihre Geschäftsprozesse zu optimieren und Ihr Wachstum zu unterstützen.",
-  "items": [
-    {
-      "title": "Softwareentwicklung & IT-Support",
-      "description": "Wir entwickeln maßgeschneiderte Softwarelösungen und integrieren virtuelle Agenten, die Aufgaben wie Auftragsabwicklung, Kundenservice, Logistik und Datenmanagement unterstützen. Zudem stellen wir Datenschutzkonzepte und starke Cybersicherheitsmaßnahmen sicher."
-    },
-    {
-      "title": "Grafikdesign",
-      "description": "Unser erfahrenes Designteam erstellt hochwertige, visuell beeindruckende Designs, die Ihre Erwartungen übertreffen. Wir legen Wert auf Kreativität, Präzision und schnelle Umsetzung. Ob Branding, Webdesign oder Marketingmaterialien – wir liefern Ergebnisse, die perfekt auf Ihre Vision abgestimmt sind."
-    },
-    {
-      "title": "Assistenz & Administration",
-      "description": "Unsere administrativen Dienstleistungen optimieren Ihre täglichen Abläufe – von Recherche und Berichtserstellung bis hin zur Kommunikationsverwaltung und Terminplanung. Wir sorgen dafür, dass alle administrativen Aufgaben professionell und effizient abgewickelt werden."
-    },
-    {
-      "title": "Vertrieb & Buchhaltung",
-      "description": "PrimEx bietet globales Groß- und Einzelhandelsmanagement, Produktionsplanung, Logistikkoordination und moderne E-Commerce-Lösungen für B2B und B2C. Unsere Buchhaltungsservices umfassen präzise Transaktionsaufzeichnungen, Finanzberichte und die Einhaltung von Rechnungslegungsstandards, um reibungslose Finanzprozesse sicherzustellen."
-    },
-    {
-      "title": "E-Commerce",
-      "description": "Unsere erfahrenen Entwickler erstellen maßgeschneiderte E-Commerce-Websites, die Ihre Marke optimal präsentieren. Wir bieten individuelle Lösungen, die Ihre Online-Präsenz stärken und nachhaltiges Unternehmenswachstum fördern."
-    }
-  ]
-},
-
-
+    "mainTitle": "Unsere Dienstleistungen",
+    "intro": "Maßgeschneiderte Lösungen, die darauf ausgelegt sind, Ihre Geschäftsprozesse zu optimieren und Ihr Wachstum zu unterstützen.",
+    "items": [
+      {
+        "title": "Softwareentwicklung & IT-Support",
+        "description": "Wir entwickeln maßgeschneiderte Softwarelösungen und integrieren virtuelle Agenten, die Aufgaben wie Auftragsabwicklung, Kundenservice, Logistik und Datenmanagement unterstützen. Zudem stellen wir Datenschutzkonzepte und starke Cybersicherheitsmaßnahmen sicher."
+      },
+      {
+        "title": "Grafikdesign",
+        "description": "Unser erfahrenes Designteam erstellt hochwertige, visuell beeindruckende Designs, die Ihre Erwartungen übertreffen. Wir legen Wert auf Kreativität, Präzision und schnelle Umsetzung. Ob Branding, Webdesign oder Marketingmaterialien – wir liefern Ergebnisse, die perfekt auf Ihre Vision abgestimmt sind."
+      },
+      {
+        "title": "Assistenz & Administration",
+        "description": "Unsere administrativen Dienstleistungen optimieren Ihre täglichen Abläufe – von Recherche und Berichtserstellung bis hin zur Kommunikationsverwaltung und Terminplanung. Wir sorgen dafür, dass alle administrativen Aufgaben professionell und effizient abgewickelt werden."
+      },
+      {
+        "title": "Vertrieb & Buchhaltung",
+        "description": "PrimEx bietet globales Groß- und Einzelhandelsmanagement, Produktionsplanung, Logistikkoordination und moderne E-Commerce-Lösungen für B2B und B2C. Unsere Buchhaltungsservices umfassen präzise Transaktionsaufzeichnungen, Finanzberichte und die Einhaltung von Rechnungslegungsstandards, um reibungslose Finanzprozesse sicherzustellen."
+      },
+      {
+        "title": "E-Commerce",
+        "description": "Unsere erfahrenen Entwickler erstellen maßgeschneiderte E-Commerce-Websites, die Ihre Marke optimal präsentieren. Wir bieten individuelle Lösungen, die Ihre Online-Präsenz stärken und nachhaltiges Unternehmenswachstum fördern."
+      }
+    ]
+  },
   "joinBusiness": {
     "joinLabel": "WERDE TEIL UNSERES TEAMS",
     "joinTitle": "Möchtest du bei uns einsteigen?",
     "joinDescription": "Werde Teil unseres wachsenden Teams und gestalte deine Zukunft mit uns.",
     "joinButton": "Jetzt bewerben",
-
     "businessLabel": "GESCHÄFTSANFRAGE",
     "businessTitle": "Lassen Sie uns über Ihr Unternehmen sprechen.",
     "businessDescription": "Erzählen Sie uns, was Sie aufbauen möchten. Wir helfen Unternehmen dabei, mit modernen digitalen Lösungen zu skalieren.",
     "businessButton": "Kontakt aufnehmen"
   },
-
   "partners": {
-  "testimonials": [
-    {
-      "quote": "Wir haben Cotopaxi von Anfang an mit Shopify aufgebaut. ",
-      "company": "Cotopaxi",
-      "person": "Davis Smith",
-      "role": "Gründer und CEO",
-      "image": "src/images/client2.webp"
-    },
-    {
-      "quote": "Ein weiterer Kundenerfahrungsbericht kommt hier hin...",
-      "company": "Ein anderes Unternehmen",
-      "person": "Max Mustermann",
-      "role": "CTO",
-      "image": "src/images/client2.webp"
-    }
-  ]
-},
-
-
-  "footer": {
-  "company": {
-    "name": "PrimEx",
-    "description": "Prime Team, Prime Solution. Hervorragende IT- und Geschäftslösungen seit 1985."
-  },
-  "pages": {
-    "title": "Seiten",
-    "links": [
-      { "name": "Startseite", "url": "/#home", "external": true },
-      { "name": "Über uns", "url": "/#about", "external": true },
-      { "name": "Dienstleistungen", "url": "/#services", "external": true },
-      { "name": "Unsere Partner", "url": "/#partners", "external": true },
-      { "name": "Kontakt", "url": "/#contact", "external": true },
-      { "name": "AGB", "url": "/terms", "external": false },
-      { "name": "Zertifikate", "url": "/certificates", "external": false }
+    "testimonials": [
+      {
+        "quote": "Wir haben Cotopaxi von Anfang an mit Shopify aufgebaut. ",
+        "company": "Cotopaxi",
+        "person": "Davis Smith",
+        "role": "Gründer und CEO",
+        "image": "src/images/client2.webp"
+      },
+      {
+        "quote": "Ein weiterer Kundenerfahrungsbericht kommt hier hin...",
+        "company": "Ein anderes Unternehmen",
+        "person": "Max Mustermann",
+        "role": "CTO",
+        "image": "src/images/client2.webp"
+      }
     ]
   },
-  "hours": {
-    "title": "Öffnungszeiten",
-    "times": ["Montag - Freitag:", "8:00 - 16:30 Uhr"]
-  },
-  "social": { "title": "Folgen Sie uns auf" },
-  "contact": {
-    "title": "Kontaktieren Sie uns",
-    "email": "E-Mail: info@primexeu.com",
-    "phone": "Telefon: +383 49 937 863"
-  },
-  "copyright": "Alle Rechte vorbehalten."
+  "footer": {
+    "company": {
+      "name": "PrimEx",
+      "description": "Prime Team, Prime Solution. Hervorragende IT- und Geschäftslösungen seit 1985."
+    },
+    "pages": {
+      "title": "Seiten",
+      "links": [
+        {
+          "name": "Startseite",
+          "url": "/#home",
+          "external": true
+        },
+        {
+          "name": "Über uns",
+          "url": "/#about",
+          "external": true
+        },
+        {
+          "name": "Dienstleistungen",
+          "url": "/#services",
+          "external": true
+        },
+        {
+          "name": "Unsere Partner",
+          "url": "/#partners",
+          "external": true
+        },
+        {
+          "name": "Kontakt",
+          "url": "/#contact",
+          "external": true
+        },
+        {
+          "name": "AGB",
+          "url": "/terms",
+          "external": false
+        },
+        {
+          "name": "Zertifikate",
+          "url": "/certificates",
+          "external": false
+        }
+      ]
+    },
+    "hours": {
+      "title": "Öffnungszeiten",
+      "times": [
+        "Montag - Freitag:",
+        "8:00 - 16:30 Uhr"
+      ]
+    },
+    "social": {
+      "title": "Folgen Sie uns auf"
+    },
+    "contact": {
+      "title": "Kontaktieren Sie uns",
+      "email": "E-Mail: info@primexeu.com",
+      "phone": "Telefon: +383 49 937 863"
+    },
+    "copyright": "Alle Rechte vorbehalten."
+  }
 }
-
-}
-
-
-
-
-
-

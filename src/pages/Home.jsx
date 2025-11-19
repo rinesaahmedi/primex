@@ -10,7 +10,7 @@ import PartnerTestimonials from "../components/PartnerTestimonials.jsx";
 import Footer from '../components/Footer.jsx'; // Import the Footer component
 
 export default function Home() {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
 
   // State for dark mode toggle
   const [darkMode, setDarkMode] = useState(false);
@@ -29,15 +29,15 @@ export default function Home() {
     <div className={`${darkMode ? 'bg-gray-900 text-white' : 'bg-white text-black'}`}>
       {/* Header Component */}
       <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} changeLanguage={changeLanguage} />
-      
+
       {/* Hero Section */}
-      <Hero darkMode={darkMode} />
+      <Hero />
 
-      <About/>
+      <About />
 
-      <Services/>
+      <Services />
 
-      <JoinBusinessSection/>
+      <JoinBusinessSection />
 
       <PartnerTestimonials />
 

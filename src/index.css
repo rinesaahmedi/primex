@@ -1,1 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Montserrat:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
+
+:root {
+    font-family: "Montserrat", "Inter", "Segoe UI", system-ui, -apple-system,
+        BlinkMacSystemFont, sans-serif;
+    color: #0b1b3a;
+    background-color: #f7f9ff;
+    --font-serif: "Merriweather", "Georgia", serif;
+    --brand-blue: #2378ff;
+    --brand-deep-blue: #4389cc;
+    --brand-sand: #fadebc;
+    --brand-lavender: #cdabff;
+    --brand-dusty: #91a6eb;
+    --brand-black: #000000;
+}
+
+body {
+    margin: 0;
+    font-family: inherit;
+    min-height: 100vh;
+    background-color: #f7f9ff;
+    color: inherit;
+}

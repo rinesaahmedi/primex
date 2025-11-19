@@ -1,6 +1,46 @@
 {
   "welcome": "Welcome to the Home Page!",
   "intro": "This is the main content of the website.",
+  "hero": {
+    "kicker": "Tailored AI operations · built for you by Primex",
+    "headline": {
+      "emphasis": "Custom agents",
+      "rest": "for furniture & living leaders"
+    },
+    "body": "We partner with DACH retailers, suppliers, and manufacturers to design AI + automation workflows that match your ERP, your data, and your service model.",
+    "primaryCta": "Design your agent",
+    "secondaryCta": "Talk to Primex",
+    "statCards": [
+      {
+        "label": "Claims cycle time",
+        "value": "70s",
+        "delta": "−90% vs manual"
+      },
+      {
+        "label": "Product data coverage",
+        "value": "1.5M SKUs",
+        "delta": "+120 live catalogs"
+      }
+    ],
+    "agents": [
+      {
+        "badge": "Claims / Reklamationen",
+        "title": "Claims Agent",
+        "description": "Reads emails, validates photos & PDFs, syncs ERP tickets, and follows up automatically."
+      },
+      {
+        "badge": "Product Data Ops",
+        "title": "Catalog Agent",
+        "description": "Standardizes attributes, enriches content, and pushes structured data to marketplaces."
+      },
+      {
+        "badge": "Logistics & Service",
+        "title": "Logistics Agent",
+        "description": "Tracks shipments, triggers spare-part workflows, and keeps customers informed 24/7."
+      }
+    ],
+    "placeholderNote": "Bring your own dashboard preview soon"
+  },
   "darkMode": "Switch to Dark Mode",
   "lightMode": "Switch to Light Mode",
   "aboutUs": "About Us",
@@ -9,8 +49,6 @@
   "contactUs": "Contact Us",
   "english": "English",
   "german": "German",
-
-
   "about": {
     "mainTitle": "From Family Tradition to an AI Leader in the Furniture Industry",
     "intro": "With over 40 years of family experience, PRIMEX bridges tradition and modern technology, leading the digital transformation in the furniture industry for the DACH region and beyond.",
@@ -61,99 +99,120 @@
     },
     "tagline": "At PRIMEX, tradition meets innovation."
   },
-
-
   "services": {
-  "mainTitle": "Our Services",
-  "intro": "Tailored solutions designed to optimize your business operations and support your growth.",
-  "items": [
-    {
-      "title": "Software Developer & IT Support",
-      "description": "We deliver tailored software solutions and integrate virtual agents that support tasks such as order processing, customer service, logistics, and data management. Our team also ensures data protection concepts and strong cyber-security measures."
-    },
-    {
-      "title": "Graphic Designer",
-      "description": "Our experienced design team creates high-quality and visually stunning designs that exceed expectations. We focus on creativity, precision, and fast turnaround times. Whether you need branding, web design, or marketing materials, we deliver results tailored to your vision."
-    },
-    {
-      "title": "Assistant Administrator",
-      "description": "Our administrative services streamline your daily operations—conducting research, preparing reports, managing communications, and coordinating schedules. We ensure that essential administrative tasks are handled efficiently and professionally."
-    },
-    {
-      "title": "Sales & Bookkeeping",
-      "description": "PrimEx provides global wholesale and retail sales management, production planning, logistics coordination, and advanced e-commerce solutions for B2B and B2C. Our bookkeeping services include accurate transaction recording, financial reporting, and compliance with accounting standards to ensure smooth financial operations."
-    },
-    {
-      "title": "E-Commerce",
-      "description": "Our skilled developers build customized e-commerce websites that effectively promote your brand. We focus on tailored solutions that strengthen your online presence and drive continuous business growth."
-    }
-  ]
-},
-
-
+    "mainTitle": "Our Services",
+    "intro": "Tailored solutions designed to optimize your business operations and support your growth.",
+    "items": [
+      {
+        "title": "Software Developer & IT Support",
+        "description": "We deliver tailored software solutions and integrate virtual agents that support tasks such as order processing, customer service, logistics, and data management. Our team also ensures data protection concepts and strong cyber-security measures."
+      },
+      {
+        "title": "Graphic Designer",
+        "description": "Our experienced design team creates high-quality and visually stunning designs that exceed expectations. We focus on creativity, precision, and fast turnaround times. Whether you need branding, web design, or marketing materials, we deliver results tailored to your vision."
+      },
+      {
+        "title": "Assistant Administrator",
+        "description": "Our administrative services streamline your daily operations—conducting research, preparing reports, managing communications, and coordinating schedules. We ensure that essential administrative tasks are handled efficiently and professionally."
+      },
+      {
+        "title": "Sales & Bookkeeping",
+        "description": "PrimEx provides global wholesale and retail sales management, production planning, logistics coordination, and advanced e-commerce solutions for B2B and B2C. Our bookkeeping services include accurate transaction recording, financial reporting, and compliance with accounting standards to ensure smooth financial operations."
+      },
+      {
+        "title": "E-Commerce",
+        "description": "Our skilled developers build customized e-commerce websites that effectively promote your brand. We focus on tailored solutions that strengthen your online presence and drive continuous business growth."
+      }
+    ]
+  },
   "joinBusiness": {
     "joinLabel": "JOIN OUR TEAM",
     "joinTitle": "Want to join us?",
     "joinDescription": "Become part of our growing team and build your future with us.",
     "joinButton": "Join Us",
-
     "businessLabel": "BUSINESS INQUIRY",
     "businessTitle": "Let’s talk about business.",
     "businessDescription": "Tell us what you want to build. We help companies scale with modern digital solutions.",
     "businessButton": "Let’s Talk"
   },
-
   "partners": {
-  "testimonials": [
-    {
-      "quote": "We built Cotopaxi with Shopify from day one.",
-      "company": "Cotopaxi",
-      "person": "Davis Smith",
-      "role": "Founder and CEO",
-      "image": "src/images/client2.webp"
-    },
-    {
-      "quote": "Another customer testimonial will be added here...",
-      "company": "Another Company",
-      "person": "John Doe",
-      "role": "CTO",
-      "image": "src/images/client2.webp"
-    }
-  ]
-},
-
-
- "footer": {
-  "company": {
-    "name": "PrimEx",
-    "description": "Prime Team, Prime Solution. Delivering excellence in IT and business solutions since 1985."
-  },
-  "pages": {
-    "title": "Pages",
-    "links": [
-      { "name": "Home", "url": "", "external": true },
-      { "name": "About Us", "url": "", "external": true },
-      { "name": "Services", "url": "", "external": true },
-      { "name": "Our Partners", "url": "", "external": true },
-      { "name": "Contact Us", "url": "", "external": true },
-      { "name": "Terms and Conditions", "url": "", "external": true },
-      { "name": "Certificates", "url": "", "external": true }
+    "testimonials": [
+      {
+        "quote": "We built Cotopaxi with Shopify from day one.",
+        "company": "Cotopaxi",
+        "person": "Davis Smith",
+        "role": "Founder and CEO",
+        "image": "src/images/client2.webp"
+      },
+      {
+        "quote": "Another customer testimonial will be added here...",
+        "company": "Another Company",
+        "person": "John Doe",
+        "role": "CTO",
+        "image": "src/images/client2.webp"
+      }
     ]
   },
-  "hours": {
-    "title": "Working Hours",
-    "times": ["Monday - Friday:", "8:00 AM - 4:30 PM"]
-  },
-  "social": { "title": "Follow Us On" },
-  "contact": {
-    "title": "Contact Us",
-    "email": "E-mail: info@primexeu.com",
-    "phone": "Phone: +383 49 937 863"
-  },
-  "copyright": "All rights reserved."
+  "footer": {
+    "company": {
+      "name": "PrimEx",
+      "description": "Prime Team, Prime Solution. Delivering excellence in IT and business solutions since 1985."
+    },
+    "pages": {
+      "title": "Pages",
+      "links": [
+        {
+          "name": "Home",
+          "url": "",
+          "external": true
+        },
+        {
+          "name": "About Us",
+          "url": "",
+          "external": true
+        },
+        {
+          "name": "Services",
+          "url": "",
+          "external": true
+        },
+        {
+          "name": "Our Partners",
+          "url": "",
+          "external": true
+        },
+        {
+          "name": "Contact Us",
+          "url": "",
+          "external": true
+        },
+        {
+          "name": "Terms and Conditions",
+          "url": "",
+          "external": true
+        },
+        {
+          "name": "Certificates",
+          "url": "",
+          "external": true
+        }
+      ]
+    },
+    "hours": {
+      "title": "Working Hours",
+      "times": [
+        "Monday - Friday:",
+        "8:00 AM - 4:30 PM"
+      ]
+    },
+    "social": {
+      "title": "Follow Us On"
+    },
+    "contact": {
+      "title": "Contact Us",
+      "email": "E-mail: info@primexeu.com",
+      "phone": "Phone: +383 49 937 863"
+    },
+    "copyright": "All rights reserved."
+  }
 }
-
-}
-
-
-

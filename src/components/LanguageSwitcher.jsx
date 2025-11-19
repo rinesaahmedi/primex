@@ -9,7 +9,7 @@ export default function LanguageSwitcher() {
     i18n.changeLanguage(lng);
     try {
       localStorage.setItem("i18nextLng", lng);
-    } catch (err) {
+    } catch {
       // ignore (e.g., storage disabled)
     }
   };
