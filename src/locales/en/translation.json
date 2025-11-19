@@ -202,5 +202,42 @@
       "phone": "Phone: +383 49 937 863"
     },
     "copyright": "All rights reserved."
+  },
+
+ "forms": {
+  "join": {
+    "sectionLabel": "JOIN OUR TEAM",
+    "title": "Want to join us?",
+    "subtitle": "Become part of our growing team and build your future with us.",
+    "fields": {
+      "name": "Full name",
+      "email": "Email",
+      "phone": "Phone number",
+      "linkedin": "LinkedIn profile URL",
+      "country": "Select country",
+      "description": "Tell us a bit about yourself...",
+      "privacy": "I accept the Privacy Policy"
+    },
+    "submit": "Join us"
+  },
+  "business": {
+    "sectionLabel": "BUSINESS INQUIRY",
+    "title": "Let’s talk about business.",
+    "subtitle": "Tell us what you want to build. We help companies scale with modern digital solutions.",
+    "fields": {
+      "companyName": "Company name *",
+      "contactPerson": "Contact person *",
+      "email": "Email *",
+      "phone": "Phone number",
+      "businessType": "Business type *",
+      "website": "Company website",
+      "message": "Message *"
+    },
+    "submit": "Submit inquiry"
+  },
+  "validation": {
+    "acceptPrivacy": "Please accept the privacy policy before submitting."
   }
+}
+
 }
