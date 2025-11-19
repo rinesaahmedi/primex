@@ -1,13 +1,26 @@
 // src/components/Services.jsx
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 import { ArrowRight, Cpu, Laptop, Palette, ClipboardList, BarChart3, ShoppingBag } from "lucide-react";
+import { useScrollAnimation } from "../utils/useScrollAnimation";
 
 export default function Services() {
   const { t } = useTranslation();
   const services = t("services.items", { returnObjects: true }) || [];
+  const [sectionRef, isVisible] = useScrollAnimation({ threshold: 0.1 });
 
   const serviceIcons = [Cpu, Laptop, Palette, ClipboardList, BarChart3, ShoppingBag];
+
+  // Map service titles to slugs
+  const serviceSlugs = [
+    "ai-agents",
+    "software-developer",
+    "graphic-designer",
+    "assistant-administrator",
+    "sales-bookkeeping",
+    "e-commerce",
+  ];
 
   return (
     <section
@@ -17,9 +30,9 @@ export default function Services() {
       <div className="absolute -top-24 -right-10 h-72 w-72 rounded-full bg-[#fadebc44] blur-3xl opacity-80 pointer-events-none" />
       <div className="absolute -bottom-32 -left-10 h-72 w-72 rounded-full bg-[#2378ff26] blur-3xl opacity-60 pointer-events-none" />
 
-      <div className="relative max-w-6xl mx-auto px-6">
+      <div ref={sectionRef} className="relative max-w-6xl mx-auto px-6">
         {/* Header */}
-        <div className="text-center mb-14">
+        <div className={`text-center mb-14 animate-lift-blur-subtle ${isVisible ? 'visible' : ''}`}>
           <h2 className="text-4xl md:text-5xl font-bold text-black">
             {t("services.mainTitle")}
           </h2>
@@ -32,18 +45,17 @@ export default function Services() {
         <div className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
           {services.map((service, index) => {
             const IconComponent = serviceIcons[index];
+            const serviceSlug = serviceSlugs[index];
             return (
-              <button
+              <Link
                 key={index}
-                type="button"
-                className="group relative flex flex-col text-left overflow-visible
+                to={`/services/${serviceSlug}`}
+                className={`group relative flex flex-col text-left overflow-visible
                          rounded-2xl bg-white border border-slate-100 shadow-sm
                          hover:-translate-y-1 hover:shadow-lg hover:border-slate-200
                          focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2378FF]
-                         transition-all duration-300"
-                onClick={() => {
-                  // future navigation hook
-                }}
+                         transition-all duration-300 animate-lift-blur-subtle ${isVisible ? 'visible' : ''}`}
+                style={{ transitionDelay: `${0.2 + index * 0.1}s` }}
               >
                 {/* Icon slot - top left, popping out */}
                 {IconComponent && (
@@ -75,7 +87,7 @@ export default function Services() {
                     <ArrowRight className="w-4 h-4 ml-1" />
                   </div>
                 </div>
-              </button>
+              </Link>
             );
           })}
         </div>

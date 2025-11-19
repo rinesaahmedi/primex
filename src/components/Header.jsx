@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
+import { useLocation, useNavigate } from "react-router-dom";
 import primexLogo from "../assets/primex-logo.png";
 import primexLogoWhite from "../assets/primex-logo-white.png";
 
@@ -88,10 +89,18 @@ const GlobeIcon = () => (
 
 const Header = ({ darkMode, toggleDarkMode, changeLanguage }) => {
   const { t, i18n } = useTranslation();
+  const location = useLocation();
+  const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
   const langMenuRef = useRef(null);
+
+  // Check if we're on a white background page (service pages, about, etc.)
+  const isWhitePage = location.pathname.startsWith('/services') ||
+    location.pathname === '/about' ||
+    location.pathname === '/apply' ||
+    location.pathname === '/business';
 
   // Detect Scroll
   useEffect(() => {
@@ -127,17 +136,54 @@ const Header = ({ darkMode, toggleDarkMode, changeLanguage }) => {
     { href: "#contact", label: t("contactUs") },
   ];
 
-  const overlayMode = !isScrolled && !isMobileMenuOpen && !darkMode;
+  // Handle smooth scroll navigation
+  const handleNavClick = (e, href) => {
+    e.preventDefault();
+
+    // If we're not on the home page, navigate to home first
+    if (location.pathname !== '/') {
+      navigate('/');
+      // Wait for navigation, then scroll to section
+      setTimeout(() => {
+        const element = document.querySelector(href);
+        if (element) {
+          const headerOffset = 80;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth",
+          });
+        }
+      }, 100);
+    } else {
+      // We're on the home page, just scroll to the section
+      const element = document.querySelector(href);
+      if (element) {
+        const headerOffset = 80;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+      }
+    }
+    // Close mobile menu if open
+    setIsMobileMenuOpen(false);
+  };
+
+  const overlayMode = !isScrolled && !isMobileMenuOpen && !darkMode && !isWhitePage;
 
   const headerBgClass =
-    isScrolled || isMobileMenuOpen
+    isScrolled || isMobileMenuOpen || isWhitePage
       ? darkMode
         ? "bg-black shadow-lg"
         : "bg-white shadow-md"
       : "bg-transparent";
 
-  const textColorClass = darkMode || overlayMode ? "text-white" : "text-black";
-  const logoSrc = darkMode || overlayMode ? primexLogoWhite : primexLogo;
+  const textColorClass = (darkMode || (overlayMode && !isWhitePage)) ? "text-white" : "text-black";
+  const logoSrc = (darkMode || (overlayMode && !isWhitePage)) ? primexLogoWhite : primexLogo;
   const borderColorClass =
     darkMode || overlayMode ? "border-white/30" : "border-gray-200";
   const dropdownBgClass = darkMode || overlayMode ? "bg-gray-900" : "bg-white";
@@ -150,7 +196,10 @@ const Header = ({ darkMode, toggleDarkMode, changeLanguage }) => {
       <div className="container mx-auto flex justify-between items-center px-12">
         {/* --- Left: Logo --- */}
         <div className="text-3xl font-bold z-50">
-          <a href="/">
+          <a href="/" onClick={(e) => {
+            e.preventDefault();
+            navigate('/');
+          }}>
             <img src={logoSrc} alt="Primex Logo" className="h-8" />
           </a>
         </div>
@@ -161,7 +210,8 @@ const Header = ({ darkMode, toggleDarkMode, changeLanguage }) => {
             <a
               key={link.label}
               href={link.href}
-              className="hover:text-blue-600 font-medium transition-colors"
+              onClick={(e) => handleNavClick(e, link.href)}
+              className="hover:text-[#2378FF] font-medium transition-colors cursor-pointer"
             >
               {link.label}
             </a>
@@ -186,17 +236,15 @@ const Header = ({ darkMode, toggleDarkMode, changeLanguage }) => {
               >
                 <button
                   onClick={() => handleLanguageSelect("en")}
-                  className={`w-full text-left px-4 py-2 text-sm hover:bg-blue-500 hover:text-white transition-colors ${
-                    darkMode ? "hover:bg-blue-600" : "hover:bg-blue-50"
-                  }`}
+                  className={`w-full text-left px-4 py-2 text-sm hover:bg-blue-500 hover:text-white transition-colors ${darkMode ? "hover:bg-blue-600" : "hover:bg-blue-50"
+                    }`}
                 >
                   {t("english")}
                 </button>
                 <button
                   onClick={() => handleLanguageSelect("de")}
-                  className={`w-full text-left px-4 py-2 text-sm hover:bg-blue-500 hover:text-white transition-colors ${
-                    darkMode ? "hover:bg-blue-600" : "hover:bg-blue-50"
-                  }`}
+                  className={`w-full text-left px-4 py-2 text-sm hover:bg-blue-500 hover:text-white transition-colors ${darkMode ? "hover:bg-blue-600" : "hover:bg-blue-50"
+                    }`}
                 >
                   {t("german")}
                 </button>
@@ -207,11 +255,10 @@ const Header = ({ darkMode, toggleDarkMode, changeLanguage }) => {
           {/* Dark Mode Toggle (Icon) */}
           <button
             onClick={toggleDarkMode}
-            className={`p-2 rounded-full transition-colors ${
-              darkMode
-                ? "bg-gray-800 hover:bg-gray-700 text-yellow-300"
-                : "bg-gray-100 hover:bg-gray-200 text-gray-600"
-            }`}
+            className={`p-2 rounded-full transition-colors ${darkMode
+              ? "bg-gray-800 hover:bg-gray-700 text-yellow-300"
+              : "bg-gray-100 hover:bg-gray-200 text-gray-600"
+              }`}
             aria-label="Toggle Dark Mode"
           >
             {darkMode ? <SunIcon /> : <MoonIcon />}
@@ -229,9 +276,8 @@ const Header = ({ darkMode, toggleDarkMode, changeLanguage }) => {
 
       {/* --- Mobile Navigation Menu --- */}
       <div
-        className={`fixed inset-0 bg-opacity-95 backdrop-blur-sm transition-transform duration-300 ease-in-out md:hidden ${
-          isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
-        } ${darkMode ? "bg-black" : "bg-white"}`}
+        className={`fixed inset-0 bg-opacity-95 backdrop-blur-sm transition-transform duration-300 ease-in-out md:hidden ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+          } ${darkMode ? "bg-black" : "bg-white"}`}
         style={{
           top: "64px" /* Adjust based on header height */,
           height: "calc(100vh - 64px)",
@@ -242,8 +288,11 @@ const Header = ({ darkMode, toggleDarkMode, changeLanguage }) => {
             <a
               key={link.label}
               href={link.href}
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="text-2xl font-semibold hover:text-blue-600"
+              onClick={(e) => {
+                handleNavClick(e, link.href);
+                setIsMobileMenuOpen(false);
+              }}
+              className="text-2xl font-semibold hover:text-[#2378FF] transition-colors"
             >
               {link.label}
             </a>
@@ -255,17 +304,15 @@ const Header = ({ darkMode, toggleDarkMode, changeLanguage }) => {
             <div className="flex border rounded-lg overflow-hidden">
               <button
                 onClick={() => handleLanguageSelect("en")}
-                className={`px-4 py-2 ${
-                  i18n.language === "en" ? "bg-blue-600 text-white" : ""
-                }`}
+                className={`px-4 py-2 ${i18n.language === "en" ? "bg-blue-600 text-white" : ""
+                  }`}
               >
                 EN
               </button>
               <button
                 onClick={() => handleLanguageSelect("de")}
-                className={`px-4 py-2 ${
-                  i18n.language === "de" ? "bg-blue-600 text-white" : ""
-                }`}
+                className={`px-4 py-2 ${i18n.language === "de" ? "bg-blue-600 text-white" : ""
+                  }`}
               >
                 DE
               </button>
@@ -274,11 +321,10 @@ const Header = ({ darkMode, toggleDarkMode, changeLanguage }) => {
             {/* Theme Toggle */}
             <button
               onClick={toggleDarkMode}
-              className={`p-3 rounded-full ${
-                darkMode
-                  ? "bg-gray-800 text-yellow-300"
-                  : "bg-gray-200 text-gray-600"
-              }`}
+              className={`p-3 rounded-full ${darkMode
+                ? "bg-gray-800 text-yellow-300"
+                : "bg-gray-200 text-gray-600"
+                }`}
             >
               {darkMode ? <SunIcon /> : <MoonIcon />}
             </button>

@@ -1,5 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { useScrollAnimation } from "../utils/useScrollAnimation";
 
 import forestdream from "../assets/partners/Forestdream.jpg";
 import homeFurniture from "../assets/partners/home-furniture-1.jpg";
@@ -21,14 +22,15 @@ const partnerLogos = [
 
 export default function PartnersGrid() {
     const { t } = useTranslation();
+    const [sectionRef, isVisible] = useScrollAnimation({ threshold: 0.1 });
 
     // Duplicate logos for seamless infinite scroll
     const duplicatedLogos = [...partnerLogos, ...partnerLogos];
 
     return (
         <section id="partners" className="w-full py-20 bg-white overflow-hidden">
-            <div className="max-w-6xl mx-auto px-6 mb-14">
-                <div className="text-center space-y-4">
+            <div ref={sectionRef} className="max-w-6xl mx-auto px-6 mb-14">
+                <div className={`text-center space-y-4 animate-lift-blur-subtle ${isVisible ? 'visible' : ''}`}>
                     <p className="text-xs uppercase tracking-[0.4em] text-slate-500">
                         {t("partnersGrid.kicker")}
                     </p>

@@ -207,3 +207,69 @@
 .partners-scroll {
     animation: scroll 18s linear infinite;
 }
+
+/* Scroll animations - subtle lift and blur using transitions */
+.animate-lift-blur {
+    opacity: 0;
+    transform: translateY(20px);
+    filter: blur(8px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out, filter 0.8s ease-out;
+}
+
+.animate-lift-blur.visible {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+}
+
+.animate-lift-blur-subtle {
+    opacity: 0;
+    transform: translateY(15px);
+    filter: blur(4px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out, filter 0.6s ease-out;
+}
+
+.animate-lift-blur-subtle.visible {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+}
+
+/* Stagger animations */
+.animate-delay-100 {
+    animation-delay: 0.1s;
+}
+
+.animate-delay-200 {
+    animation-delay: 0.2s;
+}
+
+.animate-delay-300 {
+    animation-delay: 0.3s;
+}
+
+.animate-delay-400 {
+    animation-delay: 0.4s;
+}
+
+/* Floating animation for hero glows */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+.hero-glow--one {
+    animation: float 6s ease-in-out infinite;
+}
+
+.hero-glow--two {
+    animation: float 8s ease-in-out infinite;
+    animation-delay: 1s;
+}

@@ -2,10 +2,12 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import { useScrollAnimation } from "../utils/useScrollAnimation";
 
 const About = () => {
   const { t } = useTranslation();
   const points = t("about.whyPrimex.points", { returnObjects: true }) || [];
+  const [sectionRef, isVisible] = useScrollAnimation({ threshold: 0.1 });
 
   // Light gradients for each card
   const gradientClasses = [
@@ -17,10 +19,10 @@ const About = () => {
 
   return (
     <section id="about" className="py-20 bg-white">
-      <div className="container mx-auto px-6 max-w-6xl">
+      <div ref={sectionRef} className="container mx-auto px-6 max-w-6xl">
         <div className="grid gap-12 lg:grid-cols-2 items-center">
           {/* LEFT SIDE */}
-          <div>
+          <div className={`animate-lift-blur-subtle ${isVisible ? 'visible' : ''}`}>
             <p className="text-xs font-semibold tracking-[0.25em] uppercase text-blue-500 mb-3">
               {t("aboutUs")}
             </p>
@@ -51,7 +53,9 @@ const About = () => {
                   flex items-center transition-all duration-300 cursor-pointer
                   hover:shadow-xl hover:-translate-y-1 hover:border-gray-300
                   ${gradientClasses[index % gradientClasses.length]}
+                  animate-lift-blur-subtle ${isVisible ? 'visible' : ''}
                 `}
+                style={{ transitionDelay: `${0.2 + index * 0.1}s` }}
               >
                 <p className="font-semibold text-gray-900 text-sm md:text-base leading-snug">
                   {point}

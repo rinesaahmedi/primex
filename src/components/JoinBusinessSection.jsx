@@ -2,9 +2,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useScrollAnimation } from "../utils/useScrollAnimation";
 
 const JoinBusinessSection = () => {
   const { t } = useTranslation();
+  const [sectionRef, isVisible] = useScrollAnimation({ threshold: 0.1 });
 
   return (
     <section className="w-full py-24 
@@ -12,7 +14,7 @@ const JoinBusinessSection = () => {
     from-[#081333] via-[#1659bd] to-[#fadebc]
     text-white
   ">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <div ref={sectionRef} className="max-w-7xl mx-auto px-6 lg:px-12">
 
         <div className="relative grid grid-cols-1 md:grid-cols-2 gap-20">
 
@@ -20,7 +22,7 @@ const JoinBusinessSection = () => {
           <div className="hidden md:block absolute inset-y-0 left-1/2 w-px bg-white/30"></div>
 
           {/* LEFT SIDE */}
-          <div className="space-y-6 max-w-md">
+          <div className={`space-y-6 max-w-md animate-lift-blur-subtle ${isVisible ? 'visible' : ''}`}>
 
             <p className="text-sm tracking-wide text-white/80 uppercase font-semibold">
               {t("joinBusiness.joinLabel")}
@@ -48,7 +50,7 @@ const JoinBusinessSection = () => {
           </div>
 
           {/* RIGHT SIDE */}
-          <div className="space-y-6 max-w-md">
+          <div className={`space-y-6 max-w-md animate-lift-blur-subtle ${isVisible ? 'visible' : ''}`} style={{ transitionDelay: '0.2s' }}>
 
             <p className="text-sm tracking-wide text-white/80 uppercase font-semibold">
               {t("joinBusiness.businessLabel")}

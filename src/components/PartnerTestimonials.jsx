@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { useScrollAnimation } from "../utils/useScrollAnimation";
 
 export default function PartnerTestimonials() {
   const { t } = useTranslation();
+  const [sectionRef, isVisible] = useScrollAnimation({ threshold: 0.2 });
 
   const testimonials = t("partners.testimonials", { returnObjects: true });
 
@@ -17,9 +19,9 @@ export default function PartnerTestimonials() {
 
   return (
     <section className="relative w-full py-20 md:py-28 bg-white">
-      <div className="max-w-5xl mx-auto px-6">
+      <div ref={sectionRef} className="max-w-5xl mx-auto px-6">
         {/* Testimonial content */}
-        <div className="text-center">
+        <div className={`text-center animate-lift-blur-subtle ${isVisible ? 'visible' : ''}`}>
           {/* Quote */}
           <blockquote 
             className="text-3xl md:text-4xl lg:text-5xl font-light leading-tight mb-12 text-slate-900 max-w-4xl mx-auto" 
