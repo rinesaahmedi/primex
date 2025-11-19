@@ -89,6 +89,7 @@
   "services": {
     "mainTitle": "Unsere Dienstleistungen",
     "intro": "Maßgeschneiderte Lösungen, die darauf ausgelegt sind, Ihre Geschäftsprozesse zu optimieren und Ihr Wachstum zu unterstützen.",
+    "ctaLabel": "Mehr erfahren",
     "items": [
       {
         "title": "Softwareentwicklung & IT-Support",

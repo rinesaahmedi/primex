@@ -89,6 +89,7 @@
   "services": {
     "mainTitle": "Our Services",
     "intro": "Tailored solutions designed to optimize your business operations and support your growth.",
+    "ctaLabel": "View more",
     "items": [
       {
         "title": "Software Developer & IT Support",
