@@ -7,63 +7,83 @@ const JoinBusinessSection = () => {
   const { t } = useTranslation();
 
   return (
-    <section className="w-full py-24 bg-gradient-to-r from-[#020617] to-[#0b1b3a] text-white">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        
-        {/* GRID WRAPPER */}
-        <div className="relative grid grid-cols-1 md:grid-cols-2 gap-20">
+   <section
+  className="
+    w-full py-24 
+    bg-gradient-to-r 
+    from-[#FADEBC] via-[#91A6EB] to-[#2378FF]
+    text-black
+  "
+>
+  <div className="max-w-7xl mx-auto px-6 lg:px-12">
 
-          {/* VERTICAL DIVIDER */}
-          <div className="hidden md:block absolute inset-y-0 left-1/2 w-px bg-white/20"></div>
+    {/* GRID WRAPPER */}
+    <div className="relative grid grid-cols-1 md:grid-cols-2 gap-20">
 
-          {/* LEFT SIDE */}
-          <div className="space-y-6 max-w-md">
-            <p className="text-sm tracking-wide text-gray-300">
-              {t("joinBusiness.joinLabel")}
-            </p>
+      {/* VERTICAL DIVIDER */}
+      <div className="hidden md:block absolute inset-y-0 left-1/2 w-px bg-black/10" />
 
-            <h2 className="text-4xl md:text-5xl font-semibold leading-tight">
-              {t("joinBusiness.joinTitle")}
-            </h2>
+      {/* LEFT SIDE */}
+      <div className="space-y-6 max-w-md">
+        <p className="text-sm tracking-[0.2em] text-[#91A6EB] uppercase">
+          {t('joinBusiness.joinLabel')}
+        </p>
 
-            <p className="text-gray-400 text-lg">
-              {t("joinBusiness.joinDescription")}
-            </p>
+        <h2 className="text-4xl md:text-5xl font-semibold text-[#2378FF] leading-tight">
+          {t('joinBusiness.joinTitle')}
+        </h2>
 
-            <Link
-              to="/apply"
-              className="inline-block mt-4 px-8 py-3 bg-lime-300 text-black font-medium rounded-full hover:bg-lime-400 transition-all"
-            >
-              {t("joinBusiness.joinButton")}
-            </Link>
-          </div>
+        <p className="text-lg text-gray-700">
+          {t('joinBusiness.joinDescription')}
+        </p>
 
-          {/* RIGHT SIDE */}
-          <div className="space-y-6 max-w-md">
-            <p className="text-sm tracking-wide text-gray-300">
-              {t("joinBusiness.businessLabel")}
-            </p>
-
-            <h2 className="text-4xl md:text-5xl font-semibold leading-tight">
-              {t("joinBusiness.businessTitle")}
-            </h2>
-
-            <p className="text-gray-400 text-lg">
-              {t("joinBusiness.businessDescription")}
-            </p>
-
-            <Link
-              to="/business"
-              className="inline-block mt-4 px-8 py-3 border border-lime-300 text-lime-300 rounded-full hover:bg-lime-300 hover:text-black transition-all"
-            >
-              {t("joinBusiness.businessButton")}
-            </Link>
-          </div>
-
-        </div>
-        
+        <Link
+          to="/apply"
+          className="
+            inline-block mt-4 px-8 py-3 
+            rounded-full 
+            bg-[#CDABFF] text-black font-medium
+            hover:bg-[#b992ff]
+            transition-all
+          "
+        >
+          {t('joinBusiness.joinButton')}
+        </Link>
       </div>
-    </section>
+
+      {/* RIGHT SIDE */}
+      <div className="space-y-6 max-w-md">
+        <p className="text-sm tracking-[0.2em] text-[#91A6EB] uppercase">
+          {t('joinBusiness.businessLabel')}
+        </p>
+
+        <h2 className="text-4xl md:text-5xl font-semibold text-[#2378FF] leading-tight">
+          {t('joinBusiness.businessTitle')}
+        </h2>
+
+        <p className="text-lg text-gray-700">
+          {t('joinBusiness.businessDescription')}
+        </p>
+
+        <Link
+          to="/business"
+          className="
+            inline-block mt-4 px-8 py-3 
+            rounded-full 
+            border-2 border-[#2378FF] text-[#2378FF] font-medium
+            hover:bg-[#2378FF] hover:text-white
+            transition-all
+          "
+        >
+          {t('joinBusiness.businessButton')}
+        </Link>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
   );
 };
 
