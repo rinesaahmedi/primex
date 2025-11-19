@@ -9,7 +9,7 @@ const JoinBusinessSection = () => {
   const [sectionRef, isVisible] = useScrollAnimation({ threshold: 0.1 });
 
   return (
-    <section className="w-full py-24 
+    <section id="contact" className="w-full py-24 
     bg-gradient-to-br 
     from-[#081333] via-[#1659bd] to-[#fadebc]
     text-white

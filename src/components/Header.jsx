@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import primexLogo from "../assets/primex-logo.png";
 import primexLogoWhite from "../assets/primex-logo-white.png";
 
@@ -183,7 +183,8 @@ const Header = ({ darkMode, toggleDarkMode, changeLanguage }) => {
       : "bg-transparent";
 
   const textColorClass = (darkMode || (overlayMode && !isWhitePage)) ? "text-white" : "text-black";
-  const logoSrc = (darkMode || (overlayMode && !isWhitePage)) ? primexLogoWhite : primexLogo;
+  const isWhiteLogo = (darkMode || (overlayMode && !isWhitePage));
+  const logoSrc = isWhiteLogo ? primexLogoWhite : primexLogo;
   const borderColorClass =
     darkMode || overlayMode ? "border-white/30" : "border-gray-200";
   const dropdownBgClass = darkMode || overlayMode ? "bg-gray-900" : "bg-white";
@@ -200,7 +201,7 @@ const Header = ({ darkMode, toggleDarkMode, changeLanguage }) => {
             e.preventDefault();
             navigate('/');
           }}>
-            <img src={logoSrc} alt="Primex Logo" className="h-8" />
+            <img src={logoSrc} alt="Primex Logo" className={isWhiteLogo ? "h-16" : "h-12"} />
           </a>
         </div>
 
@@ -274,60 +275,95 @@ const Header = ({ darkMode, toggleDarkMode, changeLanguage }) => {
         </button>
       </div>
 
-      {/* --- Mobile Navigation Menu --- */}
+      {/* --- Mobile Navigation Menu (Modal Style) --- */}
       <div
-        className={`fixed inset-0 bg-opacity-95 backdrop-blur-sm transition-transform duration-300 ease-in-out md:hidden ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
-          } ${darkMode ? "bg-black" : "bg-white"}`}
-        style={{
-          top: "64px" /* Adjust based on header height */,
-          height: "calc(100vh - 64px)",
-        }}
+        className={`fixed inset-0 bg-black/50 backdrop-blur-sm transition-all duration-300 md:hidden ${isMobileMenuOpen ? "opacity-100 z-[998]" : "opacity-0 pointer-events-none z-[-1]"
+          }`}
+        onClick={() => setIsMobileMenuOpen(false)}
       >
-        <div className="flex flex-col items-center justify-center h-full space-y-8 pb-20">
-          {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              onClick={(e) => {
-                handleNavClick(e, link.href);
-                setIsMobileMenuOpen(false);
-              }}
-              className="text-2xl font-semibold hover:text-[#2378FF] transition-colors"
-            >
-              {link.label}
-            </a>
-          ))}
-
-          {/* Mobile Language & Theme Controls */}
-          <div className="flex items-center space-x-6 mt-8">
-            {/* Language */}
-            <div className="flex border rounded-lg overflow-hidden">
+        <div
+          className={`absolute inset-x-4 top-20 bg-white rounded-3xl shadow-2xl transition-all duration-300 md:hidden ${isMobileMenuOpen ? "translate-y-0 opacity-100 scale-100" : "translate-y-4 opacity-0 scale-95"
+            }`}
+          onClick={(e) => e.stopPropagation()}
+          style={{ maxHeight: "calc(100vh - 120px)" }}
+        >
+          <div className="flex flex-col max-h-full">
+            {/* Close Button */}
+            <div className="flex justify-end p-4 border-b border-gray-200">
               <button
-                onClick={() => handleLanguageSelect("en")}
-                className={`px-4 py-2 ${i18n.language === "en" ? "bg-blue-600 text-white" : ""
-                  }`}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+                aria-label="Close menu"
               >
-                EN
-              </button>
-              <button
-                onClick={() => handleLanguageSelect("de")}
-                className={`px-4 py-2 ${i18n.language === "de" ? "bg-blue-600 text-white" : ""
-                  }`}
-              >
-                DE
+                <CloseIcon />
               </button>
             </div>
+            {/* Navigation Links */}
+            <div className="flex-1 px-6 py-6 overflow-y-auto">
+              <nav className="space-y-1">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    onClick={(e) => {
+                      handleNavClick(e, link.href);
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="block px-4 py-4 text-base font-medium text-gray-900 hover:bg-gray-50 rounded-lg transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </nav>
+            </div>
 
-            {/* Theme Toggle */}
-            <button
-              onClick={toggleDarkMode}
-              className={`p-3 rounded-full ${darkMode
-                ? "bg-gray-800 text-yellow-300"
-                : "bg-gray-200 text-gray-600"
-                }`}
-            >
-              {darkMode ? <SunIcon /> : <MoonIcon />}
-            </button>
+            {/* Separator */}
+            <div className="border-t border-gray-200"></div>
+
+            {/* Mobile Language & Theme Controls */}
+            <div className="px-6 py-6 bg-white">
+              <div className="space-y-4">
+                {/* Language Switcher */}
+                <button
+                  onClick={() => handleLanguageSelect(i18n.language === "en" ? "de" : "en")}
+                  className="w-full flex items-center justify-between px-4 py-3 bg-white border-2 border-gray-200 rounded-lg hover:border-[#2378FF] transition-colors"
+                >
+                  <div className="flex items-center gap-3">
+                    <GlobeIcon className="text-gray-600" />
+                    <span className="text-base font-semibold text-gray-900">
+                      {i18n.language === "en" ? "English" : "Deutsch"}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className={`px-3 py-1 rounded text-sm font-semibold ${i18n.language === "en"
+                      ? "bg-[#2378FF] text-white"
+                      : "bg-gray-100 text-gray-600"
+                      }`}>
+                      EN
+                    </span>
+                    <span className={`px-3 py-1 rounded text-sm font-semibold ${i18n.language === "de"
+                      ? "bg-[#2378FF] text-white"
+                      : "bg-gray-100 text-gray-600"
+                      }`}>
+                      DE
+                    </span>
+                  </div>
+                </button>
+
+                {/* Theme Toggle */}
+                <button
+                  onClick={toggleDarkMode}
+                  className="w-full flex items-center justify-between px-4 py-3 bg-white border-2 border-gray-200 rounded-lg hover:border-[#2378FF] transition-colors"
+                >
+                  <span className="text-base font-semibold text-gray-900">
+                    {darkMode ? "Light Mode" : "Dark Mode"}
+                  </span>
+                  <div className={`p-2 rounded-lg ${darkMode ? "bg-gray-800 text-yellow-300" : "bg-gray-100 text-gray-700"}`}>
+                    {darkMode ? <SunIcon /> : <MoonIcon />}
+                  </div>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -64,7 +64,7 @@ const Footer = () => {
   const copyright = t("footer.copyright", "All rights reserved.");
 
   return (
-    <footer id="contact" className="bg-gradient-to-br from-[#081333] via-[#123a78] to-[#081333] text-white">
+    <footer className="bg-gradient-to-br from-[#081333] via-[#123a78] to-[#081333] text-white">
       <div className="max-w-6xl mx-auto px-6 py-16">
         {/* Top Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
