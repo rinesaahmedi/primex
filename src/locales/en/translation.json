@@ -99,6 +99,10 @@
     "ctaLabel": "View more",
     "items": [
       {
+        "title": "AI Agents for Operations",
+        "description": "We blueprint, train, and operate AI agents that automate claims, product data, logistics and service workflows—safeguarded with human-in-the-loop oversight and 40+ years of furniture know-how."
+      },
+      {
         "title": "Software Developer & IT Support",
         "description": "We deliver tailored software solutions and integrate virtual agents that support tasks such as order processing, customer service, logistics, and data management. Our team also ensures data protection concepts and strong cyber-security measures."
       },

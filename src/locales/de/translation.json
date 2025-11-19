@@ -99,6 +99,10 @@
     "ctaLabel": "Mehr erfahren",
     "items": [
       {
+        "title": "AI Agents für den Betrieb",
+        "description": "Wir planen, trainieren und betreiben KI-Agenten, die Reklamationen, Produktdaten, Logistik und Service-Workflows automatisieren – abgesichert durch Human-in-the-Loop-Kontrollen und 40+ Jahre Möbel-Know-how."
+      },
+      {
         "title": "Softwareentwicklung & IT-Support",
         "description": "Wir entwickeln maßgeschneiderte Softwarelösungen und integrieren virtuelle Agenten, die Aufgaben wie Auftragsabwicklung, Kundenservice, Logistik und Datenmanagement unterstützen. Zudem stellen wir Datenschutzkonzepte und starke Cybersicherheitsmaßnahmen sicher."
       },
