@@ -1,59 +1,80 @@
+// src/components/Services.jsx
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Cpu, Brush, ClipboardList, Receipt, ShoppingBag } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+
+// Example image – change the import/path if needed
+import exampleServiceImage from "../images/client2.webp";
 
 export default function Services() {
   const { t } = useTranslation();
-
-  // Load items from translation JSON
-  const services = t("services.items", { returnObjects: true });
-
-  // Map each service to a matching icon
-  const icons = [
-    <Cpu className="w-10 h-10" />,
-    <Brush className="w-10 h-10" />,
-    <ClipboardList className="w-10 h-10" />,
-    <Receipt className="w-10 h-10" />,
-    <ShoppingBag className="w-10 h-10" />,
-  ];
+  const services = t("services.items", { returnObjects: true }) || [];
 
   return (
     <section id="services" className="w-full py-20 bg-white">
       <div className="max-w-6xl mx-auto px-6">
-        
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900">
             {t("services.mainTitle")}
           </h2>
-          <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
+          <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
             {t("services.intro")}
           </p>
         </div>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
           {services.map((service, index) => (
-            <div
+            <button
               key={index}
-              className="group p-8 bg-gray-50 rounded-2xl shadow-sm border border-gray-200 
-              hover:shadow-xl hover:bg-white transition-all duration-300"
+              type="button"
+              className="group relative flex flex-col text-left overflow-hidden
+                         rounded-3xl bg-white border border-slate-200 shadow-sm
+                         hover:-translate-y-1 hover:shadow-xl hover:border-slate-300
+                         focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500
+                         transition-all duration-300"
+              onClick={() => {
+                // TODO: navigate, open modal, etc.
+              }}
             >
-              {/* Icon */}
-              <div className="text-indigo-600 mb-5 group-hover:scale-110 transition-transform">
-                {icons[index]}
+              {/* Top visual / image */}
+              <div className="relative h-50 bg-slate-100">
+                {index === 0 ? (
+                  <img
+                    src={exampleServiceImage}
+                    alt={service.title}
+                    className="h-full w-full object-cover"
+                  />
+                ) : (
+                  <div className="absolute inset-0 bg-gradient-to-tr from-indigo-100 via-blue-50 to-sky-100" />
+                )}
               </div>
 
-              {/* Title */}
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                {service.title}
-              </h3>
+              {/* Text content */}
+              <div className="flex-1 px-5 py-4 md:px-6 md:py-5">
+                <h3 className="text-2xl font-semibold text-slate-900 mb-3">
+                  {service.title}
+                </h3>
+                <p className="text-sm md:text-base text-slate-600 leading-relaxed line-clamp-5">
+                  {service.description}
+                </p>
 
-              {/* Description */}
-              <p className="text-gray-600 leading-relaxed">
-                {service.description}
-              </p>
-            </div>
+                {/* “View more” / “Mehr erfahren” CTA */}
+                <div
+                  className="mt-6 flex items-center text-indigo-600 font-semibold
+                             opacity-0 translate-y-2
+                             group-hover:opacity-100 group-hover:translate-y-0
+                             group-focus-visible:opacity-100 group-focus-visible:translate-y-0
+                             transition-all duration-200"
+                >
+                  <span className="text-sm md:text-base">
+                    {t("services.ctaLabel")}
+                  </span>
+                  <ArrowRight className="w-4 h-4 ml-1" />
+                </div>
+              </div>
+            </button>
           ))}
         </div>
       </div>
