@@ -10,6 +10,9 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 
+import JoinUsForm from "./pages/JoinUsForm.jsx";
+import BusinessInquiryForm from "./pages/BusinessInquiryForm.jsx";
+
 function App() {
   const { i18n } = useTranslation();
   const [darkMode, setDarkMode] = useState(false);
@@ -38,6 +41,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<AboutPage />} />
+
+          <Route path="/apply" element={<JoinUsForm />} />
+          <Route path="/business" element={<BusinessInquiryForm />} />
         </Routes>
       </main>
 
