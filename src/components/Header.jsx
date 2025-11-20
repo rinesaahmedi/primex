@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import primexLogo from "../assets/primex-logo.png";
 import primexLogoWhite from "../assets/primex-logo-white.png";
+import CalendarIcon from '../assets/svgs/calendarIcone'; 
 
 // Icons (Inline SVGs to avoid installing external libraries like react-icons)
 const MenuIcon = () => (
@@ -277,6 +278,19 @@ const Header = ({ changeLanguage }) => {
             )}
           </div>
 
+<<<<<<< HEAD
+          {/* Dark Mode Toggle (Icon) */}
+          <Link to="/appointments">
+          <button
+            className="flex items-center space-x-2 p-2 rounded-full hover:bg-gray-200 transition-all"
+            aria-label="Go to Appointment Calendar"
+          >
+            <CalendarIcon />
+            <span className="text-sm">Calendar</span>
+          </button>
+        </Link>
+=======
+>>>>>>> 671b8fa19e5bb6b4ef9ce676b1171e4312f75065
         </div>
 
         {/* --- Mobile Menu Toggle Button --- */}
