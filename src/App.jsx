@@ -64,7 +64,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<AboutPage />} />
-          
+
           {/* Service Pages */}
           <Route path="/services/ai-agents" element={<AIAgentsPage />} />
           <Route path="/services/ai-agents/agent1" element={<Agent1Page />} />
@@ -86,8 +86,8 @@ function App() {
           <Route path="/apply" element={<JoinUsForm />} />
           <Route path="/business" element={<BusinessInquiryForm />} />
 
-           <Route path="/terms" element={<Terms />} />
-           <Route path="/certificate" element={<CertificatePage />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/certificate" element={<CertificatePage />} />
         </Routes>
       </main>
 

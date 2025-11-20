@@ -5,37 +5,6 @@ import primexLogo from "../assets/primex-logo.png";
 import primexLogoWhite from "../assets/primex-logo-white.png";
 
 // Icons (Inline SVGs to avoid installing external libraries like react-icons)
-const SunIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="20"
-    height="20"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <circle cx="12" cy="12" r="5" />
-    <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
-  </svg>
-);
-const MoonIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="20"
-    height="20"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-  </svg>
-);
 const MenuIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -87,7 +56,7 @@ const GlobeIcon = () => (
   </svg>
 );
 
-const Header = ({ darkMode, toggleDarkMode, changeLanguage }) => {
+const Header = ({ changeLanguage }) => {
   const { t, i18n } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
@@ -100,7 +69,8 @@ const Header = ({ darkMode, toggleDarkMode, changeLanguage }) => {
   const isWhitePage = location.pathname.startsWith('/services') ||
     location.pathname === '/about' ||
     location.pathname === '/apply' ||
-    location.pathname === '/business';
+    location.pathname === '/business' ||
+    location.pathname === '/certificate';
 
   // Detect Scroll
   useEffect(() => {
@@ -232,21 +202,18 @@ const Header = ({ darkMode, toggleDarkMode, changeLanguage }) => {
     setIsMobileMenuOpen(false);
   };
 
-  const overlayMode = !isScrolled && !isMobileMenuOpen && !darkMode && !isWhitePage;
+  const overlayMode = !isScrolled && !isMobileMenuOpen && !isWhitePage;
 
   const headerBgClass =
     isScrolled || isMobileMenuOpen || isWhitePage
-      ? darkMode
-        ? "bg-black shadow-lg"
-        : "bg-white shadow-md"
+      ? "bg-white shadow-md"
       : "bg-transparent";
 
-  const textColorClass = (darkMode || (overlayMode && !isWhitePage)) ? "text-white" : "text-black";
-  const isWhiteLogo = (darkMode || (overlayMode && !isWhitePage));
+  const textColorClass = overlayMode ? "text-white" : "text-black";
+  const isWhiteLogo = overlayMode;
   const logoSrc = isWhiteLogo ? primexLogoWhite : primexLogo;
-  const borderColorClass =
-    darkMode || overlayMode ? "border-white/30" : "border-gray-200";
-  const dropdownBgClass = darkMode || overlayMode ? "bg-gray-900" : "bg-white";
+  const borderColorClass = overlayMode ? "border-white/30" : "border-gray-200";
+  const dropdownBgClass = overlayMode ? "bg-gray-900" : "bg-white";
 
   return (
     <header
@@ -296,15 +263,13 @@ const Header = ({ darkMode, toggleDarkMode, changeLanguage }) => {
               >
                 <button
                   onClick={() => handleLanguageSelect("en")}
-                  className={`w-full text-left px-4 py-2 text-sm hover:bg-blue-500 hover:text-white transition-colors ${darkMode ? "hover:bg-blue-600" : "hover:bg-blue-50"
-                    }`}
+                  className="w-full text-left px-4 py-2 text-sm hover:bg-blue-50 hover:text-blue-700 transition-colors"
                 >
                   {t("english")}
                 </button>
                 <button
                   onClick={() => handleLanguageSelect("de")}
-                  className={`w-full text-left px-4 py-2 text-sm hover:bg-blue-500 hover:text-white transition-colors ${darkMode ? "hover:bg-blue-600" : "hover:bg-blue-50"
-                    }`}
+                  className="w-full text-left px-4 py-2 text-sm hover:bg-blue-50 hover:text-blue-700 transition-colors"
                 >
                   {t("german")}
                 </button>
@@ -312,17 +277,6 @@ const Header = ({ darkMode, toggleDarkMode, changeLanguage }) => {
             )}
           </div>
 
-          {/* Dark Mode Toggle (Icon) */}
-          <button
-            onClick={toggleDarkMode}
-            className={`p-2 rounded-full transition-colors ${darkMode
-              ? "bg-gray-800 hover:bg-gray-700 text-yellow-300"
-              : "bg-gray-100 hover:bg-gray-200 text-gray-600"
-              }`}
-            aria-label="Toggle Dark Mode"
-          >
-            {darkMode ? <SunIcon /> : <MoonIcon />}
-          </button>
         </div>
 
         {/* --- Mobile Menu Toggle Button --- */}
@@ -336,7 +290,7 @@ const Header = ({ darkMode, toggleDarkMode, changeLanguage }) => {
 
       {/* --- Mobile Navigation Menu (Modal Style) --- */}
       <div
-        className={`fixed inset-0 bg-black/50 backdrop-blur-sm transition-all duration-300 md:hidden ${isMobileMenuOpen ? "opacity-100 z-[998]" : "opacity-0 pointer-events-none z-[-1]"
+        className={`fixed inset-0 bg-black/50 backdrop-blur-sm transition-all duration-300 md:hidden ${isMobileMenuOpen ? "opacity-100 z-998" : "opacity-0 pointer-events-none z-[-1]"
           }`}
         onClick={() => setIsMobileMenuOpen(false)}
       >
@@ -379,7 +333,7 @@ const Header = ({ darkMode, toggleDarkMode, changeLanguage }) => {
             {/* Separator */}
             <div className="border-t border-gray-200"></div>
 
-            {/* Mobile Language & Theme Controls */}
+            {/* Mobile Language Control */}
             <div className="px-6 py-6 bg-white">
               <div className="space-y-4">
                 {/* Language Switcher */}
@@ -406,19 +360,6 @@ const Header = ({ darkMode, toggleDarkMode, changeLanguage }) => {
                       }`}>
                       DE
                     </span>
-                  </div>
-                </button>
-
-                {/* Theme Toggle */}
-                <button
-                  onClick={toggleDarkMode}
-                  className="w-full flex items-center justify-between px-4 py-3 bg-white border-2 border-gray-200 rounded-lg hover:border-[#2378FF] transition-colors"
-                >
-                  <span className="text-base font-semibold text-gray-900">
-                    {darkMode ? "Light Mode" : "Dark Mode"}
-                  </span>
-                  <div className={`p-2 rounded-lg ${darkMode ? "bg-gray-800 text-yellow-300" : "bg-gray-100 text-gray-700"}`}>
-                    {darkMode ? <SunIcon /> : <MoonIcon />}
                   </div>
                 </button>
               </div>

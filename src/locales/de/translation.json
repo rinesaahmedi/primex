@@ -4,8 +4,8 @@
   "hero": {
     "kicker": "Maßgeschneiderte KI-Operationen · gebaut von Primex",
     "headline": {
-      "emphasis": "AI Operations",
-      "rest": "für die Möbelindustrie"
+      "emphasis": "Agentische KI",
+      "rest": "Lösungen"
     },
     "body": "Wir entwerfen individuelle KI-Agenten, die sich mit Ihrem ERP, Produktdaten, der Logistik und dem Service verknüpfen – basierend auf 40+ Jahren operativem Know-how.",
     "primaryCta": "Agent entwerfen",
@@ -161,27 +161,27 @@
         {
           "name": "Startseite",
           "url": "/#home",
-          "external": true
+          "external": false
         },
         {
           "name": "Über uns",
           "url": "/#about",
-          "external": true
+          "external": false
         },
         {
           "name": "Dienstleistungen",
           "url": "/#services",
-          "external": true
+          "external": false
         },
         {
           "name": "Unsere Partner",
           "url": "/#partners",
-          "external": true
+          "external": false
         },
         {
           "name": "Kontakt",
           "url": "/#contact",
-          "external": true
+          "external": false
         },
         {
           "name": "AGB",
@@ -243,6 +243,17 @@
     "validation": {
       "acceptPrivacy": "Bitte akzeptieren Sie die Datenschutzerklärung, bevor Sie das Formular absenden."
     }
+  },
+  "termsPage": {
+    "pill": "Rechtlicher Rahmen",
+    "title": "Allgemeine Geschäftsbedingungen",
+    "subtitle": "Bitte lesen Sie die verbindlichen Bedingungen, die die Nutzung der Produkte, Dienstleistungen und digitalen Angebote von Primex regeln.",
+    "meta": {
+      "updated": "Letzte Aktualisierung: 2025",
+      "jurisdiction": "Gerichtsbarkeit: Europäische Union"
+    },
+    "loading": "AGB werden geladen...",
+    "error": "AGB konnten nicht geladen werden: {{message}}"
   },
   "agents": {
     "backToAgentsLink": "Zurück zu den KI-Agenten",

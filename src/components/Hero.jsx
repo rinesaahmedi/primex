@@ -1,9 +1,11 @@
 // src/components/Hero.jsx
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 const Hero = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const statsText = t("hero.statsText");
   const highlights = t("hero.highlights", { returnObjects: true }) || [];
   const [isVisible, setIsVisible] = useState(false);
@@ -41,7 +43,11 @@ const Hero = () => {
           </p>
 
           <div className={`flex flex-wrap gap-4 animate-lift-blur-subtle ${isVisible ? 'visible' : ''}`} style={{ transitionDelay: '0.3s' }}>
-            <button className="hero-cta hero-cta--primary">
+            <button
+              className="hero-cta hero-cta--primary"
+              type="button"
+              onClick={() => navigate("/business")}
+            >
               {t("hero.primaryCta")}
             </button>
           </div>
