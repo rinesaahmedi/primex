@@ -1,16 +1,12 @@
 // src/pages/Home.jsx
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import Header from "../components/Header.jsx";
-import Hero from "../components/Hero.jsx";
-import About from "../components/About.jsx";
-import Services from "../components/Services.jsx";
-import JoinBusinessSection from "../components/JoinBusinessSection.jsx";
+import Header from "../components/Header.jsx"; // Import the Header component
+import Hero from "../components/Hero.jsx"; // Import the Hero component
+import About from "../components/About.jsx"; // Import the Hero component
+import Services from "../components/Services.jsx"; // Import the Services component
+import JoinBusinessSection from "../components/JoinBusinessSection.jsx"; // Import the JoinBusinessSection component
 import PartnerTestimonials from "../components/PartnerTestimonials.jsx";
-import Footer from "../components/Footer.jsx";
-import JoinUsForm from "./JoinUsForm.jsx";
-import BusinessInquiryForm from "./BusinessInquiryForm.jsx";
-
 
 export default function Home() {
   const { i18n } = useTranslation();
@@ -32,10 +28,11 @@ export default function Home() {
   };
 
   return (
-    <div className={`${darkMode ? 'bg-gray-900 text-white' : 'bg-white text-black'}`}>
-      {/* Header Component */}
-      <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} changeLanguage={changeLanguage} />
-
+    <div
+      className={`${
+        darkMode ? "bg-gray-900 text-white" : "bg-white text-black"
+      }`}
+    >
       {/* Hero Section */}
       <Hero />
 
@@ -46,14 +43,6 @@ export default function Home() {
       <JoinBusinessSection />
 
       <PartnerTestimonials />
-
-      <JoinUsForm />
-
-      <BusinessInquiryForm />
-
-      <Footer />
-
-
     </div>
   );
 }

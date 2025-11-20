@@ -217,7 +217,7 @@
         },
         {
           "name": "Certificates",
-          "url": "",
+          "url": "/certificate",
           "external": true
         }
       ]
