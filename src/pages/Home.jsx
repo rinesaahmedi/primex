@@ -8,6 +8,8 @@ import Services from '../components/Services.jsx'; // Import the Services compon
 import JoinBusinessSection from '../components/JoinBusinessSection.jsx'; // Import the JoinBusinessSection component  
 import PartnerTestimonials from "../components/PartnerTestimonials.jsx";
 import Footer from '../components/Footer.jsx'; // Import the Footer component
+import JoinUsForm from "./JoinUsForm.jsx";
+import BusinessInquiryForm from "./BusinessInquiryForm.jsx";
 
 
 export default function Home() {

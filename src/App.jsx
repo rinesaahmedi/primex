@@ -33,7 +33,7 @@ import Agent8Page from "./pages/services/agents/Agent8Page";
 import Agent9Page from "./pages/services/agents/Agent9Page";
 import Agent10Page from "./pages/services/agents/Agent10Page";
 
-import Terms from "./pages/Terms.jsx";  
+import Terms from "./pages/Terms.jsx";
 
 function App() {
   const { i18n } = useTranslation();
