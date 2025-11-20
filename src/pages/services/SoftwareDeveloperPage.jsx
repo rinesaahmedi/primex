@@ -52,30 +52,38 @@ const SoftwareDeveloperPage = () => {
           ref={sectionRef}
           className={`mb-12 ${isVisible ? "lift-up-subtle" : ""}`}
         >
-          <p className="text-xs uppercase tracking-[0.4em] text-[#2378FF] mb-4">
-            {hero.eyebrow}
-          </p>
-          <h1
-            className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
-            style={{ fontFamily: "var(--font-serif)" }}
-          >
-            {hero.title || "Software Developer & IT Support"}
-          </h1>
-          <p className="text-lg md:text-xl text-gray-600 leading-relaxed whitespace-pre-line">
-            {hero.subtitle || t("services.items.1.description")}
-          </p>
+          {hero.eyebrow && (
+            <p className="text-xs uppercase tracking-[0.4em] text-[#2378FF] mb-4">
+              {hero.eyebrow}
+            </p>
+          )}
+          {hero.title && (
+            <h1
+              className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
+              style={{ fontFamily: "var(--font-serif)" }}
+            >
+              {hero.title}
+            </h1>
+          )}
+          {hero.subtitle && (
+            <p className="text-lg md:text-xl text-gray-600 leading-relaxed whitespace-pre-line">
+              {hero.subtitle}
+            </p>
+          )}
         </div>
 
         <div
           className={`mb-12 ${isVisible ? "lift-up-subtle" : ""}`}
           style={{ animationDelay: isVisible ? "0.1s" : "0s" }}
         >
-          <h2
-            className="text-3xl md:text-4xl font-bold text-gray-900 mb-3"
-            style={{ fontFamily: "var(--font-serif)" }}
-          >
-            {sections.offeringsTitle || t("services.ourServices", "Our Services")}
-          </h2>
+          {sections.offeringsTitle && (
+            <h2
+              className="text-3xl md:text-4xl font-bold text-gray-900 mb-3"
+              style={{ fontFamily: "var(--font-serif)" }}
+            >
+              {sections.offeringsTitle}
+            </h2>
+          )}
           {sections.offeringsSubtitle && (
             <p className="text-gray-500 mb-6">{sections.offeringsSubtitle}</p>
           )}
@@ -98,10 +106,14 @@ const SoftwareDeveloperPage = () => {
                     className="w-8 h-8 mb-4"
                     style={{ color: palette.color }}
                   />
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                    {pillar.title}
-                  </h3>
-                  <p className="text-gray-600">{pillar.body}</p>
+                  {pillar.title && (
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                      {pillar.title}
+                    </h3>
+                  )}
+                  {pillar.body && (
+                    <p className="text-gray-600">{pillar.body}</p>
+                  )}
                   {pillar.items && pillar.items.length > 0 && (
                     <ul className="mt-4 space-y-2 text-sm text-gray-500">
                       {pillar.items.map((item, idx) => (
@@ -122,12 +134,14 @@ const SoftwareDeveloperPage = () => {
           className={`mb-12 ${isVisible ? "lift-up-subtle" : ""}`}
           style={{ animationDelay: isVisible ? "0.2s" : "0s" }}
         >
-          <h2
-            className="text-3xl md:text-4xl font-bold text-gray-900 mb-6"
-            style={{ fontFamily: "var(--font-serif)" }}
-          >
-            {sections.benefitsTitle || t("services.benefitsTitle", "Key Benefits")}
-          </h2>
+          {sections.benefitsTitle && (
+            <h2
+              className="text-3xl md:text-4xl font-bold text-gray-900 mb-6"
+              style={{ fontFamily: "var(--font-serif)" }}
+            >
+              {sections.benefitsTitle}
+            </h2>
+          )}
           <div className="bg-white rounded-2xl p-8 border-2 border-slate-200">
             <ul className="grid md:grid-cols-2 gap-4">
               {benefits.map((benefit, index) => (
@@ -145,32 +159,36 @@ const SoftwareDeveloperPage = () => {
           style={{ animationDelay: isVisible ? "0.3s" : "0s" }}
         >
           <div className="bg-linear-to-br from-[#081333] via-[#1659bd] to-[#fadebc] rounded-2xl p-8 md:p-12 text-white">
-            <h3
-              className="text-2xl md:text-3xl font-bold mb-4"
-              style={{ fontFamily: "var(--font-serif)" }}
-            >
-              {cta.title || t("services.cta.title", "Ready to get started?")}
-            </h3>
-            <p className="text-white/90 mb-8 text-lg">
-              {cta.body ||
-                t(
-                  "services.cta.body",
-                  "Let's discuss your software development and IT support needs."
-                )}
-            </p>
+            {cta.title && (
+              <h3
+                className="text-2xl md:text-3xl font-bold mb-4"
+                style={{ fontFamily: "var(--font-serif)" }}
+              >
+                {cta.title}
+              </h3>
+            )}
+            {cta.body && (
+              <p className="text-white/90 mb-8 text-lg">
+                {cta.body}
+              </p>
+            )}
             <div className="flex flex-wrap gap-4">
-              <Link
-                to="/business"
-                className="inline-flex items-center justify-center px-8 py-3 bg-white text-[#2378FF] font-semibold rounded-xl hover:bg-white/90 transition-all shadow-lg hover:shadow-xl"
-              >
-                {cta.primary || t("services.cta.primary", "Get in Touch")}
-              </Link>
-              <Link
-                to="/#contact"
-                className="inline-flex items-center justify-center px-8 py-3 border-2 border-white text-white font-semibold rounded-xl hover:bg-white hover:text-[#2378FF] transition-all"
-              >
-                {cta.secondary || t("services.cta.secondary", "Contact Us")}
-              </Link>
+              {cta.primary && (
+                <Link
+                  to="/business"
+                  className="inline-flex items-center justify-center px-8 py-3 bg-white text-[#2378FF] font-semibold rounded-xl hover:bg-white/90 transition-all shadow-lg hover:shadow-xl"
+                >
+                  {cta.primary}
+                </Link>
+              )}
+              {cta.secondary && (
+                <Link
+                  to="/#contact"
+                  className="inline-flex items-center justify-center px-8 py-3 border-2 border-white text-white font-semibold rounded-xl hover:bg-white hover:text-[#2378FF] transition-all"
+                >
+                  {cta.secondary}
+                </Link>
+              )}
             </div>
           </div>
         </div>
