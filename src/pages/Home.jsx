@@ -1,6 +1,7 @@
 // src/pages/Home.jsx
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
+<<<<<<< HEAD
 import Hero from '../components/Hero.jsx'; // Import the Hero component
 import About from '../components/About.jsx'; // Import the Hero component
 import Services from '../components/Services.jsx'; // Import the Services component
@@ -8,6 +9,14 @@ import JoinBusinessSection from '../components/JoinBusinessSection.jsx'; // Impo
 import PartnerTestimonials from "../components/PartnerTestimonials.jsx";
 
 
+=======
+import Header from "../components/Header.jsx"; // Import the Header component
+import Hero from "../components/Hero.jsx"; // Import the Hero component
+import About from "../components/About.jsx"; // Import the Hero component
+import Services from "../components/Services.jsx"; // Import the Services component
+import JoinBusinessSection from "../components/JoinBusinessSection.jsx"; // Import the JoinBusinessSection component
+import PartnerTestimonials from "../components/PartnerTestimonials.jsx";
+>>>>>>> 2400eceaaa35806c396e678bed59753bae07da5e
 
 export default function Home() {
   const { i18n } = useTranslation();
@@ -26,10 +35,18 @@ export default function Home() {
   };
 
   return (
+<<<<<<< HEAD
     <div className={`${darkMode ? 'bg-gray-900 text-white' : 'bg-white text-black'}`}>
       {/* Header Component */}
       
 
+=======
+    <div
+      className={`${
+        darkMode ? "bg-gray-900 text-white" : "bg-white text-black"
+      }`}
+    >
+>>>>>>> 2400eceaaa35806c396e678bed59753bae07da5e
       {/* Hero Section */}
       <Hero />
 
@@ -40,9 +57,12 @@ export default function Home() {
       <JoinBusinessSection />
 
       <PartnerTestimonials />
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 2400eceaaa35806c396e678bed59753bae07da5e
     </div>
   );
 }
