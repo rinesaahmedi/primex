@@ -124,16 +124,32 @@ const Header = ({ darkMode, toggleDarkMode, changeLanguage }) => {
 
   const hasInitializedLanguage = useRef(false);
 
+  const getStoredLanguage = () => {
+    if (typeof window === "undefined") return null;
+    try {
+      return window.localStorage?.getItem("preferredLanguage");
+    } catch (error) {
+      console.warn("Unable to access stored language preference:", error);
+      return null;
+    }
+  };
+
+  const setStoredLanguage = (lang) => {
+    if (typeof window === "undefined") return;
+    try {
+      window.localStorage?.setItem("preferredLanguage", lang);
+    } catch (error) {
+      console.warn("Unable to persist language preference:", error);
+    }
+  };
+
   // Auto-detect preferred language (runs once on mount)
   useEffect(() => {
     if (hasInitializedLanguage.current || typeof window === "undefined") {
       return;
     }
 
-    const storedLang =
-      typeof window !== "undefined"
-        ? window.localStorage?.getItem("preferredLanguage")
-        : null;
+    const storedLang = getStoredLanguage();
 
     if (storedLang && storedLang !== i18n.language) {
       changeLanguage(storedLang);
@@ -167,9 +183,7 @@ const Header = ({ darkMode, toggleDarkMode, changeLanguage }) => {
   // Handle Language Selection
   // inside Header
   const handleLanguageSelect = (lang) => {
-    if (typeof window !== "undefined") {
-      window.localStorage?.setItem("preferredLanguage", lang);
-    }
+    setStoredLanguage(lang);
     changeLanguage(lang); // now send just "en" or "de"
     setIsLangOpen(false);
   };

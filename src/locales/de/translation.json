@@ -25,6 +25,10 @@
       {
         "title": "Logistik & Service",
         "description": "Sendungen verfolgen, Ersatzteile anstoßen und Kund:innen rund um die Uhr informieren."
+      },
+      {
+        "title": "Customer-Service-Automatisierung",
+        "description": "Anfragen bearbeiten, Retouren abwickeln und Servicequalität mit intelligenten Workflows aufrechterhalten."
       }
     ]
   },
@@ -91,6 +95,10 @@
     "intro": "Maßgeschneiderte Lösungen, die darauf ausgelegt sind, Ihre Geschäftsprozesse zu optimieren und Ihr Wachstum zu unterstützen.",
     "ctaLabel": "Mehr erfahren",
     "items": [
+      {
+        "title": "KI-Agenten für Operationen",
+        "description": "Wir konzipieren, trainieren und betreiben KI-Agenten, die Reklamationen, Produktdaten, Logistik- und Service-Workflows automatisieren – abgesichert durch Human-in-the-loop-Freigaben und 40+ Jahre Möbel-Know-how."
+      },
       {
         "title": "Softwareentwicklung & IT-Support",
         "description": "Wir entwickeln maßgeschneiderte Softwarelösungen und integrieren virtuelle Agenten, die Aufgaben wie Auftragsabwicklung, Kundenservice, Logistik und Datenmanagement unterstützen. Zudem stellen wir Datenschutzkonzepte und starke Cybersicherheitsmaßnahmen sicher."
@@ -203,44 +211,41 @@
     },
     "copyright": "Alle Rechte vorbehalten."
   },
-
   "forms": {
-  "join": {
-    "sectionLabel": "JOIN OUR TEAM",
-    "title": "Möchtest du bei uns einsteigen?",
-    "subtitle": "Werde Teil unseres wachsenden Teams und gestalte deine Zukunft mit uns.",
-    "fields": {
-      "name": "Vollständiger Name",
-      "email": "E-Mail",
-      "phone": "Telefonnummer",
-      "linkedin": "LinkedIn-Profil-URL",
-      "country": "Land auswählen",
-      "description": "Erzähl uns kurz von dir...",
-      "privacy": "Ich akzeptiere die Datenschutzerklärung"
+    "join": {
+      "sectionLabel": "JOIN OUR TEAM",
+      "title": "Möchtest du bei uns einsteigen?",
+      "subtitle": "Werde Teil unseres wachsenden Teams und gestalte deine Zukunft mit uns.",
+      "fields": {
+        "name": "Vollständiger Name",
+        "email": "E-Mail",
+        "phone": "Telefonnummer",
+        "linkedin": "LinkedIn-Profil-URL",
+        "country": "Land auswählen",
+        "description": "Erzähl uns kurz von dir...",
+        "privacy": "Ich akzeptiere die Datenschutzerklärung"
+      },
+      "submit": "Jetzt bewerben"
     },
-    "submit": "Jetzt bewerben"
-  },
-  "business": {
-    "sectionLabel": "BUSINESS ANFRAGE",
-    "title": "Lassen Sie uns über Ihr Unternehmen sprechen.",
-    "subtitle": "Erzählen Sie uns, was Sie aufbauen möchten. Wir helfen Unternehmen dabei, mit modernen digitalen Lösungen zu skalieren.",
-    "fields": {
-      "companyName": "Firmenname *",
-      "contactPerson": "Ansprechperson *",
-      "email": "E-Mail *",
-      "phone": "Telefonnummer",
-      "businessType": "Branche *",
-      "website": "Unternehmenswebsite",
-      "message": "Nachricht *"
+    "business": {
+      "sectionLabel": "BUSINESS ANFRAGE",
+      "title": "Lassen Sie uns über Ihr Unternehmen sprechen.",
+      "subtitle": "Erzählen Sie uns, was Sie aufbauen möchten. Wir helfen Unternehmen dabei, mit modernen digitalen Lösungen zu skalieren.",
+      "fields": {
+        "companyName": "Firmenname *",
+        "contactPerson": "Ansprechperson *",
+        "email": "E-Mail *",
+        "phone": "Telefonnummer",
+        "businessType": "Branche *",
+        "website": "Unternehmenswebsite",
+        "message": "Nachricht *"
+      },
+      "submit": "Anfrage senden"
     },
-    "submit": "Anfrage senden"
+    "validation": {
+      "acceptPrivacy": "Bitte akzeptieren Sie die Datenschutzerklärung, bevor Sie das Formular absenden."
+    }
   },
-  "validation": {
-    "acceptPrivacy": "Bitte akzeptieren Sie die Datenschutzerklärung, bevor Sie das Formular absenden."
-  }
-},
-
-
   "agents": {
     "backToAgentsLink": "Zurück zu den KI-Agenten",
     "agent1": {
@@ -315,5 +320,3 @@
     }
   }
 }
-
-

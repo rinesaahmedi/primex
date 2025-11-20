@@ -1,13 +1,13 @@
 // src/pages/Home.jsx
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import Header from '../components/Header.jsx'; // Import the Header component
-import Hero from '../components/Hero.jsx'; // Import the Hero component
-import About from '../components/About.jsx'; // Import the Hero component
-import Services from '../components/Services.jsx'; // Import the Services component
-import JoinBusinessSection from '../components/JoinBusinessSection.jsx'; // Import the JoinBusinessSection component  
+import Header from "../components/Header.jsx";
+import Hero from "../components/Hero.jsx";
+import About from "../components/About.jsx";
+import Services from "../components/Services.jsx";
+import JoinBusinessSection from "../components/JoinBusinessSection.jsx";
 import PartnerTestimonials from "../components/PartnerTestimonials.jsx";
-import Footer from '../components/Footer.jsx'; // Import the Footer component
+import Footer from "../components/Footer.jsx";
 import JoinUsForm from "./JoinUsForm.jsx";
 import BusinessInquiryForm from "./BusinessInquiryForm.jsx";
 
@@ -23,9 +23,12 @@ export default function Home() {
     setDarkMode(!darkMode);
   };
 
-  // Change language function
-  const changeLanguage = (e) => {
-    i18n.changeLanguage(e.target.value);
+  // Change language function (supports string or event payloads)
+  const changeLanguage = (choice) => {
+    const lang =
+      typeof choice === "string" ? choice : choice?.target?.value ?? "";
+    if (!lang) return;
+    i18n.changeLanguage(lang);
   };
 
   return (
