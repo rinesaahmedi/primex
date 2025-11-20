@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import primexLogo from "../assets/primex-logo.png";
 import primexLogoWhite from "../assets/primex-logo-white.png";
-import CalendarIcon from '../assets/svgs/calendarIcone'; 
+import CalendarIcon from '../assets/svgs/calendarIcone';
 
 // Icons (Inline SVGs to avoid installing external libraries like react-icons)
 const MenuIcon = () => (
@@ -71,7 +71,9 @@ const Header = ({ changeLanguage }) => {
     location.pathname === '/about' ||
     location.pathname === '/apply' ||
     location.pathname === '/business' ||
-    location.pathname === '/certificate';
+    location.pathname === '/certificate' ||
+    location.pathname === '/appointments' ||
+    location.pathname === '/terms';
 
   // Detect Scroll
   useEffect(() => {
@@ -280,14 +282,14 @@ const Header = ({ changeLanguage }) => {
 
           {/* Dark Mode Toggle (Icon) */}
           <Link to="/appointments">
-          <button
-            className="flex items-center space-x-2 p-2 rounded-full hover:bg-gray-200 transition-all"
-            aria-label="Go to Appointment Calendar"
-          >
-            <CalendarIcon />
-            <span className="text-sm">Calendar</span>
-          </button>
-        </Link>
+            <button
+              className="flex items-center space-x-2 p-2 rounded-full hover:bg-gray-200 transition-all"
+              aria-label="Go to Appointment Calendar"
+            >
+              <CalendarIcon />
+              <span className="text-sm">Calendar</span>
+            </button>
+          </Link>
         </div>
 
         {/* --- Mobile Menu Toggle Button --- */}

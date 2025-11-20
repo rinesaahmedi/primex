@@ -12,20 +12,26 @@ export default function Services() {
 
   const serviceIcons = [Cpu, Laptop, Palette, ClipboardList, BarChart3, ShoppingBag];
 
-  // Map service titles to slugs
+  // Map service titles to slugs (matching the order in translation.json)
+  // 1. AI Automation & Virtual Assistants
+  // 2. Operational Services
+  // 3. Customer Support
+  // 4. E-commerce & Product Data
+  // 5. Design & 3D Visualization
+  // 6. IT Development & Technical Consulting
   const serviceSlugs = [
-    "ai-agents",
-    "software-developer",
-    "graphic-designer",
-    "assistant-administrator",
-    "sales-bookkeeping",
-    "e-commerce",
+    "ai-agents",              // 1. AI Automation & Virtual Assistants
+    "sales-bookkeeping",      // 2. Operational Services
+    "assistant-administrator", // 3. Customer Support
+    "e-commerce",             // 4. E-commerce & Product Data
+    "graphic-designer",       // 5. Design & 3D Visualization
+    "software-developer",     // 6. IT Development & Technical Consulting
   ];
 
   return (
     <section
       id="services"
-      className="relative w-full py-24 overflow-hidden bg-gradient-to-br from-[#0814330d] via-[#2378ff10] to-[#fadebc33]"
+      className="relative w-full py-24 overflow-hidden bg-linear-to-br from-[#0814330d] via-[#2378ff10] to-[#fadebc33]"
     >
       <div className="absolute -top-24 -right-10 h-72 w-72 rounded-full bg-[#fadebc44] blur-3xl opacity-80 pointer-events-none" />
       <div className="absolute -bottom-32 -left-10 h-72 w-72 rounded-full bg-[#2378ff26] blur-3xl opacity-60 pointer-events-none" />

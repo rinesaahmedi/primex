@@ -10,14 +10,20 @@ const ServicePage = () => {
   const { t } = useTranslation();
   const [sectionRef, isVisible] = useScrollAnimation({ threshold: 0.1 });
 
-  // Map slugs to service indices
+  // Map slugs to service indices (matching the order in translation.json)
+  // 0. AI Automation & Virtual Assistants
+  // 1. Operational Services
+  // 2. Customer Support
+  // 3. E-commerce & Product Data
+  // 4. Design & 3D Visualization
+  // 5. IT Development & Technical Consulting
   const slugToIndex = {
-    "ai-agents": 0,
-    "software-developer": 1,
-    "graphic-designer": 2,
-    "assistant-administrator": 3,
-    "sales-bookkeeping": 4,
-    "e-commerce": 5,
+    "ai-agents": 0,              // AI Automation & Virtual Assistants
+    "sales-bookkeeping": 1,      // Operational Services
+    "assistant-administrator": 2, // Customer Support
+    "e-commerce": 3,             // E-commerce & Product Data
+    "graphic-designer": 4,       // Design & 3D Visualization
+    "software-developer": 5,     // IT Development & Technical Consulting
   };
 
   const slugToKey = {

@@ -97,28 +97,28 @@
     "ctaLabel": "Mehr erfahren",
     "items": [
       {
-        "title": "KI-Agenten für Operationen",
-        "description": "Wir konzipieren, trainieren und betreiben KI-Agenten, die Reklamationen, Produktdaten, Logistik- und Service-Workflows automatisieren – abgesichert durch Human-in-the-loop-Freigaben und 40+ Jahre Möbel-Know-how."
+        "title": "KI-Automation & Virtuelle Assistenten",
+        "description": "Wir konzipieren, trainieren und betreiben KI-Agenten, die Reklamationen, Auftragsprüfung, Logistik-Updates und ERP-Prozesse automatisieren – immer mit Human-in-the-loop und 40+ Jahren Möbel-Expertise."
       },
       {
-        "title": "Softwareentwicklung & IT-Support",
-        "description": "Wir entwickeln maßgeschneiderte Softwarelösungen und integrieren virtuelle Agenten, die Aufgaben wie Auftragsabwicklung, Kundenservice, Logistik und Datenmanagement unterstützen. Zudem stellen wir Datenschutzkonzepte und starke Cybersicherheitsmaßnahmen sicher."
+        "title": "Operative Services",
+        "description": "Backoffice-Teams übernehmen Auftragsabwicklung, Logistiksteuerung, Beschaffung und Compliance entlang der gesamten Lieferkette."
       },
       {
-        "title": "Grafikdesign",
-        "description": "Unser erfahrenes Designteam erstellt hochwertige, visuell beeindruckende Designs, die Ihre Erwartungen übertreffen. Wir legen Wert auf Kreativität, Präzision und schnelle Umsetzung. Ob Branding, Webdesign oder Marketingmaterialien – wir liefern Ergebnisse, die perfekt auf Ihre Vision abgestimmt sind."
+        "title": "Kundensupport",
+        "description": "Mehrsprachige Service-Desks betreuen Anfragen, After-Sales, Reklamationen und Bindungsprogramme über alle Kanäle."
       },
       {
-        "title": "Assistenz & Administration",
-        "description": "Unsere administrativen Dienstleistungen optimieren Ihre täglichen Abläufe – von Recherche und Berichtserstellung bis hin zur Kommunikationsverwaltung und Terminplanung. Wir sorgen dafür, dass alle administrativen Aufgaben professionell und effizient abgewickelt werden."
+        "title": "E-Commerce & Produktdaten",
+        "description": "Produktdaten-Management & Content: Wir normalisieren Sortimente, reichern Content an, lokalisieren Preise und spielen Daten in Marktplätze, PIM und ERP-Systeme aus."
       },
       {
-        "title": "Vertrieb & Buchhaltung",
-        "description": "PrimEx bietet globales Groß- und Einzelhandelsmanagement, Produktionsplanung, Logistikkoordination und moderne E-Commerce-Lösungen für B2B und B2C. Unsere Buchhaltungsservices umfassen präzise Transaktionsaufzeichnungen, Finanzberichte und die Einhaltung von Rechnungslegungsstandards, um reibungslose Finanzprozesse sicherzustellen."
+        "title": "Design & 3D-Visualisierung",
+        "description": "Designer erstellen Marketing-Assets, Renderings, 3D-Raumplaner und immersive Visuals, die Ihre Produkte erlebbar machen."
       },
       {
-        "title": "E-Commerce",
-        "description": "Unsere erfahrenen Entwickler erstellen maßgeschneiderte E-Commerce-Websites, die Ihre Marke optimal präsentieren. Wir bieten individuelle Lösungen, die Ihre Online-Präsenz stärken und nachhaltiges Unternehmenswachstum fördern."
+        "title": "IT-Entwicklung & Technische Beratung",
+        "description": "Engineers integrieren ERP/CRM, entwickeln individuelle Software und beraten zu Cybersecurity, Infrastruktur und Automatisierungs-Roadmaps."
       }
     ]
   },
