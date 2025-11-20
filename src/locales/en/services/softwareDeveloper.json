@@ -1,0 +1,28 @@
+{
+    "serviceDetails": {
+        "softwareDeveloper": {
+            "features": [
+                "Custom software development — Tailored to your business needs",
+                "ERP/CRM integration — Connect existing systems seamlessly",
+                "Virtual agent integration — AI-powered automation",
+                "Order processing systems — Streamlined workflows",
+                "Data management solutions — Secure and efficient",
+                "Cybersecurity measures — Protect your digital assets"
+            ],
+            "benefits": [
+                "Scalable solutions that grow with your business",
+                "Data protection concepts and compliance",
+                "Strong cybersecurity measures",
+                "Multilingual support for global operations",
+                "Integration with existing infrastructure",
+                "Ongoing IT support and maintenance"
+            ],
+            "useCases": [
+                "Businesses needing custom software solutions",
+                "Companies requiring ERP/CRM integration",
+                "Organizations seeking automation tools",
+                "Businesses needing data management systems"
+            ]
+        }
+    }
+}

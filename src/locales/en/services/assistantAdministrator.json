@@ -1,0 +1,28 @@
+{
+    "serviceDetails": {
+        "assistantAdministrator": {
+            "features": [
+                "Research and analysis — Comprehensive market and competitor research",
+                "Report preparation — Professional documents and presentations",
+                "Communication management — Email, phone, and correspondence",
+                "Schedule coordination — Calendar management and meeting planning",
+                "Data entry and organization — Accurate record keeping",
+                "Document management — Filing and organization systems"
+            ],
+            "benefits": [
+                "Streamlined daily operations",
+                "Professional handling of administrative tasks",
+                "Time savings for core business activities",
+                "Efficient and organized workflows",
+                "Multilingual support (DE/EN)",
+                "Cost-effective administrative solutions"
+            ],
+            "useCases": [
+                "Growing businesses needing administrative support",
+                "Companies expanding into new markets",
+                "Organizations requiring multilingual administration",
+                "Businesses seeking to optimize operations"
+            ]
+        }
+    }
+}

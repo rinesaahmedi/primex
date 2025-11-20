@@ -1,0 +1,101 @@
+{
+    "serviceDetails": {
+        "aiAgents": {
+            "features": [
+                "Reklamationsautomatisierung – reduziert Bearbeitungszeiten von 90 Minuten auf 70 Sekunden",
+                "Produktdatenmanagement – Echtzeit-Synchronisierung über alle Marktplätze",
+                "Logistikkoordination – automatisiertes Tracking und Status-Updates",
+                "Kundenservice-Workflows – automatisierte Betreuung rund um die Uhr",
+                "ERP-Integration – nahtlose Anbindung an bestehende Systeme",
+                "Human-in-the-loop-Kontrolle – Qualitätssicherung und Compliance"
+            ],
+            "benefits": [
+                "Operative Kosten um bis zu 80 % senken",
+                "Reklamationen 10x schneller als manuelle Abläufe bearbeiten",
+                "24/7-Automatisierung ohne zusätzlichen Personalaufwand",
+                "Auf 40+ Jahren Branchenexpertise im Möbelmarkt aufgebaut",
+                "Mehrsprachige Unterstützung (DE/EN u. a.)",
+                "Einhaltung von Branchenstandards und SLAs"
+            ],
+            "useCases": [
+                "Möbelhändler, die Garantie- und Reklamationsfälle bearbeiten",
+                "E-Commerce-Plattformen mit komplexen Produktdaten",
+                "Logistikunternehmen mit Sendungsverfolgung",
+                "Kundenservice-Teams mit hohem Anfragevolumen"
+            ]
+        }
+    },
+    "agents": {
+        "backToAgentsLink": "Zurück zu den KI-Agenten",
+        "agent1": {
+            "badge": "KI-Operations-Agent",
+            "title": "Agent 1",
+            "subtitle": "Spezialisierter KI-Agent, der operative Workflows mit höchster Präzision und Effizienz automatisiert und optimiert.",
+            "metrics": {
+                "processingTime": {
+                    "value": "70 s",
+                    "label": "Bearbeitungszeit"
+                },
+                "efficiency": {
+                    "value": "10x",
+                    "label": "Effizienzsteigerung"
+                },
+                "accuracy": {
+                    "value": "99,9 %",
+                    "label": "Genauigkeitsrate"
+                }
+            },
+            "capabilities": {
+                "title": "Fähigkeiten",
+                "items": [
+                    "Automatisierte Workflow-Verarbeitung",
+                    "Synchronisation von Daten in Echtzeit",
+                    "Mehrsprachige Unterstützung (DE/EN)",
+                    "Integration in Ihr ERP-System",
+                    "24/7-Betrieb ohne Unterbrechung",
+                    "Human-in-the-loop-Freigabe bei Sonderfällen",
+                    "Qualitätssicherung und Plausibilitätschecks",
+                    "Performance-Monitoring und Analytics"
+                ]
+            },
+            "useCases": {
+                "title": "Use Cases",
+                "cards": [
+                    {
+                        "title": "Datenverarbeitung",
+                        "body": "Automatisierte Verarbeitung operativer Daten mit hoher Geschwindigkeit und Genauigkeit."
+                    },
+                    {
+                        "title": "Workflow-Automatisierung",
+                        "body": "Verschlanken Sie komplexe Abläufe mit intelligenter Automatisierung."
+                    }
+                ]
+            },
+            "cta": {
+                "title": "Interessiert an Agent 1?",
+                "body": "Lassen Sie uns besprechen, wie dieser Agent Ihre Abläufe transformieren kann.",
+                "primary": "Kontakt aufnehmen",
+                "secondary": "Jetzt anfragen"
+            },
+            "visuals": {
+                "label": "KI-Agent im Einsatz",
+                "overview": {
+                    "title": "Von 90-Minuten-Fällen zu 70-Sekunden-Automationen",
+                    "description": "Sehen Sie, wie Agent 1 E-Mails, Anhänge und Bilder einliest und in Sekunden einen strukturierten Fall erstellt."
+                },
+                "capabilities": {
+                    "title": "Tiefe ERP-Integration",
+                    "description": "Der Agent liest und schreibt direkt in Ihr ERP und hält Bestellungen, Produkte und Tickets synchron."
+                },
+                "useCases": {
+                    "title": "Echte Operations-Dashboards",
+                    "description": "Überwachen Sie Durchsatz, Reaktionszeiten und Ausnahmen in einem einzigen Performance-View."
+                },
+                "cta": {
+                    "title": "Gemeinsam mit Ihrem Team entwickelt",
+                    "description": "Wir konfigurieren Agent 1 gemeinsam mit Ihren Operations-, Service- und IT-Teams, damit er von Tag eins in Ihre Workflows passt."
+                }
+            }
+        }
+    }
+}

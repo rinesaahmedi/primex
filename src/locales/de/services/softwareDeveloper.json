@@ -1,0 +1,28 @@
+{
+    "serviceDetails": {
+        "softwareDeveloper": {
+            "features": [
+                "Individuelle Softwareentwicklung – exakt auf Ihre Geschäftsanforderungen zugeschnitten",
+                "ERP/CRM-Integration – nahtlose Verbindung Ihrer bestehenden Systeme",
+                "Virtual-Agent-Integration – KI-gestützte Automatisierung",
+                "Auftragsabwicklungssysteme – optimierte Workflows",
+                "Datenmanagement-Lösungen – sicher und effizient",
+                "Cybersecurity-Maßnahmen – Schutz Ihrer digitalen Assets"
+            ],
+            "benefits": [
+                "Skalierbare Lösungen, die mit Ihrem Unternehmen wachsen",
+                "Datenschutzkonzepte und Compliance",
+                "Starke Cybersecurity-Maßnahmen",
+                "Mehrsprachiger Support für globale Operationen",
+                "Integration in bestehende Infrastruktur",
+                "Kontinuierlicher IT-Support und Wartung"
+            ],
+            "useCases": [
+                "Unternehmen mit Bedarf an maßgeschneiderten Softwarelösungen",
+                "Firmen, die ERP-/CRM-Integrationen benötigen",
+                "Organisationen auf der Suche nach Automatisierungstools",
+                "Unternehmen mit Anforderungen an Datenmanagement-Systeme"
+            ]
+        }
+    }
+}

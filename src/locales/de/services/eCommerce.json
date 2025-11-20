@@ -1,0 +1,28 @@
+{
+    "serviceDetails": {
+        "eCommerce": {
+            "features": [
+                "Individuelle E-Commerce-Websites – exakt auf Ihre Marke zugeschnitten",
+                "Responsives Design – optimiert für Desktop und Mobile",
+                "Zahlungsintegration – sichere Checkout-Prozesse",
+                "Bestandsverwaltung – Echtzeit-Lagerabgleich",
+                "SEO-Optimierung – bessere Sichtbarkeit in der Suche",
+                "Analytics & Reporting – Kennzahlen jederzeit im Blick"
+            ],
+            "benefits": [
+                "Gestärkte Online-Präsenz",
+                "Nachhaltiges Unternehmenswachstum",
+                "Maßgeschneiderte Lösungen für Ihre Marke",
+                "Nutzerfreundliche Einkaufserlebnisse",
+                "Skalierbare Plattformen, die mitwachsen",
+                "Professionelle Entwicklung und Support"
+            ],
+            "useCases": [
+                "Unternehmen, die einen Onlineshop starten",
+                "Firmen, die in den E-Commerce expandieren",
+                "Retailer mit Bedarf an individuellen Plattformen",
+                "Marken, die ihre Online-Präsenz stärken möchten"
+            ]
+        }
+    }
+}

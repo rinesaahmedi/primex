@@ -1,0 +1,28 @@
+{
+    "serviceDetails": {
+        "assistantAdministrator": {
+            "features": [
+                "Recherche und Analysen – umfassende Markt- und Wettbewerbsrecherchen",
+                "Report-Erstellung – professionelle Dokumente und Präsentationen",
+                "Kommunikationsmanagement – E-Mail, Telefon und Korrespondenz",
+                "Termin- und Kalenderkoordination – Meetings planen und abstimmen",
+                "Datenerfassung und -pflege – präzise Dokumentation",
+                "Dokumentenmanagement – strukturierte Ablagen und Prozesse"
+            ],
+            "benefits": [
+                "Gestraffte Tagesabläufe",
+                "Professionelle Abwicklung administrativer Aufgaben",
+                "Mehr Zeit für das Kerngeschäft",
+                "Effiziente und organisierte Workflows",
+                "Mehrsprachige Unterstützung (DE/EN)",
+                "Kosteneffiziente Administrationslösungen"
+            ],
+            "useCases": [
+                "Wachsende Unternehmen mit Administrationsbedarf",
+                "Firmen, die neue Märkte erschließen",
+                "Organisationen mit Bedarf an mehrsprachiger Administration",
+                "Unternehmen, die ihre Abläufe optimieren möchten"
+            ]
+        }
+    }
+}
