@@ -1,172 +1,137 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css";
+import "react-calendar/dist/Calendar.css"; // Import default styles
 import axios from "axios";
-import { CalendarClock, Clock, CheckCircle2 } from "lucide-react";
 
 const AppointmentPage = () => {
   const [date, setDate] = useState(new Date());
   const [availableSlots, setAvailableSlots] = useState([]);
-  const [selectedSlot, setSelectedSlot] = useState(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [selectedTime, setSelectedTime] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [timeSlots, setTimeSlots] = useState([]);
 
+  // Fetch available slots from the backend
   useEffect(() => {
+    const formattedDate = date.toISOString().split("T")[0]; // Format date to YYYY-MM-DD
     axios
-      .get("http://localhost:5000/api/available-slots")
-      .then((response) => setAvailableSlots(response.data || []))
-      .catch((error) =>
-        console.error("Error fetching available slots:", error)
-      );
-  }, []);
-
-  const dateKey = useMemo(() => date.toISOString().split("T")[0], [date]);
-
-  const slotsForDate = useMemo(() => {
-    return availableSlots
-      .filter((slot) => slot.startsWith(dateKey))
-      .map((slot) => slot);
-  }, [availableSlots, dateKey]);
-
-  const hasSlotsForDate = slotsForDate.length > 0;
-
-  const handleBooking = () => {
-    if (!selectedSlot) {
-      alert("Please select a time slot.");
-      return;
-    }
-    setIsSubmitting(true);
-    axios
-      .post("http://localhost:5000/api/book-appointment", {
-        time: selectedSlot,
+      .get(`http://localhost:5000/api/available-slots?date=${formattedDate}`)
+      .then((response) => {
+        setAvailableSlots(response.data); // Set available slots based on the selected date
       })
-      .then((response) => alert(response.data.message))
+      .catch((error) => console.error("Error fetching available slots:", error));
+  }, [date]); // Fetch available slots whenever the date changes
+
+  // Handle date change when a user selects a date from the calendar
+  const handleDateChange = (newDate) => {
+    setDate(newDate); // Update selected date
+  };
+
+  // Handle time slot selection
+  const handleTimeSelection = (time) => {
+    setSelectedTime(time); // Store the selected time slot
+  };
+
+  // Handle booking submission
+  const handleBooking = (e) => {
+    e.preventDefault();
+
+    const bookingData = {
+      name,
+      email,
+      date: date.toISOString(),
+      time: selectedTime,
+    };
+
+    axios
+      .post("http://localhost:5000/api/book-appointment", bookingData) // Send booking data to backend
+      .then((response) => {
+        alert(response.data.message); // Show success message
+      })
       .catch((error) => {
-        const message = error?.response?.data?.message || "Booking failed.";
-        alert(message);
-      })
-      .finally(() => setIsSubmitting(false));
+        alert(error.response.data.message); // Show error message
+      });
   };
 
   return (
-    <div className="appointment-page relative overflow-hidden bg-linear-to-b from-[#102347] via-[#1f3d6d] to-[#f6f9ff] min-h-screen py-20 px-4">
-      <div className="absolute inset-0 pointer-events-none opacity-60">
-        <div className="absolute -top-24 -left-12 h-72 w-72 rounded-full bg-[#fadebc] blur-[160px]" />
-        <div className="absolute -bottom-32 -right-16 h-80 w-80 rounded-full bg-[#2378ff] blur-[180px]" />
-      </div>
-      <div className="relative max-w-5xl mx-auto">
-        <div className="text-center text-white mb-12">
-          <br></br>
-          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/30 text-xs uppercase tracking-[0.3em]">
-            <CalendarClock className="w-4 h-4" />
-            Book a Call
-          </span>
-          <h1
-            className="text-4xl md:text-5xl font-bold mt-6 mb-4"
-            style={{ fontFamily: "var(--font-serif)" }}
-          >
-            Secure your Primex consultation
-          </h1>
-          <p className="text-white/85 max-w-2xl mx-auto text-lg">
-            Choose a date, pick a window, and our team will confirm your slot.
-            All times are displayed in your local timezone.
-          </p>
-        </div>
+    <div className="container mx-auto p-6 mt-16 max-w-4xl">
+      <h2 className="text-2xl font-semibold mb-4 text-center text-gray-800">
+        Select an Appointment Time
+      </h2>
 
-        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8">
-          <div className="bg-white rounded-3xl shadow-xl p-6 md:p-8">
-            <h2
-              className="text-2xl font-semibold text-slate-900 mb-4"
-              style={{ fontFamily: "var(--font-serif)" }}
+      <div className="flex justify-center mb-6">
+        <Calendar
+          onChange={handleDateChange}
+          value={date}
+          tileClassName={({ date }) => {
+            const formattedDate = date.toISOString().split("T")[0];
+            return !availableSlots.some((slot) => slot.startsWith(formattedDate))
+              ? "bg-gray-200 text-gray-400 cursor-not-allowed" // Disabled date style
+              : "bg-white text-gray-800 hover:bg-blue-500 hover:text-white rounded-lg"; // Active date style
+          }}
+        />
+      </div>
+
+      {/* Time Slot Selection */}
+      {availableSlots.length > 0 && (
+        <div className="flex flex-col items-center mb-6">
+          <h3 className="text-xl font-semibold mb-4">Select a Time Slot</h3>
+          {availableSlots.map((slot) => (
+            <button
+              key={slot}
+              onClick={() => handleTimeSelection(slot)} // Set the selected time
+              className="bg-blue-500 text-white px-6 py-2 rounded-lg mb-2 hover:bg-blue-600"
             >
-              Choose a date
-            </h2>
-            <Calendar
-              onChange={(newDate) => {
-                setDate(newDate);
-                setSelectedSlot(null);
-              }}
-              value={date}
-              className="w-full border-0 text-slate-900 react-calendar-primex"
-              tileDisabled={({ date }) => {
-                const key = date.toISOString().split("T")[0];
-                return !availableSlots.some((slot) => slot.startsWith(key));
-              }}
-            />
-            <div className="mt-4 text-sm text-slate-500 flex items-center gap-2">
-              <span className="inline-block h-3 w-3 rounded-full bg-[#2378FF]" />
-              Slots available
-              <span className="inline-block h-3 w-3 rounded-full bg-slate-200 ml-4" />
-              Unavailable
-            </div>
-          </div>
-
-          <div className="bg-white rounded-3xl shadow-xl p-6 md:p-8 flex flex-col">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="h-12 w-12 rounded-2xl bg-[#2378FF]/10 text-[#2378FF] flex items-center justify-center">
-                <Clock className="w-6 h-6" />
-              </div>
-              <div>
-                <p className="text-xs uppercase tracking-[0.3em] text-slate-500">
-                  Times for {date.toLocaleDateString()}
-                </p>
-                <h3 className="text-2xl font-semibold text-slate-900">
-                  Select a slot
-                </h3>
-              </div>
-            </div>
-
-            <div className="flex-1">
-              {hasSlotsForDate ? (
-                <div className="grid sm:grid-cols-2 gap-3">
-                  {slotsForDate.map((slot) => {
-                    const isSelected = slot === selectedSlot;
-                    return (
-                      <button
-                        key={slot}
-                        onClick={() => setSelectedSlot(slot)}
-                        className={`rounded-2xl border px-4 py-3 text-left transition-all ${isSelected
-                          ? "border-[#2378FF] bg-[#2378FF]/10 text-[#2378FF]"
-                          : "border-slate-200 hover:border-[#2378FF]/40 text-slate-700"
-                          }`}
-                      >
-                        <span className="text-sm font-semibold block">
-                          {new Date(slot).toLocaleTimeString([], {
-                            hour: "2-digit",
-                            minute: "2-digit",
-                          })}
-                        </span>
-                        <span className="text-xs text-slate-500">
-                          {new Date(slot).toLocaleDateString()}
-                        </span>
-                      </button>
-                    );
-                  })}
-                </div>
-              ) : (
-                <div className="bg-slate-50 rounded-2xl p-6 text-center">
-                  <p className="text-slate-600">
-                    No slots available. Please choose another date.
-                  </p>
-                </div>
-              )}
-            </div>
-
-            <div className="mt-8 flex flex-col gap-4">
-              <button
-                onClick={handleBooking}
-                disabled={!selectedSlot || isSubmitting}
-                className="inline-flex items-center justify-center rounded-2xl bg-[#2378FF] text-white font-semibold px-6 py-4 shadow-lg hover:bg-[#1f5fcc] disabled:opacity-60 disabled:cursor-not-allowed transition-all"
-              >
-                {isSubmitting ? "Confirming..." : "Confirm appointment"}
-              </button>
-              <p className="text-xs text-slate-400 flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4" />
-                You’ll receive a confirmation email once the slot is approved.
-              </p>
-            </div>
-          </div>
+              {slot}
+            </button>
+          ))}
         </div>
-      </div>
+      )}
+
+      {/* Booking Form */}
+      <form onSubmit={handleBooking}>
+        <div className="mb-4">
+          <label htmlFor="name" className="block text-gray-700">Your Name</label>
+          <input
+            type="text"
+            id="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)} // Update name state
+            required
+            className="mt-2 p-2 w-full border rounded-md"
+          />
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="email" className="block text-gray-700">Email</label>
+          <input
+            type="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)} // Update email state
+            required
+            className="mt-2 p-2 w-full border rounded-md"
+          />
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="time" className="block text-gray-700">Appointment Time</label>
+          <input
+            type="text"
+            id="time"
+            value={selectedTime}
+            readOnly
+            className="mt-2 p-2 w-full border rounded-md bg-gray-100"
+          />
+        </div>
+
+        <button
+          type="submit"
+          className="bg-blue-500 text-white px-6 py-3 rounded-full shadow-lg hover:bg-blue-600 transition duration-300"
+        >
+          Confirm Appointment
+        </button>
+      </form>
     </div>
   );
 };
