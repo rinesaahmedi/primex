@@ -49,11 +49,12 @@
   "german": "German",
   "about": {
     "mainTitle": "From Family Tradition to an AI Leader in the Furniture Industry",
-    "intro": "With over 40 years of family experience, PRIMEX bridges tradition and modern technology, leading the digital transformation in the furniture industry for the DACH region and beyond.",
+    "homeIntro": "With over 40 years of family experience, PRIMEX bridges tradition and modern technology, leading the digital transformation in the furniture industry for the DACH region and beyond.",
     "whoWeAre": {
       "title": "Who We Are",
       "description": "PRIMEX is a company from Kosovo offering complete Backoffice services for the furniture and retail industry. For over a decade, we have been a trusted partner for major companies in Germany, Austria, and Switzerland, supporting both traditional stores and online platforms."
     },
+    "ctaButton": "Learn More",
     "expertise": {
       "title": "Our Expertise",
       "items": [
@@ -224,10 +225,7 @@
     },
     "hours": {
       "title": "Working Hours",
-      "times": [
-        "Monday - Friday:",
-        "8:00 AM - 4:30 PM"
-      ]
+      "times": ["Monday - Friday:", "8:00 AM - 4:30 PM"]
     },
     "social": {
       "title": "Follow Us On"
@@ -276,7 +274,6 @@
     }
   },
 
-  
   "agents": {
     "backToAgentsLink": "Back to AI Agents",
     "agent1": {
@@ -351,4 +348,3 @@
     }
   }
 }
-

@@ -41,52 +41,53 @@
   "english": "Englisch",
   "german": "Deutsch",
   "about": {
-    "mainTitle": "Von der Familientradition zum KI-Führer in der Möbelindustrie",
-    "intro": "Mit über 40 Jahren Familienerfahrung schlägt PRIMEX Brücken zwischen Tradition und moderner Technologie und führt die digitale Transformation in der Möbelindustrie für die DACH-Region und darüber hinaus an.",
+    "mainTitle": "Von Familien Tradition zum KI-Führer in der Möbelindustrie",
+    "homeIntro": "Mit über 40 Jahren Erfahrung in der Familie verbindet PRIMEX Tradition und moderne Technologie und führt die digitale Transformation in der Möbelindustrie für die DACH-Region und darüber hinaus.",
     "whoWeAre": {
       "title": "Wer wir sind",
-      "description": "PRIMEX ist ein Unternehmen aus dem Kosovo, das umfassende Backoffice-Dienstleistungen für die Möbel- und Einzelhandelsbranche anbietet. Seit über einem Jahrzehnt sind wir ein verlässlicher Partner für große Unternehmen in Deutschland, Österreich und der Schweiz und unterstützen sowohl traditionelle Geschäfte als auch Online-Plattformen."
+      "description": "PRIMEX ist ein Unternehmen aus Kosovo, das vollständige Backoffice-Dienste für die Möbel- und Einzelhandelsbranche anbietet. Seit über einem Jahrzehnt sind wir ein vertrauenswürdiger Partner für große Unternehmen in Deutschland, Österreich und der Schweiz und unterstützen sowohl traditionelle Geschäfte als auch Online-Plattformen."
     },
+    "ctaButton": "Erfahren Sie mehr",
     "expertise": {
       "title": "Unsere Expertise",
       "items": [
-        "Auftragsabwicklung",
-        "Kundenservice",
-        "Produktdaten- & Content-Management",
+        "Bestellbearbeitung",
+        "Kundendienst",
+        "Produktdaten- und Inhaltsverwaltung",
         "Logistik & Dropshipping",
         "Buchhaltung",
         "IT-Lösungen & Softwareentwicklung"
       ]
     },
     "aiEvolution": {
-      "title": "Vom manuellen Service zur künstlichen Intelligenz",
-      "description": "Die Welt der Möbel verändert sich. Alte Systeme und manuelle Prozesse verlangsamen die Branche. PRIMEX hat diese Herausforderung in eine Chance verwandelt und eine der fortschrittlichsten Innovationen Europas geschaffen."
+      "title": "Von manuellen Dienstleistungen zur Künstlichen Intelligenz",
+      "description": "Die Möbelwelt verändert sich. Alte Systeme und manuelle Prozesse bremsen die Branche. PRIMEX hat diese Herausforderung in eine Chance verwandelt und eine der fortschrittlichsten Innovationen Europas geschaffen."
     },
     "aiAgent": {
       "title": "KI-Agent für Reklamationen – 70 Sekunden",
-      "subtitle": "Wo ein Mensch 60–90 Minuten braucht, erledigt unsere KI den Prozess in 70 Sekunden. Das ist die Transformation, die den Branchenstandard neu definiert.",
+      "subtitle": "Wo ein Mensch 60–90 Minuten benötigt, erledigt unsere KI den Prozess in 70 Sekunden. Dies ist die Transformation, die den Industriestandard neu gestaltet.",
       "features": [
         "Liest und analysiert E-Mails & PDFs",
-        "Analysiert Bilder zur Schadenserkennung",
-        "Vergleicht Teile mit Montageanleitungen",
-        "Synchronisiert Daten mit Ihrem ERP-System",
-        "Versendet Bestätigungen und automatische Follow-ups"
+        "Analysiert Bilder zur Schadensidentifizierung",
+        "Vergleicht Teile mit Montagehandbüchern",
+        "Synchronisiert Daten mit Ihrem ERP",
+        "Sendet Bestätigungen und automatische Follow-ups"
       ]
     },
     "whyPrimex": {
       "title": "Warum PRIMEX?",
       "points": [
-        "40+ Jahre Branchenkenntnis",
+        "40+ Jahre Branchenwissen",
         "10+ Jahre Erfahrung in der DACH-Region",
         "Dynamisches, mehrsprachiges Team",
         "Moderne, standardisierte Prozesse",
         "Niedrige Kosten, hohe Qualität",
-        "Maßgeschneiderte & skalierbare Lösungen"
+        "Individuelle & skalierbare Lösungen"
       ]
     },
     "visionMission": {
       "title": "Unsere Vision & Mission",
-      "description": "Wir sehen die Zukunft als eine Kombination aus menschlichem Wissen und künstlicher Intelligenz. Unsere Mission ist es, Unternehmen dabei zu helfen, Prozesse zu optimieren, die Effizienz zu steigern und einen Wettbewerbsvorteil auf dem europäischen Markt aufzubauen."
+      "description": "Wir sehen die Zukunft als Kombination von menschlichem Wissen und künstlicher Intelligenz. Unsere Mission ist es, Unternehmen dabei zu helfen, Prozesse zu optimieren, die Effizienz zu steigern und einen Wettbewerbsvorteil auf dem europäischen Markt aufzubauen."
     },
     "tagline": "Bei PRIMEX trifft Tradition auf Innovation."
   },
@@ -196,10 +197,7 @@
     },
     "hours": {
       "title": "Öffnungszeiten",
-      "times": [
-        "Montag - Freitag:",
-        "8:00 - 16:30 Uhr"
-      ]
+      "times": ["Montag - Freitag:", "8:00 - 16:30 Uhr"]
     },
     "social": {
       "title": "Folgen Sie uns auf"
