@@ -9,6 +9,8 @@ import AboutPage from "./pages/AboutPage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
+import AppointmentPage from "./pages/AppointmentPage"; 
+
 
 import JoinUsForm from "./pages/JoinUsForm.jsx";
 import BusinessInquiryForm from "./pages/BusinessInquiryForm.jsx";
@@ -88,6 +90,7 @@ function App() {
 
            <Route path="/terms" element={<Terms />} />
            <Route path="/certificate" element={<CertificatePage />} />
+           <Route path="/appointments" element={<AppointmentPage />} />
         </Routes>
       </main>
 
