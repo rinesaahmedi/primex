@@ -4,8 +4,8 @@
   "hero": {
     "kicker": "Custom AI operations · built for you by Primex",
     "headline": {
-      "emphasis": "AI operations",
-      "rest": "for furniture industry"
+      "emphasis": "Agentic AI",
+      "rest": "Solutions"
     },
     "body": "We design custom AI agents that connect to your ERP, product data, logistics, and service workflows — built on 40+ years of operational know-how.",
     "primaryCta": "Design your agent",
@@ -49,11 +49,12 @@
   "german": "German",
   "about": {
     "mainTitle": "From Family Tradition to an AI Leader in the Furniture Industry",
-    "intro": "With over 40 years of family experience, PRIMEX bridges tradition and modern technology, leading the digital transformation in the furniture industry for the DACH region and beyond.",
+    "homeIntro": "With over 40 years of family experience, PRIMEX bridges tradition and modern technology, leading the digital transformation in the furniture industry for the DACH region and beyond.",
     "whoWeAre": {
       "title": "Who We Are",
       "description": "PRIMEX is a company from Kosovo offering complete Backoffice services for the furniture and retail industry. For over a decade, we have been a trusted partner for major companies in Germany, Austria, and Switzerland, supporting both traditional stores and online platforms."
     },
+    "ctaButton": "Learn More",
     "expertise": {
       "title": "Our Expertise",
       "items": [
@@ -188,46 +189,43 @@
         {
           "name": "Home",
           "url": "",
-          "external": true
+          "external": false
         },
         {
           "name": "About Us",
           "url": "",
-          "external": true
+          "external": false
         },
         {
           "name": "Services",
           "url": "",
-          "external": true
+          "external": false
         },
         {
           "name": "Our Partners",
           "url": "",
-          "external": true
+          "external": false
         },
         {
           "name": "Contact Us",
           "url": "",
-          "external": true
+          "external": false
         },
         {
           "name": "Terms and Conditions",
           "url": "/terms",
-          "external": true
+          "external": false
         },
         {
           "name": "Certificates",
           "url": "/certificate",
-          "external": true
+          "external": false
         }
       ]
     },
     "hours": {
       "title": "Working Hours",
-      "times": [
-        "Monday - Friday:",
-        "8:00 AM - 4:30 PM"
-      ]
+      "times": ["Monday - Friday:", "8:00 AM - 4:30 PM"]
     },
     "social": {
       "title": "Follow Us On"
@@ -275,8 +273,21 @@
       "acceptPrivacy": "Please accept the privacy policy before submitting."
     }
   },
+<<<<<<< Updated upstream
 
-  
+=======
+  "termsPage": {
+    "pill": "Legal Framework",
+    "title": "Terms & Conditions",
+    "subtitle": "Please review the binding terms that govern the use of Primex products, services, and digital properties.",
+    "meta": {
+      "updated": "Last updated: 2025",
+      "jurisdiction": "Jurisdiction: European Union"
+    },
+    "loading": "Loading Terms and Conditions...",
+    "error": "Unable to load terms: {{message}}"
+  },
+>>>>>>> Stashed changes
   "agents": {
     "backToAgentsLink": "Back to AI Agents",
     "agent1": {
@@ -350,5 +361,8 @@
       }
     }
   }
+<<<<<<< Updated upstream
 }
-
+=======
+}
+>>>>>>> Stashed changes

@@ -1,23 +1,43 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Certificate from "../images/certificate.png"; // Adjust the path if needed
 
 function CertificatePage() {
+  const [showHero, setShowHero] = useState(false);
+  const [showCertificate, setShowCertificate] = useState(false);
+
+  useEffect(() => {
+    const heroTimer = setTimeout(() => setShowHero(true), 80);
+    const certificateTimer = setTimeout(() => setShowCertificate(true), 400);
+
+    return () => {
+      clearTimeout(heroTimer);
+      clearTimeout(certificateTimer);
+    };
+  }, []);
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#1d3c6a] to-white">
-      {/* Header Section: Darker Blue */}
-      <div className="bg-[#1d3c6a] text-white py-24">
-        <h1 className="text-4xl font-semibold text-center mb-16">
-          DSGVO Certificate
-        </h1>
+    <div className="certificate-page">
+      {/* Header Section */}
+      <div className={`certificate-hero ${showHero ? "visible" : ""}`}>
+        <p className="certificate-pill">Verified Compliance</p>
+        <h1 className="certificate-title">DSGVO Certificate</h1>
+        <p className="certificate-subtitle">
+          We meet the strictest data privacy requirements to protect your
+          business and your customers.
+        </p>
       </div>
 
-      {/* Content Section with White Background */}
-      <div className="flex flex-col items-center justify-start bg-white py-16 px-4 sm:px-6 lg:px-8">
-        <img
-          src={Certificate}
-          alt="DSGVO Certificate"
-          className="w-full max-w-3xl rounded-xl shadow-lg transform transition duration-300 ease-in-out hover:scale-105 mt-16"
-        />
+      {/* Content Section */}
+      <div className={`certificate-view ${showCertificate ? "visible" : ""}`}>
+        <div className="certificate-frame">
+          <div className="certificate-glow certificate-glow--one" />
+          <div className="certificate-glow certificate-glow--two" />
+          <img
+            src={Certificate}
+            alt="DSGVO Certificate"
+            className="certificate-image"
+          />
+        </div>
       </div>
     </div>
   );

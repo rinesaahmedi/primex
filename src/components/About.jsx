@@ -22,7 +22,9 @@ const About = () => {
       <div ref={sectionRef} className="container mx-auto px-6 max-w-6xl">
         <div className="grid gap-12 lg:grid-cols-2 items-center">
           {/* LEFT SIDE */}
-          <div className={`animate-lift-blur-subtle ${isVisible ? 'visible' : ''}`}>
+          <div
+            className={`animate-lift-blur-subtle ${isVisible ? "visible" : ""}`}
+          >
             <p className="text-xs font-semibold tracking-[0.25em] uppercase text-blue-500 mb-3">
               {t("aboutUs")}
             </p>
@@ -53,7 +55,7 @@ const About = () => {
                   flex items-center transition-all duration-300 cursor-pointer
                   hover:shadow-xl hover:-translate-y-1 hover:border-gray-300
                   ${gradientClasses[index % gradientClasses.length]}
-                  animate-lift-blur-subtle ${isVisible ? 'visible' : ''}
+                  animate-lift-blur-subtle ${isVisible ? "visible" : ""}
                 `}
                 style={{ transitionDelay: `${0.2 + index * 0.1}s` }}
               >

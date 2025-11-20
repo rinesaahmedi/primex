@@ -30,9 +30,8 @@ export default function Home() {
 
   return (
     <div
-      className={`${
-        darkMode ? "bg-gray-900 text-white" : "bg-white text-black"
-      }`}
+      className={`${darkMode ? "bg-gray-900 text-white" : "bg-white text-black"
+        }`}
     >
       {/* Hero Section */}
       <Hero />

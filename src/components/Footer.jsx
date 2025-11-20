@@ -3,7 +3,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
-import PrimexLogo from "../images/PRIMEX LOGO png.png";
+import PrimexLogo from "../assets/primex-logo-white.png";
 import FacebookIcon from "../images/facebook.png";
 import InstagramIcon from "../images/instagram.png";
 
@@ -179,7 +179,7 @@ const Footer = () => {
               >
                 {contactPhone}
               </a>
-
+              <br></br>
               <a
                 href="https://maps.app.goo.gl/1AvD5MdteLP1Zy5n8"
                 target="_blank"
