@@ -122,6 +122,32 @@ const Header = ({ darkMode, toggleDarkMode, changeLanguage }) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // Auto-detect preferred language based on browser settings
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const browserLangs = window.navigator.languages?.length
+      ? window.navigator.languages
+      : [window.navigator.language];
+
+    const normalized = browserLangs
+      .filter(Boolean)
+      .map((lang) => lang.toLowerCase());
+
+    const germanLocales = ["de", "de-de", "de-at", "de-ch"];
+    const prefersGerman = normalized.some((lang) =>
+      germanLocales.includes(lang)
+    );
+
+    const preferredLanguage = prefersGerman ? "de" : "en";
+
+    if (i18n.language !== preferredLanguage) {
+      changeLanguage(preferredLanguage);
+    }
+  }, [changeLanguage, i18n.language]);
+
   // Handle Language Selection
   // inside Header
   const handleLanguageSelect = (lang) => {
