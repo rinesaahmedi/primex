@@ -1,145 +1,69 @@
 {
     "serviceDetails": {
-        "softwareDeveloper": {
-            "hero": {
-                "eyebrow": "Embedded engineering squads",
-                "title": "Software Developers & IT Support built for modern operations",
-                "subtitle": "IT solutions without the friction: our team delivers tailored software and integrates virtual agents that collaborate with your people on order processing, customer care, logistics, and data management—boosting efficiency while safeguarding data protection concepts and cybersecurity.",
-                "highlights": [
-                    "Full-stack web, mobile, and cloud",
-                    "ERP/CRM & marketplace integrations",
-                    "Virtual agents + automation runbooks"
-                ],
-                "ctaPrimary": "Book a technical scoping call",
-                "ctaSecondary": "Talk to our delivery lead"
-            },
-            "pillars": [
-                {
-                    "icon": "hammer",
-                    "title": "Custom product pods",
-                    "body": "Spin up cross-functional pods (PM + FE + BE + QA) that design, build, and operate digital products with Primex’s furniture-industry context built-in.",
-                    "items": [
-                        "Web + mobile experiences",
-                        "Internal tooling & dashboards",
-                        "Marketplace extensions"
-                    ]
-                },
-                {
-                    "icon": "database",
-                    "title": "Integration & data fabric",
-                    "body": "Stabilize your ERP, CRM, PIM, and logistics stack with certified integration engineers who speak SAP, Microsoft, Salesforce, and bespoke middleware.",
-                    "items": [
-                        "ERP/CRM connectors",
-                        "Real-time inventory feeds",
-                        "Marketplace compliance"
-                    ]
-                },
-                {
-                    "icon": "cpu",
-                    "title": "AI & automation engineering",
-                    "body": "Move from pilot to production with AI agents that automate claims, product data, and ops workflows—backed by MLOps runbooks and human-in-the-loop safeguards.",
-                    "items": [
-                        "LLM agent design",
-                        "Virtual assistants for ops teams",
-                        "Automation monitoring"
-                    ]
-                },
-                {
-                    "icon": "shield-check",
-                    "title": "Security & continuity desk",
-                    "body": "Prevent downtime with managed SecOps: proactive monitoring, automated patching, incident response, and ISO-ready documentation.",
-                    "items": [
-                        "24/7 monitoring",
-                        "Zero-trust hardening",
-                        "Incident & DR playbooks"
-                    ]
-                }
-            ],
-            "process": {
-                "title": "How we engage",
-                "steps": [
-                    {
-                        "name": "Discovery sprint",
-                        "description": "1–2 weeks",
-                        "detail": "Audit architecture, SLAs, and success metrics. Deliver backlog + integration map."
-                    },
-                    {
-                        "name": "Architecture blueprint",
-                        "description": "Design + security review",
-                        "detail": "Co-create the technical blueprint, data contracts, and automation guardrails."
-                    },
-                    {
-                        "name": "Build & QA",
-                        "description": "Agile delivery",
-                        "detail": "Ship in 2-week increments with automated tests, performance gates, and Primex QA."
-                    },
-                    {
-                        "name": "Launch & run",
-                        "description": "Handover + support",
-                        "detail": "Operate with Primex runbooks, observability dashboards, and bilingual support."
-                    }
-                ]
-            },
-            "impact": {
-                "title": "Operational impact",
-                "cards": [
-                    {
-                        "metric": "99.95%",
-                        "label": "Uptime SLA",
-                        "description": "Secured across ERP, middleware, and marketplaces."
-                    },
-                    {
-                        "metric": "6 weeks",
-                        "label": "Avg. integration launch",
-                        "description": "From scoping to go-live for SAP/Shopify/marketplace connectors."
-                    },
-                    {
-                        "metric": "ISO-ready",
-                        "label": "Security posture",
-                        "description": "Documentation and controls aligned with ISO 27001 & GDPR."
-                    }
-                ]
-            },
-            "caseStudy": {
-                "title": "Case study · DACH retailer",
-                "client": "Omnichannel furniture retailer · 120 stores",
-                "challenge": "Disconnected ecommerce, ERP, and service systems caused 3–4 day delays in claims and custom orders.",
-                "solution": "Primex embedded a pod of developers + integration engineers, rebuilt the middleware layer, and introduced AI agents for claims triage.",
-                "result": "Order accuracy +18%, claims cycle reduced to 4 hours, and support costs down 32%."
-            },
-            "cta": {
-                "title": "Need a SWAT team for your stack?",
-                "body": "Let’s assemble a Primex pod that designs, builds, and operates software with the reliability your operations demand.",
-                "primary": "Schedule a workshop",
-                "secondary": "Request our capabilities deck"
-            },
-            "sections": {
-                "offeringsTitle": "What we offer",
-                "offeringsSubtitle": "From custom development to managed SecOps, we embed the right pod for every challenge.",
-                "benefitsTitle": "Why should you choose us?"
-            },
-            "features": [
-                "Custom software development — Tailored to your business needs",
-                "ERP/CRM integration — Connect existing systems seamlessly",
-                "Virtual agent integration — AI-powered automation",
-                "Order processing systems — Streamlined workflows",
-                "Data management solutions — Secure and efficient",
-                "Cybersecurity measures — Protect your digital assets"
-            ],
-            "benefits": [
-                "40+ years of experience in the furniture industry",
-                "Cost-efficient solutions powered by our Kosovo-based delivery center",
-                "Young, dynamic specialists who bring fresh ideas to complex systems",
-                "State-of-the-art technology stack for every engagement",
-                "Multilingual teams and seamless communication across DACH & EN",
-                "Embedded collaboration that keeps stakeholders aligned in real time"
-            ],
-            "useCases": [
-                "Businesses needing custom software solutions",
-                "Companies requiring ERP/CRM integration",
-                "Organizations seeking automation tools",
-                "Businesses needing data management systems"
+      "softwareDeveloper": {
+        "hero": {
+          "eyebrow": "Embedded engineering squads",
+          "title": "Software Developers & IT Support built for modern operations",
+          "subtitle": "IT solutions without the friction: our team delivers tailored software and integrates virtual agents that collaborate with your people on order processing, customer care, logistics, and data management—boosting efficiency while safeguarding data protection concepts and cybersecurity.",
+          "highlights": [
+            "Full-stack web, mobile, and cloud",
+            "ERP/CRM & marketplace integrations",
+            "Virtual agents + automation runbooks"
+          ]
+        },
+        "pillars": [
+          {
+            "icon": "hammer",
+            "title": "Custom product pods",
+            "body": "Spin up cross-functional pods (PM + FE + BE + QA) that design, build, and operate digital products with Primex’s furniture-industry context built-in.",
+            "items": [
+              "Web + mobile experiences",
+              "Internal tooling & dashboards",
+              "Marketplace extensions"
             ]
-        }
+          },
+          {
+            "icon": "database",
+            "title": "Integration & data fabric",
+            "body": "Stabilize your ERP, CRM, PIM, and logistics stack with certified integration engineers who speak SAP, Microsoft, Salesforce, and bespoke middleware.",
+            "items": [
+              "ERP/CRM connectors",
+              "Real-time inventory feeds",
+              "Marketplace compliance"
+            ]
+          },
+          {
+            "icon": "cpu",
+            "title": "AI & automation engineering",
+            "body": "Move from pilot to production with AI agents that automate claims, product data, and ops workflows—backed by MLOps runbooks and human-in-the-loop safeguards.",
+            "items": [
+              "LLM agent design",
+              "Virtual assistants for ops teams",
+              "Automation monitoring"
+            ]
+          },
+          {
+            "icon": "shield-check",
+            "title": "Security & continuity desk",
+            "body": "Prevent downtime with managed SecOps: proactive monitoring, automated patching, incident response, and ISO-ready documentation.",
+            "items": [
+              "24/7 monitoring",
+              "Zero-trust hardening",
+              "Incident & DR playbooks"
+            ]
+          }
+        ],
+   
+        "benefits": [
+          "40+ years of experience in the furniture industry",
+          "Cost-efficient solutions powered by our Kosovo-based delivery center",
+          "Young, dynamic specialists who bring fresh ideas to complex systems",
+          "State-of-the-art technology stack for every engagement",
+          "Multilingual teams and seamless communication across DACH & EN",
+          "Embedded collaboration that keeps stakeholders aligned in real time"
+        ]
+      }
     }
-}
+  }
+   
+   
