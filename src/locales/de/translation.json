@@ -25,24 +25,13 @@
       {
         "title": "Logistik & Service",
         "description": "Sendungen verfolgen, Ersatzteile anstoßen und Kund:innen rund um die Uhr informieren."
-      },
-      {
-        "title": "Kundenservice-Automatisierung",
-        "description": "Anfragen bearbeiten, Retouren abwickeln und Servicequalität mit intelligenten Workflows sicherstellen."
       }
     ]
-  },
-  "partnersGrid": {
-    "kicker": "Vertrauenspartner",
-    "title": "In der Möbelindustrie verwurzelt, für andere Branchen bereit",
-    "body": "Wir kennen jede Facette der Möbel-Wertschöpfung – und passen unsere KI-Agenten ebenso auf Logistik, Retail-Tech, Produktion und ähnliche Workflows an.",
-    "moreLabel": "+5 weitere",
-    "moreTag": "Branchen"
   },
   "darkMode": "In den Dunkelmodus wechseln",
   "lightMode": "In den hellen Modus wechseln",
   "aboutUs": "Über uns",
-  "services": "Dienstleistungen",
+  "Services": "Dienstleistungen",
   "ourPartners": "Unsere Partner",
   "contactUs": "Kontakt",
   "english": "Englisch",
@@ -103,10 +92,6 @@
     "ctaLabel": "Mehr erfahren",
     "items": [
       {
-        "title": "AI Agents für den Betrieb",
-        "description": "Wir planen, trainieren und betreiben KI-Agenten, die Reklamationen, Produktdaten, Logistik und Service-Workflows automatisieren – abgesichert durch Human-in-the-Loop-Kontrollen und 40+ Jahre Möbel-Know-how."
-      },
-      {
         "title": "Softwareentwicklung & IT-Support",
         "description": "Wir entwickeln maßgeschneiderte Softwarelösungen und integrieren virtuelle Agenten, die Aufgaben wie Auftragsabwicklung, Kundenservice, Logistik und Datenmanagement unterstützen. Zudem stellen wir Datenschutzkonzepte und starke Cybersicherheitsmaßnahmen sicher."
       },
@@ -141,38 +126,17 @@
   "partners": {
     "testimonials": [
       {
-        "quote": "Der KI-Agent von Primex hat unsere Reklamationsbearbeitungszeit von 90 Minuten auf unter 70 Sekunden reduziert. Die Effizienzgewinne sind bemerkenswert.",
-        "company": "Möbelhandelsgruppe",
-        "person": "Michael Schneider",
-        "role": "Operations-Direktor",
+        "quote": "Wir haben Cotopaxi von Anfang an mit Shopify aufgebaut. ",
+        "company": "Cotopaxi",
+        "person": "Davis Smith",
+        "role": "Gründer und CEO",
         "image": "src/images/client2.webp"
       },
       {
-        "quote": "Ihr tiefes Verständnis der Möbelindustrie kombiniert mit modernster KI-Technologie hat unsere Abläufe transformiert.",
-        "company": "Home Living Solutions",
-        "person": "Sarah Weber",
-        "role": "Chief Technology Officer",
-        "image": "src/images/client2.webp"
-      },
-      {
-        "quote": "Das KI-Reklamationsautomatisierungssystem integriert sich nahtlos in unser ERP. Wir haben eine 80%ige Reduzierung der Betriebskosten gesehen.",
-        "company": "DACH Möbelpartner",
-        "person": "Thomas Müller",
-        "role": "Leiter Kundenservice",
-        "image": "src/images/client2.webp"
-      },
-      {
-        "quote": "Primex bietet nicht nur Technologie—sie bringen 40 Jahre Branchenexpertise mit. Diese Kombination ist unschätzbar.",
-        "company": "Europäisches Handelsnetzwerk",
-        "person": "Anna Fischer",
-        "role": "VP Operations",
-        "image": "src/images/client2.webp"
-      },
-      {
-        "quote": "Von Produktdatenmanagement bis zur Logistikkoordination—Primex erledigt alles mit Präzision und Geschwindigkeit.",
-        "company": "Modern Home Brands",
-        "person": "David Hoffmann",
-        "role": "Supply Chain Manager",
+        "quote": "Ein weiterer Kundenerfahrungsbericht kommt hier hin...",
+        "company": "Ein anderes Unternehmen",
+        "person": "Max Mustermann",
+        "role": "CTO",
         "image": "src/images/client2.webp"
       }
     ]
@@ -235,9 +199,121 @@
     "contact": {
       "title": "Kontaktieren Sie uns",
       "email": "E-Mail: info@primexeu.com",
-      "phone": "Telefon: +383 49 937 863",
-      "location": "7 Shtatori, Fushë Kosovë 12010"
+      "phone": "Telefon: +383 49 937 863"
     },
     "copyright": "Alle Rechte vorbehalten."
+  },
+
+  "forms": {
+  "join": {
+    "sectionLabel": "JOIN OUR TEAM",
+    "title": "Möchtest du bei uns einsteigen?",
+    "subtitle": "Werde Teil unseres wachsenden Teams und gestalte deine Zukunft mit uns.",
+    "fields": {
+      "name": "Vollständiger Name",
+      "email": "E-Mail",
+      "phone": "Telefonnummer",
+      "linkedin": "LinkedIn-Profil-URL",
+      "country": "Land auswählen",
+      "description": "Erzähl uns kurz von dir...",
+      "privacy": "Ich akzeptiere die Datenschutzerklärung"
+    },
+    "submit": "Jetzt bewerben"
+  },
+  "business": {
+    "sectionLabel": "BUSINESS ANFRAGE",
+    "title": "Lassen Sie uns über Ihr Unternehmen sprechen.",
+    "subtitle": "Erzählen Sie uns, was Sie aufbauen möchten. Wir helfen Unternehmen dabei, mit modernen digitalen Lösungen zu skalieren.",
+    "fields": {
+      "companyName": "Firmenname *",
+      "contactPerson": "Ansprechperson *",
+      "email": "E-Mail *",
+      "phone": "Telefonnummer",
+      "businessType": "Branche *",
+      "website": "Unternehmenswebsite",
+      "message": "Nachricht *"
+    },
+    "submit": "Anfrage senden"
+  },
+  "validation": {
+    "acceptPrivacy": "Bitte akzeptieren Sie die Datenschutzerklärung, bevor Sie das Formular absenden."
+  }
+},
+
+
+  "agents": {
+    "backToAgentsLink": "Zurück zu den KI-Agenten",
+    "agent1": {
+      "badge": "KI-Operations-Agent",
+      "title": "Agent 1",
+      "subtitle": "Spezialisierter KI-Agent, der operative Workflows mit höchster Präzision und Effizienz automatisiert und optimiert.",
+      "metrics": {
+        "processingTime": {
+          "value": "70 s",
+          "label": "Bearbeitungszeit"
+        },
+        "efficiency": {
+          "value": "10x",
+          "label": "Effizienzsteigerung"
+        },
+        "accuracy": {
+          "value": "99,9 %",
+          "label": "Genauigkeitsrate"
+        }
+      },
+      "capabilities": {
+        "title": "Fähigkeiten",
+        "items": [
+          "Automatisierte Workflow-Verarbeitung",
+          "Synchronisation von Daten in Echtzeit",
+          "Mehrsprachige Unterstützung (DE/EN)",
+          "Integration in Ihr ERP-System",
+          "24/7-Betrieb ohne Unterbrechung",
+          "Human-in-the-loop-Freigabe bei Sonderfällen",
+          "Qualitätssicherung und Plausibilitätschecks",
+          "Performance-Monitoring und Analytics"
+        ]
+      },
+      "useCases": {
+        "title": "Use Cases",
+        "cards": [
+          {
+            "title": "Datenverarbeitung",
+            "body": "Automatisierte Verarbeitung operativer Daten mit hoher Geschwindigkeit und Genauigkeit."
+          },
+          {
+            "title": "Workflow-Automatisierung",
+            "body": "Verschlanken Sie komplexe Abläufe mit intelligenter Automatisierung."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Interessiert an Agent 1?",
+        "body": "Lassen Sie uns besprechen, wie dieser Agent Ihre Abläufe transformieren kann.",
+        "primary": "Kontakt aufnehmen",
+        "secondary": "Jetzt anfragen"
+      },
+      "visuals": {
+        "label": "KI-Agent im Einsatz",
+        "overview": {
+          "title": "Von 90-Minuten-Fällen zu 70-Sekunden-Automationen",
+          "description": "Sehen Sie, wie Agent 1 E-Mails, Anhänge und Bilder einliest und in Sekunden einen strukturierten Fall erstellt."
+        },
+        "capabilities": {
+          "title": "Tiefe ERP-Integration",
+          "description": "Der Agent liest und schreibt direkt in Ihr ERP und hält Bestellungen, Produkte und Tickets synchron."
+        },
+        "useCases": {
+          "title": "Echte Operations-Dashboards",
+          "description": "Überwachen Sie Durchsatz, Reaktionszeiten und Ausnahmen in einem einzigen Performance-View."
+        },
+        "cta": {
+          "title": "Gemeinsam mit Ihrem Team entwickelt",
+          "description": "Wir konfigurieren Agent 1 gemeinsam mit Ihren Operations-, Service- und IT-Teams, damit er von Tag eins in Ihre Workflows passt."
+        }
+      }
+    }
   }
 }
+
+

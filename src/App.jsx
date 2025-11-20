@@ -33,6 +33,8 @@ import Agent8Page from "./pages/services/agents/Agent8Page";
 import Agent9Page from "./pages/services/agents/Agent9Page";
 import Agent10Page from "./pages/services/agents/Agent10Page";
 
+import Terms from "./pages/Terms.jsx";  
+
 function App() {
   const { i18n } = useTranslation();
   const [darkMode, setDarkMode] = useState(false);
@@ -82,6 +84,8 @@ function App() {
 
           <Route path="/apply" element={<JoinUsForm />} />
           <Route path="/business" element={<BusinessInquiryForm />} />
+
+           <Route path="/terms" element={<Terms />} />
         </Routes>
       </main>
 
