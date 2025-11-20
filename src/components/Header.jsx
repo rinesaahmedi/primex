@@ -122,15 +122,29 @@ const Header = ({ darkMode, toggleDarkMode, changeLanguage }) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Auto-detect preferred language based on browser settings
+  const hasInitializedLanguage = useRef(false);
+
+  // Auto-detect preferred language (runs once on mount)
   useEffect(() => {
-    if (typeof window === "undefined") {
+    if (hasInitializedLanguage.current || typeof window === "undefined") {
       return;
     }
 
-    const browserLangs = window.navigator.languages?.length
-      ? window.navigator.languages
-      : [window.navigator.language];
+    const storedLang =
+      typeof window !== "undefined"
+        ? window.localStorage?.getItem("preferredLanguage")
+        : null;
+
+    if (storedLang && storedLang !== i18n.language) {
+      changeLanguage(storedLang);
+      hasInitializedLanguage.current = true;
+      return;
+    }
+
+    const browserLangs =
+      window.navigator.languages?.length > 0
+        ? window.navigator.languages
+        : [window.navigator.language];
 
     const normalized = browserLangs
       .filter(Boolean)
@@ -143,14 +157,19 @@ const Header = ({ darkMode, toggleDarkMode, changeLanguage }) => {
 
     const preferredLanguage = prefersGerman ? "de" : "en";
 
-    if (i18n.language !== preferredLanguage) {
+    if (preferredLanguage !== i18n.language) {
       changeLanguage(preferredLanguage);
     }
+
+    hasInitializedLanguage.current = true;
   }, [changeLanguage, i18n.language]);
 
   // Handle Language Selection
   // inside Header
   const handleLanguageSelect = (lang) => {
+    if (typeof window !== "undefined") {
+      window.localStorage?.setItem("preferredLanguage", lang);
+    }
     changeLanguage(lang); // now send just "en" or "de"
     setIsLangOpen(false);
   };
