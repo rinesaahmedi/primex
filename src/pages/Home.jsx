@@ -7,6 +7,7 @@ import About from "../components/About.jsx"; // Import the Hero component
 import Services from "../components/Services.jsx"; // Import the Services component
 import JoinBusinessSection from "../components/JoinBusinessSection.jsx"; // Import the JoinBusinessSection component
 import PartnerTestimonials from "../components/PartnerTestimonials.jsx";
+import PartnersGrid from "../components/PartnersGrid.jsx";
 
 export default function Home() {
   const { i18n } = useTranslation();
@@ -39,6 +40,8 @@ export default function Home() {
       <About />
 
       <Services />
+
+      <PartnersGrid />
 
       <JoinBusinessSection />
 
