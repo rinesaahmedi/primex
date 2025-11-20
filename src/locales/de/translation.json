@@ -160,27 +160,27 @@
       "links": [
         {
           "name": "Startseite",
-          "url": "/#home",
+          "hash": "#top",
           "external": false
         },
         {
           "name": "Über uns",
-          "url": "/#about",
+          "hash": "#about",
           "external": false
         },
         {
           "name": "Dienstleistungen",
-          "url": "/#services",
+          "hash": "#services",
           "external": false
         },
         {
           "name": "Unsere Partner",
-          "url": "/#partners",
+          "hash": "#partners",
           "external": false
         },
         {
           "name": "Kontakt",
-          "url": "/#contact",
+          "hash": "#contact",
           "external": false
         },
         {
@@ -197,7 +197,10 @@
     },
     "hours": {
       "title": "Öffnungszeiten",
-      "times": ["Montag - Freitag:", "8:00 - 16:30 Uhr"]
+      "times": [
+        "Montag - Freitag:",
+        "8:00 - 16:30 Uhr"
+      ]
     },
     "social": {
       "title": "Folgen Sie uns auf"
