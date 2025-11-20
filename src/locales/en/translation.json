@@ -188,27 +188,27 @@
       "links": [
         {
           "name": "Home",
-          "url": "",
+          "hash": "#top",
           "external": false
         },
         {
           "name": "About Us",
-          "url": "",
+          "hash": "#about",
           "external": false
         },
         {
           "name": "Services",
-          "url": "",
+          "hash": "#services",
           "external": false
         },
         {
           "name": "Our Partners",
-          "url": "",
+          "hash": "#partners",
           "external": false
         },
         {
           "name": "Contact Us",
-          "url": "",
+          "hash": "#contact",
           "external": false
         },
         {
@@ -225,7 +225,10 @@
     },
     "hours": {
       "title": "Working Hours",
-      "times": ["Monday - Friday:", "8:00 AM - 4:30 PM"]
+      "times": [
+        "Monday - Friday:",
+        "8:00 AM - 4:30 PM"
+      ]
     },
     "social": {
       "title": "Follow Us On"
@@ -273,9 +276,6 @@
       "acceptPrivacy": "Please accept the privacy policy before submitting."
     }
   },
-<<<<<<< Updated upstream
-
-=======
   "termsPage": {
     "pill": "Legal Framework",
     "title": "Terms & Conditions",
@@ -287,7 +287,6 @@
     "loading": "Loading Terms and Conditions...",
     "error": "Unable to load terms: {{message}}"
   },
->>>>>>> Stashed changes
   "agents": {
     "backToAgentsLink": "Back to AI Agents",
     "agent1": {
@@ -361,8 +360,4 @@
       }
     }
   }
-<<<<<<< Updated upstream
 }
-=======
-}
->>>>>>> Stashed changes

@@ -30,24 +30,36 @@ const Footer = () => {
    * ----------------------------*/
   const handleHashNavigation = (e, hash) => {
     e.preventDefault();
+    const destination = hash || "#";
+
+    const scrollToTarget = () => {
+      if (destination === "#" || destination === "#top") {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+        return;
+      }
+
+      const element = document.querySelector(destination);
+      if (element) {
+        const headerOffset = 80;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition =
+          elementPosition + window.pageYOffset - headerOffset;
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+      }
+    };
 
     if (location.pathname !== "/") {
       navigate("/");
-      setTimeout(() => scrollToHash(hash), 150);
+      setTimeout(scrollToTarget, 150);
     } else {
-      scrollToHash(hash);
+      scrollToTarget();
     }
-  };
-
-  const scrollToHash = (hash) => {
-    const el = document.querySelector(hash);
-    if (!el) return;
-
-    const headerOffset = 80;
-    const elementPos = el.getBoundingClientRect().top + window.scrollY;
-    const offsetPos = elementPos - headerOffset;
-
-    window.scrollTo({ top: offsetPos, behavior: "smooth" });
   };
 
   /** -----------------------------
@@ -65,21 +77,10 @@ const Footer = () => {
   const socialTitle = t("footer.social.title", "Follow Us On");
   const copyright = t("footer.copyright", "");
 
-  /** -----------------------------
-   * Hash Sections on Home Page
-   * ----------------------------*/
-  const hashSections = {
-    "Home": "#",
-    "About Us": "#about",
-    "Services": "#services",
-    "Our Partners": "#partners",
-    "Contact Us": "#contact"
-  };
-
   return (
-    <footer className="bg-gradient-to-br from-[#081333] via-[#123a78] to-[#081333] text-white">
+    <footer className="bg-linear-to-br from-[#081333] via-[#123a78] to-[#081333] text-white">
       <div className="max-w-6xl mx-auto px-6 py-16">
-        
+
         {/* ================= TOP GRID ================= */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
 
@@ -101,13 +102,11 @@ const Footer = () => {
             <ul className="space-y-3">
 
               {pageLinks.map((link, i) => {
-                const isHash = !link.url;
-                const hash = hashSections[link.name] || "#";
+                const key = `${link.name}-${i}`;
 
-                // 🌐 External URLs
-                if (link.external) {
+                if (link.external && link.url) {
                   return (
-                    <li key={i}>
+                    <li key={key}>
                       <a
                         href={link.url}
                         target="_blank"
@@ -120,13 +119,12 @@ const Footer = () => {
                   );
                 }
 
-                // 🔗 Hash-based internal navigation (Home sections)
-                if (isHash) {
+                if (link.hash) {
                   return (
-                    <li key={i}>
+                    <li key={key}>
                       <a
-                        href={hash}
-                        onClick={(e) => handleHashNavigation(e, hash)}
+                        href={link.hash}
+                        onClick={(e) => handleHashNavigation(e, link.hash)}
                         className="text-slate-300 hover:text-[#2378FF] transition cursor-pointer"
                       >
                         {link.name}
@@ -135,17 +133,20 @@ const Footer = () => {
                   );
                 }
 
-                // 🛣 Normal React Router links
-                return (
-                  <li key={i}>
-                    <Link
-                      to={link.url}
-                      className="text-slate-300 hover:text-[#2378FF] transition"
-                    >
-                      {link.name}
-                    </Link>
-                  </li>
-                );
+                if (link.url) {
+                  return (
+                    <li key={key}>
+                      <Link
+                        to={link.url}
+                        className="text-slate-300 hover:text-[#2378FF] transition"
+                      >
+                        {link.name}
+                      </Link>
+                    </li>
+                  );
+                }
+
+                return null;
               })}
 
             </ul>
