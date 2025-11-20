@@ -1,15 +1,12 @@
 // src/pages/Home.jsx
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import Header from '../components/Header.jsx'; // Import the Header component
 import Hero from '../components/Hero.jsx'; // Import the Hero component
 import About from '../components/About.jsx'; // Import the Hero component
 import Services from '../components/Services.jsx'; // Import the Services component
 import JoinBusinessSection from '../components/JoinBusinessSection.jsx'; // Import the JoinBusinessSection component  
 import PartnerTestimonials from "../components/PartnerTestimonials.jsx";
-import Footer from '../components/Footer.jsx'; // Import the Footer component
-import JoinUsForm from "./JoinUsForm.jsx";
-import BusinessInquiryForm from "./BusinessInquiryForm.jsx";
+
 
 
 export default function Home() {
@@ -31,7 +28,7 @@ export default function Home() {
   return (
     <div className={`${darkMode ? 'bg-gray-900 text-white' : 'bg-white text-black'}`}>
       {/* Header Component */}
-      <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} changeLanguage={changeLanguage} />
+      
 
       {/* Hero Section */}
       <Hero />
@@ -44,11 +41,6 @@ export default function Home() {
 
       <PartnerTestimonials />
 
-      <JoinUsForm />
-
-      <BusinessInquiryForm />
-
-      <Footer />
 
 
     </div>

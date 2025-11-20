@@ -34,6 +34,7 @@ import Agent9Page from "./pages/services/agents/Agent9Page";
 import Agent10Page from "./pages/services/agents/Agent10Page";
 
 import Terms from "./pages/Terms.jsx";
+import CertificatePage from "./pages/CertificatePage.jsx";
 
 function App() {
   const { i18n } = useTranslation();
@@ -86,6 +87,7 @@ function App() {
           <Route path="/business" element={<BusinessInquiryForm />} />
 
            <Route path="/terms" element={<Terms />} />
+           <Route path="/certificate" element={<CertificatePage />} />
         </Routes>
       </main>
 
