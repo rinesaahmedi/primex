@@ -143,7 +143,7 @@ function JoinUsForm() {
   };
 
   return (
-    <section className="bg-gradient-to-br from-[#081333] via-[#1659bd] to-[#fadebc] text-white py-16 md:py-24 min-h-screen">
+    <section className="bg-gradient-to-br from-[#081333] via-[#1659bd] to-[#ffffff] text-white py-16 md:py-24 min-h-screen">
       <div className="max-w-6xl mx-auto px-6">
         {/* Header Section - Centered */}
         <div className="text-center mb-12 md:mb-16 max-w-3xl mx-auto">
