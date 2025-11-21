@@ -65,37 +65,47 @@ const AppointmentPage = () => {
         Select an Appointment Time
       </h2>
 
-      {/* Calendar Display */}
-      <div className="flex justify-center mb-6">
-        <Calendar
-          onChange={handleDateChange}
-          value={date}
-          tileClassName={({ date }) => {
-            const formattedDate = date.toISOString().split("T")[0];
-            return !availableSlots.some((slot) => slot.startsWith(formattedDate))
-              ? "bg-gray-200 text-gray-400 cursor-not-allowed" // Disabled date style
-              : "bg-white text-gray-800 hover:bg-blue-500 hover:text-white rounded-lg"; // Active date style
-          }}
-        />
-      </div>
+      {/* Flex Container for Calendar and Time Slot */}
+      <div className="flex justify-between">
+        {/* Calendar Display */}
+        <div className="w-1/2 mr-6">
+          <Calendar
+            onChange={handleDateChange}
+            value={date}
+            tileClassName={({ date: tileDate }) => {
+              const tileDateStr = tileDate.toISOString().split("T")[0];
+              const selectedDateStr = date.toISOString().split("T")[0];
 
-      {/* Time Slot Selection */}
-      {availableSlots.length === 0 ? (
-        <div className="text-gray-500 mb-6">No available slots for this date</div>
-      ) : (
-        <div className="flex flex-col items-center mb-6">
-          <h3 className="text-xl font-semibold mb-4">Select a Time Slot</h3>
-          {availableSlots.map((slot) => (
-            <button
-              key={slot}
-              onClick={() => handleTimeSelection(slot)} // Set the selected time
-              className="bg-blue-500 text-white px-6 py-2 rounded-lg mb-2 hover:bg-blue-600"
-            >
-              {slot}
-            </button>
-          ))}
+              // Only style the currently selected date based on whether slots exist for it.
+              if (tileDateStr !== selectedDateStr) return "";
+
+              return availableSlots && availableSlots.length > 0
+                ? "bg-white text-gray-800 hover:bg-blue-500 hover:text-white rounded-lg"
+                : "bg-gray-200 text-gray-400 cursor-not-allowed";
+            }}
+          />
         </div>
-      )}
+
+        {/* Time Slot Selection */}
+        <div className="w-1/2">
+          {availableSlots.length === 0 ? (
+            <div className="text-gray-500 mb-6">No available slots for this date</div>
+          ) : (
+            <div className="flex flex-col items-center mb-6">
+              <h3 className="text-xl font-semibold mb-4">Select a Time Slot</h3>
+              {availableSlots.map((slot) => (
+                <button
+                  key={slot}
+                  onClick={() => handleTimeSelection(slot)} // Set the selected time
+                  className="bg-blue-500 text-white px-6 py-2 rounded-lg mb-2 hover:bg-blue-600"
+                >
+                  {slot}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
 
       {/* Booking Form */}
       {showForm && (

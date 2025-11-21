@@ -5,6 +5,10 @@ const path = require("path");
 const app = express();
 const port = 5000;
 
+// Middleware
+app.use(require('cors')());
+app.use(express.json());
+
 // Path to your Service Account JSON key file
 const keyFile = path.join(__dirname, '../keys/calendar-key.json');
 
@@ -20,32 +24,57 @@ const calendar = google.calendar({ version: 'v3', auth });
 
 app.get('/api/available-slots', async (req, res) => {
   try {
-    // Get the events from the primary calendar
+    // Respect optional `date` query param (YYYY-MM-DD). If provided, fetch events only for that day.
+    const { date } = req.query;
+
+    // Build time range for the query
+    let timeMin = new Date().toISOString();
+    let timeMax = undefined;
+    if (date) {
+      // timeMin = start of the requested date (UTC)
+      timeMin = new Date(`${date}T00:00:00Z`).toISOString();
+      // timeMax = end of the requested date
+      timeMax = new Date(`${date}T23:59:59Z`).toISOString();
+    }
+
+    // Query Google Calendar for events in the time range
     const response = await calendar.events.list({
-      calendarId: 'primary', // Your calendar ID (use 'primary' for your main calendar)
-      timeMin: new Date().toISOString(), // Get events from now onwards
-      maxResults: 10, // Fetch a limited number of events (for performance)
+      calendarId: 'primary',
+      timeMin,
+      timeMax,
+      maxResults: 250,
       singleEvents: true,
       orderBy: 'startTime',
     });
 
-    // Process events to show available slots (excluding events)
-    const events = response.data.items;
+    const events = response.data.items || [];
 
-    // If no events, all times are available
+    // If no events, return default working hours
     if (events.length === 0) {
-      return res.json({ availableSlots: ['9:00', '10:00', '11:00', '12:00', '1:00', '2:00', '3:00', '4:00'] }); // Default working hours
+      return res.json(['9:00', '10:00', '11:00', '13:15', '14:00', '15:00']);
     }
 
-    // Process the events and find available time slots
+    // Compute available slots and return as an array
     const availableSlots = getAvailableTimeSlots(events);
-
-    // Send available slots to the frontend
     res.json(availableSlots);
   } catch (error) {
     console.error('Error fetching events:', error);
     res.status(500).send('Error fetching events');
   }
+});
+
+// Simple booking endpoint - stores booking in memory (for demo)
+const bookings = [];
+app.post('/api/book-appointment', (req, res) => {
+  const { name, email, date, time } = req.body || {};
+  if (!name || !email || !date || !time) {
+    return res.status(400).json({ message: 'Missing required booking fields' });
+  }
+
+  // In a real app you would validate and persist the booking (DB or Google Calendar insert).
+  bookings.push({ name, email, date, time, createdAt: new Date().toISOString() });
+  console.log('New booking:', bookings[bookings.length - 1]);
+  return res.json({ message: 'Booking confirmed' });
 });
 
 // Function to calculate available time slots from fetched events
