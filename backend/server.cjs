@@ -51,6 +51,7 @@ app.get('/api/available-slots', async (req, res) => {
     }
 
     // Query Google Calendar for events in the time range
+    console.log('Calling Google Calendar with:', { timeMin, timeMax });
     const response = await calendar.events.list({
       calendarId: 'primary',
       timeMin,
@@ -61,6 +62,12 @@ app.get('/api/available-slots', async (req, res) => {
     });
 
     const events = response.data.items || [];
+    console.log(`Google Calendar returned ${events.length} events`);
+    events.slice(0, 20).forEach((ev, i) => {
+      const s = ev.start && (ev.start.dateTime || ev.start.date) || 'no-start';
+      const e = ev.end && (ev.end.dateTime || ev.end.date) || 'no-end';
+      console.log(`  event[${i}]: ${ev.summary || '(no summary)'} ${s} -> ${e}`);
+    });
 
     // If no events, return default working hours
     if (events.length === 0) {
@@ -71,8 +78,36 @@ app.get('/api/available-slots', async (req, res) => {
     const availableSlots = getAvailableTimeSlots(events);
     res.json(availableSlots);
   } catch (error) {
-    console.error('Error fetching events:', error);
+    console.error('Error fetching events:');
+    if (error && error.response && error.response.data) console.error(error.response.data);
+    else console.error(error);
     res.status(500).send('Error fetching events');
+  }
+});
+
+// Debug endpoint: list accessible calendars
+app.get('/api/calendar-test', async (req, res) => {
+  try {
+    const resp = await calendar.calendarList.list({ maxResults: 50 });
+    const items = resp.data.items || [];
+    const list = items.map((c) => ({ id: c.id, summary: c.summary }));
+    console.log('Calendars visible to service account:', list);
+    res.json(list);
+  } catch (err) {
+    console.error('calendar-test error:', err && err.response ? err.response.data : err);
+    res.status(500).json({ error: 'calendar-test failed', details: err && err.response ? err.response.data : String(err) });
+  }
+});
+
+// Debug endpoint: return an access token obtained by the auth client
+app.get('/api/debug-token', async (req, res) => {
+  try {
+    const client = await auth.getClient();
+    const token = await client.getAccessToken();
+    res.json({ token });
+  } catch (err) {
+    console.error('debug-token error:', err && err.response ? err.response.data : err);
+    res.status(500).json({ error: 'debug-token failed', details: err && err.response ? err.response.data : String(err) });
   }
 });
 

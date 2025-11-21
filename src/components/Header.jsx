@@ -287,7 +287,7 @@ const Header = ({ changeLanguage }) => {
               aria-label="Go to Appointment Calendar"
             >
               <CalendarIcon />
-              <span className="text-sm">Calendar</span>
+              
             </button>
           </Link>
         </div>
