@@ -24,17 +24,30 @@ const calendar = google.calendar({ version: 'v3', auth });
 
 app.get('/api/available-slots', async (req, res) => {
   try {
-    // Respect optional `date` query param (YYYY-MM-DD). If provided, fetch events only for that day.
-    const { date } = req.query;
+    // Respect optional `date` query param (YYYY-MM-DD) and optional client timezone offset (minutes)
+    const { date, tzOffset } = req.query;
 
-    // Build time range for the query
+    // Build time range for the query. If tzOffset is provided (minutes, as from Date.getTimezoneOffset()),
+    // compute the UTC timestamps that correspond to the client's local start/end of day.
     let timeMin = new Date().toISOString();
     let timeMax = undefined;
     if (date) {
-      // timeMin = start of the requested date (UTC)
-      timeMin = new Date(`${date}T00:00:00Z`).toISOString();
-      // timeMax = end of the requested date
-      timeMax = new Date(`${date}T23:59:59Z`).toISOString();
+      // Parse date parts
+      const parts = date.split('-');
+      if (parts.length === 3) {
+        const year = parseInt(parts[0], 10);
+        const month = parseInt(parts[1], 10) - 1;
+        const day = parseInt(parts[2], 10);
+
+        const offsetMinutes = tzOffset ? parseInt(tzOffset, 10) : 0; // tzOffset = UTC - local (in minutes)
+
+        // Compute UTC milliseconds for client's local midnight and local end-of-day
+        const localMidnightUtcMs = Date.UTC(year, month, day, 0, 0, 0) + offsetMinutes * 60 * 1000;
+        const localEndUtcMs = Date.UTC(year, month, day, 23, 59, 59) + offsetMinutes * 60 * 1000;
+
+        timeMin = new Date(localMidnightUtcMs).toISOString();
+        timeMax = new Date(localEndUtcMs).toISOString();
+      }
     }
 
     // Query Google Calendar for events in the time range
@@ -79,31 +92,64 @@ app.post('/api/book-appointment', (req, res) => {
 
 // Function to calculate available time slots from fetched events
 function getAvailableTimeSlots(events) {
+  // Generate candidate slots (hourly) between workStart and workEnd and remove any that overlap events
   const availableSlots = [];
-  const workStartTime = 9; // Assume work starts at 9 AM
-  const workEndTime = 17; // Assume work ends at 5 PM
+  const workStartHour = 9; // 9:00
+  const workEndHour = 17; // 17:00 (slots generated until this hour)
+  const slotDurationMinutes = 30; // 30-minute slots
 
-  let lastEndTime = workStartTime;
+  // Helper to format time strings
+  const fmt = (d) => {
+    const hh = d.getHours();
+    const mm = d.getMinutes();
+    return `${hh.toString().padStart(2, '0')}:${mm.toString().padStart(2, '0')}`;
+  };
 
-  // Loop through events and find available slots between events
-  for (const event of events) {
-    const eventStartTime = new Date(event.start.dateTime).getHours();
-    const eventEndTime = new Date(event.end.dateTime).getHours();
+  // Determine the date used by the events (if events span multiple days, slots are generated per-day by the caller)
+  // We'll build slots for the day of the first event if possible; otherwise use today's date.
+  let baseDate = new Date();
+  if (events.length > 0) {
+    const ev = events[0];
+    const s = ev.start && (ev.start.dateTime || ev.start.date);
+    if (s) baseDate = new Date(s);
+  }
 
-    // Add available time slots between last event end time and current event start time
-    for (let i = lastEndTime; i < eventStartTime; i++) {
-      if (i < workEndTime) {
-        availableSlots.push(`${i}:00`);
+  // Create candidate slot start times in local server timezone for the baseDate
+  const year = baseDate.getFullYear();
+  const month = baseDate.getMonth();
+  const day = baseDate.getDate();
+
+  // step through the day in increments of slotDurationMinutes
+  for (let minutes = workStartHour * 60; minutes < workEndHour * 60; minutes += slotDurationMinutes) {
+    const h = Math.floor(minutes / 60);
+    const m = minutes % 60;
+    const slotStart = new Date(year, month, day, h, m, 0);
+    const slotEnd = new Date(slotStart.getTime() + slotDurationMinutes * 60 * 1000);
+
+    // Check overlap with any event
+    let overlaps = false;
+    for (const event of events) {
+      const evStartStr = event.start && (event.start.dateTime || event.start.date);
+      const evEndStr = event.end && (event.end.dateTime || event.end.date);
+      if (!evStartStr || !evEndStr) {
+        // If event has no times, treat as full-day busy
+        overlaps = true;
+        break;
+      }
+
+      const evStart = new Date(evStartStr);
+      const evEnd = new Date(evEndStr);
+
+      // If the event and the slot overlap, mark it busy
+      if (evStart < slotEnd && evEnd > slotStart) {
+        overlaps = true;
+        break;
       }
     }
 
-    // Update the last event end time
-    lastEndTime = eventEndTime;
-  }
-
-  // Add available slots after the last event until work ends
-  for (let i = lastEndTime; i < workEndTime; i++) {
-    availableSlots.push(`${i}:00`);
+    if (!overlaps) {
+      availableSlots.push(fmt(slotStart));
+    }
   }
 
   return availableSlots;
