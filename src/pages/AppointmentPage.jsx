@@ -9,7 +9,7 @@ const AppointmentPage = () => {
   const [selectedTime, setSelectedTime] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [timeSlots, setTimeSlots] = useState([]);
+  const [showForm, setShowForm] = useState(false);
 
   // Fetch available slots from the backend
   useEffect(() => {
@@ -25,11 +25,13 @@ const AppointmentPage = () => {
   // Handle date change when a user selects a date from the calendar
   const handleDateChange = (newDate) => {
     setDate(newDate); // Update selected date
+    setShowForm(false); // Hide the form when date is changed
   };
 
   // Handle time slot selection
   const handleTimeSelection = (time) => {
     setSelectedTime(time); // Store the selected time slot
+    setShowForm(true); // Show the booking form
   };
 
   // Handle booking submission
@@ -47,6 +49,10 @@ const AppointmentPage = () => {
       .post("http://localhost:5000/api/book-appointment", bookingData) // Send booking data to backend
       .then((response) => {
         alert(response.data.message); // Show success message
+        setName(""); // Clear form fields after successful booking
+        setEmail("");
+        setSelectedTime("");
+        setShowForm(false);
       })
       .catch((error) => {
         alert(error.response.data.message); // Show error message
@@ -59,6 +65,7 @@ const AppointmentPage = () => {
         Select an Appointment Time
       </h2>
 
+      {/* Calendar Display */}
       <div className="flex justify-center mb-6">
         <Calendar
           onChange={handleDateChange}
@@ -73,7 +80,9 @@ const AppointmentPage = () => {
       </div>
 
       {/* Time Slot Selection */}
-      {availableSlots.length > 0 && (
+      {availableSlots.length === 0 ? (
+        <div className="text-gray-500 mb-6">No available slots for this date</div>
+      ) : (
         <div className="flex flex-col items-center mb-6">
           <h3 className="text-xl font-semibold mb-4">Select a Time Slot</h3>
           {availableSlots.map((slot) => (
@@ -89,49 +98,51 @@ const AppointmentPage = () => {
       )}
 
       {/* Booking Form */}
-      <form onSubmit={handleBooking}>
-        <div className="mb-4">
-          <label htmlFor="name" className="block text-gray-700">Your Name</label>
-          <input
-            type="text"
-            id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)} // Update name state
-            required
-            className="mt-2 p-2 w-full border rounded-md"
-          />
-        </div>
+      {showForm && (
+        <form onSubmit={handleBooking}>
+          <div className="mb-4">
+            <label htmlFor="name" className="block text-gray-700">Your Name</label>
+            <input
+              type="text"
+              id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)} // Update name state
+              required
+              className="mt-2 p-2 w-full border rounded-md"
+            />
+          </div>
 
-        <div className="mb-4">
-          <label htmlFor="email" className="block text-gray-700">Email</label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)} // Update email state
-            required
-            className="mt-2 p-2 w-full border rounded-md"
-          />
-        </div>
+          <div className="mb-4">
+            <label htmlFor="email" className="block text-gray-700">Email</label>
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)} // Update email state
+              required
+              className="mt-2 p-2 w-full border rounded-md"
+            />
+          </div>
 
-        <div className="mb-4">
-          <label htmlFor="time" className="block text-gray-700">Appointment Time</label>
-          <input
-            type="text"
-            id="time"
-            value={selectedTime}
-            readOnly
-            className="mt-2 p-2 w-full border rounded-md bg-gray-100"
-          />
-        </div>
+          <div className="mb-4">
+            <label htmlFor="time" className="block text-gray-700">Appointment Time</label>
+            <input
+              type="text"
+              id="time"
+              value={selectedTime}
+              readOnly
+              className="mt-2 p-2 w-full border rounded-md bg-gray-100"
+            />
+          </div>
 
-        <button
-          type="submit"
-          className="bg-blue-500 text-white px-6 py-3 rounded-full shadow-lg hover:bg-blue-600 transition duration-300"
-        >
-          Confirm Appointment
-        </button>
-      </form>
+          <button
+            type="submit"
+            className="bg-blue-500 text-white px-6 py-3 rounded-full shadow-lg hover:bg-blue-600 transition duration-300"
+          >
+            Confirm Appointment
+          </button>
+        </form>
+      )}
     </div>
   );
 };

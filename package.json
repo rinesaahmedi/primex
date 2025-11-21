@@ -2,7 +2,6 @@
   "name": "vite-project",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -15,6 +14,7 @@
     "axios": "^1.13.2",
     "cors": "^2.8.5",
     "express": "^5.1.0",
+    "googleapis": "^166.0.0",
     "i18next": "^23.0.1",
     "lucide-react": "^0.554.0",
     "react": "^19.2.0",
