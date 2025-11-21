@@ -197,10 +197,7 @@
     },
     "hours": {
       "title": "Öffnungszeiten",
-      "times": [
-        "Montag - Freitag:",
-        "8:00 - 16:30 Uhr"
-      ]
+      "times": ["Montag - Freitag:", "8:00 - 16:30 Uhr"]
     },
     "social": {
       "title": "Folgen Sie uns auf"
@@ -224,7 +221,17 @@
         "linkedin": "LinkedIn-Profil-URL",
         "country": "Land auswählen",
         "description": "Erzähl uns kurz von dir...",
-        "privacy": "Ich akzeptiere die Datenschutzerklärung"
+        "privacy": "Ich akzeptiere die Datenschutzerklärung",
+        "cv": "Lebenslauf hochladen",
+        "cvPlaceholder": "Keine Datei ausgewählt"
+      },
+      "actions": {
+        "chooseFile": "Datei auswählen",
+        "removeFile": "Datei entfernen"
+      },
+      "validation": {
+        "fileTooLarge": "Datei ist zu groß (max. 5 MB)",
+        "fileType": "Nicht unterstützter Dateityp (PDF, DOC, DOCX)"
       },
       "submit": "Jetzt bewerben"
     },

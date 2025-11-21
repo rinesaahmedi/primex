@@ -225,10 +225,7 @@
     },
     "hours": {
       "title": "Working Hours",
-      "times": [
-        "Monday - Friday:",
-        "8:00 AM - 4:30 PM"
-      ]
+      "times": ["Monday - Friday:", "8:00 AM - 4:30 PM"]
     },
     "social": {
       "title": "Follow Us On"
@@ -253,7 +250,17 @@
         "linkedin": "LinkedIn profile URL",
         "country": "Select country",
         "description": "Tell us a bit about yourself...",
-        "privacy": "I accept the Privacy Policy"
+        "privacy": "I accept the Privacy Policy",
+        "cv": "Upload CV",
+        "cvPlaceholder": "No file chosen"
+      },
+      "actions": {
+        "chooseFile": "Choose file",
+        "removeFile": "Remove file"
+      },
+      "validation": {
+        "fileTooLarge": "File is too large (max 5MB)",
+        "fileType": "Unsupported file type (use PDF, DOC, DOCX)"
       },
       "submit": "Join us"
     },

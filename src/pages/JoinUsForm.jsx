@@ -1,5 +1,5 @@
 // src/components/JoinUsForm.jsx
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 
 function JoinUsForm() {
@@ -13,11 +13,14 @@ function JoinUsForm() {
     country: "",
     description: "",
     privacyAccepted: false,
+    cvFile: null,
   });
 
   const [countries, setCountries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [cvError, setCvError] = useState(null);
+  const fileInputRef = useRef(null);
 
   // fetch countries once
   useEffect(() => {
@@ -50,6 +53,36 @@ function JoinUsForm() {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
+    if (type === "file") {
+      const file =
+        e.target.files && e.target.files[0] ? e.target.files[0] : null;
+      if (file) {
+        const maxSize = 5 * 1024 * 1024; // 5MB
+        const allowed = [
+          "application/pdf",
+          "application/msword",
+          "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        ];
+        if (file.size > maxSize) {
+          setCvError("File is too large (max 5MB)");
+          setFormData((prev) => ({ ...prev, cvFile: null }));
+          return;
+        }
+        if (
+          !allowed.includes(file.type) &&
+          !file.name.match(/\.(pdf|doc|docx)$/i)
+        ) {
+          setCvError("Unsupported file type (use pdf, doc, docx)");
+          setFormData((prev) => ({ ...prev, cvFile: null }));
+          return;
+        }
+      }
+
+      setCvError(null);
+      setFormData((prev) => ({ ...prev, cvFile: file }));
+      return;
+    }
+
     setFormData((prev) => ({
       ...prev,
       [name]: type === "checkbox" ? checked : value,
@@ -64,11 +97,26 @@ function JoinUsForm() {
       return;
     }
 
+    if (cvError) {
+      alert(cvError);
+      return;
+    }
+
     try {
+      // Use FormData so we can include file uploads
+      const fd = new FormData();
+      fd.append("name", formData.name);
+      fd.append("email", formData.email);
+      fd.append("phone", formData.phone);
+      fd.append("linkedin", formData.linkedin);
+      fd.append("country", formData.country);
+      fd.append("description", formData.description);
+      fd.append("privacyAccepted", formData.privacyAccepted ? "1" : "0");
+      if (formData.cvFile) fd.append("cv", formData.cvFile);
+
       const response = await fetch("http://localhost:5000/send-apply-form", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: fd,
       });
 
       const result = await response.json();
@@ -83,6 +131,7 @@ function JoinUsForm() {
           country: "",
           description: "",
           privacyAccepted: false,
+          cvFile: null,
         });
       } else {
         alert("❌ Failed to send message. Please try again.");
@@ -162,9 +211,19 @@ function JoinUsForm() {
               required
               className="w-full rounded-xl border border-white/30 bg-white/10 px-5 py-3.5 text-base text-white focus:outline-none focus:ring-2 focus:ring-white/50 focus:bg-white/15 transition-all"
             >
-              <option value="" className="bg-[#081333]">{t("forms.join.fields.country")}</option>
-              {loading && <option disabled className="bg-[#081333]">Loading countries...</option>}
-              {error && <option disabled className="bg-[#081333]">{error}</option>}
+              <option value="" className="bg-[#081333]">
+                {t("forms.join.fields.country")}
+              </option>
+              {loading && (
+                <option disabled className="bg-[#081333]">
+                  Loading countries...
+                </option>
+              )}
+              {error && (
+                <option disabled className="bg-[#081333]">
+                  {error}
+                </option>
+              )}
               {!loading &&
                 !error &&
                 countries.map((country, index) => (
@@ -182,6 +241,57 @@ function JoinUsForm() {
               onChange={handleChange}
               className="w-full rounded-xl border border-white/30 bg-white/10 px-5 py-4 text-base text-white placeholder-white/60 resize-none focus:outline-none focus:ring-2 focus:ring-white/50 focus:bg-white/15 transition-all"
             />
+
+            <div className="flex flex-col gap-2">
+              <label className="text-sm text-white/90">
+                {t("forms.join.fields.cv") || "Upload CV (pdf, doc, docx)"}
+              </label>
+              <div className="flex items-center gap-3">
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  name="cvFile"
+                  accept=",.pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                  onChange={handleChange}
+                  className="hidden"
+                />
+
+                <button
+                  type="button"
+                  onClick={() =>
+                    fileInputRef.current && fileInputRef.current.click()
+                  }
+                  className="rounded-xl px-4 py-2 bg-white/10 border border-white/30 text-white text-sm hover:bg-white/20 transition"
+                >
+                  {t("forms.join.actions.chooseFile") || "Choose file"}
+                </button>
+
+                {formData.cvFile ? (
+                  <div className="text-sm text-white/90 flex items-center gap-3">
+                    <span className="truncate max-w-56">
+                      {formData.cvFile.name} (
+                      {Math.round(formData.cvFile.size / 1024)} KB)
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setFormData((prev) => ({ ...prev, cvFile: null }));
+                        setCvError(null);
+                      }}
+                      className="text-xs underline text-white/90 hover:text-white"
+                    >
+                      {t("forms.join.actions.removeFile") || "Remove"}
+                    </button>
+                  </div>
+                ) : (
+                  <span className="text-sm text-white/60">
+                    {t("forms.join.fields.cvPlaceholder") || "No file chosen"}
+                  </span>
+                )}
+              </div>
+
+              {cvError && <p className="text-xs text-red-400">{cvError}</p>}
+            </div>
 
             <label className="flex items-start gap-3 text-sm text-white/90">
               <input
