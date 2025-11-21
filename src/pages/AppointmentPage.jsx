@@ -14,8 +14,9 @@ const AppointmentPage = () => {
   // Fetch available slots from the backend
   useEffect(() => {
     const formattedDate = date.toISOString().split("T")[0]; // Format date to YYYY-MM-DD
+    const tzOffset = new Date().getTimezoneOffset();
     axios
-      .get(`http://localhost:5000/api/available-slots?date=${formattedDate}`)
+      .get(`http://localhost:5000/api/available-slots?date=${formattedDate}&tzOffset=${tzOffset}`)
       .then((response) => {
         setAvailableSlots(response.data); // Set available slots based on the selected date
       })
