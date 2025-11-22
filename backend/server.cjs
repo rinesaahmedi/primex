@@ -2,195 +2,191 @@ const express = require("express");
 const cors = require("cors");
 const { google } = require("googleapis");
 const path = require("path");
+// Helper to parse multipart forms (needed for the CV upload in JoinUsForm)
+const multer = require("multer");
+const upload = multer({ storage: multer.memoryStorage() });
+
 const app = express();
 const port = 5000;
 
 // Middleware
-app.use(require('cors')());
+app.use(cors());
 app.use(express.json());
 
 // Path to your Service Account JSON key file
-const keyFile = path.join(__dirname, '../keys/calendar-key.json');
-
+const keyFile = path.join(__dirname, "../keys/calendar-key.json");
 
 // Create a JWT client using the service account credentials
 const auth = new google.auth.GoogleAuth({
-  keyFile, // Path to the service account file
-  scopes: ['https://www.googleapis.com/auth/calendar.readonly'], // Read-only access to the calendar
+  keyFile,
+  scopes: ["https://www.googleapis.com/auth/calendar.readonly"],
 });
 
-// Create the Google Calendar API client
-const calendar = google.calendar({ version: 'v3', auth });
+// --- CALENDAR SETUP ---
+async function getCalendarClient() {
+  const client = await auth.getClient();
+  return google.calendar({ version: "v3", auth: client });
+}
 
-app.get('/api/available-slots', async (req, res) => {
+// --- API ROUTE: AVAILABLE SLOTS ---
+app.get("/api/available-slots", async (req, res) => {
   try {
-    // Respect optional `date` query param (YYYY-MM-DD) and optional client timezone offset (minutes)
+    // We need the date (YYYY-MM-DD) and the user's timezone offset (in minutes)
     const { date, tzOffset } = req.query;
+    console.log(`PARAMS RECEIVED -> Date: ${date}, Offset: ${tzOffset}`);
 
-    // Build time range for the query. If tzOffset is provided (minutes, as from Date.getTimezoneOffset()),
-    // compute the UTC timestamps that correspond to the client's local start/end of day.
-    let timeMin = new Date().toISOString();
-    let timeMax = undefined;
-    if (date) {
-      // Parse date parts
-      const parts = date.split('-');
-      if (parts.length === 3) {
-        const year = parseInt(parts[0], 10);
-        const month = parseInt(parts[1], 10) - 1;
-        const day = parseInt(parts[2], 10);
+    if (!date) return res.json([]);
 
-        const offsetMinutes = tzOffset ? parseInt(tzOffset, 10) : 0; // tzOffset = UTC - local (in minutes)
+    // 1. Parse the Date String manually to avoid server timezone issues
+    const parts = date.split("-");
+    const year = parseInt(parts[0], 10);
+    const month = parseInt(parts[1], 10) - 1; // Months are 0-indexed
+    const day = parseInt(parts[2], 10);
 
-        // Compute UTC milliseconds for client's local midnight and local end-of-day
-        const localMidnightUtcMs = Date.UTC(year, month, day, 0, 0, 0) + offsetMinutes * 60 * 1000;
-        const localEndUtcMs = Date.UTC(year, month, day, 23, 59, 59) + offsetMinutes * 60 * 1000;
+    // 2. Calculate UTC boundaries for the requested day based on Client Offset
+    // The client offset (e.g., -60 for GMT+1) needs to be added to UTC to align the query
+    const clientOffsetMinutes = parseInt(tzOffset) || 0;
 
-        timeMin = new Date(localMidnightUtcMs).toISOString();
-        timeMax = new Date(localEndUtcMs).toISOString();
-      }
-    }
+    // Start of day in Client Time -> converted to UTC milliseconds
+    // Logic: Date.UTC gives us UTC midnight. We ADD the offset to shift it to Client Midnight.
+    const startOfDayMs =
+      Date.UTC(year, month, day, 0, 0, 0) + clientOffsetMinutes * 60 * 1000;
+    const endOfDayMs =
+      Date.UTC(year, month, day, 23, 59, 59) + clientOffsetMinutes * 60 * 1000;
 
-    // Query Google Calendar for events in the time range
-    console.log('Calling Google Calendar with:', { timeMin, timeMax });
+    const timeMin = new Date(startOfDayMs).toISOString();
+    const timeMax = new Date(endOfDayMs).toISOString();
+
+    // 3. Hardcoded Calendar ID
+    const calendarId =
+      "12f3606e67d25124ae81e80895f7c00c64cb0e705205ec0a0c67676c9a249d3d@group.calendar.google.com";
+
+    // 4. Fetch Events from Google
+    const calendar = await getCalendarClient();
     const response = await calendar.events.list({
-      calendarId: 'primary',
+      calendarId,
       timeMin,
       timeMax,
-      maxResults: 250,
       singleEvents: true,
-      orderBy: 'startTime',
+      orderBy: "startTime",
     });
 
     const events = response.data.items || [];
-    console.log(`Google Calendar returned ${events.length} events`);
-    events.slice(0, 20).forEach((ev, i) => {
-      const s = ev.start && (ev.start.dateTime || ev.start.date) || 'no-start';
-      const e = ev.end && (ev.end.dateTime || ev.end.date) || 'no-end';
-      console.log(`  event[${i}]: ${ev.summary || '(no summary)'} ${s} -> ${e}`);
-    });
+    console.log(`Found ${events.length} busy events on ${date}`);
 
-    // If no events, return default working hours
-    if (events.length === 0) {
-      return res.json(['9:00', '10:00', '11:00', '13:15', '14:00', '15:00']);
-    }
+    // 5. Generate Available Slots
+    // We pass the Year/Month/Day and Offset so we generate slots in Client Time
+    const availableSlots = calculateSlots(
+      year,
+      month,
+      day,
+      clientOffsetMinutes,
+      events
+    );
 
-    // Compute available slots and return as an array
-    const availableSlots = getAvailableTimeSlots(events);
     res.json(availableSlots);
   } catch (error) {
-    console.error('Error fetching events:');
-    if (error && error.response && error.response.data) console.error(error.response.data);
-    else console.error(error);
-    res.status(500).send('Error fetching events');
+    console.error("Calendar API Error:", error);
+    res.status(500).send("Error fetching events");
   }
 });
 
-// Debug endpoint: list accessible calendars
-app.get('/api/calendar-test', async (req, res) => {
-  try {
-    const resp = await calendar.calendarList.list({ maxResults: 50 });
-    const items = resp.data.items || [];
-    const list = items.map((c) => ({ id: c.id, summary: c.summary }));
-    console.log('Calendars visible to service account:', list);
-    res.json(list);
-  } catch (err) {
-    console.error('calendar-test error:', err && err.response ? err.response.data : err);
-    res.status(500).json({ error: 'calendar-test failed', details: err && err.response ? err.response.data : String(err) });
+// --- HELPER: SLOT CALCULATOR ---
+function calculateSlots(year, month, day, offsetMinutes, events) {
+  const slots = [];
+
+  // CONFIGURATION: Working Hours
+  const startHour = 9; // 9:00
+  const endHour = 17; // 17:00
+  const duration = 60; // 60 minute slots (9:00, 10:00, 11:00...)
+
+  // Convert loops to minutes
+  const startTotalMins = startHour * 60;
+  const endTotalMins = endHour * 60;
+
+  for (let time = startTotalMins; time < endTotalMins; time += duration) {
+    const h = Math.floor(time / 60);
+    const m = time % 60;
+
+    // 1. Create the Candidate Slot Start/End in UTC (aligned to client timezone)
+    // We take the base UTC time for that hour, then ADD the offset to match client reality
+    const slotStartMs =
+      Date.UTC(year, month, day, h, m, 0) + offsetMinutes * 60 * 1000;
+    const slotEndMs = slotStartMs + duration * 60 * 1000;
+
+    // 2. Check for Overlaps
+    let isBusy = false;
+
+    for (const event of events) {
+      // Google sends ISO strings. new Date() parses them correctly to absolute time.
+      const evStart = new Date(
+        event.start.dateTime || event.start.date
+      ).getTime();
+      const evEnd = new Date(event.end.dateTime || event.end.date).getTime();
+
+      // Standard Overlap Logic: (StartA < EndB) and (EndA > StartB)
+      if (evStart < slotEndMs && evEnd > slotStartMs) {
+        isBusy = true;
+        const timeStr = `${h.toString().padStart(2, "0")}:${m
+          .toString()
+          .padStart(2, "0")}`;
+        console.log(`  Blocked ${timeStr} due to: ${event.summary}`);
+        break;
+      }
+    }
+
+    // 3. If not busy, add to list
+    if (!isBusy) {
+      const timeString = `${h.toString().padStart(2, "0")}:${m
+        .toString()
+        .padStart(2, "0")}`;
+      slots.push(timeString);
+    }
   }
+
+  return slots;
+}
+
+// --- OTHER API ENDPOINTS ---
+
+// Booking Endpoint
+const bookings = [];
+app.post("/api/book-appointment", (req, res) => {
+  const { name, email, date, time } = req.body || {};
+  if (!name || !email || !date || !time) {
+    return res.status(400).json({ message: "Missing fields" });
+  }
+  bookings.push({ name, email, date, time, createdAt: new Date() });
+  console.log("New Booking:", { name, date, time });
+  res.json({ message: "Booking confirmed" });
 });
 
-// Debug endpoint: return an access token obtained by the auth client
-app.get('/api/debug-token', async (req, res) => {
+// Debug Token Endpoint
+app.get("/api/debug-token", async (req, res) => {
   try {
     const client = await auth.getClient();
     const token = await client.getAccessToken();
     res.json({ token });
   } catch (err) {
-    console.error('debug-token error:', err && err.response ? err.response.data : err);
-    res.status(500).json({ error: 'debug-token failed', details: err && err.response ? err.response.data : String(err) });
+    res.status(500).json({ error: err.message });
   }
 });
 
-// Simple booking endpoint - stores booking in memory (for demo)
-const bookings = [];
-app.post('/api/book-appointment', (req, res) => {
-  const { name, email, date, time } = req.body || {};
-  if (!name || !email || !date || !time) {
-    return res.status(400).json({ message: 'Missing required booking fields' });
-  }
-
-  // In a real app you would validate and persist the booking (DB or Google Calendar insert).
-  bookings.push({ name, email, date, time, createdAt: new Date().toISOString() });
-  console.log('New booking:', bookings[bookings.length - 1]);
-  return res.json({ message: 'Booking confirmed' });
+// Business Inquiry Endpoint (Placeholder based on your frontend code)
+app.post("/send-business-inquiry", (req, res) => {
+  console.log("Business Inquiry Received:", req.body);
+  // Add your email logic here later
+  res.json({ success: true });
 });
 
-// Function to calculate available time slots from fetched events
-function getAvailableTimeSlots(events) {
-  // Generate candidate slots (hourly) between workStart and workEnd and remove any that overlap events
-  const availableSlots = [];
-  const workStartHour = 9; // 9:00
-  const workEndHour = 17; // 17:00 (slots generated until this hour)
-  const slotDurationMinutes = 30; // 30-minute slots
+// Join Us / Apply Endpoint (Handles File Upload)
+app.post("/send-apply-form", upload.single("cv"), (req, res) => {
+  console.log("Application Received:", req.body);
+  if (req.file) console.log("CV File attached:", req.file.originalname);
+  // Add your email logic here later
+  res.json({ success: true });
+});
 
-  // Helper to format time strings
-  const fmt = (d) => {
-    const hh = d.getHours();
-    const mm = d.getMinutes();
-    return `${hh.toString().padStart(2, '0')}:${mm.toString().padStart(2, '0')}`;
-  };
-
-  // Determine the date used by the events (if events span multiple days, slots are generated per-day by the caller)
-  // We'll build slots for the day of the first event if possible; otherwise use today's date.
-  let baseDate = new Date();
-  if (events.length > 0) {
-    const ev = events[0];
-    const s = ev.start && (ev.start.dateTime || ev.start.date);
-    if (s) baseDate = new Date(s);
-  }
-
-  // Create candidate slot start times in local server timezone for the baseDate
-  const year = baseDate.getFullYear();
-  const month = baseDate.getMonth();
-  const day = baseDate.getDate();
-
-  // step through the day in increments of slotDurationMinutes
-  for (let minutes = workStartHour * 60; minutes < workEndHour * 60; minutes += slotDurationMinutes) {
-    const h = Math.floor(minutes / 60);
-    const m = minutes % 60;
-    const slotStart = new Date(year, month, day, h, m, 0);
-    const slotEnd = new Date(slotStart.getTime() + slotDurationMinutes * 60 * 1000);
-
-    // Check overlap with any event
-    let overlaps = false;
-    for (const event of events) {
-      const evStartStr = event.start && (event.start.dateTime || event.start.date);
-      const evEndStr = event.end && (event.end.dateTime || event.end.date);
-      if (!evStartStr || !evEndStr) {
-        // If event has no times, treat as full-day busy
-        overlaps = true;
-        break;
-      }
-
-      const evStart = new Date(evStartStr);
-      const evEnd = new Date(evEndStr);
-
-      // If the event and the slot overlap, mark it busy
-      if (evStart < slotEnd && evEnd > slotStart) {
-        overlaps = true;
-        break;
-      }
-    }
-
-    if (!overlaps) {
-      availableSlots.push(fmt(slotStart));
-    }
-  }
-
-  return availableSlots;
-}
-
-// Start the server
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
