@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css"; // Import default styles
+import "react-calendar/dist/Calendar.css";
 import axios from "axios";
 
 const AppointmentPage = () => {
@@ -13,32 +13,43 @@ const AppointmentPage = () => {
 
   // Fetch available slots from the backend
   useEffect(() => {
-    const formattedDate = date.toISOString().split("T")[0]; // Format date to YYYY-MM-DD
+    // 1. Format Date as YYYY-MM-DD (Local time, not UTC)
+    // We use this trick to ensure we get the date selected by the user visually
+    const offset = date.getTimezoneOffset();
+    const localDate = new Date(date.getTime() - offset * 60 * 1000);
+    const formattedDate = localDate.toISOString().split("T")[0];
+
+    // 2. Send the Timezone Offset (in minutes)
+    // This tells the server how to adjust the "9:00 AM" to match the user's clock
     const tzOffset = new Date().getTimezoneOffset();
+
+    console.log(`Fetching slots for: ${formattedDate} with offset ${tzOffset}`);
+
     axios
-      .get(`http://localhost:5000/api/available-slots?date=${formattedDate}&tzOffset=${tzOffset}`)
+      .get(
+        `http://localhost:5000/api/available-slots?date=${formattedDate}&tzOffset=${tzOffset}`
+      )
       .then((response) => {
-        setAvailableSlots(response.data); // Set available slots based on the selected date
+        setAvailableSlots(response.data);
       })
-      .catch((error) => console.error("Error fetching available slots:", error));
-  }, [date]); // Fetch available slots whenever the date changes
+      .catch((error) =>
+        console.error("Error fetching available slots:", error)
+      );
+  }, [date]);
 
-  // Handle date change when a user selects a date from the calendar
   const handleDateChange = (newDate) => {
-    setDate(newDate); // Update selected date
-    setShowForm(false); // Hide the form when date is changed
+    setDate(newDate);
+    setShowForm(false);
+    setSelectedTime(""); // Reset time when date changes
   };
 
-  // Handle time slot selection
   const handleTimeSelection = (time) => {
-    setSelectedTime(time); // Store the selected time slot
-    setShowForm(true); // Show the booking form
+    setSelectedTime(time);
+    setShowForm(true);
   };
 
-  // Handle booking submission
   const handleBooking = (e) => {
     e.preventDefault();
-
     const bookingData = {
       name,
       email,
@@ -47,16 +58,16 @@ const AppointmentPage = () => {
     };
 
     axios
-      .post("http://localhost:5000/api/book-appointment", bookingData) // Send booking data to backend
+      .post("http://localhost:5000/api/book-appointment", bookingData)
       .then((response) => {
-        alert(response.data.message); // Show success message
-        setName(""); // Clear form fields after successful booking
+        alert(response.data.message);
+        setName("");
         setEmail("");
         setSelectedTime("");
         setShowForm(false);
       })
       .catch((error) => {
-        alert(error.response.data.message); // Show error message
+        alert(error.response?.data?.message || "Error booking appointment");
       });
   };
 
@@ -66,39 +77,40 @@ const AppointmentPage = () => {
         Select an Appointment Time
       </h2>
 
-      {/* Flex Container for Calendar and Time Slot */}
-      <div className="flex justify-between">
+      <div className="flex flex-col md:flex-row justify-between gap-8">
         {/* Calendar Display */}
-        <div className="w-1/2 mr-6">
+        <div className="w-full md:w-1/2">
           <Calendar
             onChange={handleDateChange}
             value={date}
-            tileClassName={({ date: tileDate }) => {
-              const tileDateStr = tileDate.toISOString().split("T")[0];
-              const selectedDateStr = date.toISOString().split("T")[0];
-
-              // Only style the currently selected date based on whether slots exist for it.
-              if (tileDateStr !== selectedDateStr) return "";
-
-              return availableSlots && availableSlots.length > 0
-                ? "bg-white text-gray-800 hover:bg-blue-500 hover:text-white rounded-lg"
-                : "bg-gray-200 text-gray-400 cursor-not-allowed";
-            }}
+            // Disable weekends (optional)
+            tileDisabled={({ date }) =>
+              date.getDay() === 0 || date.getDay() === 6
+            }
           />
         </div>
 
         {/* Time Slot Selection */}
-        <div className="w-1/2">
+        <div className="w-full md:w-1/2">
+          <h3 className="text-xl font-semibold mb-4 text-center md:text-left">
+            Available Time Slots
+          </h3>
+
           {availableSlots.length === 0 ? (
-            <div className="text-gray-500 mb-6">No available slots for this date</div>
+            <div className="p-4 bg-gray-100 text-gray-500 rounded-lg text-center">
+              No available slots for this date.
+            </div>
           ) : (
-            <div className="flex flex-col items-center mb-6">
-              <h3 className="text-xl font-semibold mb-4">Select a Time Slot</h3>
+            <div className="grid grid-cols-3 gap-3">
               {availableSlots.map((slot) => (
                 <button
                   key={slot}
-                  onClick={() => handleTimeSelection(slot)} // Set the selected time
-                  className="bg-blue-500 text-white px-6 py-2 rounded-lg mb-2 hover:bg-blue-600"
+                  onClick={() => handleTimeSelection(slot)}
+                  className={`px-4 py-2 rounded-lg transition-colors ${
+                    selectedTime === slot
+                      ? "bg-blue-700 text-white shadow-md"
+                      : "bg-blue-500 text-white hover:bg-blue-600"
+                  }`}
                 >
                   {slot}
                 </button>
@@ -110,45 +122,45 @@ const AppointmentPage = () => {
 
       {/* Booking Form */}
       {showForm && (
-        <form onSubmit={handleBooking}>
+        <form
+          onSubmit={handleBooking}
+          className="mt-8 bg-gray-50 p-6 rounded-xl shadow-inner border border-gray-200"
+        >
+          <h3 className="text-lg font-bold mb-4 text-gray-700">
+            Confirm Booking for {selectedTime}
+          </h3>
+
           <div className="mb-4">
-            <label htmlFor="name" className="block text-gray-700">Your Name</label>
+            <label htmlFor="name" className="block text-gray-700 mb-1">
+              Your Name
+            </label>
             <input
               type="text"
               id="name"
               value={name}
-              onChange={(e) => setName(e.target.value)} // Update name state
+              onChange={(e) => setName(e.target.value)}
               required
-              className="mt-2 p-2 w-full border rounded-md"
+              className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 outline-none"
             />
           </div>
 
           <div className="mb-4">
-            <label htmlFor="email" className="block text-gray-700">Email</label>
+            <label htmlFor="email" className="block text-gray-700 mb-1">
+              Email
+            </label>
             <input
               type="email"
               id="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)} // Update email state
+              onChange={(e) => setEmail(e.target.value)}
               required
-              className="mt-2 p-2 w-full border rounded-md"
-            />
-          </div>
-
-          <div className="mb-4">
-            <label htmlFor="time" className="block text-gray-700">Appointment Time</label>
-            <input
-              type="text"
-              id="time"
-              value={selectedTime}
-              readOnly
-              className="mt-2 p-2 w-full border rounded-md bg-gray-100"
+              className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 outline-none"
             />
           </div>
 
           <button
             type="submit"
-            className="bg-blue-500 text-white px-6 py-3 rounded-full shadow-lg hover:bg-blue-600 transition duration-300"
+            className="w-full bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-green-700 transition duration-300 font-semibold"
           >
             Confirm Appointment
           </button>
