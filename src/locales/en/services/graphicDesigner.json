@@ -1,0 +1,67 @@
+{
+    "serviceDetails": {
+        "graphicDesigner": {
+            "hero": {
+                "eyebrow": "Design & 3D visualization",
+                "title": "Renderings, CAD & Carat studios on demand",
+                "subtitle": "Primex blends CGI artists, CAD specialists, and certified Carat planners into one pod that translates product data into immersive visuals, precise technical files, and shoppable kitchen experiences.",
+                "highlights": [
+                    "Photorealistic renderings & CGI animation",
+                    "Brand-safe graphic design & CAD documentation",
+                    "Certified Carat kitchen specialists"
+                ]
+            },
+            "sections": {
+                "offeringsTitle": "What we create",
+                "offeringsSubtitle": "Three dedicated workstreams cover every visual touchpoint—from marketing to technical drawings.",
+                "benefitsTitle": "Why design with Primex?"
+            },
+            "pillars": [
+                {
+                    "icon": "render",
+                    "title": "Renderings / CGI",
+                    "body": "Photorealistic scenes, cinematic flythroughs, and asset libraries built from your exact materials, lighting, and product data.",
+                    "items": [
+                        "Marketing-ready stills & short loops",
+                        "Configurable room sets for marketplaces",
+                        "Animation + post-production packages"
+                    ]
+                },
+                {
+                    "icon": "cad",
+                    "title": "Graphic Design / CAD",
+                    "body": "Integrated brand design and production-grade documentation crafted by senior designers fluent in CAD, BIM, and retail specs.",
+                    "items": [
+                        "Brand identity & campaign systems",
+                        "Sales sheets, catalogs, packaging",
+                        "CAD drawings, cut lists, install guides"
+                    ]
+                },
+                {
+                    "icon": "kitchen",
+                    "title": "3D Kitchen / Carat Specialist",
+                    "body": "Certified Carat operators create kitchen layouts, VR-ready planners, and data-sync’d libraries for retailers and manufacturers.",
+                    "items": [
+                        "Carat modeling + parameter management",
+                        "Retail planograms & AR/VR previews",
+                        "Bill of materials + pricing exports"
+                    ]
+                }
+            ],
+            "benefits": [
+                "Dedicated pods that combine CGI, CAD, and Carat expertise",
+                "Direct integration with your product data, PIM, and ERP",
+                "Fast feedback loops with European creative direction",
+                "Brand governance baked into every deliverable",
+                "Secure asset handover with version tracking",
+                "Scalable capacity for seasonal launches and rollouts"
+            ],
+            "cta": {
+                "title": "Need a design strike team?",
+                "body": "Let’s assemble a Primex pod that ships renderings, CAD packs, and kitchen planners without breaking your timelines.",
+                "primary": "Book a creative scoping call",
+                "secondary": "See our visual portfolio"
+            }
+        }
+    }
+}

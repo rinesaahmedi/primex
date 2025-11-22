@@ -1,0 +1,69 @@
+{
+    "serviceDetails": {
+      "softwareDeveloper": {
+        "hero": {
+          "eyebrow": "Embedded engineering squads",
+          "title": "Software Developers & IT Support built for modern operations",
+          "subtitle": "IT solutions without the friction: our team delivers tailored software and integrates virtual agents that collaborate with your people on order processing, customer care, logistics, and data management—boosting efficiency while safeguarding data protection concepts and cybersecurity.",
+          "highlights": [
+            "Full-stack web, mobile, and cloud",
+            "ERP/CRM & marketplace integrations",
+            "Virtual agents + automation runbooks"
+          ]
+        },
+        "pillars": [
+          {
+            "icon": "hammer",
+            "title": "Custom product pods",
+            "body": "Spin up cross-functional pods (PM + FE + BE + QA) that design, build, and operate digital products with Primex’s furniture-industry context built-in.",
+            "items": [
+              "Web + mobile experiences",
+              "Internal tooling & dashboards",
+              "Marketplace extensions"
+            ]
+          },
+          {
+            "icon": "database",
+            "title": "Integration & data fabric",
+            "body": "Stabilize your ERP, CRM, PIM, and logistics stack with certified integration engineers who speak SAP, Microsoft, Salesforce, and bespoke middleware.",
+            "items": [
+              "ERP/CRM connectors",
+              "Real-time inventory feeds",
+              "Marketplace compliance"
+            ]
+          },
+          {
+            "icon": "cpu",
+            "title": "AI & automation engineering",
+            "body": "Move from pilot to production with AI agents that automate claims, product data, and ops workflows—backed by MLOps runbooks and human-in-the-loop safeguards.",
+            "items": [
+              "LLM agent design",
+              "Virtual assistants for ops teams",
+              "Automation monitoring"
+            ]
+          },
+          {
+            "icon": "shield-check",
+            "title": "Security & continuity desk",
+            "body": "Prevent downtime with managed SecOps: proactive monitoring, automated patching, incident response, and ISO-ready documentation.",
+            "items": [
+              "24/7 monitoring",
+              "Zero-trust hardening",
+              "Incident & DR playbooks"
+            ]
+          }
+        ],
+   
+        "benefits": [
+          "40+ years of experience in the furniture industry",
+          "Cost-efficient solutions powered by our Kosovo-based delivery center",
+          "Young, dynamic specialists who bring fresh ideas to complex systems",
+          "State-of-the-art technology stack for every engagement",
+          "Multilingual teams and seamless communication across DACH & EN",
+          "Embedded collaboration that keeps stakeholders aligned in real time"
+        ]
+      }
+    }
+  }
+   
+   

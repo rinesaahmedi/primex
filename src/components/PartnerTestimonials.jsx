@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { ChevronLeft, ChevronRight, Play } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { useScrollAnimation } from "../utils/useScrollAnimation";
 
 export default function PartnerTestimonials() {
   const { t } = useTranslation();
+  const [sectionRef, isVisible] = useScrollAnimation({ threshold: 0.2 });
 
   const testimonials = t("partners.testimonials", { returnObjects: true });
 
@@ -16,52 +18,61 @@ export default function PartnerTestimonials() {
   const current = testimonials[index];
 
   return (
-    <div className="px-10 md:px-20 lg:px-32 w-full py-20 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-      
-      {/* LEFT SIDE TEXT */}
-      <div>
-        <p className="text-4xl lg:text-5xl font-light leading-tight text-gray-900 mb-10">
-          {current.quote}
-        </p>
-
-        <p className="text-xl font-semibold text-gray-900">{current.company}</p>
-
-        <p className="text-gray-700 mt-1">
-          <span className="font-semibold">{current.person}</span> — {current.role}
-        </p>
-
-        {/* BUTTONS */}
-        <div className="flex items-center gap-6 mt-10">
-          <button
-            onClick={prev}
-            className="w-14 h-14 rounded-full bg-black text-white flex items-center justify-center"
+    <section className="relative w-full py-20 md:py-28 bg-white">
+      <div ref={sectionRef} className="max-w-5xl mx-auto px-6">
+        {/* Testimonial content */}
+        <div className={`text-center animate-lift-blur-subtle ${isVisible ? 'visible' : ''}`}>
+          {/* Quote */}
+          <blockquote 
+            className="text-3xl md:text-4xl lg:text-5xl font-light leading-tight mb-12 text-slate-900 max-w-4xl mx-auto" 
+            style={{ fontFamily: 'var(--font-serif)' }}
           >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
+            {current.quote}
+          </blockquote>
 
-          <button
-            className="w-14 h-14 rounded-full bg-black text-white flex items-center justify-center"
-          >
-            <Play className="w-6 h-6" />
-          </button>
+          {/* Author info */}
+          <div className="mb-12">
+            <p className="text-lg font-semibold text-slate-900 mb-1">{current.company}</p>
+            <p className="text-slate-600">
+              <span className="font-medium text-slate-700">{current.person}</span>, {current.role}
+            </p>
+          </div>
 
-          <button
-            onClick={next}
-            className="w-14 h-14 rounded-full bg-black text-white flex items-center justify-center"
-          >
-            <ChevronRight className="w-6 h-6" />
-          </button>
+          {/* Navigation */}
+          <div className="flex items-center justify-center gap-6">
+            <button
+              onClick={prev}
+              className="w-10 h-10 rounded-full bg-slate-100 text-slate-600 hover:bg-[#2378FF] hover:text-white transition-all flex items-center justify-center"
+              aria-label="Previous testimonial"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+
+            <div className="flex items-center gap-2">
+              {testimonials.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setIndex(i)}
+                  className={`h-1 rounded-full transition-all ${
+                    i === index 
+                      ? 'bg-[#2378FF] w-8' 
+                      : 'bg-slate-300 w-1.5 hover:bg-slate-400'
+                  }`}
+                  aria-label={`Go to testimonial ${i + 1}`}
+                />
+              ))}
+            </div>
+
+            <button
+              onClick={next}
+              className="w-10 h-10 rounded-full bg-slate-100 text-slate-600 hover:bg-[#2378FF] hover:text-white transition-all flex items-center justify-center"
+              aria-label="Next testimonial"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
         </div>
       </div>
-
-      {/* RIGHT SIDE IMAGE */}
-      <div className="flex justify-center">
-        <img
-          src={current.image}
-          alt="testimonial"
-          className="rounded-3xl w-full max-w-lg object-cover shadow-[0_20px_60px_rgba(0,0,0,0.15)]"
-        />
-      </div>
-    </div>
+    </section>
   );
 }

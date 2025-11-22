@@ -1,0 +1,28 @@
+{
+    "serviceDetails": {
+        "salesBookkeeping": {
+            "features": [
+                "Global sales management — Wholesale and retail coordination",
+                "Production planning — Optimize manufacturing schedules",
+                "Logistics coordination — Streamlined supply chain management",
+                "E-commerce solutions — B2B and B2C platforms",
+                "Accurate bookkeeping — Transaction recording and reporting",
+                "Financial compliance — Accounting standards adherence"
+            ],
+            "benefits": [
+                "Comprehensive sales and financial management",
+                "Accurate financial reporting and analysis",
+                "Compliance with international accounting standards",
+                "Streamlined operations across channels",
+                "Production and logistics optimization",
+                "Smooth financial operations"
+            ],
+            "useCases": [
+                "Furniture manufacturers managing global sales",
+                "Retailers needing bookkeeping services",
+                "E-commerce businesses requiring financial management",
+                "Companies seeking production and logistics coordination"
+            ]
+        }
+    }
+}

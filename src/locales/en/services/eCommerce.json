@@ -1,0 +1,28 @@
+{
+    "serviceDetails": {
+        "eCommerce": {
+            "features": [
+                "Custom e-commerce websites — Tailored to your brand",
+                "Responsive design — Mobile and desktop optimized",
+                "Payment integration — Secure checkout systems",
+                "Inventory management — Real-time stock tracking",
+                "SEO optimization — Improved search visibility",
+                "Analytics and reporting — Track performance metrics"
+            ],
+            "benefits": [
+                "Strengthened online presence",
+                "Continuous business growth",
+                "Custom solutions for your brand",
+                "User-friendly shopping experiences",
+                "Scalable platforms that grow with you",
+                "Professional development and support"
+            ],
+            "useCases": [
+                "Businesses launching online stores",
+                "Companies expanding to e-commerce",
+                "Retailers needing custom platforms",
+                "Brands seeking to improve online presence"
+            ]
+        }
+    }
+}

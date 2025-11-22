@@ -1,6 +1,37 @@
 {
   "welcome": "Willkommen auf der Startseite!",
   "intro": "Dies ist der Hauptinhalt der Webseite.",
+  "hero": {
+    "kicker": "Maßgeschneiderte KI-Operationen · gebaut von Primex",
+    "headline": {
+      "emphasis": "Agentische KI",
+      "rest": "Lösungen"
+    },
+    "body": "Wir entwerfen individuelle KI-Agenten, die sich mit Ihrem ERP, Produktdaten, der Logistik und dem Service verknüpfen – basierend auf 40+ Jahren operativem Know-how.",
+    "primaryCta": "Agent entwerfen",
+    "secondaryCta": "Mit Primex sprechen",
+    "statsText": "Von 90-minütigen Reklamationen zu 70-sekündigen Automationen – ohne zusätzliches Personal.",
+    "rightTitle": "Wo Primex andockt",
+    "rightBody": "Wir entwickeln jeden Agenten gemeinsam mit Ihrem Team, damit alle Workflows mit ERP, Marktplätzen und Service-SLAs harmonieren.",
+    "highlights": [
+      {
+        "title": "Produktdaten",
+        "description": "SKUs normalisieren, Attribute anreichern und Inhalte in Echtzeit auf Marktplätze spielen."
+      },
+      {
+        "title": "Reklamationen",
+        "description": "E-Mails lesen, Fotos/PDFs prüfen und Tickets direkt im ERP abschließen."
+      },
+      {
+        "title": "Logistik & Service",
+        "description": "Sendungen verfolgen, Ersatzteile anstoßen und Kund:innen rund um die Uhr informieren."
+      },
+      {
+        "title": "Customer-Service-Automatisierung",
+        "description": "Anfragen bearbeiten, Retouren abwickeln und Servicequalität mit intelligenten Workflows aufrechterhalten."
+      }
+    ]
+  },
   "darkMode": "In den Dunkelmodus wechseln",
   "lightMode": "In den hellen Modus wechseln",
   "aboutUs": "Über uns",
@@ -10,150 +41,228 @@
   "english": "Englisch",
   "german": "Deutsch",
   "about": {
-    "mainTitle": "Von der Familientradition zum KI-Führer in der Möbelindustrie",
-    "intro": "Mit über 40 Jahren Familienerfahrung schlägt PRIMEX Brücken zwischen Tradition und moderner Technologie und führt die digitale Transformation in der Möbelindustrie für die DACH-Region und darüber hinaus an.",
+    "mainTitle": "Von Familien Tradition zum KI-Führer in der Möbelindustrie",
+    "homeIntro": "Mit über 40 Jahren Erfahrung in der Familie verbindet PRIMEX Tradition und moderne Technologie und führt die digitale Transformation in der Möbelindustrie für die DACH-Region und darüber hinaus.",
     "whoWeAre": {
       "title": "Wer wir sind",
-      "description": "PRIMEX ist ein Unternehmen aus dem Kosovo, das umfassende Backoffice-Dienstleistungen für die Möbel- und Einzelhandelsbranche anbietet. Seit über einem Jahrzehnt sind wir ein verlässlicher Partner für große Unternehmen in Deutschland, Österreich und der Schweiz und unterstützen sowohl traditionelle Geschäfte als auch Online-Plattformen."
+      "description": "PRIMEX ist ein Unternehmen aus Kosovo, das vollständige Backoffice-Dienste für die Möbel- und Einzelhandelsbranche anbietet. Seit über einem Jahrzehnt sind wir ein vertrauenswürdiger Partner für große Unternehmen in Deutschland, Österreich und der Schweiz und unterstützen sowohl traditionelle Geschäfte als auch Online-Plattformen."
     },
+    "ctaButton": "Erfahren Sie mehr",
     "expertise": {
       "title": "Unsere Expertise",
       "items": [
-        "Auftragsabwicklung",
-        "Kundenservice",
-        "Produktdaten- & Content-Management",
+        "Bestellbearbeitung",
+        "Kundendienst",
+        "Produktdaten- und Inhaltsverwaltung",
         "Logistik & Dropshipping",
         "Buchhaltung",
         "IT-Lösungen & Softwareentwicklung"
       ]
     },
     "aiEvolution": {
-      "title": "Vom manuellen Service zur künstlichen Intelligenz",
-      "description": "Die Welt der Möbel verändert sich. Alte Systeme und manuelle Prozesse verlangsamen die Branche. PRIMEX hat diese Herausforderung in eine Chance verwandelt und eine der fortschrittlichsten Innovationen Europas geschaffen."
+      "title": "Von manuellen Dienstleistungen zur Künstlichen Intelligenz",
+      "description": "Die Möbelwelt verändert sich. Alte Systeme und manuelle Prozesse bremsen die Branche. PRIMEX hat diese Herausforderung in eine Chance verwandelt und eine der fortschrittlichsten Innovationen Europas geschaffen."
     },
     "aiAgent": {
       "title": "KI-Agent für Reklamationen – 70 Sekunden",
-      "subtitle": "Wo ein Mensch 60–90 Minuten braucht, erledigt unsere KI den Prozess in 70 Sekunden. Das ist die Transformation, die den Branchenstandard neu definiert.",
+      "subtitle": "Wo ein Mensch 60–90 Minuten benötigt, erledigt unsere KI den Prozess in 70 Sekunden. Dies ist die Transformation, die den Industriestandard neu gestaltet.",
       "features": [
         "Liest und analysiert E-Mails & PDFs",
-        "Analysiert Bilder zur Schadenserkennung",
-        "Vergleicht Teile mit Montageanleitungen",
-        "Synchronisiert Daten mit Ihrem ERP-System",
-        "Versendet Bestätigungen und automatische Follow-ups"
+        "Analysiert Bilder zur Schadensidentifizierung",
+        "Vergleicht Teile mit Montagehandbüchern",
+        "Synchronisiert Daten mit Ihrem ERP",
+        "Sendet Bestätigungen und automatische Follow-ups"
       ]
     },
     "whyPrimex": {
       "title": "Warum PRIMEX?",
       "points": [
-        "40+ Jahre Branchenkenntnis",
+        "40+ Jahre Branchenwissen",
         "10+ Jahre Erfahrung in der DACH-Region",
         "Dynamisches, mehrsprachiges Team",
         "Moderne, standardisierte Prozesse",
         "Niedrige Kosten, hohe Qualität",
-        "Maßgeschneiderte & skalierbare Lösungen"
+        "Individuelle & skalierbare Lösungen"
       ]
     },
     "visionMission": {
       "title": "Unsere Vision & Mission",
-      "description": "Wir sehen die Zukunft als eine Kombination aus menschlichem Wissen und künstlicher Intelligenz. Unsere Mission ist es, Unternehmen dabei zu helfen, Prozesse zu optimieren, die Effizienz zu steigern und einen Wettbewerbsvorteil auf dem europäischen Markt aufzubauen."
+      "description": "Wir sehen die Zukunft als Kombination von menschlichem Wissen und künstlicher Intelligenz. Unsere Mission ist es, Unternehmen dabei zu helfen, Prozesse zu optimieren, die Effizienz zu steigern und einen Wettbewerbsvorteil auf dem europäischen Markt aufzubauen."
     },
     "tagline": "Bei PRIMEX trifft Tradition auf Innovation."
   },
-
   "services": {
-  "mainTitle": "Unsere Dienstleistungen",
-  "intro": "Maßgeschneiderte Lösungen, die darauf ausgelegt sind, Ihre Geschäftsprozesse zu optimieren und Ihr Wachstum zu unterstützen.",
-  "items": [
-    {
-      "title": "Softwareentwicklung & IT-Support",
-      "description": "Wir entwickeln maßgeschneiderte Softwarelösungen und integrieren virtuelle Agenten, die Aufgaben wie Auftragsabwicklung, Kundenservice, Logistik und Datenmanagement unterstützen. Zudem stellen wir Datenschutzkonzepte und starke Cybersicherheitsmaßnahmen sicher."
-    },
-    {
-      "title": "Grafikdesign",
-      "description": "Unser erfahrenes Designteam erstellt hochwertige, visuell beeindruckende Designs, die Ihre Erwartungen übertreffen. Wir legen Wert auf Kreativität, Präzision und schnelle Umsetzung. Ob Branding, Webdesign oder Marketingmaterialien – wir liefern Ergebnisse, die perfekt auf Ihre Vision abgestimmt sind."
-    },
-    {
-      "title": "Assistenz & Administration",
-      "description": "Unsere administrativen Dienstleistungen optimieren Ihre täglichen Abläufe – von Recherche und Berichtserstellung bis hin zur Kommunikationsverwaltung und Terminplanung. Wir sorgen dafür, dass alle administrativen Aufgaben professionell und effizient abgewickelt werden."
-    },
-    {
-      "title": "Vertrieb & Buchhaltung",
-      "description": "PrimEx bietet globales Groß- und Einzelhandelsmanagement, Produktionsplanung, Logistikkoordination und moderne E-Commerce-Lösungen für B2B und B2C. Unsere Buchhaltungsservices umfassen präzise Transaktionsaufzeichnungen, Finanzberichte und die Einhaltung von Rechnungslegungsstandards, um reibungslose Finanzprozesse sicherzustellen."
-    },
-    {
-      "title": "E-Commerce",
-      "description": "Unsere erfahrenen Entwickler erstellen maßgeschneiderte E-Commerce-Websites, die Ihre Marke optimal präsentieren. Wir bieten individuelle Lösungen, die Ihre Online-Präsenz stärken und nachhaltiges Unternehmenswachstum fördern."
-    }
-  ]
-},
-
-
+    "mainTitle": "Unsere Dienstleistungen",
+    "intro": "Maßgeschneiderte Lösungen, die darauf ausgelegt sind, Ihre Geschäftsprozesse zu optimieren und Ihr Wachstum zu unterstützen.",
+    "ctaLabel": "Mehr erfahren",
+    "items": [
+      {
+        "title": "KI-Automation & Virtuelle Assistenten",
+        "description": "Wir konzipieren, trainieren und betreiben KI-Agenten, die Reklamationen, Auftragsprüfung, Logistik-Updates und ERP-Prozesse automatisieren – immer mit Human-in-the-loop und 40+ Jahren Möbel-Expertise."
+      },
+      {
+        "title": "Operative Services",
+        "description": "Backoffice-Teams übernehmen Auftragsabwicklung, Logistiksteuerung, Beschaffung und Compliance entlang der gesamten Lieferkette."
+      },
+      {
+        "title": "Kundensupport",
+        "description": "Mehrsprachige Service-Desks betreuen Anfragen, After-Sales, Reklamationen und Bindungsprogramme über alle Kanäle."
+      },
+      {
+        "title": "E-Commerce & Produktdaten",
+        "description": "Produktdaten-Management & Content: Wir normalisieren Sortimente, reichern Content an, lokalisieren Preise und spielen Daten in Marktplätze, PIM und ERP-Systeme aus."
+      },
+      {
+        "title": "Design & 3D-Visualisierung",
+        "description": "Designer erstellen Marketing-Assets, Renderings, 3D-Raumplaner und immersive Visuals, die Ihre Produkte erlebbar machen."
+      },
+      {
+        "title": "IT-Entwicklung & Technische Beratung",
+        "description": "Engineers integrieren ERP/CRM, entwickeln individuelle Software und beraten zu Cybersecurity, Infrastruktur und Automatisierungs-Roadmaps."
+      }
+    ]
+  },
   "joinBusiness": {
     "joinLabel": "WERDE TEIL UNSERES TEAMS",
     "joinTitle": "Möchtest du bei uns einsteigen?",
     "joinDescription": "Werde Teil unseres wachsenden Teams und gestalte deine Zukunft mit uns.",
     "joinButton": "Jetzt bewerben",
-
     "businessLabel": "GESCHÄFTSANFRAGE",
     "businessTitle": "Lassen Sie uns über Ihr Unternehmen sprechen.",
     "businessDescription": "Erzählen Sie uns, was Sie aufbauen möchten. Wir helfen Unternehmen dabei, mit modernen digitalen Lösungen zu skalieren.",
     "businessButton": "Kontakt aufnehmen"
   },
-
   "partners": {
-  "testimonials": [
-    {
-      "quote": "Wir haben Cotopaxi von Anfang an mit Shopify aufgebaut. ",
-      "company": "Cotopaxi",
-      "person": "Davis Smith",
-      "role": "Gründer und CEO",
-      "image": "src/images/client2.webp"
-    },
-    {
-      "quote": "Ein weiterer Kundenerfahrungsbericht kommt hier hin...",
-      "company": "Ein anderes Unternehmen",
-      "person": "Max Mustermann",
-      "role": "CTO",
-      "image": "src/images/client2.webp"
-    }
-  ]
-},
-
-
-  "footer": {
-  "company": {
-    "name": "PrimEx",
-    "description": "Prime Team, Prime Solution. Hervorragende IT- und Geschäftslösungen seit 1985."
-  },
-  "pages": {
-    "title": "Seiten",
-    "links": [
-      { "name": "Startseite", "url": "/#home", "external": true },
-      { "name": "Über uns", "url": "/#about", "external": true },
-      { "name": "Dienstleistungen", "url": "/#services", "external": true },
-      { "name": "Unsere Partner", "url": "/#partners", "external": true },
-      { "name": "Kontakt", "url": "/#contact", "external": true },
-      { "name": "AGB", "url": "/terms", "external": false },
-      { "name": "Zertifikate", "url": "/certificates", "external": false }
+    "testimonials": [
+      {
+        "quote": "Wir haben Cotopaxi von Anfang an mit Shopify aufgebaut. ",
+        "company": "Cotopaxi",
+        "person": "Davis Smith",
+        "role": "Gründer und CEO",
+        "image": "src/images/client2.webp"
+      },
+      {
+        "quote": "Ein weiterer Kundenerfahrungsbericht kommt hier hin...",
+        "company": "Ein anderes Unternehmen",
+        "person": "Max Mustermann",
+        "role": "CTO",
+        "image": "src/images/client2.webp"
+      }
     ]
   },
-  "hours": {
-    "title": "Öffnungszeiten",
-    "times": ["Montag - Freitag:", "8:00 - 16:30 Uhr"]
+  "footer": {
+    "company": {
+      "name": "PrimEx",
+      "description": "Prime Team, Prime Solution. Hervorragende IT- und Geschäftslösungen seit 1985."
+    },
+    "pages": {
+      "title": "Seiten",
+      "links": [
+        {
+          "name": "Startseite",
+          "hash": "#top",
+          "external": false
+        },
+        {
+          "name": "Über uns",
+          "hash": "#about",
+          "external": false
+        },
+        {
+          "name": "Dienstleistungen",
+          "hash": "#services",
+          "external": false
+        },
+        {
+          "name": "Unsere Partner",
+          "hash": "#partners",
+          "external": false
+        },
+        {
+          "name": "Kontakt",
+          "hash": "#contact",
+          "external": false
+        },
+        {
+          "name": "AGB",
+          "url": "/terms",
+          "external": false
+        },
+        {
+          "name": "Zertifikate",
+          "url": "/certificates",
+          "external": false
+        }
+      ]
+    },
+    "hours": {
+      "title": "Öffnungszeiten",
+      "times": ["Montag - Freitag:", "8:00 - 16:30 Uhr"]
+    },
+    "social": {
+      "title": "Folgen Sie uns auf"
+    },
+    "contact": {
+      "title": "Kontaktieren Sie uns",
+      "email": "E-Mail: info@primexeu.com",
+      "phone": "Telefon: +383 49 937 863"
+    },
+    "copyright": "Alle Rechte vorbehalten."
   },
-  "social": { "title": "Folgen Sie uns auf" },
-  "contact": {
-    "title": "Kontaktieren Sie uns",
-    "email": "E-Mail: info@primexeu.com",
-    "phone": "Telefon: +383 49 937 863"
+  "forms": {
+    "join": {
+      "sectionLabel": "JOIN OUR TEAM",
+      "title": "Möchtest du bei uns einsteigen?",
+      "subtitle": "Werde Teil unseres wachsenden Teams und gestalte deine Zukunft mit uns.",
+      "fields": {
+        "name": "Vollständiger Name",
+        "email": "E-Mail",
+        "phone": "Telefonnummer",
+        "linkedin": "LinkedIn-Profil-URL",
+        "country": "Land auswählen",
+        "description": "Erzähl uns kurz von dir...",
+        "privacy": "Ich akzeptiere die Datenschutzerklärung",
+        "cv": "Lebenslauf hochladen",
+        "cvPlaceholder": "Keine Datei ausgewählt"
+      },
+      "actions": {
+        "chooseFile": "Datei auswählen",
+        "removeFile": "Datei entfernen"
+      },
+      "validation": {
+        "fileTooLarge": "Datei ist zu groß (max. 5 MB)",
+        "fileType": "Nicht unterstützter Dateityp (PDF, DOC, DOCX)"
+      },
+      "submit": "Jetzt bewerben"
+    },
+    "business": {
+      "sectionLabel": "BUSINESS ANFRAGE",
+      "title": "Lassen Sie uns über Ihr Unternehmen sprechen.",
+      "subtitle": "Erzählen Sie uns, was Sie aufbauen möchten. Wir helfen Unternehmen dabei, mit modernen digitalen Lösungen zu skalieren.",
+      "fields": {
+        "companyName": "Firmenname *",
+        "contactPerson": "Ansprechperson *",
+        "email": "E-Mail *",
+        "phone": "Telefonnummer",
+        "businessType": "Branche *",
+        "website": "Unternehmenswebsite",
+        "message": "Nachricht *"
+      },
+      "submit": "Anfrage senden"
+    },
+    "validation": {
+      "acceptPrivacy": "Bitte akzeptieren Sie die Datenschutzerklärung, bevor Sie das Formular absenden."
+    }
   },
-  "copyright": "Alle Rechte vorbehalten."
+  "termsPage": {
+    "pill": "Rechtlicher Rahmen",
+    "title": "Allgemeine Geschäftsbedingungen",
+    "subtitle": "Bitte lesen Sie die verbindlichen Bedingungen, die die Nutzung der Produkte, Dienstleistungen und digitalen Angebote von Primex regeln.",
+    "meta": {
+      "updated": "Letzte Aktualisierung: 2025",
+      "jurisdiction": "Gerichtsbarkeit: Europäische Union"
+    },
+    "loading": "AGB werden geladen...",
+    "error": "AGB konnten nicht geladen werden: {{message}}"
+  }
 }
-
-}
-
-
-
-
-
-

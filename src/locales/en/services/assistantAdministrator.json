@@ -1,0 +1,77 @@
+{
+    "serviceDetails": {
+        "assistantAdministrator": {
+            "hero": {
+                "eyebrow": "Customer support",
+                "title": "Multilingual service desks that boost satisfaction",
+                "subtitle": "Primex operates 24/7 service desks that handle inquiries, after-sales care, claims, and retention programs across every channel—email, phone, chat, and social. Our multilingual teams (DE, EN, and more) deliver consistent, brand-aligned support that turns customers into advocates.",
+                "highlights": [
+                    "24/7 multilingual support desks",
+                    "Omnichannel inquiry handling",
+                    "Claims & retention programs"
+                ]
+            },
+            "sections": {
+                "offeringsTitle": "What we deliver",
+                "offeringsSubtitle": "From first contact to loyalty programs, we cover every touchpoint in the customer journey.",
+                "benefitsTitle": "Why choose Primex customer support?"
+            },
+            "pillars": [
+                {
+                    "icon": "headphones",
+                    "title": "Inquiry management",
+                    "body": "Professional multilingual teams handle customer questions, product information requests, and technical support across email, phone, chat, and social channels.",
+                    "items": [
+                        "Multi-channel ticket routing",
+                        "First-response time optimization",
+                        "Knowledge base integration"
+                    ]
+                },
+                {
+                    "icon": "heart",
+                    "title": "After-sales care",
+                    "body": "Proactive follow-up, warranty support, and maintenance guidance ensure customers stay satisfied long after purchase.",
+                    "items": [
+                        "Warranty & service coordination",
+                        "Product usage guidance",
+                        "Satisfaction surveys & feedback"
+                    ]
+                },
+                {
+                    "icon": "shield-check",
+                    "title": "Claims processing",
+                    "body": "Efficient claims handling with clear communication, fast resolution, and documentation that protects both customer and brand.",
+                    "items": [
+                        "Claims intake & triage",
+                        "Resolution workflows",
+                        "Documentation & reporting"
+                    ]
+                },
+                {
+                    "icon": "users",
+                    "title": "Retention programs",
+                    "body": "Loyalty initiatives, win-back campaigns, and personalized outreach that turn one-time buyers into repeat customers.",
+                    "items": [
+                        "Loyalty program management",
+                        "Win-back campaigns",
+                        "Personalized customer journeys"
+                    ]
+                }
+            ],
+            "benefits": [
+                "40+ years of furniture industry expertise",
+                "Multilingual support (DE, EN, and more)",
+                "24/7 availability across time zones",
+                "Brand-aligned communication and tone",
+                "Scalable capacity for peak seasons",
+                "Integrated with your CRM and ticketing systems"
+            ],
+            "cta": {
+                "title": "Ready to elevate your customer experience?",
+                "body": "Let's assemble a Primex service desk that handles inquiries, claims, and retention—delivering support that reflects your brand values.",
+                "primary": "Schedule a support consultation",
+                "secondary": "See our service capabilities"
+            }
+        }
+    }
+}

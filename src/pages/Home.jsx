@@ -1,16 +1,16 @@
 // src/pages/Home.jsx
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import Header from '../components/Header.jsx'; // Import the Header component
-import Hero from '../components/Hero.jsx'; // Import the Hero component
-import About from '../components/About.jsx'; // Import the Hero component
-import Services from '../components/Services.jsx'; // Import the Services component
-import JoinBusinessSection from '../components/JoinBusinessSection.jsx'; // Import the JoinBusinessSection component  
+import Header from "../components/Header.jsx"; // Import the Header component
+import Hero from "../components/Hero.jsx"; // Import the Hero component
+import About from "../components/About.jsx"; // Import the Hero component
+import Services from "../components/Services.jsx"; // Import the Services component
+import JoinBusinessSection from "../components/JoinBusinessSection.jsx"; // Import the JoinBusinessSection component
 import PartnerTestimonials from "../components/PartnerTestimonials.jsx";
-import Footer from '../components/Footer.jsx'; // Import the Footer component
+import PartnersGrid from "../components/PartnersGrid.jsx";
 
 export default function Home() {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
 
   // State for dark mode toggle
   const [darkMode, setDarkMode] = useState(false);
@@ -20,29 +20,31 @@ export default function Home() {
     setDarkMode(!darkMode);
   };
 
-  // Change language function
-  const changeLanguage = (e) => {
-    i18n.changeLanguage(e.target.value);
+  // Change language function (supports string or event payloads)
+  const changeLanguage = (choice) => {
+    const lang =
+      typeof choice === "string" ? choice : choice?.target?.value ?? "";
+    if (!lang) return;
+    i18n.changeLanguage(lang);
   };
 
   return (
-    <div className={`${darkMode ? 'bg-gray-900 text-white' : 'bg-white text-black'}`}>
-      {/* Header Component */}
-      <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} changeLanguage={changeLanguage} />
-      
+    <div
+      className={`${darkMode ? "bg-gray-900 text-white" : "bg-white text-black"
+        }`}
+    >
       {/* Hero Section */}
-      <Hero darkMode={darkMode} />
+      <Hero />
 
-      <About/>
+      <About />
 
-      <Services/>
+      <Services />
 
-      <JoinBusinessSection/>
+      <PartnersGrid />
+
+      <JoinBusinessSection />
 
       <PartnerTestimonials />
-
-      <Footer />
-
     </div>
   );
 }

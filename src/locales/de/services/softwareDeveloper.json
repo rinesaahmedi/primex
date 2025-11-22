@@ -1,0 +1,145 @@
+{
+    "serviceDetails": {
+        "softwareDeveloper": {
+            "hero": {
+                "eyebrow": "Eingebettete Engineering-Squads",
+                "title": "Softwareentwickler & IT-Support für moderne Operations",
+                "subtitle": "IT-Lösungen ohne Reibungsverluste: Unser Team liefert maßgeschneiderte Software und integriert virtuelle Agenten, die Ihre Mitarbeitenden bei Aufgaben wie Auftragsabwicklung, Kundenservice, Logistik und Datenmanagement unterstützen – inklusive Services für Datenschutzkonzepte und Cybersecurity.",
+                "highlights": [
+                    "Full-Stack Web, Mobile & Cloud",
+                    "ERP/CRM- & Marktplatz-Integrationen",
+                    "Virtuelle Agenten & Automatisierung"
+                ],
+                "ctaPrimary": "Technisches Scoping buchen",
+                "ctaSecondary": "Mit unserem Delivery Lead sprechen"
+            },
+            "pillars": [
+                {
+                    "icon": "hammer",
+                    "title": "Produkt-Pods on Demand",
+                    "body": "Cross-funktionale Pods (PM + FE + BE + QA) entwickeln und betreiben digitale Produkte – mit Primex-Branchenwissen als Standard.",
+                    "items": [
+                        "Web- & Mobile-Erlebnisse",
+                        "Interne Tools & Dashboards",
+                        "Marktplatz-Erweiterungen"
+                    ]
+                },
+                {
+                    "icon": "database",
+                    "title": "Integration & Daten-Fabric",
+                    "body": "Zertifizierte Integration Engineers stabilisieren ERP, CRM, PIM und Logistik – inklusive SAP, Microsoft, Salesforce und individueller Middleware.",
+                    "items": [
+                        "ERP/CRM-Connectoren",
+                        "Echtzeit-Bestandsfeeds",
+                        "Marktplatz-Compliance"
+                    ]
+                },
+                {
+                    "icon": "cpu",
+                    "title": "KI- & Automatisierungs-Engineering",
+                    "body": "Von Pilot zu Produktion: KI-Agenten automatisieren Reklamationen, Produktdaten und Ops-Workflows – abgesichert durch MLOps-Runbooks und Human-in-the-loop.",
+                    "items": [
+                        "LLM-Agent-Design",
+                        "Virtuelle Assistenten für Ops-Teams",
+                        "Automation Monitoring"
+                    ]
+                },
+                {
+                    "icon": "shield-check",
+                    "title": "Security & Continuity Desk",
+                    "body": "Managed SecOps ohne Ausfälle: Monitoring, automatisiertes Patching, Incident Response und ISO-konforme Dokumentation.",
+                    "items": [
+                        "24/7 Monitoring",
+                        "Zero-Trust-Härtung",
+                        "Incident- & DR-Playbooks"
+                    ]
+                }
+            ],
+            "process": {
+                "title": "So arbeiten wir zusammen",
+                "steps": [
+                    {
+                        "name": "Discovery Sprint",
+                        "description": "1–2 Wochen",
+                        "detail": "Analyse von Architektur, SLAs und KPIs. Ergebnis: Backlog + Integrationsplan."
+                    },
+                    {
+                        "name": "Architecture Blueprint",
+                        "description": "Design & Security Review",
+                        "detail": "Gemeinsame Ausarbeitung von Architektur, Datenverträgen und Automatisierungs-Governance."
+                    },
+                    {
+                        "name": "Build & QA",
+                        "description": "Agile Lieferung",
+                        "detail": "Zweiwöchige Releases mit automatisierten Tests, Performance-Gates und Primex-QA."
+                    },
+                    {
+                        "name": "Launch & Run",
+                        "description": "Übergabe & Betrieb",
+                        "detail": "Betrieb auf Basis von Primex-Runbooks, Observability-Dashboards und zweisprachigem Support."
+                    }
+                ]
+            },
+            "impact": {
+                "title": "Operativer Mehrwert",
+                "cards": [
+                    {
+                        "metric": "99,95 %",
+                        "label": "Uptime SLA",
+                        "description": "Über ERP, Middleware und Marktplätze hinweg abgesichert."
+                    },
+                    {
+                        "metric": "6 Wochen",
+                        "label": "Integrations-Launch",
+                        "description": "Von Scoping bis Go-Live für SAP-/Shopify-/Marketplace-Connectoren."
+                    },
+                    {
+                        "metric": "ISO-ready",
+                        "label": "Security-Status",
+                        "description": "Dokumentation & Kontrollen im Einklang mit ISO 27001 & DSGVO."
+                    }
+                ]
+            },
+            "caseStudy": {
+                "title": "Case Study · DACH-Händler",
+                "client": "Omnichannel-Möbelhändler · 120 Filialen",
+                "challenge": "Getrennte E-Commerce-, ERP- und Service-Systeme verursachten 3–4 Tage Verzögerung bei Reklamationen und Sonderaufträgen.",
+                "solution": "Primex stellte ein Pod aus Entwicklern und Integration Engineers, erneuerte die Middleware und führte KI-Agenten für die Reklamations-Triage ein.",
+                "result": "Bestellgenauigkeit +18 %, Reklamationszyklus auf 4 Stunden reduziert, Supportkosten –32 %."
+            },
+            "cta": {
+                "title": "Brauchen Sie ein SWAT-Team für Ihren Stack?",
+                "body": "Wir stellen ein Primex-Pod zusammen, das Software mit der Zuverlässigkeit liefert und betreibt, die Ihre Operations verlangen.",
+                "primary": "Workshop planen",
+                "secondary": "Capabilities Deck anfordern"
+            },
+            "sections": {
+                "offeringsTitle": "Was wir anbieten",
+                "offeringsSubtitle": "Von individueller Entwicklung bis zu Managed SecOps – wir stellen den passenden Pod.",
+                "benefitsTitle": "Warum sollten Sie uns wählen?"
+            },
+            "features": [
+                "Individuelle Softwareentwicklung – exakt auf Ihre Geschäftsanforderungen zugeschnitten",
+                "ERP/CRM-Integration – nahtlose Verbindung Ihrer bestehenden Systeme",
+                "Virtual-Agent-Integration – KI-gestützte Automatisierung",
+                "Auftragsabwicklungssysteme – optimierte Workflows",
+                "Datenmanagement-Lösungen – sicher und effizient",
+                "Cybersecurity-Maßnahmen – Schutz Ihrer digitalen Assets"
+            ],
+            "benefits": [
+                "Über 40 Jahre Erfahrung in der Möbelindustrie",
+                "Kosteneffiziente Lösungen dank unseres Standorts im Kosovo",
+                "Junge, dynamische Spezialist:innen mit frischen Ideen",
+                "State-of-the-art-Technologie in jedem Projekt",
+                "Mehrsprachigkeit und nahtlose Kommunikation in DACH & EN",
+                "Eingebettete Zusammenarbeit, die alle Stakeholder laufend einbindet"
+            ],
+            "useCases": [
+                "Unternehmen mit Bedarf an maßgeschneiderten Softwarelösungen",
+                "Firmen, die ERP-/CRM-Integrationen benötigen",
+                "Organisationen auf der Suche nach Automatisierungstools",
+                "Unternehmen mit Anforderungen an Datenmanagement-Systeme"
+            ]
+        }
+    }
+}

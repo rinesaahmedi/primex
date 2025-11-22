@@ -1,0 +1,389 @@
+General terms and conditions
+1 General
+1.1 Contracting parties
+
+The PrimEx company named in the service agreement (hereinafter “PrimEx”) offers business customers software-as-a-service solutions and other services.
+
+The contracting parties are PrimEx and the “Customer” named in the Service Agreement (PrimEx and the Customer hereinafter jointly referred to as the “Parties”).
+
+1.2 Conclusion of contract
+
+The contract between PrimEx and the customer is concluded by signing the Service Agreement within the deadline specified therein. The contract consists of the Service Agreement and the annexes specified therein, including these General Terms and Conditions (hereinafter “GTC”).
+
+1.3 Scope
+
+These Terms and Conditions govern the provision and use of services and products offered by PrimEx (hereinafter collectively referred to as “Services”).
+
+Definitions
+The capitalized terms used in these Terms and Conditions shall have the following meanings:
+
+“Subscription Term” means the term of a Customer’s subscription for the use of the Cloud Service, including all renewals, as specified in the applicable Service Agreement.
+
+“Authorized User” means any person to whom the Customer grants access to use the Cloud Services in accordance with the terms of the Agreement and who is an employee, a contractor specifically engaged by the Customer in connection with the use of the Cloud Services, or a representative of the Customer or a Customer Affiliate.
+
+“Consulting Services” means professional services, such as implementations, consulting and training, provided by PrimEx employees or subcontractors.
+
+“Service Agreement” means the ordering document for a Service that refers to these Terms and Conditions.
+
+“Cloud Service” means any subscription-based, hosted, supported, and operated software solution provided by PrimEx under a Service Level Agreement as part of the Services.
+
+“Customer Data” means all content, data, and information that Customer’s Authorized Users enter into the Cloud Service’s production system in connection with the use of the Services, as well as customer-specific content of reports that Customer generates through the Cloud Service.
+
+“Service Description” means the description of the scope of services and functions of the respective service included as an appendix to the Service Agreement.
+
+“Materials” means all materials, data, and content provided or developed by PrimEx (independently or with the cooperation of the Customer) in the performance of the Agreement, including in the provision of support or consulting services to the Customer. Customer Data and Customer Confidential Information are not part of the Materials.
+
+“Usage Metric” means the measurement standard for determining permissible usage and calculating the fees due for the Service, as set forth in a Service Level Agreement.
+
+“Professional Services” means services provided to the Customer by PrimEx or its appointed subcontractors under the Agreement. These may include, but are not limited to, consulting services, implementations, customizations, or training.
+
+An “Affiliate” of a Party means any legal entity in which a Party directly or indirectly holds more than fifty percent (50%) of its shares or voting rights. Each legal entity will be considered an Affiliate for as long as such interest is maintained.
+
+“Contract” includes the Service Agreement and its referenced annexes.
+
+“Confidential Information” means
+
+a) with regard to the Customer: (i) data on contractual partners (in particular suppliers) of the Customer, (ii)
+personal employee data, (iii) implementation plans and business requirements of the customer and (iv) financial information of the customer, and
+
+b) with respect to PrimEx: (i) the Service, including its user interfaces and non-customer-specific content, documentation, materials and analyses pursuant to Section 11 (Analysis and Improvements to the Product), as well as (ii) personal data of PrimEx employees, and (iii) information about PrimEx’s research and development, product offerings, pricing and availability.
+c) Confidential Information of PrimEx or the Customer also includes information (i) that the disclosing party protects from unrestricted disclosure to others, (ii) that is designated as confidential by the disclosing party or its representatives at the time of disclosure, or (iii) that, given the nature of the information and the circumstances of its disclosure, should reasonably be considered confidential. The provisions of the GeschGehG remain unaffected.
+Subject matter of the contract
+The subject of the contract is the provision of the services commissioned by the customer and agreed in the service agreement.
+
+Scope of services and warranty
+4.1 Scope of services
+
+The specific scope of services and functions as well as the scope of other contractual services are set out in the service agreement including its annexes.
+
+Any statements and explanations regarding the services in advertising materials, on company websites or other platforms or communication channels outside of the aforementioned contractual documents are expressly not part of the contract and do not constitute a description of services, guarantee or assurance of a specific property.
+
+With regard to services provided free of charge, PrimEx expressly makes no guarantees regarding any specific functions or features. Such services are expressly intended for evaluation purposes only and not for productive use.
+
+4.2 Warranty
+
+PrimEx warrants that it will provide the Services in accordance with the contractual agreements, taking into account the provisions regarding modifications and updates to these Terms and Conditions, and with the level of expertise and care that can reasonably be expected from a qualified and experienced service provider and that corresponds to the nature and complexity of the Service.
+
+Unless expressly provided in the Agreement, neither PrimEx nor its subcontractors make any express or implied warranties or guarantees regarding any quality, including merchantability, fitness, originality, or suitability for a particular use or purpose, or any results derived from the use or integration of Services. Customer agrees that, when purchasing Services, Customer shall not rely on the delivery of any future features, product roadmaps, public commentary, or advertising statements not expressly promised in the Agreement.
+
+The contractually guaranteed scope of services according to Section 4.1 (Scope of Services) of these Terms and Conditions does not apply if (i) the Services are not used by the Customer as intended, unless the Customer proves that the deviation would have occurred even if the Services had been used as intended, and (ii) if the deviation was caused by the Customer or a product/service not provided by PrimEx.
+
+Unless expressly agreed otherwise, the assertion of warranty rights, if they exist by law, is excluded after one year from the start of the statutory limitation period.
+
+4.3 Priority of subsequent performance
+
+If the customer is entitled to demand subsequent performance in the event of defects in the service provided under the contract, the following applies: The customer must set a reasonable deadline for subsequent performance. Before the customer can assert other rights under the contract, in particular the right to reduction, withdrawal, or compensation, PrimEx is entitled to remedy the defect at its discretion and to a reasonable extent. The type of subsequent performance is at the discretion of PrimEx.
+
+PrimEx will take the customer’s interests into account when choosing the type and extent of subsequent performance.
+
+4.4 Service Levels
+
+PrimEx guarantees to maintain an average availability of the subscribed service in accordance with the provisions of the applicable Service Level Agreement (“SLA”), provided this is included as an appendix to the Service Agreement. In the event of violations of the agreed SLA, the customer is entitled to claims exclusively in accordance with the provisions of the applicable SLA and these Terms and Conditions.
+
+Customer’s obligations
+5.1 Use only for contractual purposes
+
+The customer is obligated to use the services provided by PrimEx only to the contractual extent, in accordance with the contractual provisions, for the contractually intended purpose and within the framework of the applicable legal provisions and to refrain from any measures that could endanger or impair the functionality or security of the services.
+
+5.2 Customer data
+
+The customer is responsible for the customer data and its entry into the service. PrimEx will only enter customer data into the cloud service on behalf of the customer if this is specifically regulated in the service agreement. The customer grants PrimEx, its affiliated companies, and its subcontractors a non-exclusive right to use and process customer data to the extent necessary to provide the service and for the purposes otherwise stated in these Terms and Conditions. Additional rights of use are only granted if contractually agreed. The customer remains the responsible owner of the customer data.
+
+5.3 Access to customer data
+
+The customer can access their customer data at any time during the contract term. If the contract is terminated at the end of the respective term, the customer will be given the opportunity to export the customer data in a common format in good time before the contract expires.
+
+5.4 Security
+
+The Customer is obligated to implement and maintain technical and organizational measures throughout the term of the Agreement to prevent unauthorized access to the provided Service. To this end, the Customer will, in particular, maintain appropriate security standards for the use of the Service by its Authorized Users and treat the access data with strict confidentiality.
+
+5.5 Monitoring usage metrics
+
+The Customer must continuously monitor its use of the Service and immediately report to PrimEx any usage that exceeds the usage metrics and the contracted volume.
+
+PrimEx is entitled to monitor the usage metrics of the provided service to the extent necessary to ensure compliance with the scope of use agreed in the service agreement.
+
+The customer agrees to refrain from any actions that could hinder or prevent the monitoring of usage metrics. This includes, in particular, circumventing security mechanisms or manipulating data relevant to the collection of usage metrics. Violations of this obligation entitle PrimEx to extraordinary termination for good cause.
+
+Rights and obligations of PrimEx
+6.1 Provision and Support
+
+PrimEx will grant the Customer’s Authorized Users access to the provided Service within the contractual scope and provide support to the extent agreed in the Service Agreement. PrimEx will implement and maintain appropriate technical and organizational measures throughout the term of the Agreement to ensure the integrity, confidentiality, and availability of Customer Data.
+
+6.2 Modifications and Updates
+
+PrimEx reserves the right, at its sole discretion, to make changes to adapt the Services to the state of the art, changes for technical optimization, particularly to improve user-friendliness (collectively, “Updates”), and changes to content, provided these are necessary to correct errors, update and complete the Services, or for licensing reasons (“Modifications”). PrimEx will notify the Customer of such updates and modifications in advance via email, the support portal, the release notes, the documentation, or the Service.
+
+If the customer determines that an update or modification does not merely represent an improvement and leads to a significant devaluation of the contractually agreed service, he must inform PrimEx of this.
+
+If there is a significant restriction of the service due to an update or modification which PrimEx cannot remove within a reasonable period of time, the customer is entitled to terminate the affected service without notice within thirty days of the expiry of this period by giving PrimEx written notice.
+
+Rights of use and restrictions
+7.1 Right of use
+
+Subject to the Service Agreement and other contractual provisions, the Customer is granted a simple, non-exclusive, non-transferable right, limited to the term of the contractual relationship, to access the Services via a browser and an internet connection and to use them for its own business purposes or the business purposes of the Customer’s affiliated companies. Use for third-party business purposes is only permitted if and to the extent expressly provided for in the Service Agreement. In any case, the right of use is granted only to the extent specified in the Service Agreement.
+
+7.2 Authorized Users
+
+The Customer designates Authorized Users and permits them to use the Service. Usage is limited to the usage metrics and volumes specified in the Service Agreement. The access credentials for the Service refer to one Authorized User each and may not be used by more than one person. The Customer may customize the designation of Authorized Users by transferring the access credentials to another person and ensuring that the original Authorized User no longer has access to the Service. The Customer is responsible for any breaches of the Agreement caused by Authorized Users.
+
+7.3 Interruption of Service
+
+PrimEx may suspend or restrict use of the Service if continued use could cause significant damage to the Service, its users, or PrimEx and its affiliates. PrimEx must notify the Customer immediately of the suspension or restriction and limit the suspension or restriction in terms of time and scope to the extent necessary to prevent and limit the damage. Regarding downtime, reference is made to the availability provisions in the SLA.
+
+7.4 Third-party web services
+
+The Service may include integrations with web services or services provided by third parties, or third-party web services or services may be used to access the PrimEx mobil Service.
+
+Access to web services and services recognizable to the customer (e.g., Android or Apple App Store), as well as their availability and use, is subject to the terms and conditions of the third parties that provide them. Web services and services from third-party providers are not part of the contractual agreement between PrimEx and the customer, so these Terms and Conditions do not apply to them.
+
+Term and termination
+8.1 Term
+
+The term of the contract between PrimEx and the customer is based on the provisions of the service agreement.
+
+8.2 Termination
+
+A right to ordinary termination exists only if this is expressly stipulated in the service agreement. Each party is entitled to terminate the contractual relationship extraordinarily if one of the following conditions is met:
+
+is:
+
+a) There is a material breach of contract by the other party, which cannot be remedied or has not been remedied within a reasonable period of time;
+b) The other party materially breaches the contractual provisions and, for this reason, maintaining the contractual relationship is no longer reasonable. This is particularly the case in the event of a material breach of Section 12 (Confidentiality);
+c) The other party breaches an obligation under clause 18 (embargo, export restrictions);
+d) The other party files for insolvency – this also applies if the opening of insolvency proceedings is rejected due to insufficient assets –, becomes insolvent, or makes an assignment for the benefit of the creditors; or
+e) The right to extraordinary termination arises from a provision of the contract and the conditions listed therein are met.
+8.3 Refund of payments
+
+If the contract is terminated prematurely, the following applies to the payments already made by the customer:
+
+The following:
+
+a) If the customer terminates the contract with good cause, the fees paid in advance for the service period will be refunded from the date of termination of the contract. The obligation to pay further fees for any period after the termination of the contract will cease.
+b) In the event of termination by PrimEx due to misconduct by the customer, any payments made in advance shall be excluded from reimbursement.
+8.4 Consequences of termination of the contract
+
+At the time of termination of the contract – regardless of the reason – the customer’s right to use the provided service and other materials from PrimEx expires. Any confidential information disclosed during the collaboration must be immediately returned to the disclosing party or destroyed by both parties. Proof of destruction must be provided upon request. This excludes backup copies, which are created by the system at regular intervals. Neither party has any right of retention with regard to confidential information.
+
+8.5 Exit management
+
+PrimEx will assist the Customer in exporting the Customer Data and will make the data available to the Customer in an appropriate format within 30 days of the Customer’s request. PrimEx will only provide additional support services for data migration after termination of the Agreement if this has been expressly agreed upon between the Parties.
+
+In the event of extraordinary termination by the customer pursuant to Section 8.2 a), b), or e) (Termination), PrimEx will provide support services for exporting customer data for a maximum period of 30 days after the termination becomes effective. The customer data will be made available within 30 days of the customer’s request.
+
+The provisions of these General Terms and Conditions shall apply accordingly to support services after the end of the contract.
+
+8.6 Continuation
+
+Even after termination of the contract, the provisions of the following clauses shall continue to apply: Clause 2 – Definitions, Clause 8.3 a) – Reimbursement of payments, Clause 8.5 – Exit management, 8.6 – Continuation, Clause 10 – Intellectual property rights,
+
+Clause 12 – Confidentiality, Clause 13 – Third Party Claims, Clause 14 – Liability, Clause 19 – Final Provisions.
+
+Fees and payment terms
+9.1 Fees
+
+The amount of the fees to be paid is specified in the Service Agreement. Unless expressly stated otherwise, all prices listed in the Service Agreement or other contractual documents are net prices, plus applicable VAT.
+
+The following terms and conditions apply to the payment of fees (Section 9.2 (Ongoing Fees) to 9.6 (Customer Adjustments)), unless the parties have agreed otherwise in the Service Agreement.
+
+9.2 Ongoing fees
+
+The recurring fees listed in the Service Agreement are due and invoiced annually in advance from the start of the subscription term. The recurring fees remain unchanged during the initial subscription term.
+
+9.3 One-off fees and remuneration based on expenditure
+
+If one-off fees are incurred for services agreed in the service agreement (e.g. onboarding), these will be invoiced once at the beginning of the subscription period.
+
+If the parties agree to additional one-time services for a flat rate during the subscription term, the applicable fees shall be paid by the customer in advance. PrimEx shall invoice the customer accordingly at the commencement of service provision.
+
+If the parties expressly agree on remuneration for services provided by PrimEx based on actual expenditure (T&M), PrimEx will invoice the service monthly after the services have been provided.
+
+9.4 Invoice and payment terms
+
+Invoices are sent electronically to the email address provided by the customer. Invoiced fees are due within 14 days of invoicing. In the event of late payment, interest will accrue at the maximum statutory rate without the need for prior notice. The first payment for the services listed in the Service Agreement is due upon subscription start after invoicing and is independent of the completion of any onboarding services or other agreed services.
+
+9.5 Suspension of performance in the event of non-payment
+
+If the customer fails to pay fees due in the amount of at least €5,000 net or 10% of the annual subscription fees (whichever is lower) within the payment period despite being invoiced, and if payment is not made even after PrimEx has issued a reminder with a reasonable deadline and explicitly announced a possible suspension of services, PrimEx is entitled to restrict or suspend the customer’s access to the services until the fees due, including any accrued default interest, are paid in full. Access will be resumed immediately upon receipt of full payment.
+
+9.6 Adjustments by the customer
+
+The customer may not withhold, reduce, or offset fees owed during the subscription term unless PrimEx has committed a serious breach of duty. A reduction in the agreed usage metrics is only possible if PrimEx expressly agrees and a new agreement is concluded.
+
+Intellectual Property Rights
+10.1 Property of PrimEx
+
+PrimEx and its Affiliates or licensors own all intellectual property rights in and relating to the Service, including the Cloud Service, Materials, Documentation, Professional Services, Design Contributions, Related Know-How or Processes, and all derivative works thereof, including any adaptations and modifications made based on Customer’s advice or other input. All rights not expressly granted to Customer are reserved by PrimEx and its licensors, excluding Customer Data.
+
+10.2 Customer property
+
+The Customer retains all rights in and to the Customer Data. PrimEx may use the data and materials provided by the Customer solely to provide and support the Service and for other contractually agreed purposes.
+
+10.3 Non-assertion of rights
+
+The Customer, on its own behalf and on behalf of its successors and assigns, agrees not to assert or otherwise challenge any intellectual property rights or claims in or to any Services, Materials, Documentation, or Professional Services against PrimEx or its Affiliates or licensors for the term of the Agreement and for one year after the termination of the Agreement. Furthermore, the Customer expressly agrees not to file any applications, nationally or internationally, for any intellectual property rights, including but not limited to trademarks, copyrights, patents, or other proprietary rights related to PrimEx’s Services or products, for the term specified above.
+
+Product analyses and improvements
+PrimEx and its Affiliates may use Customer Data and information derived from Customer’s use of the Service and Professional Services to conduct analytics, as set forth below (“Analytics”), and to further improve the Services based on the Analytics, derive correlations from Customer Data, and use the subsequently improved Service at their sole discretion. Information used in the Analytics is anonymized; it contains neither Customer Data nor personal information and is treated as materials. Customer Data will not be shared with third parties, and the Customer retains ownership of the Customer Data.
+
+The analyses can be used for the following purposes:
+
+a) product improvement (in particular product features and functionality, performance, workflows and user interfaces) and development of new PrimEx products and services;
+b) improving resource allocation and support;
+c) internal requirements planning;
+(d) training and development of machine learning algorithms and finding patterns and correlations for artificial intelligence purposes;
+
+e) verification of security and data integrity;
+f) Identification of industry trends and developments, creation of indices and anonymous benchmarking.
+Confidentiality
+12.1 Use of Confidential Information
+
+The parties are obliged to treat each other’s Confidential Information as strictly confidential.
+
+For this purpose, each party will disclose Confidential Information of the other party
+
+a) keep it strictly confidential and not disclose it to unauthorized third parties or pass it on to them. The customer may not disclose or otherwise disclose the pricing of the contract to third parties;
+b) only disclose to its own employees, affiliated companies, authorized users or contracted service providers if they need to know this information in order to achieve the purpose of the contract and have been appropriately obliged to maintain confidentiality;
+c) only disclose to other third parties if they are consultants who are already bound by professional secrecy or are subject to a confidentiality obligation that does not fall below the protection provided for in this Agreement;
+d) protect against theft and unauthorised access and access by appropriate measures which are at least equivalent to the standard which the receiving party would normally apply in its own affairs, but at least with a reasonable standard of care;
+e) reproduce only to the extent necessary to exercise the rights and fulfil the obligations under the contract.
+The parties will notify each other promptly upon becoming aware of any actual or threatened unauthorized use or inadvertent or unauthorized disclosure of or access to Confidential Information and will take all reasonable steps to prevent or terminate such unauthorized use, disclosure or access.
+
+The confidentiality obligations under this clause shall remain in effect for a period of 5 years after the termination of the contract.
+
+12.2 Exceptions and disclosure requirements
+
+The obligations under clause 12.1 (Use of Confidential Information) do not apply to Confidential Information that can be proven
+
+a) was generally available or known to the public before its transfer to the receiving party or becomes so at a later date without breach of confidentiality obligations;
+b) was already in the possession of the receiving party before delivery, lawfully and without any duty of confidentiality or breach of such duty;
+c) was independently developed by the receiving party without use of or reference to Confidential Information;
+d) was handed over or made available to the receiving party by an authorized third party who, in turn, is demonstrably not subject to any obligation of confidentiality with regard to that information;
+e) must be disclosed due to mandatory legal provisions or a decision of a competent court and/or authority.
+In the case of clause 12.2 (e) (Exceptions and Disclosure Obligations), the party addressed by the decision will promptly inform the other party of the decision, unless prohibited by law.
+
+Third-party claims
+13.1 Claims against the customer
+
+The customer is obligated to notify PrimEx immediately if third parties assert claims against them due to the contractual use of the services. Furthermore, the customer will – at PrimEx’s request and expense – leave the legal defense against such claims to PrimEx. The customer will support PrimEx to a reasonable extent in the legal defense.
+
+To the extent that the service and its contractual use by the customer infringes the intellectual property rights of third parties, PrimEx may, at its own discretion,
+
+a) obtain from the person authorized to dispose of the infringed intellectual property right a right of use for the benefit of the customer which is sufficient for the purposes of the contractual relationship, or
+b) adapt or replace the Service in such a way that no third-party intellectual property rights are infringed, if and to the extent that the contractually agreed functionality of the Service is not significantly impaired, or
+c) terminate the contractual relationship with the customer without notice if the continued provision of the services is not reasonably possible without infringing the intellectual property rights of third parties.
+13.2 Claims against PrimEx
+
+Should third parties assert claims against PrimEx, its affiliated companies or subcontractors due to infringements of rights caused by customers or customer data, the customer is obligated to indemnify PrimEx against such claims and, upon request, to defend PrimEx.
+
+Liability
+14.1 Unlimited liability
+
+Neither party excludes its liability for damages arising from the following:
+
+a) the obligations of the parties pursuant to clause 13 (claims of third parties),
+b) the unauthorized use or disclosure of Confidential Information,
+c) the breach of data protection and security obligations by one of the parties resulting in the unauthorized use or disclosure of personal data,
+d) gross negligence or intentional misconduct,
+e) any failure by the Customer to pay any fees due under the Contract,
+f) injury to life, body or health, or
+g) violation of the Product Liability Act.
+14.2 Limits of liability
+
+Subject to clauses 14.1 (Unlimited Liability) and 14.3 (Exclusion of Damages), the maximum aggregate liability of either party to the other party for all events (or series of related events) occurring in any twelve-month period shall not exceed the annual fees charged for the relevant service that directly caused the damage or to which the damage relates.
+
+were paid in the current contract year. Each contract year begins on the start date of the subscription term or one of its anniversaries.
+
+14.3 Exclusion of claims for damages
+
+The liability of the parties extends exclusively to typical damages arising directly from delay, non-performance, defects, tortious acts, or other legal grounds, and expressly excludes liability for consequential damages, in particular lost profits, business interruption, impairment of goodwill, or indirect damages. Liability for damages resulting from free services is excluded.
+
+14.4 Damages in case of SLA violation
+
+Claims for damages due to a breach of the availability provisions in the SLA are limited to the extent stipulated in the SLA. Any further claims for damages are expressly excluded unless the SLA breach is due to intentional or grossly negligent conduct. In this case, the provisions of Sections 14.2 (Limits of Liability) and 14.3 (Exclusion of Claims for Damages) apply.
+
+Force majeure
+Neither party shall be liable for any delay or failure to perform (other than the payment of amounts due) resulting from events or circumstances beyond their reasonable control and not foreseeable (Force Majeure). Such events may include natural disasters, wars, strikes, governmental actions, or other unforeseeable events. The performance period shall be extended by a period corresponding to the duration of the impediment.
+
+Both parties have the right to terminate the contract extraordinarily if the other party is unable to provide the services owed under the contract for a period of two consecutive months due to force majeure.
+
+Data protection
+16.1 Roles
+
+The customer data processed in the provision of the contractual services may contain personal data. PrimEx processes this personal data – unless expressly stated otherwise – on behalf of and in accordance with the instructions of the customer. In these cases, PrimEx is the processor within the meaning of Art. 28 GDPR, while the customer remains the controller within the meaning of Art. 24 GDPR.
+
+16.2 Personal data
+
+Both parties undertake to comply with applicable data protection laws, in particular the General Data Protection Regulation and the Federal Data Protection Act, when processing personal data within the scope of their cooperation.
+
+The Customer shall ensure that all personal data contained in the Customer Data is collected and maintained in accordance with these data protection laws.
+
+16.3 Reference to AVV
+
+If PrimEx processes personal data on behalf of the customer, the parties conclude a data processing agreement pursuant to Art. 28 (3) GDPR (“DPA”). The DPA is an annex to the service agreement and conclusively governs the data processing relationship between the parties.
+
+Professional Services
+PrimEx will only provide Professional Services if expressly agreed between the parties. Unless otherwise agreed, the following applies:
+
+a) PrimEx will invoice the Client monthly for the actual expenditures incurred for the Professional Services. These expenditures include labor hours, materials, travel costs, expenses, and other costs necessary to provide the agreed services.
+b) PrimEx reserves the right to set hourly rates within the usual industry framework and to use them as a basis for calculating the costs. The agreed hourly rates will be communicated to the customer before the commencement of the respective services to be invoiced.
+Embargo, export restrictions
+The parties mutually undertake to comply with all export control, embargo and sanction laws and regulations applicable under the laws of the Federal Republic of Germany and/or the laws of the European Union (EU) that restrict, prohibit or subject to licensing the import, export, re-export or transfer of goods, software, technology and data and the provision of services, directly or indirectly, to certain countries, for certain end uses or to certain end users; this also applies with regard to applicable US and other national law, insofar as German or European law does not conflict with this (“Applicable Foreign Trade Law”).
+
+In the event that restrictions exist on the sale, delivery, transfer, provision and/or export of the Cloud Service or related services due to an embargo by the EU, Germany or the United States, the legally binding conclusion of this Agreement is subject to the condition precedent of prior approval by the competent authority or authorities.
+
+The Customer confirms, represents and warrants that the Customer is not subject to any sanctions, including, without limitation, that the Customer is not listed on any list of persons, organizations or entities (“POEs”) with whom business is restricted or prohibited. The Customer further confirms, represents and warrants that the Customer is not, directly or indirectly, majority-owned or controlled by any such POE and/or
+
+POE. Lists of POE include, among others, those issued by the EU or one of its Member States, the United Nations Security Council (UN), and/or the US government. These confirmations only extend to sanctions lists relating to economic sanctions measures taken by one or more states against another state and issued by an entity other than the UN, the EU, or the Federal Republic of Germany, if the UN, the EU, or the Federal Republic of Germany have also taken – albeit not identical – economic sanctions measures against that state (“Applicable Sanctions List”). The Customer will inform PrimEx immediately if the Customer itself or one of the POEs that hold or control the Customer is listed on an Applicable Sanctions List. Notwithstanding the foregoing confirmations, representations and warranties, the Customer agrees to promptly provide, upon request, all information and documentation that will enable PrimEx to conduct a comprehensive sanctions list screening of the Customer, including information about the shareholders, beneficial owners and management of the Customer.
+
+The Customer may not, directly or indirectly, resell, deliver, transfer, or otherwise make available the Cloud Service or services received from PrimEx to a POE that is subject to sanctions under applicable foreign trade law, or is directly or indirectly majority-owned or controlled by a POE that is subject to sanctions under applicable foreign trade law. If the Cloud Service is included in lists of goods or technology whose sale, delivery, transfer, provision, or export to a specific country or region is prohibited or subject to authorization under applicable foreign trade law (“embargoed country or region”), the Customer may not, directly or indirectly, (re-)sell, (re-)export, or otherwise deliver, transfer, or make available the acquired software to a POE in the embargoed country or region, or for use in the embargoed country or region, unless a (general) authorization from the competent authority has been obtained. This applies in particular, but not exclusively, to the provision of the software to POEs based in Russia, including subsidiaries or other group companies based in Russia that are owned or under the sole or joint control of a POE established or registered under the laws of an EU Member State, a country belonging to the European Economic Area (EEA), Switzerland, or a partner country listed in Annex VIII to Regulation (EU) 833/2014, and the use of General Authorization No. 42 from the Federal Office for Economic Affairs and Export Control (BAFA). The customer must provide PrimEx with evidence of effective use of General Authorization No. 42 before providing the software to PEB in Russia, without the need for a request or demand from PrimEx.
+
+Final provisions
+19.1 Entire Agreement
+
+The service agreement and the annexes listed therein as part of the contract – including these General Terms and Conditions – represent the complete and exclusive agreement between PrimEx and the customer in connection with the business relationship between the parties with regard to the subject matter of the contract. All previous assurances, discussions, and documents are incorporated into and superseded by the contract. Any confidentiality agreements concluded remain in effect, however. The contract may only be amended by mutual consent and in writing, unless expressly agreed otherwise. The customer’s general terms and conditions do not apply. This also applies if the customer refers to its own terms and conditions, e.g., in the context of orders or purchase orders, and PrimEx does not expressly object to these or otherwise accepts the order.
+
+19.2 Severability clause
+
+Should any provision of this Agreement be found to be invalid, ineffective, or unenforceable, the validity, effectiveness, and enforceability of the remaining provisions of this Agreement shall remain unaffected. The parties undertake to replace the invalid, ineffective, or unenforceable provision with a legally permissible provision that most closely approximates the purpose of the original provision.
+
+19.3 Formal requirements
+
+Signatures in any common electronic form (including email or dedicated signature solutions) are considered original signatures.
+
+Unless expressly agreed otherwise, all notices must be given electronically and delivered to the address specified in the Service Agreement. Notices from PrimEx relating to the operation, modification, update, or support of the Service may be given electronically to the Customer’s authorized representative or administrator specified in the Service Agreement.
+
+19.4 Changes to the Terms and Conditions
+
+PrimEx reserves the right to change or update these Terms and Conditions at any time if necessary for legal, technical, or operational reasons. Changes to these Terms and Conditions will be communicated to the customer at least 60 days prior to their effective date.
+
+The amended Terms and Conditions become part of the contract if the customer agrees to the changes. If the customer does not agree to the changes within a period specified by PrimEx, which is at least 30 days, the contract remains unchanged. In this case, PrimEx is entitled to terminate the contract with immediate effect with 60 days’ notice if the contractual provision of services without the changes to the Terms and Conditions is impossible or unreasonable for technical or legal reasons.
+
+PrimEx is obliged to inform the customer of the possibility of extraordinary termination in the notification.
+
+19.5 Regulatory Matters
+
+PrimEx’s Confidential Information is subject to the export control laws of various countries, including the laws of the United States and Germany. Customer may not submit PrimEx’s Confidential Information to any government agency for review of licenses or other regulatory approvals, and may not export PrimEx’s Confidential Information to any country, person, or entity prohibited by export laws.
+
+19.6 Assignment
+
+Without the prior written consent of PrimEx, the Customer may not assign or transfer the Agreement (or its rights and obligations under the Agreement) to any other party. PrimEx may assign the Agreement to any of its Affiliates.
+
+19.7 Subcontracting
+
+PrimEx may subcontract the contractually agreed services, or parts thereof, to third parties, provided the quality of the service provision is not compromised. PrimEx remains liable to the customer for any breaches of contract caused by its subcontractors.
+
+19.8 Compliance with laws
+
+Each Party shall ensure current and ongoing compliance with all applicable laws and regulations relating to:
+
+a) In the case of PrimEx, the operation of PrimEx’s business as it relates to the Service, and
+b) in the case of the customer, the customer data and the customer’s use of the service. This contract exists independently of the legal provisions applicable to the customer or PrimEx.
+19.9 Relationship between the parties
+
+The parties act as independent contractors. This Agreement does not create a partnership, franchise, joint venture, agency, fiduciary, or employment relationship between the parties.
+
+19.10 Applicable law and place of jurisdiction
+
+The contract concluded between PrimEx and the customer and all claims relating to its subject matter are governed exclusively by the laws of the Republic of Kosovo, excluding the provisions of the UN Convention on Contracts for the International Sale of Goods (CISG) and international private law. The exclusive place of jurisdiction for all disputes arising from or in connection with the contract or its validity is Prishtina.
+

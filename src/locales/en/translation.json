@@ -1,6 +1,44 @@
 {
   "welcome": "Welcome to the Home Page!",
   "intro": "This is the main content of the website.",
+  "hero": {
+    "kicker": "Custom AI operations · built for you by Primex",
+    "headline": {
+      "emphasis": "Agentic AI",
+      "rest": "Solutions"
+    },
+    "body": "We design custom AI agents that connect to your ERP, product data, logistics, and service workflows — built on 40+ years of operational know-how.",
+    "primaryCta": "Design your agent",
+    "secondaryCta": "Talk to Primex",
+    "statsText": "From 90-minute claim cases to 70-second automated resolutions — without extra headcount.",
+    "rightTitle": "Where Primex plugs in",
+    "rightBody": "We co-design every agent with your teams, so each workflow stays compliant with your ERP, marketplaces, and service SLAs.",
+    "highlights": [
+      {
+        "title": "Product data ops",
+        "description": "Normalize SKUs, enrich attributes, and sync content to marketplaces in real time."
+      },
+      {
+        "title": "Claims automation",
+        "description": "Read emails, analyze photos/PDFs, and close tickets directly in your ERP."
+      },
+      {
+        "title": "Logistics & service",
+        "description": "Track shipments, trigger spare parts, and keep customers updated 24/7."
+      },
+      {
+        "title": "Customer service automation",
+        "description": "Handle inquiries, process returns, and maintain service quality with intelligent workflows."
+      }
+    ]
+  },
+  "partnersGrid": {
+    "kicker": "Trusted partners",
+    "title": "Built for the furniture industry, adaptable everywhere",
+    "body": "We work inside the furniture supply chain—yet our AI agents also adapt to logistics, retail tech, manufacturing, and any workflow that mirrors the same operational rigor.",
+    "moreLabel": "+5 more",
+    "moreTag": "industries"
+  },
   "darkMode": "Switch to Dark Mode",
   "lightMode": "Switch to Light Mode",
   "aboutUs": "About Us",
@@ -9,15 +47,14 @@
   "contactUs": "Contact Us",
   "english": "English",
   "german": "German",
-
-
   "about": {
     "mainTitle": "From Family Tradition to an AI Leader in the Furniture Industry",
-    "intro": "With over 40 years of family experience, PRIMEX bridges tradition and modern technology, leading the digital transformation in the furniture industry for the DACH region and beyond.",
+    "homeIntro": "With over 40 years of family experience, PRIMEX bridges tradition and modern technology, leading the digital transformation in the furniture industry for the DACH region and beyond.",
     "whoWeAre": {
       "title": "Who We Are",
       "description": "PRIMEX is a company from Kosovo offering complete Backoffice services for the furniture and retail industry. For over a decade, we have been a trusted partner for major companies in Germany, Austria, and Switzerland, supporting both traditional stores and online platforms."
     },
+    "ctaButton": "Learn More",
     "expertise": {
       "title": "Our Expertise",
       "items": [
@@ -61,99 +98,200 @@
     },
     "tagline": "At PRIMEX, tradition meets innovation."
   },
-
-
   "services": {
-  "mainTitle": "Our Services",
-  "intro": "Tailored solutions designed to optimize your business operations and support your growth.",
-  "items": [
-    {
-      "title": "Software Developer & IT Support",
-      "description": "We deliver tailored software solutions and integrate virtual agents that support tasks such as order processing, customer service, logistics, and data management. Our team also ensures data protection concepts and strong cyber-security measures."
-    },
-    {
-      "title": "Graphic Designer",
-      "description": "Our experienced design team creates high-quality and visually stunning designs that exceed expectations. We focus on creativity, precision, and fast turnaround times. Whether you need branding, web design, or marketing materials, we deliver results tailored to your vision."
-    },
-    {
-      "title": "Assistant Administrator",
-      "description": "Our administrative services streamline your daily operations—conducting research, preparing reports, managing communications, and coordinating schedules. We ensure that essential administrative tasks are handled efficiently and professionally."
-    },
-    {
-      "title": "Sales & Bookkeeping",
-      "description": "PrimEx provides global wholesale and retail sales management, production planning, logistics coordination, and advanced e-commerce solutions for B2B and B2C. Our bookkeeping services include accurate transaction recording, financial reporting, and compliance with accounting standards to ensure smooth financial operations."
-    },
-    {
-      "title": "E-Commerce",
-      "description": "Our skilled developers build customized e-commerce websites that effectively promote your brand. We focus on tailored solutions that strengthen your online presence and drive continuous business growth."
-    }
-  ]
-},
-
-
+    "mainTitle": "Our Services",
+    "intro": "Tailored solutions designed to optimize your business operations and support your growth.",
+    "ctaLabel": "View more",
+    "items": [
+      {
+        "title": "AI Automation & Virtual Assistants",
+        "description": "We blueprint, train, and operate AI agents that automate claims, order verification, logistics updates, and ERP tasks—always with human-in-the-loop controls and 40+ years of operational know-how."
+      },
+      {
+        "title": "Operational Services",
+        "description": "Back-office teams manage order processing, logistics coordination, procurement, and compliance across the furniture supply chain."
+      },
+      {
+        "title": "Customer Support",
+        "description": "Multilingual service desks handle inquiries, after-sales care, claims, and retention programs across every channel."
+      },
+      {
+        "title": "E-commerce & Product Data",
+        "description": "Product Data Management & Content: We normalize catalogs, enrich content, localize pricing, and publish to marketplaces, PIM, and ERP systems."
+      },
+      {
+        "title": "Design & 3D Visualization",
+        "description": "Designers create marketing assets, high-end renderings, 3D room planners, and immersive visuals that move your brand."
+      },
+      {
+        "title": "IT Development & Technical Consulting",
+        "description": "Engineers integrate ERPs/CRMs, build custom software, and advise on cybersecurity, infrastructure, and automation roadmaps."
+      }
+    ]
+  },
   "joinBusiness": {
     "joinLabel": "JOIN OUR TEAM",
     "joinTitle": "Want to join us?",
     "joinDescription": "Become part of our growing team and build your future with us.",
     "joinButton": "Join Us",
-
     "businessLabel": "BUSINESS INQUIRY",
     "businessTitle": "Let’s talk about business.",
     "businessDescription": "Tell us what you want to build. We help companies scale with modern digital solutions.",
     "businessButton": "Let’s Talk"
   },
-
   "partners": {
-  "testimonials": [
-    {
-      "quote": "We built Cotopaxi with Shopify from day one.",
-      "company": "Cotopaxi",
-      "person": "Davis Smith",
-      "role": "Founder and CEO",
-      "image": "src/images/client2.webp"
-    },
-    {
-      "quote": "Another customer testimonial will be added here...",
-      "company": "Another Company",
-      "person": "John Doe",
-      "role": "CTO",
-      "image": "src/images/client2.webp"
-    }
-  ]
-},
-
-
- "footer": {
-  "company": {
-    "name": "PrimEx",
-    "description": "Prime Team, Prime Solution. Delivering excellence in IT and business solutions since 1985."
-  },
-  "pages": {
-    "title": "Pages",
-    "links": [
-      { "name": "Home", "url": "", "external": true },
-      { "name": "About Us", "url": "", "external": true },
-      { "name": "Services", "url": "", "external": true },
-      { "name": "Our Partners", "url": "", "external": true },
-      { "name": "Contact Us", "url": "", "external": true },
-      { "name": "Terms and Conditions", "url": "", "external": true },
-      { "name": "Certificates", "url": "", "external": true }
+    "testimonials": [
+      {
+        "quote": "Primex's AI agent reduced our claim processing time from 90 minutes to under 70 seconds. The efficiency gains are remarkable.",
+        "company": "Furniture Retail Group",
+        "person": "Michael Schneider",
+        "role": "Operations Director",
+        "image": "src/images/client2.webp"
+      },
+      {
+        "quote": "Their deep understanding of the furniture industry combined with cutting-edge AI technology has transformed our operations.",
+        "company": "Home Living Solutions",
+        "person": "Sarah Weber",
+        "role": "Chief Technology Officer",
+        "image": "src/images/client2.webp"
+      },
+      {
+        "quote": "The AI claims automation system integrates seamlessly with our ERP. We've seen an 80% reduction in operational costs.",
+        "company": "DACH Furniture Partners",
+        "person": "Thomas Müller",
+        "role": "Head of Customer Service",
+        "image": "src/images/client2.webp"
+      },
+      {
+        "quote": "Primex doesn't just provide technology—they bring 40 years of industry expertise. That combination is invaluable.",
+        "company": "European Retail Network",
+        "person": "Anna Fischer",
+        "role": "VP of Operations",
+        "image": "src/images/client2.webp"
+      },
+      {
+        "quote": "From product data management to logistics coordination, Primex handles it all with precision and speed.",
+        "company": "Modern Home Brands",
+        "person": "David Hoffmann",
+        "role": "Supply Chain Manager",
+        "image": "src/images/client2.webp"
+      }
     ]
   },
-  "hours": {
-    "title": "Working Hours",
-    "times": ["Monday - Friday:", "8:00 AM - 4:30 PM"]
+  "footer": {
+    "company": {
+      "name": "PrimEx",
+      "description": "Prime Team, Prime Solution. Delivering excellence in IT and business solutions since 1985."
+    },
+    "pages": {
+      "title": "Pages",
+      "links": [
+        {
+          "name": "Home",
+          "hash": "#top",
+          "external": false
+        },
+        {
+          "name": "About Us",
+          "hash": "#about",
+          "external": false
+        },
+        {
+          "name": "Services",
+          "hash": "#services",
+          "external": false
+        },
+        {
+          "name": "Our Partners",
+          "hash": "#partners",
+          "external": false
+        },
+        {
+          "name": "Contact Us",
+          "hash": "#contact",
+          "external": false
+        },
+        {
+          "name": "Terms and Conditions",
+          "url": "/terms",
+          "external": false
+        },
+        {
+          "name": "Certificates",
+          "url": "/certificate",
+          "external": false
+        }
+      ]
+    },
+    "hours": {
+      "title": "Working Hours",
+      "times": ["Monday - Friday:", "8:00 AM - 4:30 PM"]
+    },
+    "social": {
+      "title": "Follow Us On"
+    },
+    "contact": {
+      "title": "Contact Us",
+      "email": "E-mail: info@primexeu.com",
+      "phone": "Phone: +383 49 937 863",
+      "location": "7 Shtatori, Fushë Kosovë 12010"
+    },
+    "copyright": "All rights reserved."
   },
-  "social": { "title": "Follow Us On" },
-  "contact": {
-    "title": "Contact Us",
-    "email": "E-mail: info@primexeu.com",
-    "phone": "Phone: +383 49 937 863"
+  "forms": {
+    "join": {
+      "sectionLabel": "JOIN OUR TEAM",
+      "title": "Want to join us?",
+      "subtitle": "Become part of our growing team and build your future with us.",
+      "fields": {
+        "name": "Full name",
+        "email": "Email",
+        "phone": "Phone number",
+        "linkedin": "LinkedIn profile URL",
+        "country": "Select country",
+        "description": "Tell us a bit about yourself...",
+        "privacy": "I accept the Privacy Policy",
+        "cv": "Upload CV",
+        "cvPlaceholder": "No file chosen"
+      },
+      "actions": {
+        "chooseFile": "Choose file",
+        "removeFile": "Remove file"
+      },
+      "validation": {
+        "fileTooLarge": "File is too large (max 5MB)",
+        "fileType": "Unsupported file type (use PDF, DOC, DOCX)"
+      },
+      "submit": "Join us"
+    },
+    "business": {
+      "sectionLabel": "BUSINESS INQUIRY",
+      "title": "Let’s talk about business.",
+      "subtitle": "Tell us what you want to build. We help companies scale with modern digital solutions.",
+      "fields": {
+        "companyName": "Company name *",
+        "contactPerson": "Contact person *",
+        "email": "Email *",
+        "phone": "Phone number",
+        "businessType": "Business type *",
+        "website": "Company website",
+        "message": "Message *"
+      },
+      "submit": "Submit inquiry"
+    },
+    "validation": {
+      "acceptPrivacy": "Please accept the privacy policy before submitting."
+    }
   },
-  "copyright": "All rights reserved."
+  "termsPage": {
+    "pill": "Legal Framework",
+    "title": "Terms & Conditions",
+    "subtitle": "Please review the binding terms that govern the use of Primex products, services, and digital properties.",
+    "meta": {
+      "updated": "Last updated: 2025",
+      "jurisdiction": "Jurisdiction: European Union"
+    },
+    "loading": "Loading Terms and Conditions...",
+    "error": "Unable to load terms: {{message}}"
+  }
 }
-
-}
-
-
-

@@ -1,0 +1,28 @@
+{
+    "serviceDetails": {
+        "salesBookkeeping": {
+            "features": [
+                "Globales Vertriebsmanagement – Koordination von Groß- und Einzelhandel",
+                "Produktionsplanung – optimierte Fertigungsabläufe",
+                "Logistikkoordination – schlanke Supply-Chain-Prozesse",
+                "E-Commerce-Lösungen – B2B- und B2C-Plattformen",
+                "Präzise Buchhaltung – Transaktionsverbuchung und Reporting",
+                "Finanz-Compliance – Einhaltung von Rechnungslegungsstandards"
+            ],
+            "benefits": [
+                "Ganzheitliche Vertriebs- und Finanzsteuerung",
+                "Aussagekräftiges Finanzreporting und Analysen",
+                "Konformität mit internationalen Rechnungslegungsstandards",
+                "Optimierte Abläufe über alle Kanäle",
+                "Produktions- und Logistikoptimierung",
+                "Reibungslose Finanzprozesse"
+            ],
+            "useCases": [
+                "Möbelhersteller mit globalen Vertriebsstrukturen",
+                "Händler mit Bedarf an Buchhaltungsservices",
+                "E-Commerce-Unternehmen mit Finanzmanagement-Anforderungen",
+                "Unternehmen, die Produktion und Logistik koordinieren müssen"
+            ]
+        }
+    }
+}

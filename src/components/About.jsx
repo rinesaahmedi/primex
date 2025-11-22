@@ -1,73 +1,74 @@
-// src/components/About.jsx
-import React from 'react';
-import { useTranslation } from 'react-i18next';
+// src/components/About.jsx  (HOME VERSION – gradient cards with hover effect)
+import React from "react";
+import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
+import { useScrollAnimation } from "../utils/useScrollAnimation";
 
 const About = () => {
-    const { t } = useTranslation();
+  const { t } = useTranslation();
+  const points = t("about.whyPrimex.points", { returnObjects: true }) || [];
+  const [sectionRef, isVisible] = useScrollAnimation({ threshold: 0.1 });
 
-    // Helper to render lists from translation keys
-    const renderList = (key) => {
-        const items = t(key, { returnObjects: true });
-        if (!Array.isArray(items)) return null;
-        return items.map((item, index) => <li key={index}>{item}</li>);
-    };
+  // Light gradients for each card
+  const gradientClasses = [
+    "bg-gradient-to-br from-indigo-50 via-blue-50 to-slate-50",
+    "bg-gradient-to-br from-blue-50 via-sky-50 to-cyan-50",
+    "bg-gradient-to-br from-violet-50 via-indigo-50 to-blue-50",
+    "bg-gradient-to-br from-slate-50 via-indigo-50 to-purple-50",
+  ];
 
-    return (
-        <section id="about" className="py-20 bg-gray-50">
-            <div className="container mx-auto px-6">
-                {/* Main Title and Intro */}
-                <div className="text-center mb-16">
-                    <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">{t('about.mainTitle')}</h2>
-                    <p className="text-lg text-gray-600 max-w-3xl mx-auto">{t('about.intro')}</p>
-                </div>
+  return (
+    <section id="about" className="py-20 bg-white">
+      <div ref={sectionRef} className="container mx-auto px-6 max-w-6xl">
+        <div className="grid gap-12 lg:grid-cols-2 items-center">
+          {/* LEFT SIDE */}
+          <div
+            className={`animate-lift-blur-subtle ${isVisible ? "visible" : ""}`}
+          >
+            <p className="text-xs font-semibold tracking-[0.25em] uppercase text-blue-500 mb-3">
+              {t("aboutUs")}
+            </p>
 
-                {/* Grid Layout for Core Sections */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-                    {/* Who We Are & Expertise */}
-                    <div className="bg-white p-8 rounded-lg shadow-md">
-                        <h3 className="text-3xl font-bold text-gray-800 mb-4">{t('about.whoWeAre.title')}</h3>
-                        <p className="text-gray-700 mb-6">{t('about.whoWeAre.description')}</p>
-                        
-                        <h4 className="text-2xl font-semibold text-gray-800 mb-3">{t('about.expertise.title')}</h4>
-                        <ul className="list-disc pl-5 space-y-2 text-gray-700">
-                            {renderList('about.expertise.items')}
-                        </ul>
-                    </div>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">
+              {t("about.mainTitle")}
+            </h2>
 
-                    {/* From Manual to AI */}
-                    <div className="bg-white p-8 rounded-lg shadow-md">
-                        <h3 className="text-3xl font-bold text-gray-800 mb-4">{t('about.aiEvolution.title')}</h3>
-                        <p className="text-gray-700 mb-6">{t('about.aiEvolution.description')}</p>
-                        
-                        <div className="bg-blue-100 p-6 rounded-lg">
-                            <h4 className="text-2xl font-semibold text-blue-900 mb-3">{t('about.aiAgent.title')}</h4>
-                            <p className="text-blue-800 font-medium mb-4">{t('about.aiAgent.subtitle')}</p>
-                            <ul className="list-disc pl-5 space-y-2 text-blue-800">
-                                {renderList('about.aiAgent.features')}
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+            <p className="text-base md:text-lg text-gray-600 mb-8 max-w-xl">
+              {t("about.homeIntro")}
+            </p>
 
-                {/* Why PRIMEX Section */}
-                <div className="mt-16 bg-white p-8 rounded-lg shadow-md">
-                    <h3 className="text-3xl font-bold text-gray-800 text-center mb-6">{t('about.whyPrimex.title')}</h3>
-                    <ul className="grid grid-cols-2 md:grid-cols-3 gap-6 text-center">
-                        {t('about.whyPrimex.points', { returnObjects: true }).map((point, index) => (
-                            <li key={index} className="bg-gray-100 p-4 rounded-md font-semibold text-gray-700">{point}</li>
-                        ))}
-                    </ul>
-                </div>
+            <Link
+              to="/about"
+              className="inline-flex items-center justify-center px-7 py-3 rounded-full bg-blue-600 text-white font-semibold text-sm md:text-base hover:bg-blue-700 transition"
+            >
+              {t("about.ctaButton")}
+            </Link>
+          </div>
 
-                {/* Vision and Mission */}
-                <div className="text-center mt-16">
-                    <h3 className="text-3xl font-bold text-gray-800 mb-4">{t('about.visionMission.title')}</h3>
-                    <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-6">{t('about.visionMission.description')}</p>
-                    <p className="text-xl font-bold text-blue-600">{t('about.tagline')}</p>
-                </div>
-            </div>
-        </section>
-    );
+          {/* RIGHT SIDE — gradient hover cards */}
+          <div className="grid sm:grid-cols-2 gap-4">
+            {points.slice(0, 4).map((point, index) => (
+              <div
+                key={index}
+                className={`
+                  p-5 rounded-2xl border border-gray-200 shadow-sm 
+                  flex items-center transition-all duration-300 cursor-pointer
+                  hover:shadow-xl hover:-translate-y-1 hover:border-gray-300
+                  ${gradientClasses[index % gradientClasses.length]}
+                  animate-lift-blur-subtle ${isVisible ? "visible" : ""}
+                `}
+                style={{ transitionDelay: `${0.2 + index * 0.1}s` }}
+              >
+                <p className="font-semibold text-gray-900 text-sm md:text-base leading-snug">
+                  {point}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default About;
