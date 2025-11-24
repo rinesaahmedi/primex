@@ -55,7 +55,7 @@ const JoinBusinessSection = () => {
 
           {/* RIGHT SIDE */}
           <div
-            className={`space-y-6 max-w-md animate-lift-blur-subtle ${
+            className={`space-y-6 max-w-md animate-lift-blur-subtle  lg:pl-10 ${
               isVisible ? "visible" : ""
             }`}
             style={{ transitionDelay: "0.2s" }}
