@@ -243,46 +243,46 @@
   "forms": {
     "join": {
       "sectionLabel": "JOIN OUR TEAM",
-      "title": "Want to join us?",
-      "subtitle": "Become part of our growing team and build your future with us.",
+      "title": "Build Your Career With Us",
+      "subtitle": "We are always looking for talented individuals to join our growing team. Fill out the form below to apply.",
       "fields": {
-        "name": "Full name",
-        "email": "Email",
-        "phone": "Phone number",
-        "linkedin": "LinkedIn profile URL",
-        "country": "Select country",
-        "description": "Tell us a bit about yourself...",
-        "privacy": "I accept the Privacy Policy",
-        "cv": "Upload CV",
-        "cvPlaceholder": "No file chosen"
+        "name": "Full Name",
+        "email": "Email Address",
+        "phone": "Phone Number",
+        "linkedin": "LinkedIn Profile URL",
+        "country": "Select Country",
+        "description": "Tell us about yourself",
+        "cv": "Upload CV (pdf, doc, docx)",
+        "position": "Select Position",
+
+        "cvPlaceholder": "No file chosen",
+        "privacy": "I agree to the"
       },
       "actions": {
         "chooseFile": "Choose file",
-        "removeFile": "Remove file"
+        "removeFile": "Remove"
       },
-      "validation": {
-        "fileTooLarge": "File is too large (max 5MB)",
-        "fileType": "Unsupported file type (use PDF, DOC, DOCX)"
-      },
-      "submit": "Join us"
-    },
-    "business": {
-      "sectionLabel": "BUSINESS INQUIRY",
-      "title": "Let’s talk about business.",
-      "subtitle": "Tell us what you want to build. We help companies scale with modern digital solutions.",
-      "fields": {
-        "companyName": "Company name *",
-        "contactPerson": "Contact person *",
-        "email": "Email *",
-        "phone": "Phone number",
-        "businessType": "Business type *",
-        "website": "Company website",
-        "message": "Message *"
-      },
-      "submit": "Submit inquiry"
+      "submit": "Submit Application"
     },
     "validation": {
-      "acceptPrivacy": "Please accept the privacy policy before submitting."
+      "required": "This field is required",
+      "invalidEmail": "Please enter a valid email address",
+      "acceptPrivacy": "You must accept the privacy policy to continue"
+    },
+    "business": {
+      "sectionLabel": "PARTNER WITH US",
+      "title": "Let's Grow Your Business",
+      "subtitle": "Tell us about your needs, and let's discuss how PrimEx can help streamline your operations.",
+      "fields": {
+        "companyName": "Company Name",
+        "contactPerson": "Contact Person Name",
+        "email": "Business Email",
+        "phone": "Phone Number",
+        "businessType": "Interested Service / Topic",
+        "website": "Company Website (Optional)",
+        "message": "How can we help you?"
+      },
+      "submit": "Send Inquiry"
     }
   },
   "termsPage": {
