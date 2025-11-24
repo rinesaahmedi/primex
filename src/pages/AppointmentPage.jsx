@@ -1,7 +1,20 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import axios from "axios";
+
+// Simple Checkmark Icon Component
+const CheckIcon = ({ className }) => (
+  <svg
+    className={className}
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    strokeWidth={3}
+  >
+    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+  </svg>
+);
 
 const AppointmentPage = () => {
   const [date, setDate] = useState(new Date());
@@ -16,7 +29,7 @@ const AppointmentPage = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [businessType, setBusinessType] = useState("");
+  const [selectedTopics, setSelectedTopics] = useState([]);
   const [otherTopic, setOtherTopic] = useState("");
 
   const businessOptions = [
@@ -29,8 +42,14 @@ const AppointmentPage = () => {
     "Other",
   ];
 
-  // --- 1. REUSABLE FETCH FUNCTION ---
-  // We wrap this in useCallback or just define it here to be called by useEffect and handleBooking
+  const toggleTopic = (option) => {
+    setSelectedTopics((prev) =>
+      prev.includes(option)
+        ? prev.filter((t) => t !== option)
+        : [...prev, option]
+    );
+  };
+
   const fetchSlots = () => {
     const offset = date.getTimezoneOffset();
     const localDate = new Date(date.getTime() - offset * 60 * 1000);
@@ -49,8 +68,6 @@ const AppointmentPage = () => {
       );
   };
 
-  // --- 2. USE EFFECT TRIGGER ---
-  // Run fetchSlots whenever the date changes
   useEffect(() => {
     fetchSlots();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -76,13 +93,21 @@ const AppointmentPage = () => {
     const formattedDate = localDate.toISOString().split("T")[0];
     const tzOffset = new Date().getTimezoneOffset();
 
-    const finalTopic = businessType === "Other" ? otherTopic : businessType;
+    if (!selectedTopics || selectedTopics.length === 0) {
+      setIsBooking(false);
+      alert("Please select at least one topic");
+      return;
+    }
+
+    const finalTopics = selectedTopics.map((t) =>
+      t === "Other" ? otherTopic.trim() || "Other" : t
+    );
 
     const bookingData = {
       name,
       email,
       phone,
-      topic: finalTopic,
+      topic: finalTopics,
       date: formattedDate,
       time: selectedTime,
       tzOffset,
@@ -94,17 +119,14 @@ const AppointmentPage = () => {
         setIsBooking(false);
         alert(response.data.message);
 
-        // Reset Form
         setName("");
         setEmail("");
         setPhone("");
-        setBusinessType("");
+        setSelectedTopics([]);
         setOtherTopic("");
         setSelectedTime("");
         setShowForm(false);
 
-        // --- 3. RE-FETCH SLOTS HERE ---
-        // This updates the list immediately, removing the booked time
         fetchSlots();
       })
       .catch((error) => {
@@ -290,7 +312,7 @@ const AppointmentPage = () => {
                   </div>
                 </div>
 
-                <form onSubmit={handleBooking} className="space-y-3">
+                <form onSubmit={handleBooking} className="space-y-4">
                   <div>
                     <label className="block text-xs font-bold text-gray-700 mb-1 ml-1">
                       Full Name
@@ -302,7 +324,7 @@ const AppointmentPage = () => {
                       required
                       disabled={isBooking}
                       placeholder="e.g. John Doe"
-                      className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all font-medium text-sm placeholder-gray-400 disabled:opacity-60 disabled:cursor-not-allowed"
+                      className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all font-medium text-sm placeholder-gray-400 disabled:opacity-60 disabled:cursor-not-allowed"
                     />
                   </div>
 
@@ -318,7 +340,7 @@ const AppointmentPage = () => {
                         required
                         disabled={isBooking}
                         placeholder="john@company.com"
-                        className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all font-medium text-sm placeholder-gray-400 disabled:opacity-60 disabled:cursor-not-allowed"
+                        className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all font-medium text-sm placeholder-gray-400 disabled:opacity-60 disabled:cursor-not-allowed"
                       />
                     </div>
                     <div>
@@ -332,66 +354,102 @@ const AppointmentPage = () => {
                         required
                         disabled={isBooking}
                         placeholder="+1 234 567 890"
-                        className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all font-medium text-sm placeholder-gray-400 disabled:opacity-60 disabled:cursor-not-allowed"
+                        className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all font-medium text-sm placeholder-gray-400 disabled:opacity-60 disabled:cursor-not-allowed"
                       />
                     </div>
                   </div>
 
+                  {/* --- MODIFIED DESIGN: Cards with Smaller Text --- */}
                   <div>
-                    <label className="block text-xs font-bold text-gray-700 mb-1 ml-1">
+                    <label className="block text-xs font-bold text-gray-700 mb-2 ml-1">
                       Business Type / Topic
                     </label>
-                    <div className="relative">
-                      <select
-                        value={businessType}
-                        onChange={(e) => setBusinessType(e.target.value)}
-                        required
-                        disabled={isBooking}
-                        className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all appearance-none text-gray-700 font-medium text-sm disabled:opacity-60 disabled:cursor-not-allowed"
-                      >
-                        <option value="" disabled>
-                          Select a topic...
-                        </option>
-                        {businessOptions.map((option) => (
-                          <option key={option} value={option}>
-                            {option}
-                          </option>
-                        ))}
-                      </select>
-                      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500">
-                        <svg
-                          className="h-4 w-4 fill-current"
-                          viewBox="0 0 20 20"
-                        >
-                          <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
-                        </svg>
-                      </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                      {businessOptions.map((option) => {
+                        const isSelected = selectedTopics.includes(option);
+                        return (
+                          <label
+                            key={option}
+                            className={`
+                              relative flex items-center p-3 rounded-xl border-2 cursor-pointer transition-all duration-200 ease-in-out group select-none
+                              ${
+                                isBooking
+                                  ? "opacity-50 cursor-not-allowed"
+                                  : "hover:shadow-sm"
+                              }
+                              ${
+                                isSelected
+                                  ? "border-blue-500 bg-blue-50/50 shadow-sm"
+                                  : "border-gray-100 bg-white hover:border-blue-200"
+                              }
+                            `}
+                          >
+                            <input
+                              type="checkbox"
+                              disabled={isBooking}
+                              checked={isSelected}
+                              onChange={() => toggleTopic(option)}
+                              className="sr-only"
+                            />
+
+                            {/* Checkbox Circle (Slightly smaller to match text) */}
+                            <div
+                              className={`
+                                w-4 h-4 rounded-full border flex items-center justify-center mr-2.5 flex-shrink-0 transition-all duration-200
+                                ${
+                                  isSelected
+                                    ? "bg-blue-500 border-blue-500"
+                                    : "border-gray-300 group-hover:border-blue-400 bg-white"
+                                }
+                              `}
+                            >
+                              {isSelected && (
+                                <CheckIcon className="w-2.5 h-2.5 text-white" />
+                              )}
+                            </div>
+
+                            {/* TEXT IS NOW SMALLER (text-xs) */}
+                            <span
+                              className={`font-medium text-xs leading-snug transition-colors ${
+                                isSelected ? "text-blue-900" : "text-gray-600"
+                              }`}
+                            >
+                              {option}
+                            </span>
+                          </label>
+                        );
+                      })}
                     </div>
                   </div>
 
-                  {businessType === "Other" && (
-                    <div className="animate-fade-in-down">
-                      <label className="block text-xs font-bold text-gray-700 mb-1 ml-1">
-                        Please specify the topic
-                      </label>
-                      <input
-                        type="text"
-                        value={otherTopic}
-                        onChange={(e) => setOtherTopic(e.target.value)}
-                        required
-                        disabled={isBooking}
-                        placeholder="What would you like to discuss?"
-                        className="w-full px-4 py-2.5 bg-white border border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all shadow-sm font-medium text-sm disabled:opacity-60 disabled:cursor-not-allowed"
-                      />
-                    </div>
-                  )}
+                  {/* "Other" Input */}
+                  <div
+                    className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                      selectedTopics.includes("Other")
+                        ? "max-h-24 opacity-100 mt-2"
+                        : "max-h-0 opacity-0 mt-0"
+                    }`}
+                  >
+                    <label className="block text-xs font-bold text-gray-700 mb-1 ml-1">
+                      Please specify the topic
+                    </label>
+                    <input
+                      type="text"
+                      value={otherTopic}
+                      onChange={(e) => setOtherTopic(e.target.value)}
+                      required={selectedTopics.includes("Other")}
+                      disabled={isBooking}
+                      placeholder="What would you like to discuss?"
+                      className="w-full px-4 py-2.5 bg-white border border-blue-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all shadow-sm font-medium text-sm disabled:opacity-60"
+                    />
+                  </div>
 
                   {/* SUBMIT BUTTON */}
                   <button
                     type="submit"
                     disabled={isBooking}
                     className={`
-                        w-full mt-4 text-white font-bold py-3.5 rounded-xl shadow-lg transition-all duration-300 transform uppercase tracking-wide text-xs flex items-center justify-center
+                        w-full mt-6 text-white font-bold py-3.5 rounded-xl shadow-lg transition-all duration-300 transform uppercase tracking-wide text-xs flex items-center justify-center
                         ${
                           isBooking
                             ? "bg-blue-400 cursor-not-allowed"
