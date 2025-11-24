@@ -1,29 +1,36 @@
 import React, { useState, useEffect } from "react";
 import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css";
+import "react-calendar/dist/Calendar.css"; 
 import axios from "axios";
 
 const AppointmentPage = () => {
   const [date, setDate] = useState(new Date());
   const [availableSlots, setAvailableSlots] = useState([]);
   const [selectedTime, setSelectedTime] = useState("");
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
   const [showForm, setShowForm] = useState(false);
 
-  // Fetch available slots from the backend
+  // Form States
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [businessType, setBusinessType] = useState("");
+  const [otherTopic, setOtherTopic] = useState("");
+
+  const businessOptions = [
+    "Order Management & Logistics",
+    "Customer Support",
+    "Product & Content Management",
+    "Design & Creative Services",
+    "Technology & Development",
+    "AI Solutions",
+    "Other",
+  ];
+
   useEffect(() => {
-    // 1. Format Date as YYYY-MM-DD (Local time, not UTC)
-    // We use this trick to ensure we get the date selected by the user visually
     const offset = date.getTimezoneOffset();
     const localDate = new Date(date.getTime() - offset * 60 * 1000);
     const formattedDate = localDate.toISOString().split("T")[0];
-
-    // 2. Send the Timezone Offset (in minutes)
-    // This tells the server how to adjust the "9:00 AM" to match the user's clock
     const tzOffset = new Date().getTimezoneOffset();
-
-    console.log(`Fetching slots for: ${formattedDate} with offset ${tzOffset}`);
 
     axios
       .get(
@@ -40,7 +47,7 @@ const AppointmentPage = () => {
   const handleDateChange = (newDate) => {
     setDate(newDate);
     setShowForm(false);
-    setSelectedTime(""); // Reset time when date changes
+    setSelectedTime("");
   };
 
   const handleTimeSelection = (time) => {
@@ -50,15 +57,18 @@ const AppointmentPage = () => {
 
   const handleBooking = (e) => {
     e.preventDefault();
-    // Convert selected date to YYYY-MM-DD in client local date (same format used for slot queries)
     const offset = date.getTimezoneOffset();
     const localDate = new Date(date.getTime() - offset * 60 * 1000);
     const formattedDate = localDate.toISOString().split("T")[0];
     const tzOffset = new Date().getTimezoneOffset();
 
+    const finalTopic = businessType === "Other" ? otherTopic : businessType;
+
     const bookingData = {
       name,
       email,
+      phone,
+      topic: finalTopic,
       date: formattedDate,
       time: selectedTime,
       tzOffset,
@@ -70,6 +80,9 @@ const AppointmentPage = () => {
         alert(response.data.message);
         setName("");
         setEmail("");
+        setPhone("");
+        setBusinessType("");
+        setOtherTopic("");
         setSelectedTime("");
         setShowForm(false);
       })
@@ -79,101 +92,258 @@ const AppointmentPage = () => {
   };
 
   return (
-    <div className="container mx-auto p-6 mt-16 max-w-4xl">
-      <h2 className="text-2xl font-semibold mb-4 text-center text-gray-800">
-        Select an Appointment Time
-      </h2>
+    <>
+      <style>{`
+        .react-calendar {
+          border: none !important;
+          width: 100% !important;
+          background: transparent !important;
+          font-family: inherit;
+        }
+        .react-calendar__navigation {
+          margin-bottom: 15px;
+        }
+        .react-calendar__navigation button {
+          min-width: 44px;
+          background: none;
+          font-size: 1.1rem;
+          font-family: serif;
+          font-weight: 700;
+          color: #1e3a8a;
+        }
+        .react-calendar__navigation button:enabled:hover,
+        .react-calendar__navigation button:enabled:focus {
+          background-color: #eff6ff;
+          border-radius: 8px;
+        }
+        .react-calendar__month-view__weekdays {
+          text-transform: uppercase;
+          font-weight: 700;
+          font-size: 0.7rem;
+          color: #9ca3af;
+          text-decoration: none !important;
+          margin-bottom: 10px;
+        }
+        .react-calendar__month-view__weekdays__weekday abbr {
+          text-decoration: none !important;
+          border: none !important;
+          cursor: default;
+        }
+        .react-calendar__tile {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 40px; /* Slightly smaller to save space */
+          width: 40px;
+          padding: 0;
+          color: #4b5563;
+          font-weight: 600;
+          border-radius: 50%;
+          transition: all 0.2s;
+        }
+        .react-calendar__tile:enabled:hover,
+        .react-calendar__tile:enabled:focus {
+          background-color: #eff6ff;
+          color: #2563eb;
+        }
+        .react-calendar__tile--now {
+          background: transparent !important;
+          border: 1px solid #2563eb;
+          color: #2563eb !important;
+        }
+        .react-calendar__tile--active {
+          background: #2563eb !important;
+          color: white !important;
+          box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.4);
+        }
+      `}</style>
 
-      <div className="flex flex-col md:flex-row justify-between gap-8">
-        {/* Calendar Display */}
-        <div className="w-full md:w-1/2">
-          <Calendar
-            onChange={handleDateChange}
-            value={date}
-            // Disable weekends (optional)
-            tileDisabled={({ date }) =>
-              date.getDay() === 0 || date.getDay() === 6
-            }
-          />
-        </div>
-
-        {/* Time Slot Selection */}
-        <div className="w-full md:w-1/2">
-          <h3 className="text-xl font-semibold mb-4 text-center md:text-left">
-            Available Time Slots
-          </h3>
-
-          {availableSlots.length === 0 ? (
-            <div className="p-4 bg-gray-100 text-gray-500 rounded-lg text-center">
-              No available slots for this date.
+      {/* 
+          1. FIX: Changed py-12 to 'pt-32 pb-12'. 
+          This adds large top padding to clear the header.
+      */}
+      <div className="min-h-screen bg-gray-50 flex flex-col items-center pt-32 pb-12 px-4 sm:px-6 lg:px-8 font-sans text-gray-800">
+        
+        {/* Main Card Container */}
+        <div className="w-full max-w-6xl bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100 flex flex-col md:flex-row min-h-[500px]">
+          
+          {/* LEFT PANEL: CALENDAR */}
+          <div className="w-full md:w-5/12 bg-slate-50 p-6 md:p-8 border-b md:border-b-0 md:border-r border-gray-100 flex flex-col items-center">
+            <div className="w-full max-w-[340px]">
+              <h2 className="text-2xl font-serif font-bold text-blue-900 mb-1">
+                Select Date
+              </h2>
+              <p className="text-gray-500 text-sm mb-6 font-medium">
+                Choose a day to see available slots.
+              </p>
+              
+              <Calendar
+                onChange={handleDateChange}
+                value={date}
+                prev2Label={null}
+                next2Label={null}
+                tileDisabled={({ date }) =>
+                  date.getDay() === 0 || date.getDay() === 6
+                }
+              />
             </div>
-          ) : (
-            <div className="grid grid-cols-3 gap-3">
-              {availableSlots.map((slot) => (
-                <button
-                  key={slot}
-                  onClick={() => handleTimeSelection(slot)}
-                  className={`px-4 py-2 rounded-lg transition-colors ${
-                    selectedTime === slot
-                      ? "bg-blue-700 text-white shadow-md"
-                      : "bg-blue-500 text-white hover:bg-blue-600"
-                  }`}
-                >
-                  {slot}
-                </button>
-              ))}
-            </div>
-          )}
+          </div>
+
+          {/* RIGHT PANEL: SLOTS & FORM */}
+          <div className="w-full md:w-7/12 p-6 md:p-10 bg-white">
+              
+              {!showForm ? (
+                <div className="animate-fade-in">
+                  <h3 className="text-xl font-serif font-bold text-blue-900 mb-5 flex items-center gap-3">
+                    Available Times
+                    <span className="text-xs font-sans font-normal text-gray-500 bg-gray-100 px-2 py-1 rounded-full border border-gray-200">
+                      {date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                    </span>
+                  </h3>
+
+                  {availableSlots.length === 0 ? (
+                    <div className="flex flex-col items-center justify-center h-56 text-gray-400 border-2 border-dashed border-gray-100 rounded-2xl bg-gray-50">
+                      <p className="font-medium">No slots available for this date.</p>
+                    </div>
+                  ) : (
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                      {availableSlots.map((slot) => (
+                        <button
+                          key={slot}
+                          onClick={() => handleTimeSelection(slot)}
+                          className={`
+                            py-2.5 px-3 rounded-xl text-sm font-bold transition-all duration-200 border
+                            ${selectedTime === slot
+                              ? "bg-blue-600 text-white border-blue-600 shadow-lg scale-105"
+                              : "bg-white text-gray-700 border-gray-200 hover:border-blue-500 hover:text-blue-600 hover:shadow-md"
+                            }
+                          `}
+                        >
+                          {slot}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                // 2. FIX: COMPACT BOOKING FORM (Less Scrolling)
+                <div className="animate-fade-in-up max-w-lg mx-auto md:mx-0">
+                  <div className="flex justify-between items-center mb-4">
+                      <h3 className="text-xl font-serif font-bold text-blue-900">
+                      Confirm Booking
+                      </h3>
+                      <button 
+                        onClick={() => setShowForm(false)}
+                        className="text-xs font-semibold text-gray-400 hover:text-blue-600 transition-colors underline decoration-2 decoration-transparent hover:decoration-blue-600 underline-offset-4"
+                      >
+                        Change Time
+                      </button>
+                  </div>
+
+                  {/* Summary Card - Made Slimmer (py-3) */}
+                  <div className="bg-blue-50/50 border border-blue-100 px-4 py-3 rounded-xl mb-5 flex items-center justify-between shadow-sm">
+                      <div>
+                        <p className="text-[10px] text-blue-400 uppercase tracking-widest font-bold">Date</p>
+                        <p className="text-blue-900 font-bold font-serif text-base">{date.toLocaleDateString()}</p>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-[10px] text-blue-400 uppercase tracking-widest font-bold">Time</p>
+                        <p className="text-blue-900 font-bold font-serif text-base">{selectedTime}</p>
+                      </div>
+                  </div>
+
+                  {/* Tighter Spacing (space-y-3 instead of space-y-5) */}
+                  <form onSubmit={handleBooking} className="space-y-3">
+                    
+                    <div>
+                      <label className="block text-xs font-bold text-gray-700 mb-1 ml-1">Full Name</label>
+                      {/* Smaller Input (py-2.5 instead of py-3.5) */}
+                      <input
+                        type="text"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                        placeholder="e.g. John Doe"
+                        className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all font-medium text-sm placeholder-gray-400"
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <div>
+                        <label className="block text-xs font-bold text-gray-700 mb-1 ml-1">Email Address</label>
+                        <input
+                          type="email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          required
+                          placeholder="john@company.com"
+                          className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all font-medium text-sm placeholder-gray-400"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-bold text-gray-700 mb-1 ml-1">Phone Number</label>
+                        <input
+                          type="tel"
+                          value={phone}
+                          onChange={(e) => setPhone(e.target.value)}
+                          required
+                          placeholder="+1 234 567 890"
+                          className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all font-medium text-sm placeholder-gray-400"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold text-gray-700 mb-1 ml-1">Business Type / Topic</label>
+                      <div className="relative">
+                          <select
+                          value={businessType}
+                          onChange={(e) => setBusinessType(e.target.value)}
+                          required
+                          className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all appearance-none text-gray-700 font-medium text-sm"
+                          >
+                          <option value="" disabled>Select a topic...</option>
+                          {businessOptions.map((option) => (
+                              <option key={option} value={option}>
+                              {option}
+                              </option>
+                          ))}
+                          </select>
+                          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500">
+                              <svg className="h-4 w-4 fill-current" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+                          </div>
+                      </div>
+                    </div>
+
+                    {businessType === "Other" && (
+                      <div className="animate-fade-in-down">
+                        <label className="block text-xs font-bold text-gray-700 mb-1 ml-1">
+                          Please specify the topic
+                        </label>
+                        <input
+                          type="text"
+                          value={otherTopic}
+                          onChange={(e) => setOtherTopic(e.target.value)}
+                          required
+                          placeholder="What would you like to discuss?"
+                          className="w-full px-4 py-2.5 bg-white border border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all shadow-sm font-medium text-sm"
+                        />
+                      </div>
+                    )}
+
+                    <button
+                      type="submit"
+                      className="w-full mt-4 bg-gradient-to-r from-blue-600 to-blue-500 text-white font-bold py-3.5 rounded-xl shadow-lg hover:shadow-xl hover:from-blue-700 hover:to-blue-600 transition-all duration-300 transform hover:-translate-y-0.5 uppercase tracking-wide text-xs"
+                    >
+                      Confirm Appointment
+                    </button>
+                  </form>
+                </div>
+              )}
+          </div>
         </div>
       </div>
-
-      {/* Booking Form */}
-      {showForm && (
-        <form
-          onSubmit={handleBooking}
-          className="mt-8 bg-gray-50 p-6 rounded-xl shadow-inner border border-gray-200"
-        >
-          <h3 className="text-lg font-bold mb-4 text-gray-700">
-            Confirm Booking for {selectedTime}
-          </h3>
-
-          <div className="mb-4">
-            <label htmlFor="name" className="block text-gray-700 mb-1">
-              Your Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-              className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 outline-none"
-            />
-          </div>
-
-          <div className="mb-4">
-            <label htmlFor="email" className="block text-gray-700 mb-1">
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 outline-none"
-            />
-          </div>
-
-          <button
-            type="submit"
-            className="w-full bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-green-700 transition duration-300 font-semibold"
-          >
-            Confirm Appointment
-          </button>
-        </form>
-      )}
-    </div>
+    </>
   );
 };
 
