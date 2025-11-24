@@ -137,7 +137,9 @@
     "businessLabel": "BUSINESS INQUIRY",
     "businessTitle": "Let’s talk about business.",
     "businessDescription": "Tell us what you want to build. We help companies scale with modern digital solutions.",
-    "businessButton": "Let’s Talk"
+    "businessButton": "Let’s Talk",
+
+    "appointmentButton": "Book Appointment"
   },
   "partners": {
     "testimonials": [
