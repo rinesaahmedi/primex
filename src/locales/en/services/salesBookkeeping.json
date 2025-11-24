@@ -1,28 +1,43 @@
 {
-    "serviceDetails": {
-        "salesBookkeeping": {
-            "features": [
-                "Global sales management — Wholesale and retail coordination",
-                "Production planning — Optimize manufacturing schedules",
-                "Logistics coordination — Streamlined supply chain management",
-                "E-commerce solutions — B2B and B2C platforms",
-                "Accurate bookkeeping — Transaction recording and reporting",
-                "Financial compliance — Accounting standards adherence"
-            ],
-            "benefits": [
-                "Comprehensive sales and financial management",
-                "Accurate financial reporting and analysis",
-                "Compliance with international accounting standards",
-                "Streamlined operations across channels",
-                "Production and logistics optimization",
-                "Smooth financial operations"
-            ],
-            "useCases": [
-                "Furniture manufacturers managing global sales",
-                "Retailers needing bookkeeping services",
-                "E-commerce businesses requiring financial management",
-                "Companies seeking production and logistics coordination"
-            ]
+  "services": {
+    "operations": {
+      "title": "Operational Services",
+      "description": "Streamline your backend operations for maximum efficiency. We take the weight of day-to-day administration off your shoulders, allowing you to focus on strategy and growth while ensuring your business runs precisely without interruption.",
+      "cards": {
+        "processing": {
+          "title": "Order Processing",
+          "description": "Fast, error-free handling of incoming orders. We reduce processing time to ensure your customers receive the right products on schedule."
+        },
+        "logistics": {
+          "title": "Logistics & Dropshipping",
+          "description": "Complete supply chain management leveraging partners like Hermes, Anton Röhr, Rhenus, and DHL for smooth delivery."
+        },
+        "bookkeeping": {
+          "title": "Bookkeeping & Compliance",
+          "description": "Maintain financial clarity. We manage records with transparency, ensuring your books are up-to-date and audit-ready."
+        },
+        "strategy": {
+          "title": "Strategic Growth",
+          "description": "By outsourcing operational weight, you gain the freedom to focus purely on business expansion and market strategy."
         }
+      },
+      "benefits": {
+        "title": "Key Benefits",
+        "list": [
+          "Elimination of manual order errors",
+          "Seamless warehouse-to-doorstep delivery",
+          "Audit-ready financial transparency",
+          "Access to top-tier logistics partnerships",
+          "Reduced administrative overhead",
+          "Focus regained on high-level strategy"
+        ]
+      },
+      "cta": {
+        "title": "Ready to streamline your operations?",
+        "subtitle": "Let us handle the administration so you can handle the growth.",
+        "button_touch": "Get in Touch",
+        "button_contact": "Contact Us"
+      }
     }
+  }
 }
