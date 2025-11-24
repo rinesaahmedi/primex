@@ -85,12 +85,9 @@ function calculateSlots(year, month, day, offsetMinutes, events) {
   // Specific Start Times
   const definedTimes = [
     { h: 8, m: 0 },
-    { h: 9, m: 0 },
     { h: 10, m: 0 },
-    { h: 11, m: 0 },
-    { h: 13, m: 15 },
-    { h: 14, m: 15 },
-    { h: 15, m: 15 },
+    { h: 14, m: 0 },
+    
   ];
 
   const duration = 60;
