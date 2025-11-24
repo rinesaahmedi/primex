@@ -19,7 +19,7 @@ const keyFile = path.join(__dirname, "../keys/calendar-key.json");
 // Create a JWT client using the service account credentials
 const auth = new google.auth.GoogleAuth({
   keyFile,
-  scopes: ["https://www.googleapis.com/auth/calendar.readonly"],
+  scopes: ["https://www.googleapis.com/auth/calendar"],
 });
 
 // --- CALENDAR SETUP ---
@@ -149,16 +149,53 @@ function calculateSlots(year, month, day, offsetMinutes, events) {
 
 // --- OTHER API ENDPOINTS ---
 
-// Booking Endpoint
+// Booking Endpoint (creates a Google Calendar event)
 const bookings = [];
-app.post("/api/book-appointment", (req, res) => {
-  const { name, email, date, time } = req.body || {};
-  if (!name || !email || !date || !time) {
-    return res.status(400).json({ message: "Missing fields" });
+app.post("/api/book-appointment", async (req, res) => {
+  try {
+    const { name, email, date, time, tzOffset } = req.body;
+    console.log("Processing booking for:", { name, date, time });
+
+    // 1. Parse Date and Time
+    const [year, month, day] = date.split("-").map(Number);
+    const [hour, minute] = time.split(":").map(Number);
+    const offsetMinutes = parseInt(tzOffset) || 0;
+
+    // 2. Calculate UTC Time
+    // Create date at user's local time, then adjust by offset to get UTC
+    const slotStartMs = Date.UTC(year, month - 1, day, hour, minute, 0) + (offsetMinutes * 60 * 1000);
+    const slotEndMs = slotStartMs + (60 * 60 * 1000); // 1 Hour Duration
+
+    const startIso = new Date(slotStartMs).toISOString();
+    const endIso = new Date(slotEndMs).toISOString();
+
+    // 3. Use Correct Calendar ID
+    // REPLACE THIS WITH YOUR REAL ID
+    const calendarId = "PASTE_YOUR_COPIED_ID_HERE"; 
+
+    const calendar = await getCalendarClient();
+
+    // 4. Insert Event
+    const insertRes = await calendar.events.insert({
+      calendarId,
+      resource: {
+        summary: `Appointment: ${name}`,
+        description: `Email: ${email}`,
+        start: { dateTime: startIso },
+        end: { dateTime: endIso },
+        attendees: [{ email }], // Invites the user
+      },
+    });
+
+    console.log("Success! Event ID:", insertRes.data.id);
+    res.json({ message: "Booking successful!", eventId: insertRes.data.id });
+
+  } catch (error) {
+    // LOG THE REAL ERROR TO TERMINAL
+    console.error("BOOKING FAILED:");
+    console.error(error.response ? error.response.data : error.message);
+    res.status(500).json({ message: "Server Error: Check terminal for details." });
   }
-  bookings.push({ name, email, date, time, createdAt: new Date() });
-  console.log("New Booking:", { name, date, time });
-  res.json({ message: "Booking confirmed" });
 });
 
 // Debug Token Endpoint

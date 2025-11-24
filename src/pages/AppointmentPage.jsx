@@ -50,11 +50,18 @@ const AppointmentPage = () => {
 
   const handleBooking = (e) => {
     e.preventDefault();
+    // Convert selected date to YYYY-MM-DD in client local date (same format used for slot queries)
+    const offset = date.getTimezoneOffset();
+    const localDate = new Date(date.getTime() - offset * 60 * 1000);
+    const formattedDate = localDate.toISOString().split("T")[0];
+    const tzOffset = new Date().getTimezoneOffset();
+
     const bookingData = {
       name,
       email,
-      date: date.toISOString(),
+      date: formattedDate,
       time: selectedTime,
+      tzOffset,
     };
 
     axios
