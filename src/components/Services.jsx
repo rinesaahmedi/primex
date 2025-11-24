@@ -2,7 +2,15 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { ArrowRight, Cpu, Laptop, Palette, ClipboardList, BarChart3, ShoppingBag } from "lucide-react";
+import {
+  ArrowRight,
+  Cpu,
+  BarChart3,
+  Headset,
+  ShoppingBag,
+  Palette,
+  Code,
+} from "lucide-react";
 import { useScrollAnimation } from "../utils/useScrollAnimation";
 
 export default function Services() {
@@ -10,8 +18,14 @@ export default function Services() {
   const services = t("services.items", { returnObjects: true }) || [];
   const [sectionRef, isVisible] = useScrollAnimation({ threshold: 0.1 });
 
-  const serviceIcons = [Cpu, Laptop, Palette, ClipboardList, BarChart3, ShoppingBag];
-
+  const serviceIcons = [
+    Cpu, // 1. AI Automation (Processing/Intelligence)
+    BarChart3, // 2. Operational Services (Sales/Finance metrics)
+    Headset, // 3. Customer Support (The standard symbol for support)
+    ShoppingBag, // 4. E-commerce (Retail/Products)
+    Palette, // 5. Design (Creativity/Color)
+    Code, // 6. IT Development (Coding/Engineering)
+  ];
   // Map service titles to slugs (matching the order in translation.json)
   // 1. AI Automation & Virtual Assistants
   // 2. Operational Services
@@ -20,12 +34,12 @@ export default function Services() {
   // 5. Design & 3D Visualization
   // 6. IT Development & Technical Consulting
   const serviceSlugs = [
-    "ai-agents",              // 1. AI Automation & Virtual Assistants
-    "sales-bookkeeping",      // 2. Operational Services
+    "ai-agents", // 1. AI Automation & Virtual Assistants
+    "sales-bookkeeping", // 2. Operational Services
     "assistant-administrator", // 3. Customer Support
-    "e-commerce",             // 4. E-commerce & Product Data
-    "graphic-designer",       // 5. Design & 3D Visualization
-    "software-developer",     // 6. IT Development & Technical Consulting
+    "e-commerce", // 4. E-commerce & Product Data
+    "graphic-designer", // 5. Design & 3D Visualization
+    "software-developer", // 6. IT Development & Technical Consulting
   ];
 
   return (
@@ -38,7 +52,11 @@ export default function Services() {
 
       <div ref={sectionRef} className="relative max-w-6xl mx-auto px-6">
         {/* Header */}
-        <div className={`text-center mb-14 animate-lift-blur-subtle ${isVisible ? 'visible' : ''}`}>
+        <div
+          className={`text-center mb-14 animate-lift-blur-subtle ${
+            isVisible ? "visible" : ""
+          }`}
+        >
           <h2 className="text-4xl md:text-5xl font-bold text-black">
             {t("services.mainTitle")}
           </h2>
@@ -60,7 +78,9 @@ export default function Services() {
                          rounded-2xl bg-white border border-slate-100 shadow-sm
                          hover:-translate-y-1 hover:shadow-lg hover:border-slate-200
                          focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2378FF]
-                         transition-all duration-300 animate-lift-blur-subtle ${isVisible ? 'visible' : ''}`}
+                         transition-all duration-300 animate-lift-blur-subtle ${
+                           isVisible ? "visible" : ""
+                         }`}
                 style={{ transitionDelay: `${0.2 + index * 0.1}s` }}
               >
                 {/* Icon slot - top left, popping out */}

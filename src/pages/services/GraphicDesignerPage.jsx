@@ -51,7 +51,9 @@ const GraphicDesignerPage = () => {
           className="inline-flex items-center gap-2 text-[#2378FF] hover:text-[#1f5fcc] mb-8 transition-colors"
         >
           <ArrowLeft className="w-5 h-5" />
-          <span className="font-medium">{t("services.backTo", "Back to Services")}</span>
+          <span className="font-medium">
+            {t("services.backTo", "Back to Services")}
+          </span>
         </Link>
 
         <div
@@ -179,9 +181,7 @@ const GraphicDesignerPage = () => {
               </h3>
             )}
             {cta.body && (
-              <p className="text-white/90 mb-8 text-lg">
-                {cta.body}
-              </p>
+              <p className="text-white/90 mb-8 text-lg">{cta.body}</p>
             )}
             <div className="flex flex-wrap gap-4">
               {cta.primary && (
@@ -190,14 +190,6 @@ const GraphicDesignerPage = () => {
                   className="inline-flex items-center justify-center px-8 py-3 bg-white text-[#2378FF] font-semibold rounded-xl hover:bg-white/90 transition-all shadow-lg hover:shadow-xl"
                 >
                   {cta.primary}
-                </Link>
-              )}
-              {cta.secondary && (
-                <Link
-                  to="/#contact"
-                  className="inline-flex items-center justify-center px-8 py-3 border-2 border-white text-white font-semibold rounded-xl hover:bg-white hover:text-[#2378FF] transition-all"
-                >
-                  {cta.secondary}
                 </Link>
               )}
             </div>
@@ -209,4 +201,3 @@ const GraphicDesignerPage = () => {
 };
 
 export default GraphicDesignerPage;
-

@@ -31,6 +31,7 @@
       "badge": "AI Agent for Order Confirmation Checking",
       "title": "Turn Every Order Confirmation into a Guaranteed Agreement",
       "subtitle": "Prices, quantities, delivery dates – your AI Agent checks every line of every confirmation and compares it with the original order. No more silent errors, no more hidden losses, no more surprises for your customers.",
+      "short": "Automatically checks every order confirmation (PDF, email, portal) against the original order, catching price, quantity and date deviations before they impact margin.",
 
       "metrics": {
         "processingTime": {
@@ -98,6 +99,99 @@
         "cta": {
           "title": "Turn order confirmations into a strategic advantage",
           "description": "When every confirmation is checked automatically, you gain more profit, more planning security, more customer satisfaction, and far less stress across your organization."
+        }
+      }
+    },
+    "agent2": {
+      "badge": "Product Data Management AI Agent",
+      "title": "Transform Chaos into Compliance. Turn Spreadsheets into Sales.",
+      "subtitle": "Liberate your team from Excel Hell. This AI Agent enforces marketplace rules, fixes data errors, and optimizes listings for platforms like Otto and Home24.",
+      "short": "Enforces marketplace rules and fixes product data at scale — titles, materials, dimensions and image checks so listings are accepted on the first upload.",
+
+      "metrics": {
+        "processingTime": {
+          "value": "Instant validation",
+          "label": "Time to validate a listing"
+        },
+        "efficiency": {
+          "value": "100% rule coverage",
+          "label": "Every row checked automatically"
+        },
+        "accuracy": {
+          "value": "Fewer rejections",
+          "label": "Compliance and format accuracy"
+        }
+      },
+
+      "capabilities": {
+        "title": "What This Agent Does For You",
+        "items": [
+          "Flawless Naming Conventions: Enforces 'Product Type + Name + Variation' and a 40-character limit while removing banned promo words and unwanted brand mentions.",
+          "Material & Color Accuracy: Lists base materials first, appends 'Dekor' for wood decor colors, and identifies glossy finishes correctly.",
+          "Optimized Bullet Points: Generates a strict 5-bullet structure covering dimensions, versatility, materials, features, and care/assembly.",
+          "Technical & Visual Compliance: Detects low-resolution sketches, enforces measurement formatting (W × H × D cm), and validates image and file rules.",
+          "Variation Management: Groups parent and child items correctly and prevents prices or stock from being placed on the parent listing."
+        ]
+      },
+
+      "fivePointExample": {
+        "title": "The 5-Point Description Structure",
+        "points": [
+          "Dimensions & storage space (W × H × D cm)",
+          "Versatility & organization (primary use cases)",
+          "Material specifications (MDF, Solid Wood, Veneer)",
+          "Key features (soft close, metal frames, handles)",
+          "Care instructions & assembly details"
+        ]
+      },
+
+      "learning": {
+        "title": "A Learning Machine",
+        "items": [
+          "1,000+ marketplace updates processed",
+          "1,000+ webinars & trainings analyzed",
+          "1,000+ resources integrated"
+        ]
+      },
+
+      "useCases": {
+        "title": "Where the Product Data Management Agent Helps",
+        "cards": [
+          {
+            "title": "Stop Excel Hell and rejected uploads",
+            "body": "Automatically detect forbidden words, format issues, and validation errors before you upload — saving time and avoiding rejections."
+          },
+          {
+            "title": "Get to market faster",
+            "body": "Accelerate listing creation by applying marketplace rules automatically and ensuring every listing is ready for upload on first try."
+          }
+        ]
+      },
+
+      "cta": {
+        "title": "Ready to Optimize Your Listings?",
+        "body": "Stop worrying about broken macros and rejected listings. Let the Product Data Management AI Agent handle the details so your team focuses on growth.",
+        "primary": "Start Using This Agent",
+        "secondary": "Talk to Sales"
+      },
+
+      "visuals": {
+        "label": "Product Data Management AI Agent",
+        "overview": {
+          "title": "Precision at scale",
+          "description": "Understands strict marketplace rules and applies them automatically so listings pass validation the first time."
+        },
+        "capabilities": {
+          "title": "From naming to variation control",
+          "description": "Cleans titles, enforces materials and color rules, and structures product families so uploads are accepted without manual fixes."
+        },
+        "useCases": {
+          "title": "Fewer rejections, faster launches",
+          "description": "The agent prevents common errors that cause platform rejections and speeds up the listing pipeline."
+        },
+        "cta": {
+          "title": "Turn data into sales",
+          "description": "Automate the compliance and quality checks that used to take hours — and ship more winning listings."
         }
       }
     }

@@ -31,8 +31,8 @@ const AIAgentsPage = () => {
     },
     {
       id: 2,
-      title: "Customer Support Assistant",
-      subtitle: "Automated support workflows",
+      title: "Product Data Management",
+      subtitle: "Listing compliance, data quality & marketplace optimization",
     },
     { id: 3, title: "Sales Outreach", subtitle: "Lead follow-ups & nurturing" },
     {
@@ -84,33 +84,40 @@ const AIAgentsPage = () => {
             different aspects of your operations.
           </p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {agents.map((agent) => (
-              <Link
-                key={agent.id}
-                to={`/services/ai-agents/agent${agent.id}`}
-                className="group bg-white rounded-xl p-6 border-2 border-slate-200 hover:border-[#2378FF] hover:shadow-lg transition-all duration-300"
-              >
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[#2378FF] to-[#1f5fcc] flex items-center justify-center text-white font-bold text-lg">
-                    {agent.id}
+            {agents.map((agent) => {
+              const shortKey = `agents.agent${agent.id}.short`;
+              const shortText = t(shortKey, {
+                defaultValue:
+                  "Specialized AI agent designed to automate and optimize operational workflows.",
+              });
+
+              return (
+                <Link
+                  key={agent.id}
+                  to={`/services/ai-agents/agent${agent.id}`}
+                  className="group bg-white rounded-xl p-6 border-2 border-slate-200 hover:border-[#2378FF] hover:shadow-lg transition-all duration-300"
+                >
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[#2378FF] to-[#1f5fcc] flex items-center justify-center text-white font-bold text-lg">
+                      {agent.id}
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 group-hover:text-[#2378FF] transition-colors">
+                        {agent.title}
+                      </h3>
+                      <p className="text-sm text-gray-500">{agent.subtitle}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900 group-hover:text-[#2378FF] transition-colors">
-                      {agent.title}
-                    </h3>
-                    <p className="text-sm text-gray-500">{agent.subtitle}</p>
+                  <p className="text-gray-600 text-sm leading-relaxed mb-4">
+                    {shortText}
+                  </p>
+                  <div className="flex items-center text-[#2378FF] font-semibold text-sm group-hover:gap-2 transition-all">
+                    <span>Learn more</span>
+                    <ArrowLeft className="w-4 h-4 ml-1 rotate-180 group-hover:translate-x-1 transition-transform" />
                   </div>
-                </div>
-                <p className="text-gray-600 text-sm leading-relaxed mb-4">
-                  Specialized AI agent designed to automate and optimize
-                  operational workflows.
-                </p>
-                <div className="flex items-center text-[#2378FF] font-semibold text-sm group-hover:gap-2 transition-all">
-                  <span>Learn more</span>
-                  <ArrowLeft className="w-4 h-4 ml-1 rotate-180 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </Link>
-            ))}
+                </Link>
+              );
+            })}
           </div>
         </div>
 

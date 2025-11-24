@@ -1,47 +1,38 @@
-// src/pages/services/agents/Agent1Page.jsx
+// src/pages/services/agents/Agent2Page.jsx
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useScrollAnimation } from "../../../utils/useScrollAnimation";
-import {
-  ArrowLeft,
-  CheckCircle2,
-  Zap,
-  Clock,
-  Shield,
-  Database,
-  TrendingUp,
-  Activity,
-} from "lucide-react";
+import { ArrowLeft, CheckCircle2, Zap, Database } from "lucide-react";
 
-// TODO: replace these with your real images
 import agentOverviewImg from "../../../images/client2.webp";
 import agentCapabilitiesImg from "../../../images/client2.webp";
 import agentUseCasesImg from "../../../images/client2.webp";
 import agentCtaImg from "../../../images/client2.webp";
 
-
 const Agent2Page = () => {
   const { t } = useTranslation();
   const [sectionRef, isVisible] = useScrollAnimation({ threshold: 0.1 });
-
-  // which left section is currently in view (controls right-side visual)
   const [activeVisual, setActiveVisual] = useState("overview");
 
-  const sectionKeys = ["overview", "capabilities", "useCases", "cta"];
+  const sectionKeys = [
+    "overview",
+    "capabilities",
+    "fivePoint",
+    "useCases",
+    "cta",
+  ];
 
   useEffect(() => {
     const observers = [];
 
     sectionKeys.forEach((key) => {
-      const el = document.getElementById(`agent1-${key}`);
+      const el = document.getElementById(`agent2-${key}`);
       if (!el) return;
 
       const observer = new IntersectionObserver(
         ([entry]) => {
-          if (entry.isIntersecting) {
-            setActiveVisual(key);
-          }
+          if (entry.isIntersecting) setActiveVisual(key);
         },
         { root: null, threshold: 0.4 }
       );
@@ -50,53 +41,61 @@ const Agent2Page = () => {
       observers.push(observer);
     });
 
-    return () => {
-      observers.forEach((observer) => observer.disconnect());
-    };
+    return () => observers.forEach((o) => o.disconnect());
   }, []);
 
   const visuals = {
     overview: {
       image: agentOverviewImg,
-      title: t("agents.agent1.visuals.overview.title"),
-      description: t("agents.agent1.visuals.overview.description"),
-      label: t("agents.agent1.visuals.label"),
+      title: t("agents.agent2.visuals.overview.title"),
+      description: t("agents.agent2.visuals.overview.description"),
+      label: t("agents.agent2.visuals.label"),
     },
     capabilities: {
       image: agentCapabilitiesImg,
-      title: t("agents.agent1.visuals.capabilities.title"),
-      description: t("agents.agent1.visuals.capabilities.description"),
-      label: t("agents.agent1.visuals.label"),
+      title: t("agents.agent2.visuals.capabilities.title"),
+      description: t("agents.agent2.visuals.capabilities.description"),
+      label: t("agents.agent2.visuals.label"),
+    },
+    fivePoint: {
+      image: agentUseCasesImg,
+      title: t("agents.agent2.fivePoint.title"),
+      description: t("agents.agent2.visuals.useCases.description"),
+      label: t("agents.agent2.visuals.label"),
     },
     useCases: {
       image: agentUseCasesImg,
-      title: t("agents.agent1.visuals.useCases.title"),
-      description: t("agents.agent1.visuals.useCases.description"),
-      label: t("agents.agent1.visuals.label"),
+      title: t("agents.agent2.visuals.useCases.title"),
+      description: t("agents.agent2.visuals.useCases.description"),
+      label: t("agents.agent2.visuals.label"),
     },
     cta: {
       image: agentCtaImg,
-      title: t("agents.agent1.visuals.cta.title"),
-      description: t("agents.agent1.visuals.cta.description"),
-      label: t("agents.agent1.visuals.label"),
+      title: t("agents.agent2.visuals.cta.title"),
+      description: t("agents.agent2.visuals.cta.description"),
+      label: t("agents.agent2.visuals.label"),
     },
   };
 
   const currentVisual = visuals[activeVisual];
 
-  const capabilities = t("agents.agent1.capabilities.items", {
+  const capabilities = t("agents.agent2.capabilities.items", {
     returnObjects: true,
   });
-  const useCaseCards = t("agents.agent1.useCases.cards", {
+  const fivePoints = t("agents.agent2.fivePointExample.points", {
+    returnObjects: true,
+  });
+  const useCaseCards = t("agents.agent2.useCases.cards", {
+    returnObjects: true,
+  });
+  const learningItems = t("agents.agent2.learning.items", {
     returnObjects: true,
   });
 
   return (
     <section className="min-h-screen bg-white pt-28 pb-24 md:pt-36 md:pb-32">
       <div className="max-w-6xl mx-auto px-6">
-        {/* 2-column layout like Stripe */}
         <div className="grid gap-12 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
-          {/* LEFT – scroll content */}
           <div>
             <Link
               to="/services/ai-agents"
@@ -108,113 +107,100 @@ const Agent2Page = () => {
               </span>
             </Link>
 
-            {/* Overview / Hero */}
             <div
+              id="agent2-overview"
               ref={sectionRef}
-              id="agent1-overview"
-              className={`mb-12 ${isVisible ? "lift-up-subtle" : ""}`}
+              className={`mb-10 ${isVisible ? "lift-up-subtle" : ""}`}
             >
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#2378FF]/10 text-[#2378FF] text-sm font-semibold mb-6">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#2378FF]/10 text-[#2378FF] text-sm font-semibold mb-4">
                 <Zap className="w-4 h-4" />
-                <span>{t("agents.agent1.badge")}</span>
+                <span>{t("agents.agent2.badge")}</span>
               </div>
               <h1
-                className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6"
+                className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
                 style={{ fontFamily: "var(--font-serif)" }}
               >
-                {t("agents.agent1.title")}
+                {t("agents.agent2.title")}
               </h1>
-              <p className="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-3xl">
-                {t("agents.agent1.subtitle")}
+              <p className="text-lg text-gray-600 max-w-3xl mb-6">
+                {t("agents.agent2.subtitle")}
               </p>
             </div>
 
-            {/* Key Metrics */}
             <div
-              className={`grid md:grid-cols-3 gap-6 mb-16 ${
-                isVisible ? "lift-up-subtle" : ""
-              }`}
-              style={{ animationDelay: isVisible ? "0.1s" : "0s" }}
-            >
-              <div className="bg-gradient-to-br from-[#2378FF] to-[#1f5fcc] rounded-xl p-6 text-white shadow-lg">
-                <Clock className="w-8 h-8 mb-3 opacity-90" />
-                <div className="text-3xl font-bold mb-1">
-                  {t("agents.agent1.metrics.processingTime.value")}
-                </div>
-                <div className="text-sm opacity-90">
-                  {t("agents.agent1.metrics.processingTime.label")}
-                </div>
-              </div>
-              <div className="bg-gradient-to-br from-[#CDABFF] to-[#b894ff] rounded-xl p-6 text-white shadow-lg">
-                <TrendingUp className="w-8 h-8 mb-3 opacity-90" />
-                <div className="text-3xl font-bold mb-1">
-                  {t("agents.agent1.metrics.efficiency.value")}
-                </div>
-                <div className="text-sm opacity-90">
-                  {t("agents.agent1.metrics.efficiency.label")}
-                </div>
-              </div>
-              <div className="bg-gradient-to-br from-[#FADEBC] to-[#f5d4a8] rounded-xl p-6 text-gray-900 shadow-lg">
-                <Shield className="w-8 h-8 mb-3 opacity-80" />
-                <div className="text-3xl font-bold mb-1">
-                  {t("agents.agent1.metrics.accuracy.value")}
-                </div>
-                <div className="text-sm opacity-80">
-                  {t("agents.agent1.metrics.accuracy.label")}
-                </div>
-              </div>
-            </div>
-
-            {/* Capabilities */}
-            <div
-              id="agent1-capabilities"
-              className={`mb-16 ${isVisible ? "lift-up-subtle" : ""}`}
-              style={{ animationDelay: isVisible ? "0.2s" : "0s" }}
+              id="agent2-capabilities"
+              className={`mb-12 ${isVisible ? "lift-up-subtle" : ""}`}
             >
               <h2
-                className="text-3xl md:text-4xl font-bold text-gray-900 mb-6"
+                className="text-3xl font-bold text-gray-900 mb-6"
                 style={{ fontFamily: "var(--font-serif)" }}
               >
-                {t("agents.agent1.capabilities.title")}
+                {t("agents.agent2.capabilities.title")}
               </h2>
-              <div className="bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/20 rounded-2xl p-8 border-2 border-slate-200">
-                <div className="grid md:grid-cols-2 gap-4">
-                  {capabilities.map((feature, index) => (
-                    <div
-                      key={index}
-                      className="flex items-start gap-3 bg-white/60 rounded-lg p-4"
-                    >
-                      <CheckCircle2 className="w-6 h-6 text-[#2378FF] shrink-0 mt-0.5" />
-                      <span className="text-gray-700">{feature}</span>
-                    </div>
-                  ))}
-                </div>
+              <div className="grid md:grid-cols-2 gap-4">
+                {capabilities.map((c, i) => (
+                  <div
+                    key={i}
+                    className="flex items-start gap-3 bg-white rounded-lg p-4 border"
+                  >
+                    <CheckCircle2 className="w-6 h-6 text-[#2378FF] shrink-0 mt-0.5" />
+                    <span className="text-gray-700">{c}</span>
+                  </div>
+                ))}
               </div>
             </div>
 
-            {/* Use Cases */}
             <div
-              id="agent1-useCases"
-              className={`mb-16 ${isVisible ? "lift-up-subtle" : ""}`}
-              style={{ animationDelay: isVisible ? "0.3s" : "0s" }}
+              id="agent2-fivePoint"
+              className={`mb-12 ${isVisible ? "lift-up-subtle" : ""}`}
             >
-              <h2
-                className="text-3xl md:text-4xl font-bold text-gray-900 mb-6"
-                style={{ fontFamily: "var(--font-serif)" }}
-              >
-                {t("agents.agent1.useCases.title")}
+              <h3 className="text-2xl font-semibold text-gray-900 mb-4">
+                {t("agents.agent2.fivePointExample.title")}
+              </h3>
+              <div className="bg-slate-50 p-6 rounded-xl border">
+                <ul className="space-y-3">
+                  {fivePoints.map((p, idx) => (
+                    <li key={idx} className="flex items-start gap-3">
+                      <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[#2378FF] text-white font-semibold">
+                        {idx + 1}
+                      </span>
+                      <span className="text-gray-700">{p}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div
+              id="agent2-learning"
+              className={`mb-12 ${isVisible ? "lift-up-subtle" : ""}`}
+            >
+              <h3 className="text-2xl font-semibold text-gray-900 mb-4">
+                {t("agents.agent2.learning.title")}
+              </h3>
+              <div className="grid md:grid-cols-3 gap-4">
+                {learningItems.map((li, i) => (
+                  <div
+                    key={i}
+                    className="bg-gradient-to-br from-[#CDABFF] to-[#b894ff] rounded-xl p-6 text-white"
+                  >
+                    <div className="text-sm opacity-90 mb-2">{li}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div
+              id="agent2-useCases"
+              className={`mb-12 ${isVisible ? "lift-up-subtle" : ""}`}
+            >
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                {t("agents.agent2.useCases.title")}
               </h2>
               <div className="grid md:grid-cols-2 gap-6">
                 {useCaseCards.map((card, index) => (
-                  <div
-                    key={index}
-                    className="bg-white rounded-xl p-6 border-2 border-slate-200"
-                  >
-                    {index === 0 ? (
-                      <Database className="w-8 h-8 text-[#2378FF] mb-4" />
-                    ) : (
-                      <Activity className="w-8 h-8 text-[#CDABFF] mb-4" />
-                    )}
+                  <div key={index} className="bg-white rounded-xl p-6 border">
+                    <Database className="w-8 h-8 text-[#2378FF] mb-4" />
                     <h3 className="text-xl font-semibold text-gray-900 mb-3">
                       {card.title}
                     </h3>
@@ -224,40 +210,34 @@ const Agent2Page = () => {
               </div>
             </div>
 
-            {/* CTA */}
-            <div
-              id="agent1-cta"
-              className={isVisible ? "lift-up-subtle" : ""}
-              style={{ animationDelay: isVisible ? "0.4s" : "0s" }}
-            >
+            <div id="agent2-cta" className={isVisible ? "lift-up-subtle" : ""}>
               <div className="bg-gradient-to-br from-[#081333] via-[#1659bd] to-[#fadebc] rounded-2xl p-8 md:p-12 text-white">
                 <h3
                   className="text-2xl md:text-3xl font-bold mb-4"
                   style={{ fontFamily: "var(--font-serif)" }}
                 >
-                  {t("agents.agent1.cta.title")}
+                  {t("agents.agent2.cta.title")}
                 </h3>
                 <p className="text-white/90 mb-8 text-lg">
-                  {t("agents.agent1.cta.body")}
+                  {t("agents.agent2.cta.body")}
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <Link
                     to="/business"
                     className="inline-flex items-center justify-center px-8 py-3 bg-white text-[#2378FF] font-semibold rounded-xl hover:bg-white/90 transition-all shadow-lg hover:shadow-xl"
                   >
-                    {t("agents.agent1.cta.primary")}
+                    {t("agents.agent2.cta.primary")}
                   </Link>
                   <Link
                     to="/#contact"
                     className="inline-flex items-center justify-center px-8 py-3 border-2 border-white text-white font-semibold rounded-xl hover:bg-white hover:text-[#2378FF] transition-all"
                   >
-                    {t("agents.agent1.cta.secondary")}
+                    {t("agents.agent2.cta.secondary")}
                   </Link>
                 </div>
               </div>
             </div>
 
-            {/* Mobile visual card (since sticky is hidden on small screens) */}
             <div className="mt-10 md:hidden">
               <div className="rounded-3xl border border-slate-200 bg-slate-50 p-5 shadow-sm">
                 <p className="text-xs font-semibold uppercase tracking-wide text-slate-500 mb-2">
@@ -278,7 +258,6 @@ const Agent2Page = () => {
             </div>
           </div>
 
-          {/* RIGHT – sticky visual (desktop) */}
           <div className="hidden md:block">
             <div className="sticky top-28">
               <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-md">
