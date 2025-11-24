@@ -1,101 +1,186 @@
 {
-    "serviceDetails": {
-        "aiAgents": {
-            "features": [
-                "Reklamationsautomatisierung – reduziert Bearbeitungszeiten von 90 Minuten auf 70 Sekunden",
-                "Produktdatenmanagement – Echtzeit-Synchronisierung über alle Marktplätze",
-                "Logistikkoordination – automatisiertes Tracking und Status-Updates",
-                "Kundenservice-Workflows – automatisierte Betreuung rund um die Uhr",
-                "ERP-Integration – nahtlose Anbindung an bestehende Systeme",
-                "Human-in-the-loop-Kontrolle – Qualitätssicherung und Compliance"
-            ],
-            "benefits": [
-                "Operative Kosten um bis zu 80 % senken",
-                "Reklamationen 10x schneller als manuelle Abläufe bearbeiten",
-                "24/7-Automatisierung ohne zusätzlichen Personalaufwand",
-                "Auf 40+ Jahren Branchenexpertise im Möbelmarkt aufgebaut",
-                "Mehrsprachige Unterstützung (DE/EN u. a.)",
-                "Einhaltung von Branchenstandards und SLAs"
-            ],
-            "useCases": [
-                "Möbelhändler, die Garantie- und Reklamationsfälle bearbeiten",
-                "E-Commerce-Plattformen mit komplexen Produktdaten",
-                "Logistikunternehmen mit Sendungsverfolgung",
-                "Kundenservice-Teams mit hohem Anfragevolumen"
-            ]
-        }
-    },
-    "agents": {
-        "backToAgentsLink": "Zurück zu den KI-Agenten",
-        "agent1": {
-            "badge": "KI-Operations-Agent",
-            "title": "Agent 1",
-            "subtitle": "Spezialisierter KI-Agent, der operative Workflows mit höchster Präzision und Effizienz automatisiert und optimiert.",
-            "metrics": {
-                "processingTime": {
-                    "value": "70 s",
-                    "label": "Bearbeitungszeit"
-                },
-                "efficiency": {
-                    "value": "10x",
-                    "label": "Effizienzsteigerung"
-                },
-                "accuracy": {
-                    "value": "99,9 %",
-                    "label": "Genauigkeitsrate"
-                }
-            },
-            "capabilities": {
-                "title": "Fähigkeiten",
-                "items": [
-                    "Automatisierte Workflow-Verarbeitung",
-                    "Synchronisation von Daten in Echtzeit",
-                    "Mehrsprachige Unterstützung (DE/EN)",
-                    "Integration in Ihr ERP-System",
-                    "24/7-Betrieb ohne Unterbrechung",
-                    "Human-in-the-loop-Freigabe bei Sonderfällen",
-                    "Qualitätssicherung und Plausibilitätschecks",
-                    "Performance-Monitoring und Analytics"
-                ]
-            },
-            "useCases": {
-                "title": "Use Cases",
-                "cards": [
-                    {
-                        "title": "Datenverarbeitung",
-                        "body": "Automatisierte Verarbeitung operativer Daten mit hoher Geschwindigkeit und Genauigkeit."
-                    },
-                    {
-                        "title": "Workflow-Automatisierung",
-                        "body": "Verschlanken Sie komplexe Abläufe mit intelligenter Automatisierung."
-                    }
-                ]
-            },
-            "cta": {
-                "title": "Interessiert an Agent 1?",
-                "body": "Lassen Sie uns besprechen, wie dieser Agent Ihre Abläufe transformieren kann.",
-                "primary": "Kontakt aufnehmen",
-                "secondary": "Jetzt anfragen"
-            },
-            "visuals": {
-                "label": "KI-Agent im Einsatz",
-                "overview": {
-                    "title": "Von 90-Minuten-Fällen zu 70-Sekunden-Automationen",
-                    "description": "Sehen Sie, wie Agent 1 E-Mails, Anhänge und Bilder einliest und in Sekunden einen strukturierten Fall erstellt."
-                },
-                "capabilities": {
-                    "title": "Tiefe ERP-Integration",
-                    "description": "Der Agent liest und schreibt direkt in Ihr ERP und hält Bestellungen, Produkte und Tickets synchron."
-                },
-                "useCases": {
-                    "title": "Echte Operations-Dashboards",
-                    "description": "Überwachen Sie Durchsatz, Reaktionszeiten und Ausnahmen in einem einzigen Performance-View."
-                },
-                "cta": {
-                    "title": "Gemeinsam mit Ihrem Team entwickelt",
-                    "description": "Wir konfigurieren Agent 1 gemeinsam mit Ihren Operations-, Service- und IT-Teams, damit er von Tag eins in Ihre Workflows passt."
-                }
-            }
-        }
+  "serviceDetails": {
+    "aiAgents": {
+      "features": [
+        "Reklamationsautomatisierung – Bearbeitung von Reklamationen in 70 Sekunden statt 90 Minuten",
+        "Produktdatenmanagement – Echtzeit-Synchronisation über Marktplätze hinweg",
+        "Logistikkoordination – Automatisierte Nachverfolgung und Updates",
+        "Kundenservice-Workflows – Automatisierter 24/7-Support",
+        "ERP-Integration – Nahtlose Anbindung an bestehende Systeme",
+        "Human-in-the-Loop-Überwachung – Qualitätssicherung und Compliance"
+      ],
+      "benefits": [
+        "Senkung der Betriebskosten um bis zu 80 %",
+        "10x schnellere Reklamationsbearbeitung im Vergleich zu manuellen Workflows",
+        "Automatisierte 24/7-Bearbeitung ohne zusätzliches Personal",
+        "Basiert auf über 40 Jahren Erfahrung in der Möbelindustrie",
+        "Mehrsprachiger Support (DE/EN und mehr)",
+        "Einhaltung von Industriestandards und SLAs"
+      ],
+      "useCases": [
+        "Möbelhändler bei der Bearbeitung von Gewährleistungsansprüchen",
+        "E-Commerce-Plattformen beim Management von Produktdaten",
+        "Logistikunternehmen bei der Sendungsverfolgung",
+        "Kundenservice-Abteilungen bei der Bearbeitung von Anfragen"
+      ]
     }
+  },
+  "agents": {
+    "backToAgentsLink": "Zurück zu den AI Agents",
+    "agent1": {
+      "badge": "AI Agent für die Prüfung von Auftragsbestätigungen",
+      "title": "Machen Sie aus jeder Auftragsbestätigung eine garantierte Vereinbarung",
+      "subtitle": "Preise, Mengen, Liefertermine – Ihr AI Agent prüft jede Zeile jeder Bestätigung und vergleicht sie mit der ursprünglichen Bestellung. Keine stillen Fehler, keine versteckten Verluste, keine Überraschungen für Ihre Kunden.",
+      "short": "Prüft automatisch jede Auftragsbestätigung (PDF, E-Mail, Portal) gegen die ursprüngliche Bestellung und deckt Abweichungen bei Preis, Menge und Datum auf, bevor sie die Marge belasten.",
+      "metrics": {
+        "processingTime": {
+          "value": "Von Stunden zu Sekunden",
+          "label": "Zeit zur Prüfung einer Auftragsbestätigung"
+        },
+        "efficiency": {
+          "value": "100 % der Bestätigungen geprüft",
+          "label": "Jedes Dokument geprüft, keine manuellen Stichproben"
+        },
+        "accuracy": {
+          "value": "Null unbemerkte Abweichungen",
+          "label": "Preis-, Mengen- und Termindifferenzen frühzeitig erkannt"
+        }
+      },
+      "capabilities": {
+        "title": "Was der Auftragsbestätigungs-Agent für Sie leistet",
+        "items": [
+          "Liest jede eingehende Auftragsbestätigung – egal ob als PDF, E-Mail, Anhang oder über ein Portal.",
+          "Vergleicht die Bestätigung automatisch Zeile für Zeile mit der ursprünglichen Bestellung in Ihrem System.",
+          "Erkennt Abweichungen bei Preis, Menge, Lieferdatum, Artikelnummer und mehr – selbst in komplexen Dokumenten.",
+          "Benachrichtigt sofort die richtigen Personen, damit Sie reagieren können, bevor Probleme die Produktion oder den Kunden erreichen.",
+          "Dokumentiert jede Prüfung revisionssicher und schafft Transparenz und Rückverfolgbarkeit für jeden Auftrag.",
+          "Arbeitet 24/7 ohne Pausen und stellt sicher, dass auch Lastspitzen und nächtliche Bestätigungen zuverlässig bearbeitet werden."
+        ]
+      },
+      "useCases": {
+        "title": "Wo der Auftragsbestätigungs-Agent den Unterschied macht",
+        "cards": [
+          {
+            "title": "Stoppen Sie teure Abweichungen, bevor sie Ihre Marge schmälern",
+            "body": "Eine kleine Preisänderung, 50 fehlende Stühle, ein nicht genehmigter Zuschlag – diese Dinge werden leicht übersehen, wenn Teams unter Druck stehen oder nur mit Excel prüfen. Der AI Agent fängt diese Unstimmigkeiten automatisch ab, sodass Sie sie nicht erst Wochen später auf der Rechnung oder durch eine Kundenbeschwerde entdecken."
+          },
+          {
+            "title": "Stabilisieren Sie Ihre Lieferkette und schützen Sie Ihre Planung",
+            "body": "Verschobene Lieferungen und stillschweigend geänderte Termine können Ihren gesamten Produktionsplan durcheinanderbringen. Der AI Agent markiert jedes geänderte Lieferdatum und jede Mengenabweichung sofort, was Ihnen echte Planungssicherheit gibt und „Feuerlösch“-Aktionen in Einkauf, Logistik und Produktion reduziert."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Stoppen Sie den stillen Dieb in Ihren Auftragsbestätigungen",
+        "body": "Unbemerkte Abweichungen in Auftragsbestätigungen stehlen jeden Tag Geld, Zeit und Nerven. Der AI Agent für die Prüfung von Auftragsbestätigungen bringt Kontrolle und Sicherheit zurück in Ihren Prozess – und schützt automatisch Ihre Margen, Ihre Lieferkette und Ihre Kundenbeziehungen.",
+        "primary": "Sprechen Sie mit uns über diesen Agenten",
+        "secondary": "Sehen Sie, wie er in Ihren Prozess passt"
+      },
+      "visuals": {
+        "label": "AI Agent für die Prüfung von Auftragsbestätigungen",
+        "overview": {
+          "title": "Vom unsichtbaren Problem zur vollen Kontrolle",
+          "description": "Bestellte Ware entspricht nicht immer der bestätigten Ware. Preise ändern sich, Mengen schrumpfen, Termine verrutschen – oft ohne dass es jemand bemerkt, bis es zu spät ist. Der AI Agent macht diese unsichtbaren Risiken sichtbar und beherrschbar."
+        },
+        "capabilities": {
+          "title": "Jede Bestätigung geprüft, jede Abweichung erkannt",
+          "description": "Der Agent liest Ihre Bestätigungen, vergleicht sie mit der ursprünglichen Bestellung und hebt alle Differenzen hervor – damit Ihr Team nur noch prüfen und entscheiden muss, statt manuell nach Fehlern zu suchen."
+        },
+        "useCases": {
+          "title": "Tschüss Excel-Marathons, hallo intelligente Automation",
+          "description": "Anstatt PDFs und E-Mails Zeile für Zeile manuell zu vergleichen, kann sich Ihr Team auf automatisierte, perfekt konsistente Prüfungen verlassen und sich auf den strategischen Einkauf und Lieferantenbeziehungen konzentrieren."
+        },
+        "cta": {
+          "title": "Machen Sie Auftragsbestätigungen zum strategischen Vorteil",
+          "description": "Wenn jede Bestätigung automatisch geprüft wird, gewinnen Sie mehr Profit, mehr Planungssicherheit, mehr Kundenzufriedenheit und deutlich weniger Stress im gesamten Unternehmen."
+        }
+      }
+    },
+    "agent2": {
+      "badge": "AI Agent für Produktdatenmanagement",
+      "title": "Verwandeln Sie Chaos in Compliance. Machen Sie aus Tabellen Umsätze.",
+      "subtitle": "Befreien Sie Ihr Team aus der Excel-Hölle. Dieser AI Agent setzt Marktplatzregeln durch, korrigiert Datenfehler und optimiert Listings für Plattformen wie Otto und Home24.",
+      "short": "Setzt Marktplatzregeln durch und korrigiert Produktdaten im großen Stil – Titel, Materialien, Maße und Bildprüfungen, damit Listings beim ersten Upload akzeptiert werden.",
+      "metrics": {
+        "processingTime": {
+          "value": "Sofortige Validierung",
+          "label": "Zeit zur Validierung eines Listings"
+        },
+        "efficiency": {
+          "value": "100 % Regelabdeckung",
+          "label": "Jede Zeile automatisch geprüft"
+        },
+        "accuracy": {
+          "value": "Weniger Ablehnungen",
+          "label": "Compliance- und Formatgenauigkeit"
+        }
+      },
+      "capabilities": {
+        "title": "Was dieser Agent für Sie leistet",
+        "items": [
+          "Makellose Namenskonventionen: Setzt 'Produkttyp + Name + Variation' und ein 40-Zeichen-Limit durch, während verbotene Werbewörter und unerwünschte Markennennungen entfernt werden.",
+          "Material- & Farbgenauigkeit: Listet Basismaterialien zuerst, fügt 'Dekor' für Holzdekorfarben hinzu und identifiziert Hochglanzoberflächen korrekt.",
+          "Optimierte Bullet Points: Generiert eine strikte 5-Punkte-Struktur, die Maße, Vielseitigkeit, Materialien, Merkmale und Pflege/Montage abdeckt.",
+          "Technische & Visuelle Compliance: Erkennt Skizzen mit niedriger Auflösung, erzwingt das Maßformat (B × H × T cm) und validiert Bild- und Dateiregeln.",
+          "Variantenmanagement: Gruppiert Eltern- und Kind-Artikel korrekt und verhindert, dass Preise oder Bestände auf dem Eltern-Listing platziert werden."
+        ]
+      },
+      "fivePointExample": {
+        "title": "Die 5-Punkte-Beschreibungsstruktur",
+        "points": [
+          "Maße & Stauraum (B × H × T cm)",
+          "Vielseitigkeit & Organisation (primäre Anwendungsfälle)",
+          "Materialspezifikationen (MDF, Massivholz, Furnier)",
+          "Hauptmerkmale (Soft-Close, Metallrahmen, Griffe)",
+          "Pflegehinweise & Montagedetails"
+        ]
+      },
+      "learning": {
+        "title": "Eine lernende Maschine",
+        "items": [
+          "1.000+ Marktplatz-Updates verarbeitet",
+          "1.000+ Webinare & Schulungen analysiert",
+          "1.000+ Ressourcen integriert"
+        ]
+      },
+      "useCases": {
+        "title": "Wo der Produktdatenmanagement-Agent hilft",
+        "cards": [
+          {
+            "title": "Schluss mit Excel-Hölle und abgelehnten Uploads",
+            "body": "Erkennen Sie verbotene Wörter, Formatprobleme und Validierungsfehler automatisch, bevor Sie hochladen – das spart Zeit und vermeidet Ablehnungen."
+          },
+          {
+            "title": "Schneller am Markt sein",
+            "body": "Beschleunigen Sie die Erstellung von Listings, indem Sie Marktplatzregeln automatisch anwenden und sicherstellen, dass jedes Listing beim ersten Versuch bereit für den Upload ist."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Bereit, Ihre Listings zu optimieren?",
+        "body": "Hören Sie auf, sich über kaputte Makros und abgelehnte Listings zu ärgern. Lassen Sie den Produktdatenmanagement AI Agent die Details regeln, damit sich Ihr Team auf das Wachstum konzentrieren kann.",
+        "primary": "Starten Sie mit diesem Agenten",
+        "secondary": "Kontakt zum Vertrieb"
+      },
+      "visuals": {
+        "label": "AI Agent für Produktdatenmanagement",
+        "overview": {
+          "title": "Präzision im großen Maßstab",
+          "description": "Versteht strenge Marktplatzregeln und wendet sie automatisch an, damit Listings die Validierung beim ersten Mal bestehen."
+        },
+        "capabilities": {
+          "title": "Von der Benennung bis zur Variantenkontrolle",
+          "description": "Bereinigt Titel, setzt Material- und Farbregeln durch und strukturiert Produktfamilien so, dass Uploads ohne manuelle Korrekturen akzeptiert werden."
+        },
+        "useCases": {
+          "title": "Weniger Ablehnungen, schnellere Launches",
+          "description": "Der Agent verhindert häufige Fehler, die zu Plattformablehnungen führen, und beschleunigt die Listing-Pipeline."
+        },
+        "cta": {
+          "title": "Verwandeln Sie Daten in Umsätze",
+          "description": "Automatisieren Sie die Compliance- und Qualitätsprüfungen, die früher Stunden gedauert haben – und bringen Sie mehr erfolgreiche Listings live."
+        }
+      }
+    }
+  }
 }
