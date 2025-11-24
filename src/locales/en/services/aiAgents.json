@@ -194,6 +194,74 @@
           "description": "Automate the compliance and quality checks that used to take hours — and ship more winning listings."
         }
       }
+    },
+    "agent3": {
+      "badge": "Product Data Management AI Agent",
+      "title": "Transform Chaos into Compliance. Turn Spreadsheets into Sales.",
+      "subtitle": "Liberate your team from Excel Hell. This AI Agent enforces marketplace rules, fixes data errors, and optimizes listings for platforms like Otto and Home24.",
+      "metrics": {
+        "processingTime": {
+          "value": "0%",
+          "label": "Rejection Rate"
+        },
+        "efficiency": {
+          "value": "100%",
+          "label": "Automated Validation"
+        },
+        "accuracy": {
+          "value": "Ready",
+          "label": "Otto & Home24"
+        }
+      },
+      "capabilities": {
+        "title": "Automated Data Governance",
+        "items": [
+          "Enforces strict marketplace schemas so listings are accepted on the first upload.",
+          "Automatically detects and fixes mandatory attribute errors (Dimensions, Materials).",
+          "Performs image checks to ensure resolution and formats meet platform standards.",
+          "Standardizes messy supplier data into clean, structured formats.",
+          "Maps internal categories to specific external taxonomies (e.g., Otto, Home24).",
+          "Eliminates manual spreadsheet work and reduces human error."
+        ]
+      },
+      "useCases": {
+        "title": "Where This Agent Excels",
+        "cards": [
+          {
+            "title": "Messy Supplier Data",
+            "body": "Stop manually cleaning Excel sheets. The agent ingests raw files from suppliers, normalizes units (e.g., cm to mm), fills missing gaps, and formats everything for upload."
+          },
+          {
+            "title": "Platform Expansion",
+            "body": "Moving to Otto or Home24? The agent automatically restructures your existing Amazon or eBay data to meet the specific, strict requirements of these premium marketplaces."
+          }
+        ]
+      },
+      "visuals": {
+        "label": "Data Manager Interface",
+        "overview": {
+          "title": "Data Validation Dashboard",
+          "description": "Visualizing the agent scanning thousands of rows and flagging errors instantly."
+        },
+        "capabilities": {
+          "title": "Automated Error Fixing",
+          "description": "How the agent converts invalid values into compliant formats without human input."
+        },
+        "useCases": {
+          "title": "Before vs. After",
+          "description": "A comparison of a messy spreadsheet versus a clean, green-lit export file."
+        },
+        "cta": {
+          "title": "Ready for Upload",
+          "description": "Your entire catalog, error-free and ready for the marketplace."
+        }
+      },
+      "cta": {
+        "title": "Clean Data. Zero Headaches.",
+        "body": "Stop fighting with CSV files and rejected listings. Let the AI handle the compliance rules so you can focus on strategy and sales.",
+        "primary": "Fix My Data",
+        "secondary": "Contact Sales"
+      }
     }
   }
 }
