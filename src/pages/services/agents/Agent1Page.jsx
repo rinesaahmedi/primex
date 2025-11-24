@@ -20,7 +20,6 @@ import agentCapabilitiesImg from "../../../images/client2.webp";
 import agentUseCasesImg from "../../../images/client2.webp";
 import agentCtaImg from "../../../images/client2.webp";
 
-
 const Agent1Page = () => {
   const { t } = useTranslation();
   const [sectionRef, isVisible] = useScrollAnimation({ threshold: 0.1 });

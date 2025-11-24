@@ -1,101 +1,105 @@
 {
-    "serviceDetails": {
-        "aiAgents": {
-            "features": [
-                "Claims automation — Process claims from 90 minutes to 70 seconds",
-                "Product data management — Real-time synchronization across marketplaces",
-                "Logistics coordination — Automated tracking and updates",
-                "Customer service workflows — 24/7 automated support",
-                "ERP integration — Seamless connection with existing systems",
-                "Human-in-the-loop oversight — Quality assurance and compliance"
-            ],
-            "benefits": [
-                "Reduce operational costs by up to 80%",
-                "Process claims 10x faster than manual workflows",
-                "24/7 automated processing without extra headcount",
-                "Built on 40+ years of furniture industry expertise",
-                "Multi-language support (DE/EN and more)",
-                "Compliance with industry standards and SLAs"
-            ],
-            "useCases": [
-                "Furniture retailers processing warranty claims",
-                "E-commerce platforms managing product data",
-                "Logistics companies tracking shipments",
-                "Customer service departments handling inquiries"
-            ]
-        }
-    },
-    "agents": {
-        "backToAgentsLink": "Back to AI Agents",
-        "agent1": {
-            "badge": "AI Operations Agent",
-            "title": "Agent 1",
-            "subtitle": "Specialized AI agent designed to automate and optimize operational workflows with precision and efficiency.",
-            "metrics": {
-                "processingTime": {
-                    "value": "70s",
-                    "label": "Processing time"
-                },
-                "efficiency": {
-                    "value": "10x",
-                    "label": "Efficiency gain"
-                },
-                "accuracy": {
-                    "value": "99.9%",
-                    "label": "Accuracy rate"
-                }
-            },
-            "capabilities": {
-                "title": "Capabilities",
-                "items": [
-                    "Automated workflow processing",
-                    "Real-time data synchronization",
-                    "Multi-language support (DE/EN)",
-                    "ERP system integration",
-                    "24/7 continuous operation",
-                    "Human-in-the-loop oversight",
-                    "Quality assurance checks",
-                    "Performance analytics"
-                ]
-            },
-            "useCases": {
-                "title": "Use cases",
-                "cards": [
-                    {
-                        "title": "Data processing",
-                        "body": "Automated processing of operational data with high accuracy and speed."
-                    },
-                    {
-                        "title": "Workflow automation",
-                        "body": "Streamline complex workflows with intelligent automation."
-                    }
-                ]
-            },
-            "cta": {
-                "title": "Interested in Agent 1?",
-                "body": "Let's discuss how this agent can transform your operations.",
-                "primary": "Get in touch",
-                "secondary": "Contact us"
-            },
-            "visuals": {
-                "label": "AI agent in action",
-                "overview": {
-                    "title": "From 90-minute cases to 70-second automations",
-                    "description": "See how Agent 1 ingests emails, attachments and images to prepare a clean, structured case in seconds."
-                },
-                "capabilities": {
-                    "title": "Deep ERP integration",
-                    "description": "The agent reads and writes directly into your ERP system, keeping orders, products and tickets perfectly in sync."
-                },
-                "useCases": {
-                    "title": "Real operational dashboards",
-                    "description": "Monitor throughput, first-response times and exception rates in a single performance view."
-                },
-                "cta": {
-                    "title": "Co-designed with your team",
-                    "description": "We configure Agent 1 together with your operations, service and IT teams so it fits your workflows from day one."
-                }
-            }
-        }
+  "serviceDetails": {
+    "aiAgents": {
+      "features": [
+        "Claims automation — Process claims from 90 minutes to 70 seconds",
+        "Product data management — Real-time synchronization across marketplaces",
+        "Logistics coordination — Automated tracking and updates",
+        "Customer service workflows — 24/7 automated support",
+        "ERP integration — Seamless connection with existing systems",
+        "Human-in-the-loop oversight — Quality assurance and compliance"
+      ],
+      "benefits": [
+        "Reduce operational costs by up to 80%",
+        "Process claims 10x faster than manual workflows",
+        "24/7 automated processing without extra headcount",
+        "Built on 40+ years of furniture industry expertise",
+        "Multi-language support (DE/EN and more)",
+        "Compliance with industry standards and SLAs"
+      ],
+      "useCases": [
+        "Furniture retailers processing warranty claims",
+        "E-commerce platforms managing product data",
+        "Logistics companies tracking shipments",
+        "Customer service departments handling inquiries"
+      ]
     }
+  },
+  "agents": {
+    "backToAgentsLink": "Back to AI Agents",
+    "agent1": {
+      "badge": "AI Agent for Order Confirmation Checking",
+      "title": "Turn Every Order Confirmation into a Guaranteed Agreement",
+      "subtitle": "Prices, quantities, delivery dates – your AI Agent checks every line of every confirmation and compares it with the original order. No more silent errors, no more hidden losses, no more surprises for your customers.",
+
+      "metrics": {
+        "processingTime": {
+          "value": "From hours to seconds",
+          "label": "Time to check an order confirmation"
+        },
+        "efficiency": {
+          "value": "100% of confirmations reviewed",
+          "label": "Every document checked, no manual sampling"
+        },
+        "accuracy": {
+          "value": "Zero unnoticed deviations",
+          "label": "Price, quantity, and date differences caught early"
+        }
+      },
+
+      "capabilities": {
+        "title": "What the Order Confirmation Agent Does for You",
+        "items": [
+          "Reads every incoming order confirmation – whether it arrives as a PDF, email, attachment, or via portal.",
+          "Automatically compares the confirmation to the original order in your system, line by line.",
+          "Detects deviations in price, quantity, delivery date, item number, and more – even in complex documents.",
+          "Immediately alerts the right people so you can react before problems reach production or the customer.",
+          "Documents each check in an audit-proof way, creating transparency and traceability for every order.",
+          "Works 24/7 without breaks, ensuring that even peak loads and late-night confirmations are handled reliably."
+        ]
+      },
+
+      "useCases": {
+        "title": "Where the Order Confirmation Agent Changes the Game",
+        "cards": [
+          {
+            "title": "Stop costly deviations before they hurt your margin",
+            "body": "A small price change, a missing 50 chairs, an unapproved surcharge – these are easy to miss when teams are under pressure or checking only with Excel. The AI Agent catches these discrepancies automatically, so you don’t discover them weeks later on the invoice or when the customer complains."
+          },
+          {
+            "title": "Stabilize your supply chain and protect your planning",
+            "body": "Postponed deliveries and quietly shifted dates can throw off your entire production schedule. The AI Agent flags every changed delivery date and quantity immediately, giving you real planning security and fewer fire-fighting actions in purchasing, logistics, and production."
+          }
+        ]
+      },
+
+      "cta": {
+        "title": "Stop the silent thief in your order confirmations",
+        "body": "Unnoticed deviations in order confirmations steal money, time, and nerves every single day. The AI Agent for Order Confirmation Checking brings control and security back into your process – protecting your margins, your supply chain, and your customer relationships automatically.",
+        "primary": "Talk to us about this agent",
+        "secondary": "See how it fits your process"
+      },
+
+      "visuals": {
+        "label": "AI Agent for Order Confirmation Checking",
+
+        "overview": {
+          "title": "From invisible problem to full control",
+          "description": "Orders placed don’t always equal orders received. Prices change, quantities shrink, dates slip – often without anyone noticing until it’s too late. The AI Agent makes these invisible risks visible and manageable."
+        },
+        "capabilities": {
+          "title": "Every confirmation checked, every deviation detected",
+          "description": "The agent reads your confirmations, compares them with the original order, and highlights all differences – so your team only needs to review and decide, not manually search for errors."
+        },
+        "useCases": {
+          "title": "Goodbye Excel marathons, hello smart automation",
+          "description": "Instead of manually comparing PDFs and emails line by line, your team can rely on automated, perfectly consistent checks and focus on strategic purchasing and supplier relationships."
+        },
+        "cta": {
+          "title": "Turn order confirmations into a strategic advantage",
+          "description": "When every confirmation is checked automatically, you gain more profit, more planning security, more customer satisfaction, and far less stress across your organization."
+        }
+      }
+    }
+  }
 }

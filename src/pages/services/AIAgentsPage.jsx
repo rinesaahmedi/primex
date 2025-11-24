@@ -3,11 +3,58 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useScrollAnimation } from "../../utils/useScrollAnimation";
-import { ArrowLeft, CheckCircle2, Zap, Clock, Shield, Globe, Database, TrendingUp, DollarSign, Users, Activity, BarChart3 } from "lucide-react";
+import {
+  ArrowLeft,
+  CheckCircle2,
+  Zap,
+  Clock,
+  Shield,
+  Globe,
+  Database,
+  TrendingUp,
+  DollarSign,
+  Users,
+  Activity,
+  BarChart3,
+} from "lucide-react";
 
 const AIAgentsPage = () => {
   const { t } = useTranslation();
   const [sectionRef, isVisible] = useScrollAnimation({ threshold: 0.1 });
+
+  // Define agent names — update or extend as needed
+  const agents = [
+    {
+      id: 1,
+      title: "Order Confirmation",
+      subtitle: "Order confirmation & receipts",
+    },
+    {
+      id: 2,
+      title: "Customer Support Assistant",
+      subtitle: "Automated support workflows",
+    },
+    { id: 3, title: "Sales Outreach", subtitle: "Lead follow-ups & nurturing" },
+    {
+      id: 4,
+      title: "Invoice Processor",
+      subtitle: "Automated invoice handling",
+    },
+    {
+      id: 5,
+      title: "Content Generator",
+      subtitle: "Marketing & copy assistance",
+    },
+    { id: 6, title: "Data Sync", subtitle: "Integrations & ETL" },
+    {
+      id: 7,
+      title: "Analytics Reporter",
+      subtitle: "Scheduled reports & insights",
+    },
+    { id: 8, title: "Inventory Manager", subtitle: "Stock updates & alerts" },
+    { id: 9, title: "Scheduler", subtitle: "Booking & calendar automation" },
+    { id: 10, title: "Custom Agent", subtitle: "Tailored automation" },
+  ];
 
   return (
     <section className="min-h-screen bg-white pt-32 pb-24 md:pt-40 md:pb-32">
@@ -21,42 +68,42 @@ const AIAgentsPage = () => {
           <span className="font-medium">Back to Services</span>
         </Link>
 
-        
-
         {/* AI Agents Grid */}
-        <div 
-          className={`mb-16 ${isVisible ? 'lift-up-subtle' : ''}`}
-          style={{ animationDelay: isVisible ? '0.5s' : '0s' }}
+        <div
+          className={`mb-16 ${isVisible ? "lift-up-subtle" : ""}`}
+          style={{ animationDelay: isVisible ? "0.5s" : "0s" }}
         >
           <h2
             className="text-3xl md:text-4xl font-bold text-gray-900 mb-8"
-            style={{ fontFamily: 'var(--font-serif)' }}
+            style={{ fontFamily: "var(--font-serif)" }}
           >
             Our AI Agents
           </h2>
           <p className="text-lg text-gray-600 mb-8 max-w-2xl">
-            Explore our specialized AI agents designed to automate and optimize different aspects of your operations.
+            Explore our specialized AI agents designed to automate and optimize
+            different aspects of your operations.
           </p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {Array.from({ length: 10 }, (_, i) => i + 1).map((agentNum) => (
+            {agents.map((agent) => (
               <Link
-                key={agentNum}
-                to={`/services/ai-agents/agent${agentNum}`}
+                key={agent.id}
+                to={`/services/ai-agents/agent${agent.id}`}
                 className="group bg-white rounded-xl p-6 border-2 border-slate-200 hover:border-[#2378FF] hover:shadow-lg transition-all duration-300"
               >
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[#2378FF] to-[#1f5fcc] flex items-center justify-center text-white font-bold text-lg">
-                    {agentNum}
+                    {agent.id}
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-gray-900 group-hover:text-[#2378FF] transition-colors">
-                      Agent {agentNum}
+                      {agent.title}
                     </h3>
-                    <p className="text-sm text-gray-500">AI Operations Agent</p>
+                    <p className="text-sm text-gray-500">{agent.subtitle}</p>
                   </div>
                 </div>
                 <p className="text-gray-600 text-sm leading-relaxed mb-4">
-                  Specialized AI agent designed to automate and optimize operational workflows.
+                  Specialized AI agent designed to automate and optimize
+                  operational workflows.
                 </p>
                 <div className="flex items-center text-[#2378FF] font-semibold text-sm group-hover:gap-2 transition-all">
                   <span>Learn more</span>
@@ -68,19 +115,20 @@ const AIAgentsPage = () => {
         </div>
 
         {/* CTA Section */}
-        <div 
-          className={`${isVisible ? 'lift-up-subtle' : ''}`}
-          style={{ animationDelay: isVisible ? '0.6s' : '0s' }}
+        <div
+          className={`${isVisible ? "lift-up-subtle" : ""}`}
+          style={{ animationDelay: isVisible ? "0.6s" : "0s" }}
         >
           <div className="bg-gradient-to-br from-[#081333] via-[#1659bd] to-[#fadebc] rounded-2xl p-8 md:p-12 text-white">
             <h3
               className="text-2xl md:text-3xl font-bold mb-4"
-              style={{ fontFamily: 'var(--font-serif)' }}
+              style={{ fontFamily: "var(--font-serif)" }}
             >
               Ready to Transform Your Operations?
             </h3>
             <p className="text-white/90 mb-8 text-lg max-w-2xl">
-              Let's discuss how AI agents can automate your workflows and reduce operational costs by up to 80%.
+              Let's discuss how AI agents can automate your workflows and reduce
+              operational costs by up to 80%.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
@@ -104,4 +152,3 @@ const AIAgentsPage = () => {
 };
 
 export default AIAgentsPage;
-
