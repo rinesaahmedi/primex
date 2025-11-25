@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import primexLogo from "../assets/primex-logo.png";
 import primexLogoWhite from "../assets/primex-logo-white.png";
-import CalendarIcon from '../assets/svgs/calendarIcone';
+import CalendarIcon from "../assets/svgs/calendarIcone";
 
 // Icons (Inline SVGs to avoid installing external libraries like react-icons)
 const MenuIcon = () => (
@@ -39,8 +39,9 @@ const CloseIcon = () => (
     <line x1="6" y1="6" x2="18" y2="18" />
   </svg>
 );
-const GlobeIcon = () => (
+const GlobeIcon = ({ className }) => (
   <svg
+    className={className}
     xmlns="http://www.w3.org/2000/svg"
     width="16"
     height="16"
@@ -67,13 +68,14 @@ const Header = ({ changeLanguage }) => {
   const langMenuRef = useRef(null);
 
   // Check if we're on a white background page (service pages, about, etc.)
-  const isWhitePage = location.pathname.startsWith('/services') ||
-    location.pathname === '/about' ||
-    location.pathname === '/apply' ||
-    location.pathname === '/business' ||
-    location.pathname === '/certificate' ||
-    location.pathname === '/appointments' ||
-    location.pathname === '/terms';
+  const isWhitePage =
+    location.pathname.startsWith("/services") ||
+    location.pathname === "/about" ||
+    location.pathname === "/apply" ||
+    location.pathname === "/business" ||
+    location.pathname === "/certificate" ||
+    location.pathname === "/appointments" ||
+    location.pathname === "/terms";
 
   // Detect Scroll
   useEffect(() => {
@@ -154,10 +156,9 @@ const Header = ({ changeLanguage }) => {
   }, [changeLanguage, i18n.language]);
 
   // Handle Language Selection
-  // inside Header
   const handleLanguageSelect = (lang) => {
     setStoredLanguage(lang);
-    changeLanguage(lang); // now send just "en" or "de"
+    changeLanguage(lang);
     setIsLangOpen(false);
   };
 
@@ -173,15 +174,16 @@ const Header = ({ changeLanguage }) => {
     e.preventDefault();
 
     // If we're not on the home page, navigate to home first
-    if (location.pathname !== '/') {
-      navigate('/');
+    if (location.pathname !== "/") {
+      navigate("/");
       // Wait for navigation, then scroll to section
       setTimeout(() => {
         const element = document.querySelector(href);
         if (element) {
           const headerOffset = 80;
           const elementPosition = element.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          const offsetPosition =
+            elementPosition + window.pageYOffset - headerOffset;
           window.scrollTo({
             top: offsetPosition,
             behavior: "smooth",
@@ -194,7 +196,8 @@ const Header = ({ changeLanguage }) => {
       if (element) {
         const headerOffset = 80;
         const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        const offsetPosition =
+          elementPosition + window.pageYOffset - headerOffset;
         window.scrollTo({
           top: offsetPosition,
           behavior: "smooth",
@@ -226,11 +229,18 @@ const Header = ({ changeLanguage }) => {
       <div className="container mx-auto flex justify-between items-center px-12">
         {/* --- Left: Logo --- */}
         <div className="text-3xl font-bold z-50">
-          <a href="/" onClick={(e) => {
-            e.preventDefault();
-            navigate('/');
-          }}>
-            <img src={logoSrc} alt="Primex Logo" className={isWhiteLogo ? "h-16" : "h-12"} />
+          <a
+            href="/"
+            onClick={(e) => {
+              e.preventDefault();
+              navigate("/");
+            }}
+          >
+            <img
+              src={logoSrc}
+              alt="Primex Logo"
+              className={isWhiteLogo ? "h-16" : "h-12"}
+            />
           </a>
         </div>
 
@@ -280,14 +290,13 @@ const Header = ({ changeLanguage }) => {
             )}
           </div>
 
-          {/* Dark Mode Toggle (Icon) */}
+          {/* Calendar Icon (Desktop) */}
           <Link to="/appointments">
             <button
               className="flex items-center space-x-2 p-2 rounded-full hover:bg-gray-200 transition-all"
               aria-label="Go to Appointment Calendar"
             >
               <CalendarIcon />
-              
             </button>
           </Link>
         </div>
@@ -303,13 +312,19 @@ const Header = ({ changeLanguage }) => {
 
       {/* --- Mobile Navigation Menu (Modal Style) --- */}
       <div
-        className={`fixed inset-0 bg-black/50 backdrop-blur-sm transition-all duration-300 md:hidden ${isMobileMenuOpen ? "opacity-100 z-998" : "opacity-0 pointer-events-none z-[-1]"
-          }`}
+        className={`fixed inset-0 bg-black/50 backdrop-blur-sm transition-all duration-300 md:hidden ${
+          isMobileMenuOpen
+            ? "opacity-100 z-998"
+            : "opacity-0 pointer-events-none z-[-1]"
+        }`}
         onClick={() => setIsMobileMenuOpen(false)}
       >
         <div
-          className={`absolute inset-x-4 top-20 bg-white rounded-3xl shadow-2xl transition-all duration-300 md:hidden ${isMobileMenuOpen ? "translate-y-0 opacity-100 scale-100" : "translate-y-4 opacity-0 scale-95"
-            }`}
+          className={`absolute inset-x-4 top-20 bg-white rounded-3xl shadow-2xl transition-all duration-300 md:hidden ${
+            isMobileMenuOpen
+              ? "translate-y-0 opacity-100 scale-100"
+              : "translate-y-4 opacity-0 scale-95"
+          }`}
           onClick={(e) => e.stopPropagation()}
           style={{ maxHeight: "calc(100vh - 120px)" }}
         >
@@ -346,12 +361,28 @@ const Header = ({ changeLanguage }) => {
             {/* Separator */}
             <div className="border-t border-gray-200"></div>
 
-            {/* Mobile Language Control */}
+            {/* Mobile Actions: Calendar & Language */}
             <div className="px-6 py-6 bg-white">
               <div className="space-y-4">
+                {/* --- ADDED: Calendar Button for Mobile --- */}
+                <Link
+                  to="/appointments"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="w-full flex items-center justify-center gap-3 px-4 py-3 bg-[#2378FF] text-white rounded-lg hover:bg-blue-700 transition-colors shadow-md"
+                >
+                  <div className="text-white">
+                    <CalendarIcon />
+                  </div>
+                  <span className="text-base font-bold">
+                    {t("bookAppointment") || "Book Appointment"}
+                  </span>
+                </Link>
+
                 {/* Language Switcher */}
                 <button
-                  onClick={() => handleLanguageSelect(i18n.language === "en" ? "de" : "en")}
+                  onClick={() =>
+                    handleLanguageSelect(i18n.language === "en" ? "de" : "en")
+                  }
                   className="w-full flex items-center justify-between px-4 py-3 bg-white border-2 border-gray-200 rounded-lg hover:border-[#2378FF] transition-colors"
                 >
                   <div className="flex items-center gap-3">
@@ -361,16 +392,22 @@ const Header = ({ changeLanguage }) => {
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className={`px-3 py-1 rounded text-sm font-semibold ${i18n.language === "en"
-                      ? "bg-[#2378FF] text-white"
-                      : "bg-gray-100 text-gray-600"
-                      }`}>
+                    <span
+                      className={`px-3 py-1 rounded text-sm font-semibold ${
+                        i18n.language === "en"
+                          ? "bg-[#2378FF] text-white"
+                          : "bg-gray-100 text-gray-600"
+                      }`}
+                    >
                       EN
                     </span>
-                    <span className={`px-3 py-1 rounded text-sm font-semibold ${i18n.language === "de"
-                      ? "bg-[#2378FF] text-white"
-                      : "bg-gray-100 text-gray-600"
-                      }`}>
+                    <span
+                      className={`px-3 py-1 rounded text-sm font-semibold ${
+                        i18n.language === "de"
+                          ? "bg-[#2378FF] text-white"
+                          : "bg-gray-100 text-gray-600"
+                      }`}
+                    >
                       DE
                     </span>
                   </div>
