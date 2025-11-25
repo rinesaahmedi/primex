@@ -4,6 +4,7 @@ const { transporter } = require("../config/email");
 // Helper function to calculate time slots
 function calculateSlots(year, month, day, offsetMinutes, events) {
   const slots = [];
+  // Define your working hours here
   const definedTimes = [
     { h: 8, m: 0 },
     { h: 10, m: 0 },
@@ -14,6 +15,8 @@ function calculateSlots(year, month, day, offsetMinutes, events) {
   for (const time of definedTimes) {
     const h = time.h;
     const m = time.m;
+
+    // Calculate start/end in UTC based on the client's offset
     const slotStartMs =
       Date.UTC(year, month, day, h, m, 0) + offsetMinutes * 60 * 1000;
     const slotEndMs = slotStartMs + duration * 60 * 1000;
@@ -24,6 +27,8 @@ function calculateSlots(year, month, day, offsetMinutes, events) {
         event.start.dateTime || event.start.date
       ).getTime();
       const evEnd = new Date(event.end.dateTime || event.end.date).getTime();
+
+      // Check for overlap
       if (evStart < slotEndMs && evEnd > slotStartMs) {
         isBusy = true;
         break;
@@ -40,7 +45,7 @@ function calculateSlots(year, month, day, offsetMinutes, events) {
 }
 
 // ==================================================================
-// 1. GET AVAILABLE SLOTS
+// 1. GET AVAILABLE SLOTS (Single Day)
 // ==================================================================
 const getAvailableSlots = async (req, res) => {
   try {
@@ -49,7 +54,7 @@ const getAvailableSlots = async (req, res) => {
 
     const parts = date.split("-");
     const year = parseInt(parts[0], 10);
-    const month = parseInt(parts[1], 10) - 1;
+    const month = parseInt(parts[1], 10) - 1; // Month is 0-indexed
     const day = parseInt(parts[2], 10);
     const clientOffsetMinutes = parseInt(tzOffset) || 0;
 
@@ -82,7 +87,67 @@ const getAvailableSlots = async (req, res) => {
 };
 
 // ==================================================================
-// 2. BOOK APPOINTMENT
+// 2. GET UNAVAILABLE DATES (Whole Month) - NEW FUNCTION
+// ==================================================================
+const getUnavailableDates = async (req, res) => {
+  try {
+    const { year, month, tzOffset } = req.query;
+
+    const targetYear = parseInt(year);
+    const targetMonth = parseInt(month) - 1; // JS months are 0-11
+    const clientOffsetMinutes = parseInt(tzOffset) || 0;
+
+    // 1. Fetch all events for the entire month
+    const startOfMonth = new Date(Date.UTC(targetYear, targetMonth, 1));
+    const endOfMonth = new Date(
+      Date.UTC(targetYear, targetMonth + 1, 0, 23, 59, 59)
+    );
+
+    const calendar = await getCalendarClient();
+    const response = await calendar.events.list({
+      calendarId: MY_CALENDAR_ID,
+      timeMin: startOfMonth.toISOString(),
+      timeMax: endOfMonth.toISOString(),
+      singleEvents: true,
+      orderBy: "startTime",
+    });
+
+    const allEvents = response.data.items || [];
+    const unavailableDates = [];
+
+    // 2. Loop through every day of the month
+    const daysInMonth = new Date(targetYear, targetMonth + 1, 0).getDate();
+
+    for (let day = 1; day <= daysInMonth; day++) {
+      // Calculate slots for this specific day
+      const slots = calculateSlots(
+        targetYear,
+        targetMonth,
+        day,
+        clientOffsetMinutes,
+        allEvents
+      );
+
+      // 3. If no slots are returned, mark this date as unavailable
+      if (slots.length === 0) {
+        const dateString = `${targetYear}-${String(targetMonth + 1).padStart(
+          2,
+          "0"
+        )}-${String(day).padStart(2, "0")}`;
+        unavailableDates.push(dateString);
+      }
+    }
+
+    // Returns array like: ["2023-11-20", "2023-11-26"]
+    res.json(unavailableDates);
+  } catch (error) {
+    console.error("Error fetching unavailable dates:", error);
+    res.status(500).send("Error calculating availability");
+  }
+};
+
+// ==================================================================
+// 3. BOOK APPOINTMENT
 // ==================================================================
 const bookAppointment = async (req, res) => {
   try {
@@ -108,92 +173,38 @@ const bookAppointment = async (req, res) => {
       },
     });
 
-    // -----------------------------------------------------------
-    // EMAIL 1: OWNER NOTIFICATION (MATCHING YOUR SCREENSHOT)
-    // -----------------------------------------------------------
+    // --- EMAIL TEMPLATES (Same as before) ---
     const ownerHtml = `
       <div style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
-        
-        <!-- Blue Header -->
         <div style="background-color: #2563eb; padding: 20px;">
           <h2 style="color: #ffffff; margin: 0; font-size: 20px; font-weight: 600;">New Booking Received</h2>
         </div>
-        
-        <!-- Content -->
         <div style="padding: 30px; background-color: #ffffff;">
           <table style="width: 100%; border-collapse: separate; border-spacing: 0;">
-            
-            <!-- Client Name -->
-            <tr>
-              <td style="padding: 10px 0; color: #6b7280; font-size: 14px; width: 35%;">Client Name</td>
-              <td style="padding: 10px 0; color: #111827; font-weight: 700; font-size: 15px;">${name}</td>
-            </tr>
-
-            <!-- Email -->
-            <tr>
-              <td style="padding: 10px 0; color: #6b7280; font-size: 14px;">Email</td>
-              <td style="padding: 10px 0; font-weight: 600;">
-                <a href="mailto:${email}" style="color: #2563eb; text-decoration: none;">${email}</a>
-              </td>
-            </tr>
-
-            <!-- Phone -->
-            <tr>
-              <td style="padding: 10px 0; color: #6b7280; font-size: 14px;">Phone</td>
-              <td style="padding: 10px 0; color: #111827; font-weight: 700; font-size: 15px;">${phone}</td>
-            </tr>
-
-            <!-- Topic -->
-            <tr>
-              <td style="padding: 10px 0; color: #6b7280; font-size: 14px;">Topic</td>
-              <td style="padding: 10px 0; color: #1e3a8a; font-weight: 700; font-size: 15px;">${topic}</td>
-            </tr>
-
-            <!-- Divider Line -->
-            <tr>
-              <td colspan="2" style="border-bottom: 1px solid #f3f4f6; padding: 15px 0; margin-bottom: 15px;"></td>
-            </tr>
-            <tr><td colspan="2" style="padding-top: 15px;"></td></tr>
-
-            <!-- Date -->
-            <tr>
-              <td style="padding: 10px 0; color: #6b7280; font-size: 14px;">Date</td>
-              <td style="padding: 10px 0; color: #111827; font-weight: 700; font-size: 15px;">${date}</td>
-            </tr>
-
-            <!-- Time -->
-             <tr>
-              <td style="padding: 10px 0; color: #6b7280; font-size: 14px;">Time</td>
-              <td style="padding: 10px 0; color: #111827; font-weight: 700; font-size: 15px;">${time}</td>
-            </tr>
-
+            <tr><td style="padding: 10px 0; color: #6b7280; font-size: 14px; width: 35%;">Client Name</td><td style="padding: 10px 0; color: #111827; font-weight: 700; font-size: 15px;">${name}</td></tr>
+            <tr><td style="padding: 10px 0; color: #6b7280; font-size: 14px;">Email</td><td style="padding: 10px 0; font-weight: 600;"><a href="mailto:${email}" style="color: #2563eb; text-decoration: none;">${email}</a></td></tr>
+            <tr><td style="padding: 10px 0; color: #6b7280; font-size: 14px;">Phone</td><td style="padding: 10px 0; color: #111827; font-weight: 700; font-size: 15px;">${phone}</td></tr>
+            <tr><td style="padding: 10px 0; color: #6b7280; font-size: 14px;">Topic</td><td style="padding: 10px 0; color: #1e3a8a; font-weight: 700; font-size: 15px;">${topic}</td></tr>
+            <tr><td colspan="2" style="border-bottom: 1px solid #f3f4f6; padding: 15px 0; margin-bottom: 15px;"></td></tr>
+            <tr><td style="padding: 10px 0; color: #6b7280; font-size: 14px;">Date</td><td style="padding: 10px 0; color: #111827; font-weight: 700; font-size: 15px;">${date}</td></tr>
+            <tr><td style="padding: 10px 0; color: #6b7280; font-size: 14px;">Time</td><td style="padding: 10px 0; color: #111827; font-weight: 700; font-size: 15px;">${time}</td></tr>
           </table>
-
-          <!-- Action Button -->
           <div style="text-align: center; margin-top: 35px;">
-            <a href="mailto:${email}" style="background-color: #2563eb; color: #ffffff; padding: 12px 40px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 15px; display: inline-block; box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);">
-              Email Client
-            </a>
+            <a href="mailto:${email}" style="background-color: #2563eb; color: #ffffff; padding: 12px 40px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 15px; display: inline-block; box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);">Email Client</a>
           </div>
-
         </div>
       </div>
     `;
 
-    // -----------------------------------------------------------
-    // EMAIL 2: CLIENT CONFIRMATION
-    // -----------------------------------------------------------
     const clientHtml = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden;">
         <div style="background-color: #2563eb; padding: 20px; text-align: center;">
           <h2 style="color: #ffffff; margin: 0;">Appointment Confirmed</h2>
           <p style="color: #e0e7ff; margin: 5px 0 0;">You're all set!</p>
         </div>
-        
         <div style="padding: 25px; background-color: #ffffff;">
           <p style="font-size: 16px; color: #333; margin-top: 0;">Hi <strong>${name}</strong>,</p>
           <p style="color: #555; line-height: 1.6;">Your appointment with PrimeX has been successfully scheduled.</p>
-          
           <div style="background-color: #f9fafb; border: 1px solid #e5e7eb; border-radius: 6px; padding: 15px; margin: 20px 0;">
             <table style="width: 100%; border-collapse: collapse;">
               <tr><td style="padding: 5px 0; color: #666; width: 80px;">Date:</td><td style="padding: 5px 0; font-weight: bold; color: #333;">${date}</td></tr>
@@ -201,10 +212,8 @@ const bookAppointment = async (req, res) => {
               <tr><td style="padding: 5px 0; color: #666;">Topic:</td><td style="padding: 5px 0; font-weight: bold; color: #2563eb;">${topic}</td></tr>
             </table>
           </div>
-
           <p style="font-size: 14px; color: #666;">Please check your calendar for details. If you need to reschedule, please reply to this email.</p>
         </div>
-        
         <div style="background-color: #f9fafb; padding: 15px; text-align: center; font-size: 12px; color: #888;">&copy; ${new Date().getFullYear()} PrimeX. All rights reserved.</div>
       </div>
     `;
@@ -236,4 +245,5 @@ const bookAppointment = async (req, res) => {
 module.exports = {
   getAvailableSlots,
   bookAppointment,
+  getUnavailableDates, // <--- DON'T FORGET TO EXPORT THIS
 };

@@ -22,6 +22,9 @@ const AppointmentPage = () => {
   const [selectedTime, setSelectedTime] = useState("");
   const [showForm, setShowForm] = useState(false);
 
+  // Stores dates (YYYY-MM-DD) that have 0 slots available
+  const [unavailableDates, setUnavailableDates] = useState([]);
+
   // Loading State
   const [isBooking, setIsBooking] = useState(false);
 
@@ -42,18 +45,36 @@ const AppointmentPage = () => {
     "Other",
   ];
 
-  const toggleTopic = (option) => {
-    setSelectedTopics((prev) =>
-      prev.includes(option)
-        ? prev.filter((t) => t !== option)
-        : [...prev, option]
-    );
+  // Helper: Format Date to YYYY-MM-DD (Local Time)
+  const formatDateString = (dateObj) => {
+    // This ensures we get the date string relative to the user's timezone selection
+    // equivalent to format 'YYYY-MM-DD'
+    return dateObj.toLocaleDateString("en-CA");
   };
 
+  // 1. Fetch which dates in the current month are fully booked
+  const fetchMonthlyAvailability = (activeStartDate) => {
+    const year = activeStartDate.getFullYear();
+    const month = activeStartDate.getMonth() + 1;
+    const tzOffset = new Date().getTimezoneOffset();
+
+    // Call the new backend endpoint
+    axios
+      .get(
+        `http://localhost:5000/api/unavailable-dates?year=${year}&month=${month}&tzOffset=${tzOffset}`
+      )
+      .then((response) => {
+        // Expecting array: ["2025-11-26", "2025-11-28"]
+        setUnavailableDates(response.data);
+      })
+      .catch((error) =>
+        console.error("Error fetching monthly availability:", error)
+      );
+  };
+
+  // 2. Fetch specific time slots for the selected day
   const fetchSlots = () => {
-    const offset = date.getTimezoneOffset();
-    const localDate = new Date(date.getTime() - offset * 60 * 1000);
-    const formattedDate = localDate.toISOString().split("T")[0];
+    const formattedDate = formatDateString(date);
     const tzOffset = new Date().getTimezoneOffset();
 
     axios
@@ -68,6 +89,13 @@ const AppointmentPage = () => {
       );
   };
 
+  // Initial Load
+  useEffect(() => {
+    fetchMonthlyAvailability(new Date());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // When selected date changes
   useEffect(() => {
     fetchSlots();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -79,18 +107,47 @@ const AppointmentPage = () => {
     setSelectedTime("");
   };
 
+  // Detect when user switches months (Next/Prev buttons)
+  const handleActiveStartDateChange = ({ activeStartDate }) => {
+    fetchMonthlyAvailability(activeStartDate);
+  };
+
+  // Logic to disable specific calendar tiles
+  const isTileDisabled = ({ date, view }) => {
+    if (view === "month") {
+      // 1. Disable Weekends (Saturday=6, Sunday=0)
+      if (date.getDay() === 0 || date.getDay() === 6) return true;
+
+      // 2. Disable Past Dates
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      if (date < today) return true;
+
+      // 3. Disable Dates returned from Backend as "Unavailable"
+      const dateStr = formatDateString(date);
+      if (unavailableDates.includes(dateStr)) return true;
+    }
+    return false;
+  };
+
   const handleTimeSelection = (time) => {
     setSelectedTime(time);
     setShowForm(true);
+  };
+
+  const toggleTopic = (option) => {
+    setSelectedTopics((prev) =>
+      prev.includes(option)
+        ? prev.filter((t) => t !== option)
+        : [...prev, option]
+    );
   };
 
   const handleBooking = (e) => {
     e.preventDefault();
     setIsBooking(true);
 
-    const offset = date.getTimezoneOffset();
-    const localDate = new Date(date.getTime() - offset * 60 * 1000);
-    const formattedDate = localDate.toISOString().split("T")[0];
+    const formattedDate = formatDateString(date);
     const tzOffset = new Date().getTimezoneOffset();
 
     if (!selectedTopics || selectedTopics.length === 0) {
@@ -119,6 +176,7 @@ const AppointmentPage = () => {
         setIsBooking(false);
         alert(response.data.message);
 
+        // Reset
         setName("");
         setEmail("");
         setPhone("");
@@ -127,7 +185,9 @@ const AppointmentPage = () => {
         setSelectedTime("");
         setShowForm(false);
 
+        // Refresh Data
         fetchSlots();
+        fetchMonthlyAvailability(date);
       })
       .catch((error) => {
         setIsBooking(false);
@@ -140,7 +200,7 @@ const AppointmentPage = () => {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
 
-        /* Global Font Application for this component */
+        /* Global Font Application */
         .montserrat-app, 
         .montserrat-app input, 
         .montserrat-app button,
@@ -162,7 +222,6 @@ const AppointmentPage = () => {
           font-size: 1.1rem;
           font-weight: 700;
           color: #1e3a8a;
-          /* Removed serif, enforced Montserrat above */
         }
         .react-calendar__navigation button:enabled:hover,
         .react-calendar__navigation button:enabled:focus {
@@ -209,20 +268,22 @@ const AppointmentPage = () => {
           color: white !important;
           box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.4);
         }
+        
+        /* DISABLED TILES STYLE (Past dates, Weekends, No Slots) */
         .react-calendar__tile:disabled {
           background-color: transparent !important;
-          color: #d1d5db !important; 
+          color: #e5e7eb !important; /* Lighter gray */
           cursor: not-allowed !important;
+          text-decoration: line-through; /* Visual indicator */
+          opacity: 0.9;
         }
       `}</style>
 
-      {/* Added 'montserrat-app' class here */}
       <div className="montserrat-app min-h-screen bg-gray-50 flex flex-col items-center pt-32 pb-12 px-4 sm:px-6 lg:px-8 text-gray-800">
         <div className="w-full max-w-6xl bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100 flex flex-col md:flex-row min-h-[500px]">
           {/* LEFT PANEL: CALENDAR */}
           <div className="w-full md:w-5/12 bg-slate-50 p-6 md:p-8 border-b md:border-b-0 md:border-r border-gray-100 flex flex-col items-center">
             <div className="w-full max-w-[340px]">
-              {/* Removed font-serif */}
               <h2 className="text-2xl font-bold text-blue-900 mb-1">
                 Select Date
               </h2>
@@ -235,10 +296,9 @@ const AppointmentPage = () => {
                 value={date}
                 prev2Label={null}
                 next2Label={null}
-                minDate={new Date()}
-                tileDisabled={({ date }) =>
-                  date.getDay() === 0 || date.getDay() === 6
-                }
+                minDate={new Date()} // Prevents navigating to past months (visual only)
+                tileDisabled={isTileDisabled} // The logic to block unavailable dates
+                onActiveStartDateChange={handleActiveStartDateChange} // Fetch new data on month swap
               />
             </div>
           </div>
@@ -247,10 +307,8 @@ const AppointmentPage = () => {
           <div className="w-full md:w-7/12 p-6 md:p-10 bg-white">
             {!showForm ? (
               <div className="animate-fade-in">
-                {/* Removed font-serif */}
                 <h3 className="text-xl font-bold text-blue-900 mb-5 flex items-center gap-3">
                   Available Times
-                  {/* Removed font-sans */}
                   <span className="text-xs font-normal text-gray-500 bg-gray-100 px-2 py-1 rounded-full border border-gray-200">
                     {date.toLocaleDateString("en-US", {
                       month: "short",
@@ -290,7 +348,6 @@ const AppointmentPage = () => {
               // BOOKING FORM
               <div className="animate-fade-in-up max-w-lg mx-auto md:mx-0">
                 <div className="flex justify-between items-center mb-4">
-                  {/* Removed font-serif */}
                   <h3 className="text-xl font-bold text-blue-900">
                     Confirm Booking
                   </h3>
@@ -312,7 +369,6 @@ const AppointmentPage = () => {
                     <p className="text-[10px] text-blue-400 uppercase tracking-widest font-bold">
                       Date
                     </p>
-                    {/* Removed font-serif */}
                     <p className="text-blue-900 font-bold text-base">
                       {date.toLocaleDateString()}
                     </p>
@@ -321,7 +377,6 @@ const AppointmentPage = () => {
                     <p className="text-[10px] text-blue-400 uppercase tracking-widest font-bold">
                       Time
                     </p>
-                    {/* Removed font-serif */}
                     <p className="text-blue-900 font-bold text-base">
                       {selectedTime}
                     </p>
@@ -375,7 +430,7 @@ const AppointmentPage = () => {
                     </div>
                   </div>
 
-                  {/* --- MODIFIED DESIGN: Cards with Smaller Text --- */}
+                  {/* Business Topic Selection */}
                   <div>
                     <label className="block text-xs font-bold text-gray-700 mb-2 ml-1">
                       Business Type / Topic
