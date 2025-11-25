@@ -28,6 +28,8 @@ import AgentTemplate from "./pages/services/agents/AgentTemplate";
 import Terms from "./pages/Terms.jsx";
 import CertificatePage from "./pages/CertificatePage.jsx";
 
+import ChatBot from './components/ChatBot';
+
 function App() {
   const { i18n } = useTranslation();
   const [darkMode, setDarkMode] = useState(false);
@@ -91,8 +93,9 @@ function App() {
           <Route path="/appointments" element={<AppointmentPage />} />
           <Route path="/terms" element={<Terms />} />
         </Routes>
+        
       </main>
-
+     <ChatBot />
       <Footer />
     </div>
   );

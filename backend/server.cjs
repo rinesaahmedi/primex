@@ -8,6 +8,8 @@ const cors = require("cors");
 const { google } = require("googleapis");
 const nodemailer = require("nodemailer");
 const multer = require("multer");
+const { Pinecone } = require("@pinecone-database/pinecone");
+const OpenAI = require("openai");
 
 const app = express();
 const port = 5000;
@@ -18,18 +20,107 @@ app.use(express.json());
 // Multer setup for handling file uploads in memory
 const upload = multer({ storage: multer.memoryStorage() });
 
-// --- 1. EMAIL CONFIGURATION ---
+// 1. Initialize Pinecone
+const pc = new Pinecone({
+  apiKey: process.env.PINECONE_API_KEY,
+});
+
+// 2. Connect to the Index
+const index = pc.index("pdf-embeddings-index");
+
+// 3. Initialize OpenAI
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+
+// BASE KNOWLEDGE
+const BASE_SYSTEM_PROMPT = `
+You are the AI Support Assistant for PrimeX. Your goal is to be helpful, professional, and encourage users to book an appointment.
+ 
+CORE INFORMATION:
+- Company: PrimeX
+- Services: AI Agents, Custom Software, Graphic Design, Admin Support.
+- Tone: Professional, modern, concise, and friendly.
+ 
+PRICING:
+- Tell them: "Our pricing depends on the complexity of the project. We offer custom quotes tailored to your needs."
+ 
+CALL TO ACTIONS:
+- "Would you like to book a free consultation?"
+- "You can apply to work with us on our Apply page."
+`;
+
+// ==================================================================
+// ROUTE: AI CHAT (WITH PINECONE RAG)
+// ==================================================================
+app.post("/api/chat", async (req, res) => {
+  const { message } = req.body;
+
+  try {
+    // A. Create Embedding for user's query
+    // We use text-embedding-3-small (newer) or text-embedding-ada-002
+    const embeddingResponse = await openai.embeddings.create({
+      model: "text-embedding-3-small",
+      input: message,
+    });
+
+    const vector = embeddingResponse.data[0].embedding;
+
+    // B. Query Pinecone for relevant context
+    const queryResponse = await index.query({
+      vector: vector,
+      topK: 3, // Get top 3 most relevant chunks
+      includeMetadata: true,
+    });
+
+    // C. Extract context text from Pinecone results
+    const contextText = queryResponse.matches
+      .map((match) => match.metadata?.text || "")
+      .join("\n\n---\n\n");
+
+    // D. Build the final prompt
+    const finalSystemPrompt = `
+      ${BASE_SYSTEM_PROMPT}
+ 
+      Here is some specific context from our internal database that might help answer the user:
+      ${contextText}
+ 
+      If the context doesn't have the answer, use your general knowledge but mention you are not 100% sure.
+    `;
+
+    // E. Generate Answer
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4o-mini", // Better and cheaper than 3.5
+      messages: [
+        { role: "system", content: finalSystemPrompt },
+        { role: "user", content: message },
+      ],
+      temperature: 0.7,
+    });
+
+    res.json({ reply: completion.choices[0].message.content });
+  } catch (error) {
+    console.error("Chat API Error:", error);
+    res.status(500).json({
+      reply:
+        "I'm having a little trouble connecting to my brain right now. Please try again in a moment.",
+    });
+  }
+});
+
+// ==================================================================
+// EMAIL & CALENDAR CONFIGURATION
+// ==================================================================
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 465,
   secure: true,
   auth: {
     user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS, // Ensure this is the 16-char App Password
+    pass: process.env.SMTP_PASS,
   },
 });
 
-// --- 2. GOOGLE CALENDAR CONFIGURATION ---
 const keyFile = path.join(__dirname, "../keys/calendar-key.json");
 const MY_CALENDAR_ID =
   "12f3606e67d25124ae81e80895f7c00c64cb0e705205ec0a0c67676c9a249d3d@group.calendar.google.com";
@@ -45,7 +136,7 @@ async function getCalendarClient() {
 }
 
 // ==================================================================
-// ROUTE 1: GET AVAILABLE SLOTS (Calendar)
+// ROUTE: GET AVAILABLE SLOTS
 // ==================================================================
 app.get("/api/available-slots", async (req, res) => {
   try {
@@ -88,7 +179,6 @@ app.get("/api/available-slots", async (req, res) => {
 
 function calculateSlots(year, month, day, offsetMinutes, events) {
   const slots = [];
-  // Define your working hours here
   const definedTimes = [
     { h: 8, m: 0 },
     { h: 10, m: 0 },
@@ -126,13 +216,11 @@ function calculateSlots(year, month, day, offsetMinutes, events) {
 }
 
 // ==================================================================
-// ROUTE 2: BOOK APPOINTMENT (Calendar + Email)
+// ROUTE: BOOK APPOINTMENT
 // ==================================================================
 app.post("/api/book-appointment", async (req, res) => {
   try {
     const { name, email, phone, topic, date, time, tzOffset } = req.body;
-
-    // A. Insert into Google Calendar
     const [year, month, day] = date.split("-").map(Number);
     const [hour, minute] = time.split(":").map(Number);
     const offsetMinutes = parseInt(tzOffset) || 0;
@@ -142,122 +230,98 @@ app.post("/api/book-appointment", async (req, res) => {
       offsetMinutes * 60 * 1000;
     const slotEndMs = slotStartMs + 60 * 60 * 1000;
 
-    const startIso = new Date(slotStartMs).toISOString();
-    const endIso = new Date(slotEndMs).toISOString();
-
     const calendar = await getCalendarClient();
     const insertRes = await calendar.events.insert({
       calendarId: MY_CALENDAR_ID,
       resource: {
         summary: `Appointment: ${name}`,
         description: `Topic: ${topic}\nPhone: ${phone}\nEmail: ${email}`,
-        start: { dateTime: startIso },
-        end: { dateTime: endIso },
+        start: { dateTime: new Date(slotStartMs).toISOString() },
+        end: { dateTime: new Date(slotEndMs).toISOString() },
       },
     });
 
-    // B. Send Emails
-    const clientHtml = `
-      <div style="font-family: Arial, sans-serif; color: #333;">
-        <h2>Appointment Confirmed</h2>
-        <p>Hello ${name}, your appointment with PrimEx is confirmed.</p>
-        <p><strong>Date:</strong> ${date} at ${time}</p>
-        <p><strong>Topic:</strong> ${topic}</p>
-      </div>
-    `;
+    const clientHtml = `<h2>Confirmed</h2><p>${date} at ${time}</p>`;
+    const ownerHtml = `<h2>New Booking</h2><p>${name} - ${topic}</p>`;
 
-    const ownerHtml = `
-      <div style="font-family: Arial, sans-serif;">
-        <h2>New Booking</h2>
-        <p><strong>Client:</strong> ${name} (${email})</p>
-        <p><strong>Phone:</strong> ${phone}</p>
-        <p><strong>Topic:</strong> ${topic}</p>
-        <p><strong>Date:</strong> ${date} at ${time}</p>
-      </div>
-    `;
-
-    try {
-      await transporter.sendMail({
-        from: `"PrimEx Appointments" <${process.env.SMTP_USER}>`,
-        to: email,
-        subject: "Appointment Confirmed",
-        html: clientHtml,
-      });
-      await transporter.sendMail({
-        from: `"PrimEx System" <${process.env.SMTP_USER}>`,
-        to: process.env.OWNER_EMAIL,
-        replyTo: email,
-        subject: `New Appointment: ${name}`,
-        html: ownerHtml,
-      });
-    } catch (emailErr) {
-      console.error("Booking Email Error:", emailErr);
-    }
+    await transporter.sendMail({
+      from: `"PrimEx" <${process.env.SMTP_USER}>`,
+      to: email,
+      subject: "Appointment Confirmed",
+      html: clientHtml,
+    });
+    await transporter.sendMail({
+      from: `"PrimEx System" <${process.env.SMTP_USER}>`,
+      to: process.env.OWNER_EMAIL,
+      subject: `New Appointment: ${name}`,
+      html: ownerHtml,
+    });
 
     res.json({ message: "Booking successful!", eventId: insertRes.data.id });
   } catch (error) {
-    console.error("Booking Server Error:", error);
+    console.error("Booking Error:", error);
     res.status(500).json({ message: "Failed to book appointment" });
   }
 });
 
 // ==================================================================
-// ROUTE 3: SEND APPLY FORM (With File Upload)
+// ROUTE: SEND APPLY FORM (FIXED)
 // ==================================================================
 app.post("/send-apply-form", upload.single("cv"), async (req, res) => {
   try {
-    const {
-      name = "",
-      email = "",
-      phone = "",
-      linkedin = "",
-      country = "",
-      position = "Not specified", // NEW
-      description = "",
-      privacyAccepted = "false",
-    } = req.body;
+    const { name, email, phone, linkedin, country, position, description } =
+      req.body;
 
-    const isPrivacyAccepted =
-      privacyAccepted === "true" || privacyAccepted === "1";
-
+    // 1. Define Email HTML for the Owner
     const ownerHtml = `
-      <div style="font-family: Arial, sans-serif; max-width: 680px; margin: 0 auto; color: #111;">
-        <div style="background:#2563eb;padding:12px;border-radius:8px 8px 0 0;color:#fff;text-align:center;">
-          <h3 style="margin:0">New Job Application</h3>
-        </div>
-        <div style="border:1px solid #e5e7eb;border-top:none;padding:18px;border-radius:0 0 8px 8px;">
-          <table style="width:100%;font-size:14px;border-collapse:collapse;color:#333;">
-            <tr><td style="padding:8px;color:#6b7280;width:120px;">Position</td><td style="padding:8px;font-weight:700;color:#2563eb;font-size:16px;">${position}</td></tr>
-            <tr><td style="padding:8px;color:#6b7280">Name</td><td style="padding:8px;font-weight:700">${name}</td></tr>
-            <tr><td style="padding:8px;color:#6b7280">Email</td><td style="padding:8px;font-weight:700"><a href="mailto:${email}" style="color:#2563eb">${email}</a></td></tr>
-            <tr><td style="padding:8px;color:#6b7280">Phone</td><td style="padding:8px;font-weight:700">${phone}</td></tr>
-            <tr><td style="padding:8px;color:#6b7280">LinkedIn</td><td style="padding:8px;font-weight:700">${linkedin}</td></tr>
-            <tr><td style="padding:8px;color:#6b7280">Country</td><td style="padding:8px;font-weight:700">${country}</td></tr>
-            <tr><td colspan="2" style="padding-top:12px;color:#6b7280">Message</td></tr>
-            <tr><td colspan="2" style="padding:8px 0 0 0">${
-              description
-                ? description
-                : '<span style="color:#9ca3af">(no description)</span>'
-            }</td></tr>
-          </table>
-        </div>
+      <div style="font-family: Arial;">
+        <h3>New Job Application</h3>
+        <p><strong>Position:</strong> ${position}</p>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Phone:</strong> ${phone}</p>
+        <p><strong>LinkedIn:</strong> ${linkedin}</p>
+        <p><strong>Country:</strong> ${country}</p>
+        <p><strong>Message:</strong> ${description}</p>
       </div>
     `;
 
-    // Send emails
-    try {
-      await transporter.sendMail(ownerMailOptions);
-      if (email) {
-        await transporter.sendMail({
-          from: `"PrimEx Careers" <${process.env.SMTP_USER}>`,
-          to: email,
-          subject: "We received your application",
-          html: applicantHtml,
-        });
-      }
-    } catch (mailErr) {
-      console.error("Email send error:", mailErr);
-      // We log the error but still return success to the frontend if the process mostly worked
+    // 2. Define Email HTML for the Applicant
+    const applicantHtml = `
+      <div style="font-family: Arial;">
+        <h3>Application Received</h3>
+        <p>Hi ${name}, thanks for applying to PrimEx for the ${position} role. We will review your CV and get back to you.</p>
+      </div>
+    `;
+
+    // 3. Prepare Attachment (CV)
+    const attachments = req.file
+      ? [
+          {
+            filename: req.file.originalname,
+            content: req.file.buffer,
+          },
+        ]
+      : [];
+
+    // 4. Send Email to Owner
+    await transporter.sendMail({
+      from: `"PrimEx Careers" <${process.env.SMTP_USER}>`,
+      to: process.env.OWNER_EMAIL,
+      subject: `New Application: ${name} - ${position}`,
+      html: ownerHtml,
+      replyTo: email,
+      attachments: attachments, // Attach the CV
+    });
+
+    // 5. Send Email to Applicant
+    if (email) {
+      await transporter.sendMail({
+        from: `"PrimEx Careers" <${process.env.SMTP_USER}>`,
+        to: email,
+        subject: "We received your application",
+        html: applicantHtml,
+      });
     }
 
     return res.json({ success: true });
@@ -268,7 +332,7 @@ app.post("/send-apply-form", upload.single("cv"), async (req, res) => {
 });
 
 // ==================================================================
-// ROUTE 4: BUSINESS INQUIRY FORM
+// ROUTE: BUSINESS INQUIRY FORM
 // ==================================================================
 app.post("/send-business-inquiry", async (req, res) => {
   try {
@@ -283,61 +347,20 @@ app.post("/send-business-inquiry", async (req, res) => {
     } = req.body;
 
     const ownerHtml = `
-      <div style="font-family: Arial, sans-serif; max-width: 680px; margin: 0 auto; color: #111;">
-        <div style="background:#2563eb;padding:12px;border-radius:8px 8px 0 0;color:#fff;text-align:center;">
-          <h3 style="margin:0">New Business Inquiry</h3>
-        </div>
-        <div style="border:1px solid #e5e7eb;border-top:none;padding:18px;border-radius:0 0 8px 8px;">
-          <table style="width:100%;font-size:14px;border-collapse:collapse;color:#333;">
-            <tr><td style="padding:8px;color:#6b7280;width:130px;">Company</td><td style="padding:8px;font-weight:700;font-size:16px;">${companyName}</td></tr>
-            <tr><td style="padding:8px;color:#6b7280">Contact Person</td><td style="padding:8px;font-weight:700">${contactPerson}</td></tr>
-            <tr><td style="padding:8px;color:#6b7280">Service Type</td><td style="padding:8px;font-weight:700;color:#2563eb;">${businessType}</td></tr>
-            <tr><td style="padding:8px;color:#6b7280">Email</td><td style="padding:8px;font-weight:700"><a href="mailto:${email}" style="color:#2563eb">${email}</a></td></tr>
-            <tr><td style="padding:8px;color:#6b7280">Phone</td><td style="padding:8px;font-weight:700">${phone}</td></tr>
-            <tr><td style="padding:8px;color:#6b7280">Website</td><td style="padding:8px;font-weight:700">${
-              website || "N/A"
-            }</td></tr>
-            <tr><td colspan="2" style="padding-top:12px;color:#6b7280">Inquiry Message</td></tr>
-            <tr><td colspan="2" style="padding:8px 0 0 0;"><div style="background:#f9fafb;padding:12px;border-radius:4px;">${message}</div></td></tr>
-          </table>
-        </div>
-      </div>
+      <h3>New Business Inquiry</h3>
+      <p><strong>Company:</strong> ${companyName}</p>
+      <p><strong>Contact:</strong> ${contactPerson}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Message:</strong> ${message}</p>
     `;
 
-    // Send email to OWNER
     await transporter.sendMail({
       from: `"PrimEx Business" <${process.env.SMTP_USER}>`,
       to: process.env.OWNER_EMAIL,
-      replyTo: email, // Allows you to just click "Reply" in Gmail
+      replyTo: email,
       subject: `Business Inquiry: ${companyName}`,
       html: ownerHtml,
     });
-
-    // Send confirmation to CLIENT
-    const clientHtml = `
-      <div style="font-family: Arial, sans-serif; max-width:600px;margin:0 auto;color:#111;">
-        <div style="background:#1e3a8a;padding:16px;border-radius:8px;color:#fff;text-align:center;"> 
-          <h2 style="margin:0">Inquiry Received</h2>
-        </div>
-        <div style="border:1px solid #e5e7eb;border-top:none;padding:16px;border-radius:0 0 8px 8px;">
-          <p>Dear ${contactPerson},</p>
-          <p>Thank you for reaching out to PrimEx. We have received your inquiry regarding <strong>${businessType}</strong>.</p>
-          <p>Our team will review your requirements and get back to you shortly.</p>
-          <p>Best regards,<br/>PrimEx Business Team</p>
-        </div>
-      </div>
-    `;
-
-    try {
-      await transporter.sendMail({
-        from: `"PrimEx Solutions" <${process.env.SMTP_USER}>`,
-        to: email,
-        subject: "We received your inquiry - PrimEx",
-        html: clientHtml,
-      });
-    } catch (err) {
-      console.log("Could not send client confirmation email (optional step).");
-    }
 
     res.json({ success: true });
   } catch (err) {
