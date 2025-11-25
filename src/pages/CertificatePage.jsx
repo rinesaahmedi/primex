@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next"; // 1. Import hook
 import Certificate from "../images/certificate.png"; // Adjust path if needed
 
 function CertificatePage() {
+  const { t } = useTranslation(); // 2. Initialize hook
   const [showHero, setShowHero] = useState(false);
   const [showCertificate, setShowCertificate] = useState(false);
 
@@ -26,18 +28,17 @@ function CertificatePage() {
       >
         {/* Pill */}
         <div className="inline-flex items-center gap-1.5 px-5 py-2 rounded-full text-sm font-bold uppercase tracking-wider bg-sky-100 text-sky-600 mb-6">
-          Verified Compliance
+          {t("certificatePage.pill")}
         </div>
 
         {/* Title */}
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 mb-4 leading-tight">
-          DSGVO Certificate
+          {t("certificatePage.title")}
         </h1>
 
         {/* Subtitle */}
         <p className="text-lg text-slate-500 max-w-xl mx-auto leading-relaxed">
-          We meet the strictest data privacy requirements to protect your
-          business and your customers.
+          {t("certificatePage.subtitle")}
         </p>
       </div>
 
@@ -64,7 +65,7 @@ function CertificatePage() {
           {/* Certificate Image */}
           <img
             src={Certificate}
-            alt="DSGVO Certificate"
+            alt={t("certificatePage.imageAlt")}
             className="relative block w-auto max-w-full rounded-xl bg-white shadow-2xl"
             style={{ maxHeight: "80vh" }}
           />

@@ -17,23 +17,20 @@ const BusinessInquiryForm = () => {
 
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  // --- DROPDOWN STATE (New) ---
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
   const businessOptions = [
-    "Order Management & Logistics",
-    "Customer Support",
-    "Product & Content Management",
-    "Design & Creative Services",
-    "Technology & Development",
-    "AI Solutions",
-    "Other",
+    "orderManagement",
+    "customerSupport",
+    "productContent",
+    "designCreative",
+    "technologyDev",
+    "aiSolutions",
+    "other",
   ];
 
   // --- CLICK OUTSIDE LISTENER ---
-  // Closes the dropdown if you click anywhere else on the page
   useEffect(() => {
     function handleClickOutside(event) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -63,13 +60,15 @@ const BusinessInquiryForm = () => {
       newErrors.email = t("forms.validation.invalidEmail");
     }
 
-    if (!formData.phone.trim())
-      newErrors.phone = t("forms.validation.required");
+    // Phone is optional in your snippet (no *), so we remove required check
+    // If you want it required, uncomment the next line:
+    // if (!formData.phone.trim()) newErrors.phone = t("forms.validation.required");
+
     if (!formData.businessType)
       newErrors.businessType = t("forms.validation.required");
 
     if (formData.website.trim() && !urlRegex.test(formData.website)) {
-      newErrors.website = "Please enter a valid URL";
+      newErrors.website = t("forms.validation.invalidUrl");
     }
 
     if (!formData.message.trim())
@@ -79,7 +78,6 @@ const BusinessInquiryForm = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  // Standard input change
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (errors[name]) {
@@ -88,7 +86,6 @@ const BusinessInquiryForm = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // --- NEW: Custom Dropdown Selection ---
   const handleSelectChange = (value) => {
     setFormData((prev) => ({ ...prev, businessType: value }));
     if (errors.businessType) {
@@ -117,7 +114,7 @@ const BusinessInquiryForm = () => {
       const result = await response.json();
 
       if (result.success) {
-        alert("✅ Thank you! Your inquiry has been sent successfully.");
+        alert(t("forms.alerts.success"));
         setFormData({
           companyName: "",
           contactPerson: "",
@@ -129,11 +126,11 @@ const BusinessInquiryForm = () => {
         });
         setErrors({});
       } else {
-        alert("❌ Failed to send inquiry. Please try again.");
+        alert(t("forms.alerts.error"));
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("❌ An error occurred. Please try again later.");
+      alert(t("forms.alerts.genericError"));
     } finally {
       setIsSubmitting(false);
     }
@@ -269,11 +266,10 @@ const BusinessInquiryForm = () => {
                       formData.businessType ? "text-white" : "text-white/60"
                     }
                   >
-                    {formData.businessType ||
-                      t("forms.business.fields.businessType")}
+                    {formData.businessType
+                      ? t(`forms.options.${formData.businessType}`)
+                      : t("forms.business.fields.businessType")}
                   </span>
-
-                  {/* Chevron Icon */}
                   <svg
                     className={`w-5 h-5 text-white/70 transition-transform duration-300 ${
                       isDropdownOpen ? "rotate-180" : "rotate-0"
@@ -292,31 +288,29 @@ const BusinessInquiryForm = () => {
                   </svg>
                 </div>
 
-                {/* Dropdown List */}
                 {isDropdownOpen && (
                   <div className="absolute top-full left-0 right-0 mt-2 z-50 bg-[#081333] border border-white/20 rounded-xl shadow-2xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
                     <ul className="max-h-60 overflow-y-auto">
-                      {businessOptions.map((option) => (
+                      {businessOptions.map((optionKey) => (
                         <li
-                          key={option}
-                          onClick={() => handleSelectChange(option)}
+                          key={optionKey}
+                          onClick={() => handleSelectChange(optionKey)}
                           className={`
                             px-5 py-3 text-white cursor-pointer transition-colors
                             hover:bg-blue-600/30
                             ${
-                              formData.businessType === option
+                              formData.businessType === optionKey
                                 ? "bg-blue-600/50"
                                 : ""
                             }
                           `}
                         >
-                          {option}
+                          {t(`forms.options.${optionKey}`)}
                         </li>
                       ))}
                     </ul>
                   </div>
                 )}
-
                 <ErrorMsg field="businessType" />
               </div>
 
@@ -395,7 +389,7 @@ const BusinessInquiryForm = () => {
                       d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                     ></path>
                   </svg>
-                  Sending...
+                  {t("forms.general.sending")}
                 </>
               ) : (
                 t("forms.business.submit")

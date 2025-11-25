@@ -294,7 +294,7 @@ const Header = ({ changeLanguage }) => {
           <Link to="/appointments">
             <button
               className="flex items-center space-x-2 p-2 rounded-full hover:bg-gray-200 transition-all"
-              aria-label="Go to Appointment Calendar"
+              aria-label={t("goToCalendar")}
             >
               <CalendarIcon />
             </button>
@@ -334,7 +334,7 @@ const Header = ({ changeLanguage }) => {
               <button
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
-                aria-label="Close menu"
+                aria-label={t("closeMenu")}
               >
                 <CloseIcon />
               </button>
@@ -388,7 +388,7 @@ const Header = ({ changeLanguage }) => {
                   <div className="flex items-center gap-3">
                     <GlobeIcon className="text-gray-600" />
                     <span className="text-base font-semibold text-gray-900">
-                      {i18n.language === "en" ? "English" : "Deutsch"}
+                      {i18n.language === "en" ? t("english") : t("german")}
                     </span>
                   </div>
                   <div className="flex items-center gap-2">

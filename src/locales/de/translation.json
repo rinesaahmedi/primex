@@ -1,6 +1,20 @@
 {
+  "_comment": "=== NAVIGATION & GLOBAL ===",
+  "aboutUs": "Über uns",
+  "Services": "Dienstleistungen",
+  "ourPartners": "Partner",
+  "contactUs": "Kontakt",
+  "english": "Englisch",
+  "german": "Deutsch",
+  "bookAppointment": "Termin buchen",
+  "goToCalendar": "Zum Terminkalender",
+  "closeMenu": "Menü schließen",
+  "darkMode": "In den Dunkelmodus wechseln",
+  "lightMode": "In den hellen Modus wechseln",
   "welcome": "Willkommen auf der Startseite!",
   "intro": "Dies ist der Hauptinhalt der Webseite.",
+
+  "_comment": "=== HERO SECTION ===",
   "hero": {
     "kicker": "Maßgeschneiderte KI-Operationen · gebaut von Primex",
     "headline": {
@@ -32,65 +46,57 @@
       }
     ]
   },
-  "darkMode": "In den Dunkelmodus wechseln",
-  "lightMode": "In den hellen Modus wechseln",
-  "aboutUs": "Über uns",
-  "services": "Dienstleistungen",
-  "ourPartners": "Unsere Partner",
-  "contactUs": "Kontakt",
-  "english": "Englisch",
-  "german": "Deutsch",
-  "bookAppointment": "Termin vereinbaren",
+
+  "_comment": "=== MAIN CONTENT SECTIONS ===",
   "about": {
-    "mainTitle": "Von Familien Tradition zum KI-Führer in der Möbelindustrie",
-    "homeIntro": "Mit über 40 Jahren Erfahrung in der Familie verbindet PRIMEX Tradition und moderne Technologie und führt die digitale Transformation in der Möbelindustrie für die DACH-Region und darüber hinaus.",
+    "pill": "Über PrimEx",
+    "mainTitle": "40 Jahre Exzellenz",
+    "homeIntro": "Wir bauen die Zukunft von Unternehmen durch Expertenberatung und KI-gestützte Lösungen.",
+    "ctaButton": "Unsere Geschichte lesen",
+    "tagline": "Effizienz durch Innovation.",
+    "imageAlt": "PrimEx 40 Jahre Erfahrung",
+    "storyTitle": "Die PrimEx Geschichte",
+    "storySubtitle": "Von Familientradition zu KI-gestützten Abläufen für Führungskräfte in der DACH-Region.",
     "whoWeAre": {
       "title": "Wer wir sind",
-      "description": "PRIMEX ist ein Unternehmen aus Kosovo, das vollständige Backoffice-Dienste für die Möbel- und Einzelhandelsbranche anbietet. Seit über einem Jahrzehnt sind wir ein vertrauenswürdiger Partner für große Unternehmen in Deutschland, Österreich und der Schweiz und unterstützen sowohl traditionelle Geschäfte als auch Online-Plattformen."
+      "description": "Ein Vermächtnis aus Vertrauen und Leistung.",
+      "additional": "Mit über 40 Jahren Familienerfahrung und einem Jahrzehnt auf dem DACH-Markt verbindet PrimEx Tradition mit modernsten KI-Workflows."
     },
-    "ctaButton": "Erfahren Sie mehr",
     "expertise": {
       "title": "Unsere Expertise",
+      "description": "Wir entwerfen und führen betriebliche Arbeitsabläufe aus, die auf Möbel- und Einzelhandelsunternehmen zugeschnitten sind.",
       "items": [
-        "Bestellbearbeitung",
-        "Kundendienst",
-        "Produktdaten- und Inhaltsverwaltung",
-        "Logistik & Dropshipping",
-        "Buchhaltung",
-        "IT-Lösungen & Softwareentwicklung"
+        "Operative Beratung",
+        "Strategische Planung",
+        "Markterweiterung",
+        "Prozessoptimierung"
       ]
     },
     "aiEvolution": {
-      "title": "Von manuellen Dienstleistungen zur Künstlichen Intelligenz",
-      "description": "Die Möbelwelt verändert sich. Alte Systeme und manuelle Prozesse bremsen die Branche. PRIMEX hat diese Herausforderung in eine Chance verwandelt und eine der fortschrittlichsten Innovationen Europas geschaffen."
+      "title": "KI-Evolution",
+      "description": "Anpassung an die Zukunft durch intelligente Automatisierung."
     },
     "aiAgent": {
-      "title": "KI-Agent für Reklamationen – 70 Sekunden",
-      "subtitle": "Wo ein Mensch 60–90 Minuten benötigt, erledigt unsere KI den Prozess in 70 Sekunden. Dies ist die Transformation, die den Industriestandard neu gestaltet.",
+      "title": "KI-Agenten-Integration",
       "features": [
-        "Liest und analysiert E-Mails & PDFs",
-        "Analysiert Bilder zur Schadensidentifizierung",
-        "Vergleicht Teile mit Montagehandbüchern",
-        "Synchronisiert Daten mit Ihrem ERP",
-        "Sendet Bestätigungen und automatische Follow-ups"
+        "Automatisiertes Reporting",
+        "Prädiktive Analysen",
+        "Smarte Arbeitsabläufe"
       ]
     },
     "whyPrimex": {
-      "title": "Warum PRIMEX?",
+      "title": "Warum PrimeX?",
       "points": [
-        "40+ Jahre Branchenwissen",
-        "10+ Jahre Erfahrung in der DACH-Region",
-        "Dynamisches, mehrsprachiges Team",
-        "Moderne, standardisierte Prozesse",
-        "Niedrige Kosten, hohe Qualität",
-        "Individuelle & skalierbare Lösungen"
+        "Jahrzehntelange Erfahrung",
+        "Maßgeschneiderte Lösungen",
+        "Bewährte Erfolgsbilanz",
+        "Globales Netzwerk"
       ]
     },
     "visionMission": {
-      "title": "Unsere Vision & Mission",
-      "description": "Wir sehen die Zukunft als Kombination von menschlichem Wissen und künstlicher Intelligenz. Unsere Mission ist es, Unternehmen dabei zu helfen, Prozesse zu optimieren, die Effizienz zu steigern und einen Wettbewerbsvorteil auf dem europäischen Markt aufzubauen."
-    },
-    "tagline": "Bei PRIMEX trifft Tradition auf Innovation."
+      "title": "Vision & Mission",
+      "description": "Unternehmen mit den Werkzeugen auszustatten, die sie benötigen, um in einer digitalen Welt erfolgreich zu sein."
+    }
   },
   "services": {
     "mainTitle": "Unsere Dienstleistungen",
@@ -123,15 +129,12 @@
       }
     ]
   },
-  "joinBusiness": {
-    "joinLabel": "WERDE TEIL UNSERES TEAMS",
-    "joinTitle": "Möchtest du bei uns einsteigen?",
-    "joinDescription": "Werde Teil unseres wachsenden Teams und gestalte deine Zukunft mit uns.",
-    "joinButton": "Jetzt bewerben",
-    "businessLabel": "GESCHÄFTSANFRAGE",
-    "businessTitle": "Lassen Sie uns über Ihr Unternehmen sprechen.",
-    "businessDescription": "Erzählen Sie uns, was Sie aufbauen möchten. Wir helfen Unternehmen dabei, mit modernen digitalen Lösungen zu skalieren.",
-    "businessButton": "Kontakt aufnehmen"
+
+  "_comment": "=== PARTNERS & SOCIAL PROOF ===",
+  "partnersGrid": {
+    "kicker": "Vertrauenswürdiges Netzwerk",
+    "title": "Unsere geschätzten Partner",
+    "body": "Wir arbeiten mit führenden Herstellern und Einzelhändlern zusammen, um Exzellenz und Innovation auf dem Markt zu liefern."
   },
   "partners": {
     "testimonials": [
@@ -151,66 +154,87 @@
       }
     ]
   },
-  "footer": {
-    "company": {
-      "name": "PrimEx",
-      "description": "Prime Team, Prime Solution. Hervorragende IT- und Geschäftslösungen seit 1985."
-    },
-    "pages": {
-      "title": "Seiten",
-      "links": [
-        {
-          "name": "Startseite",
-          "hash": "#top",
-          "external": false
-        },
-        {
-          "name": "Über uns",
-          "hash": "#about",
-          "external": false
-        },
-        {
-          "name": "Dienstleistungen",
-          "hash": "#services",
-          "external": false
-        },
-        {
-          "name": "Unsere Partner",
-          "hash": "#partners",
-          "external": false
-        },
-        {
-          "name": "Kontakt",
-          "hash": "#contact",
-          "external": false
-        },
-        {
-          "name": "AGB",
-          "url": "/terms",
-          "external": false
-        },
-        {
-          "name": "Zertifikate",
-          "url": "/certificate",
-          "external": false
-        }
-      ]
-    },
-    "hours": {
-      "title": "Öffnungszeiten",
-      "times": ["Montag - Freitag:", "8:00 - 16:30 Uhr"]
-    },
-    "social": {
-      "title": "Folgen Sie uns auf"
-    },
-    "contact": {
-      "title": "Kontaktieren Sie uns",
-      "email": "E-Mail: info@primexeu.com",
-      "phone": "Telefon: +383 49 937 863"
-    },
-    "copyright": "Alle Rechte vorbehalten."
+
+  "_comment": "=== CTA & ENGAGEMENT ===",
+  "joinBusiness": {
+    "joinLabel": "Karriere",
+    "joinTitle": "Werden Sie Teil unseres Teams",
+    "joinDescription": "Suchen Sie nach einer neuen Herausforderung? Wir sind immer auf der Suche nach talentierten Mitarbeitern, die mit uns die Zukunft gestalten.",
+    "joinButton": "Jetzt bewerben",
+    "businessLabel": "Für Unternehmen",
+    "businessTitle": "Partner werden",
+    "businessDescription": "Optimieren Sie Ihre Abläufe und erweitern Sie Ihre Reichweite. Lassen Sie uns eine strategische Partnerschaft aufbauen, die Wachstum fördert.",
+    "businessButton": "Mehr erfahren",
+    "appointmentButton": "Termin buchen"
   },
+  "appointment": {
+    "selectDate": "Datum wählen",
+    "chooseDay": "Wählen Sie einen Tag, um verfügbare Termine zu sehen.",
+    "availableTimes": "Verfügbare Zeiten",
+    "noSlots": "Keine Termine für dieses Datum verfügbar.",
+    "confirmBooking": "Buchung bestätigen",
+    "changeTime": "Zeit ändern",
+    "dateLabel": "Datum",
+    "timeLabel": "Zeit",
+    "fullName": "Vollständiger Name",
+    "email": "E-Mail-Adresse",
+    "phone": "Telefonnummer",
+    "businessType": "Geschäftsbereich / Thema",
+    "specifyTopic": "Bitte spezifizieren Sie das Thema",
+    "confirmButton": "Termin bestätigen",
+    "processing": "Wird bearbeitet...",
+    "placeholders": {
+      "name": "z.B. Max Mustermann",
+      "email": "max@firma.de",
+      "phone": "+49 123 456 789",
+      "topic": "Worüber möchten Sie sprechen?"
+    },
+    "alerts": {
+      "selectTopic": "Bitte wählen Sie mindestens ein Thema aus",
+      "error": "Fehler bei der Terminbuchung",
+      "success": "Termin erfolgreich gebucht!"
+    },
+    "topics": {
+      "orderManagement": "Auftragsmanagement & Logistik",
+      "customerSupport": "Kundensupport",
+      "productContent": "Produkt- & Content-Management",
+      "designCreative": "Design & Kreativdienste",
+      "technologyDev": "Technologie & Entwicklung",
+      "aiSolutions": "KI-Lösungen",
+      "other": "Sonstiges"
+    }
+  },
+
+  "_comment": "=== FORMS ===",
   "forms": {
+    "general": {
+      "sending": "Senden...",
+      "loading": "Laden...",
+      "selectOption": "Option wählen"
+    },
+    "validation": {
+      "required": "Pflichtfeld",
+      "invalidEmail": "Ungültige E-Mail-Adresse",
+      "invalidUrl": "Bitte geben Sie eine gültige URL ein",
+      "acceptPrivacy": "Bitte akzeptieren Sie die Datenschutzerklärung, bevor Sie das Formular absenden."
+    },
+    "alerts": {
+      "success": "✅ Erfolgreich gesendet!",
+      "error": "❌ Senden fehlgeschlagen. Bitte versuchen Sie es erneut.",
+      "genericError": "❌ Ein Fehler ist aufgetreten. Bitte später versuchen."
+    },
+    "options": {
+      "orderManagement": "Auftragsmanagement & Logistik",
+      "customerSupport": "Kundensupport",
+      "productContent": "Produkt- & Content-Management",
+      "designCreative": "Design & Kreativdienste",
+      "technologyDev": "Technologie & Entwicklung",
+      "aiSolutions": "KI-Lösungen",
+      "operationsSupport": "Betrieb & Support",
+      "creativeDesign": "Kreativ & Design",
+      "technologyAI": "Technologie & KI",
+      "other": "Sonstiges"
+    },
     "join": {
       "sectionLabel": "JOIN OUR TEAM",
       "title": "Möchtest du bei uns einsteigen?",
@@ -221,6 +245,7 @@
         "phone": "Telefonnummer",
         "linkedin": "LinkedIn-Profil-URL",
         "country": "Land auswählen",
+        "position": "Position wählen",
         "description": "Erzähl uns kurz von dir...",
         "privacy": "Ich akzeptiere die Datenschutzerklärung",
         "cv": "Lebenslauf hochladen",
@@ -250,11 +275,10 @@
         "message": "Nachricht *"
       },
       "submit": "Anfrage senden"
-    },
-    "validation": {
-      "acceptPrivacy": "Bitte akzeptieren Sie die Datenschutzerklärung, bevor Sie das Formular absenden."
     }
   },
+
+  "_comment": "=== LEGAL & FOOTER ===",
   "termsPage": {
     "pill": "Rechtlicher Rahmen",
     "title": "Allgemeine Geschäftsbedingungen",
@@ -265,5 +289,47 @@
     },
     "loading": "AGB werden geladen...",
     "error": "AGB konnten nicht geladen werden: {{message}}"
+  },
+  "certificatePage": {
+    "pill": "Geprüfte Konformität",
+    "title": "DSGVO-Zertifikat",
+    "subtitle": "Wir erfüllen die strengsten Datenschutzanforderungen, um Ihr Unternehmen und Ihre Kunden zu schützen.",
+    "imageAlt": "DSGVO-Zertifikat"
+  },
+  "footer": {
+    "company": {
+      "name": "PrimEx",
+      "description": "Wir verbinden Unternehmen mit Top-Talenten und optimieren Abläufe durch intelligente Lösungen."
+    },
+    "pages": {
+      "title": "Seiten",
+      "links": [
+        { "name": "Startseite", "hash": "#top" },
+        { "name": "Über uns", "hash": "#about" },
+        { "name": "Dienstleistungen", "hash": "#services" },
+        { "name": "Partner", "hash": "#partners" },
+        { "name": "Kontakt", "hash": "#contact" },
+        { "name": "Karriere", "url": "/apply" },
+        { "name": "Für Unternehmen", "url": "/business" }
+      ]
+    },
+    "hours": {
+      "title": "Öffnungszeiten",
+      "times": [
+        "Mo - Fr: 09:00 - 17:00",
+        "Sa: 10:00 - 14:00",
+        "So: Geschlossen"
+      ]
+    },
+    "contact": {
+      "title": "Kontakt",
+      "email": "info@primexeu.com",
+      "phone": "+383 49 937 863",
+      "location": "7 Shtatori, Fushë Kosovë 12010"
+    },
+    "social": {
+      "title": "Folgen Sie uns"
+    },
+    "copyright": "Alle Rechte vorbehalten."
   }
 }

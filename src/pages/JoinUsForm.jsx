@@ -18,10 +18,10 @@ function JoinUsForm() {
 
   // State for the custom dropdowns visibility
   const [isPositionOpen, setIsPositionOpen] = useState(false);
-  const [isCountryOpen, setIsCountryOpen] = useState(false); // NEW STATE
+  const [isCountryOpen, setIsCountryOpen] = useState(false);
 
   const positionDropdownRef = useRef(null);
-  const countryDropdownRef = useRef(null); // NEW REF
+  const countryDropdownRef = useRef(null);
   const fileInputRef = useRef(null);
 
   const [errors, setErrors] = useState({});
@@ -29,25 +29,23 @@ function JoinUsForm() {
   const [loadingCountries, setLoadingCountries] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // List of positions
+  // CHANGED: Use keys matching "forms.options" in your JSON
   const positionOptions = [
-    "Operations & Support",
-    "Creative & Design",
-    "Technology & AI",
-    "Other",
+    "operationsSupport",
+    "creativeDesign",
+    "technologyAI",
+    "other",
   ];
 
   // Close dropdowns if clicked outside
   useEffect(() => {
     function handleClickOutside(event) {
-      // Close Position Dropdown
       if (
         positionDropdownRef.current &&
         !positionDropdownRef.current.contains(event.target)
       ) {
         setIsPositionOpen(false);
       }
-      // Close Country Dropdown
       if (
         countryDropdownRef.current &&
         !countryDropdownRef.current.contains(event.target)
@@ -105,7 +103,8 @@ function JoinUsForm() {
       newErrors.phone = t("forms.validation.required");
 
     if (formData.linkedin.trim() && !urlRegex.test(formData.linkedin)) {
-      newErrors.linkedin = "Please enter a valid URL";
+      // CHANGED: Use translation key
+      newErrors.linkedin = t("forms.validation.invalidUrl");
     }
 
     if (!formData.country) newErrors.country = t("forms.validation.required");
@@ -152,7 +151,8 @@ function JoinUsForm() {
       if (file.size > maxSize) {
         setErrors((prev) => ({
           ...prev,
-          cvFile: "File is too large (max 5MB)",
+          // CHANGED: Use nested validation key
+          cvFile: t("forms.join.validation.fileTooLarge"),
         }));
         setFormData((prev) => ({ ...prev, cvFile: null }));
         return;
@@ -161,7 +161,11 @@ function JoinUsForm() {
         !allowed.includes(file.type) &&
         !file.name.match(/\.(pdf|doc|docx)$/i)
       ) {
-        setErrors((prev) => ({ ...prev, cvFile: "Unsupported file type" }));
+        setErrors((prev) => ({
+          ...prev,
+          // CHANGED: Use nested validation key
+          cvFile: t("forms.join.validation.fileType"),
+        }));
         setFormData((prev) => ({ ...prev, cvFile: null }));
         return;
       }
@@ -184,7 +188,7 @@ function JoinUsForm() {
     setIsPositionOpen(false);
   };
 
-  // NEW Helper for custom Country selection
+  // Helper for custom Country selection
   const handleCountrySelect = (value) => {
     setFormData((prev) => ({ ...prev, country: value }));
     if (errors.country) setErrors((prev) => ({ ...prev, country: null }));
@@ -205,7 +209,7 @@ function JoinUsForm() {
       fd.append("phone", formData.phone);
       fd.append("linkedin", formData.linkedin);
       fd.append("country", formData.country);
-      fd.append("position", formData.position);
+      fd.append("position", formData.position); // Sending the KEY to backend
       fd.append("description", formData.description);
       fd.append("privacyAccepted", formData.privacyAccepted ? "true" : "false");
       if (formData.cvFile) fd.append("cv", formData.cvFile);
@@ -218,7 +222,8 @@ function JoinUsForm() {
       const result = await response.json();
 
       if (result.success) {
-        alert("✅ Application sent successfully!");
+        // CHANGED: Use translated success alert
+        alert(t("forms.alerts.success"));
         setFormData({
           name: "",
           email: "",
@@ -233,11 +238,13 @@ function JoinUsForm() {
         setErrors({});
         if (fileInputRef.current) fileInputRef.current.value = "";
       } else {
-        alert("❌ Failed to send application.");
+        // CHANGED: Use translated error alert
+        alert(t("forms.alerts.error"));
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("❌ An error occurred.");
+      // CHANGED: Use translated generic error alert
+      alert(t("forms.alerts.genericError"));
     } finally {
       setIsSubmitting(false);
     }
@@ -332,7 +339,8 @@ function JoinUsForm() {
                 <input
                   type="url"
                   name="linkedin"
-                  placeholder={`${t("forms.join.fields.linkedin")} (Optional)`}
+                  // CHANGED: Concatenated string handled by template literal or just pass key if supported
+                  placeholder={`${t("forms.join.fields.linkedin")}`}
                   value={formData.linkedin}
                   onChange={handleChange}
                   disabled={isSubmitting}
@@ -349,7 +357,7 @@ function JoinUsForm() {
 
             {/* ROW 3: Country & Position */}
             <div className="grid md:grid-cols-2 gap-5">
-              {/* --- CUSTOM COUNTRY DROPDOWN (Replacing <select>) --- */}
+              {/* --- CUSTOM COUNTRY DROPDOWN --- */}
               <div className="relative" ref={countryDropdownRef}>
                 <div
                   onClick={() =>
@@ -367,11 +375,8 @@ function JoinUsForm() {
                       formData.country ? "text-white" : "text-white/60"
                     }
                   >
-                    {formData.country ||
-                      t("forms.join.fields.country") ||
-                      "Select Country"}
+                    {formData.country || t("forms.join.fields.country")}
                   </span>
-                  {/* Chevron Icon */}
                   <svg
                     className={`w-4 h-4 text-white/70 transition-transform duration-200 ${
                       isCountryOpen ? "rotate-180" : ""
@@ -393,7 +398,7 @@ function JoinUsForm() {
                   <div className="absolute z-50 mt-2 w-full rounded-xl border border-white/20 bg-[#081333]/95 backdrop-blur-xl shadow-2xl overflow-hidden max-h-60 overflow-y-auto custom-scrollbar">
                     {loadingCountries ? (
                       <div className="px-5 py-3 text-white/60 text-sm">
-                        Loading...
+                        {t("forms.general.loading")}
                       </div>
                     ) : (
                       countries.map((c, i) => (
@@ -410,7 +415,6 @@ function JoinUsForm() {
                 )}
                 <ErrorMsg field="country" />
               </div>
-              {/* --- END CUSTOM COUNTRY DROPDOWN --- */}
 
               {/* --- CUSTOM POSITION DROPDOWN --- */}
               <div className="relative" ref={positionDropdownRef}>
@@ -430,9 +434,10 @@ function JoinUsForm() {
                       formData.position ? "text-white" : "text-white/60"
                     }
                   >
-                    {formData.position ||
-                      t("forms.join.fields.position") ||
-                      "Select Position"}
+                    {/* CHANGED: Translate selected key, or show placeholder */}
+                    {formData.position
+                      ? t(`forms.options.${formData.position}`)
+                      : t("forms.join.fields.position")}
                   </span>
                   <svg
                     className={`w-4 h-4 text-white/70 transition-transform duration-200 ${
@@ -453,20 +458,20 @@ function JoinUsForm() {
 
                 {isPositionOpen && (
                   <div className="absolute z-50 mt-2 w-full rounded-xl border border-white/20 bg-[#081333]/95 backdrop-blur-xl shadow-2xl overflow-hidden max-h-60 overflow-y-auto">
-                    {positionOptions.map((option, index) => (
+                    {/* CHANGED: Map over keys and translate them */}
+                    {positionOptions.map((optionKey, index) => (
                       <div
                         key={index}
-                        onClick={() => handlePositionSelect(option)}
+                        onClick={() => handlePositionSelect(optionKey)}
                         className="px-5 py-3 text-white hover:bg-white/20 cursor-pointer transition-colors text-sm border-b border-white/10 last:border-0"
                       >
-                        {option}
+                        {t(`forms.options.${optionKey}`)}
                       </div>
                     ))}
                   </div>
                 )}
                 <ErrorMsg field="position" />
               </div>
-              {/* --- END CUSTOM POSITION DROPDOWN --- */}
             </div>
 
             <div>
@@ -553,7 +558,9 @@ function JoinUsForm() {
                   : "hover:bg-white/90 hover:-translate-y-0.5"
               }`}
             >
-              {isSubmitting ? "Sending..." : t("forms.join.submit")}
+              {isSubmitting
+                ? t("forms.general.sending")
+                : t("forms.join.submit")}
             </button>
           </form>
         </div>
