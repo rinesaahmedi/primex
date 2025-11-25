@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 
 const BusinessInquiryForm = () => {
   const { t } = useTranslation();
 
+  // --- FORM STATE ---
   const [formData, setFormData] = useState({
     companyName: "",
     contactPerson: "",
@@ -17,11 +18,38 @@ const BusinessInquiryForm = () => {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // --- DROPDOWN STATE (New) ---
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  const businessOptions = [
+    "Order Management & Logistics",
+    "Customer Support",
+    "Product & Content Management",
+    "Design & Creative Services",
+    "Technology & Development",
+    "AI Solutions",
+    "Other",
+  ];
+
+  // --- CLICK OUTSIDE LISTENER ---
+  // Closes the dropdown if you click anywhere else on the page
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [dropdownRef]);
+
   // --- VALIDATION LOGIC ---
   const validateForm = () => {
     const newErrors = {};
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    // URL regex: Optional http/https, allows www., must have domain extension
     const urlRegex = /^(https?:\/\/)?([\w\d]+\.)?[\w\d]+\.\w+\/?.*/i;
 
     if (!formData.companyName.trim())
@@ -40,7 +68,6 @@ const BusinessInquiryForm = () => {
     if (!formData.businessType)
       newErrors.businessType = t("forms.validation.required");
 
-    // Website is optional, but if filled, must be valid
     if (formData.website.trim() && !urlRegex.test(formData.website)) {
       newErrors.website = "Please enter a valid URL";
     }
@@ -52,20 +79,27 @@ const BusinessInquiryForm = () => {
     return Object.keys(newErrors).length === 0;
   };
 
+  // Standard input change
   const handleChange = (e) => {
     const { name, value } = e.target;
-    // Clear error when user types
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: null }));
     }
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  // --- NEW: Custom Dropdown Selection ---
+  const handleSelectChange = (value) => {
+    setFormData((prev) => ({ ...prev, businessType: value }));
+    if (errors.businessType) {
+      setErrors((prev) => ({ ...prev, businessType: null }));
+    }
+    setIsDropdownOpen(false);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (isSubmitting) return;
-
     if (!validateForm()) return;
 
     setIsSubmitting(true);
@@ -135,6 +169,7 @@ const BusinessInquiryForm = () => {
             onSubmit={handleSubmit}
             noValidate
           >
+            {/* ROW 1 */}
             <div className="grid md:grid-cols-2 gap-5">
               <div>
                 <input
@@ -172,6 +207,7 @@ const BusinessInquiryForm = () => {
               </div>
             </div>
 
+            {/* ROW 2 */}
             <div className="grid md:grid-cols-2 gap-5">
               <div>
                 <input
@@ -209,60 +245,82 @@ const BusinessInquiryForm = () => {
               </div>
             </div>
 
+            {/* ROW 3: Custom Select & Website */}
             <div className="grid md:grid-cols-2 gap-5">
-              <div>
-                <select
-                  name="businessType"
-                  value={formData.businessType}
-                  onChange={handleChange}
-                  disabled={isSubmitting}
-                  className={`w-full rounded-xl border bg-white/10 px-5 py-3.5 text-base text-white focus:outline-none focus:ring-2 focus:bg-white/15 transition-all disabled:opacity-50 appearance-none
+              {/* --- CUSTOM DROPDOWN COMPONENT --- */}
+              <div className="relative" ref={dropdownRef}>
+                <div
+                  onClick={() =>
+                    !isSubmitting && setIsDropdownOpen(!isDropdownOpen)
+                  }
+                  className={`
+                    w-full rounded-xl border bg-white/10 px-5 py-3.5 text-base cursor-pointer flex justify-between items-center transition-all select-none
                     ${
                       errors.businessType
-                        ? "border-red-400 focus:ring-red-400"
-                        : "border-white/30 focus:ring-white/50"
-                    }`}
+                        ? "border-red-400 ring-1 ring-red-400"
+                        : "border-white/30 hover:bg-white/15"
+                    }
+                    ${isDropdownOpen ? "ring-2 ring-white/50 bg-white/15" : ""}
+                    ${isSubmitting ? "opacity-50 cursor-not-allowed" : ""}
+                  `}
                 >
-                  <option value="" className="bg-[#081333]">
-                    {t("forms.business.fields.businessType")}
-                  </option>
-                  <option
-                    value="Order Management & Logistics"
-                    className="bg-[#081333]"
+                  <span
+                    className={
+                      formData.businessType ? "text-white" : "text-white/60"
+                    }
                   >
-                    Order Management & Logistics
-                  </option>
-                  <option value="Customer Support" className="bg-[#081333]">
-                    Customer Support
-                  </option>
-                  <option
-                    value="Product & Content Management"
-                    className="bg-[#081333]"
+                    {formData.businessType ||
+                      t("forms.business.fields.businessType")}
+                  </span>
+
+                  {/* Chevron Icon */}
+                  <svg
+                    className={`w-5 h-5 text-white/70 transition-transform duration-300 ${
+                      isDropdownOpen ? "rotate-180" : "rotate-0"
+                    }`}
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
                   >
-                    Product & Content Management
-                  </option>
-                  <option
-                    value="Design & Creative Services"
-                    className="bg-[#081333]"
-                  >
-                    Design & Creative Services
-                  </option>
-                  <option
-                    value="Technology & Development"
-                    className="bg-[#081333]"
-                  >
-                    Technology & Development
-                  </option>
-                  <option value="AI Solutions" className="bg-[#081333]">
-                    AI Solutions
-                  </option>
-                  <option value="Other" className="bg-[#081333]">
-                    Other
-                  </option>
-                </select>
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </div>
+
+                {/* Dropdown List */}
+                {isDropdownOpen && (
+                  <div className="absolute top-full left-0 right-0 mt-2 z-50 bg-[#081333] border border-white/20 rounded-xl shadow-2xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
+                    <ul className="max-h-60 overflow-y-auto">
+                      {businessOptions.map((option) => (
+                        <li
+                          key={option}
+                          onClick={() => handleSelectChange(option)}
+                          className={`
+                            px-5 py-3 text-white cursor-pointer transition-colors
+                            hover:bg-blue-600/30
+                            ${
+                              formData.businessType === option
+                                ? "bg-blue-600/50"
+                                : ""
+                            }
+                          `}
+                        >
+                          {option}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
                 <ErrorMsg field="businessType" />
               </div>
 
+              {/* Website Input */}
               <div>
                 <input
                   type="url"
@@ -282,6 +340,7 @@ const BusinessInquiryForm = () => {
               </div>
             </div>
 
+            {/* MESSAGE */}
             <div>
               <textarea
                 name="message"
@@ -300,6 +359,7 @@ const BusinessInquiryForm = () => {
               <ErrorMsg field="message" />
             </div>
 
+            {/* BUTTON */}
             <button
               type="submit"
               disabled={isSubmitting}
