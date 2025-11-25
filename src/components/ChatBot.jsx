@@ -4,10 +4,11 @@ const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [inputText, setInputText] = useState("");
   const [isTyping, setIsTyping] = useState(false);
-  
-  // Default to FALSE. You must click the Speaker icon to hear audio.
   const [isVoiceOn, setIsVoiceOn] = useState(false); 
-  const [isListening, setIsListening] = useState(false); 
+  const [isListening, setIsListening] = useState(false);
+  
+  // 1. Reference to control audio (Play/Pause)
+  const audioPlayerRef = useRef(new Audio());
 
   const messagesEndRef = useRef(null);
 
@@ -29,14 +30,60 @@ const ChatBot = () => {
     if (isOpen) scrollToBottom();
   }, [messages, isOpen, isTyping]);
 
-  // --- 1. HANDLE MESSAGE SENDING ---
-  // We allow passing "overrideText" so the Microphone can send immediately
+  // --- NEW: HANDLE VOICE TOGGLE LOGIC ---
+  const handleVoiceToggle = async () => {
+    // If it WAS On, turn it OFF and STOP talking
+    if (isVoiceOn) {
+      setIsVoiceOn(false);
+      audioPlayerRef.current.pause(); // Stop immediately
+      audioPlayerRef.current.currentTime = 0; // Reset
+    } 
+    // If it WAS Off, turn it ON and START reading the last message
+    else {
+      setIsVoiceOn(true);
+      
+      // Find the last message
+      const lastMsg = messages[messages.length - 1];
+      
+      // If the last message is from the bot, read it out loud
+      if (lastMsg && lastMsg.sender === "bot") {
+        await fetchAndPlayAudio(lastMsg.text);
+      }
+    }
+  };
+
+  // Helper: Fetch Audio from backend and play it
+  const fetchAndPlayAudio = async (text) => {
+    try {
+      // Stop any current audio first
+      audioPlayerRef.current.pause();
+      
+      const response = await fetch('http://localhost:5000/api/speak', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text })
+      });
+
+      const data = await response.json();
+
+      if (data.audio) {
+        audioPlayerRef.current.src = `data:audio/mp3;base64,${data.audio}`;
+        audioPlayerRef.current.play().catch(e => console.error("Play error:", e));
+      }
+    } catch (err) {
+      console.error("TTS fetch error:", err);
+    }
+  };
+
+  // --- HANDLE SENDING MESSAGE ---
   const handleSendMessage = async (overrideText = null) => {
     const textToSend = typeof overrideText === "string" ? overrideText : inputText;
-
     if (!textToSend.trim()) return;
 
-    // A. Add User Message
+    // Stop bot from talking if user interrupts
+    audioPlayerRef.current.pause();
+
+    // Add User Message
     const userMessage = {
       id: Date.now(),
       text: textToSend,
@@ -44,63 +91,50 @@ const ChatBot = () => {
     };
 
     setMessages((prev) => [...prev, userMessage]);
-    setInputText(""); // Clear input
+    setInputText("");
     setIsTyping(true);
 
     try {
-      console.log("Sending to backend...", { text: textToSend, voice: isVoiceOn });
-
-      // B. Send to backend
+      // Send to backend (We request audio immediately if Voice is ON)
       const response = await fetch('http://localhost:5000/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
           message: textToSend,
-          includeAudio: isVoiceOn // <--- MUST BE TRUE TO HEAR SOUND
+          includeAudio: isVoiceOn 
         })
       });
 
       const data = await response.json();
-      console.log("Backend response:", data);
 
-      // C. Add Bot Response
+      // Add Bot Response
       const botMessage = {
         id: Date.now() + 1,
         text: data.reply,
         sender: "bot",
       };
-
       setMessages((prev) => [...prev, botMessage]);
 
-      // D. Play Audio
-      if (data.audio) {
-        console.log("Playing audio...");
-        const audio = new Audio(`data:audio/mp3;base64,${data.audio}`);
-        audio.play().catch(e => console.error("Audio play error:", e));
-      } else {
-        console.log("No audio received from backend.");
+      // If we got audio back immediately, play it
+      if (data.audio && isVoiceOn) {
+        audioPlayerRef.current.src = `data:audio/mp3;base64,${data.audio}`;
+        audioPlayerRef.current.play().catch(e => console.error("Audio play error:", e));
       }
 
     } catch (error) {
       console.error("Error sending message:", error);
-      setMessages((prev) => [...prev, {
-        id: Date.now() + 1,
-        text: "I'm having trouble connecting to the server.",
-        sender: "bot"
-      }]);
     } finally {
       setIsTyping(false);
     }
   };
 
-  // --- 2. HANDLE MICROPHONE ---
+  // --- MICROPHONE LOGIC ---
   const startListening = () => {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    
-    if (!SpeechRecognition) {
-      alert("Browser not supported. Use Chrome, Edge, or Safari.");
-      return;
-    }
+    if (!SpeechRecognition) return alert("Browser not supported");
+
+    // Stop audio if user starts speaking
+    audioPlayerRef.current.pause();
 
     const recognition = new SpeechRecognition();
     recognition.lang = 'en-US';
@@ -111,25 +145,12 @@ const ChatBot = () => {
 
     recognition.onresult = (event) => {
       const transcript = event.results[0][0].transcript;
-      console.log("Voice recognized:", transcript);
-      
-      // Update the input box visually
       setInputText(transcript);
-      
-      // AUTO SEND: Immediately send the text to the bot
       handleSendMessage(transcript);
-      
       setIsListening(false);
     };
 
-    recognition.onerror = (event) => {
-      console.error("Speech error:", event.error);
-      setIsListening(false);
-    };
-
-    recognition.onend = () => {
-      setIsListening(false);
-    };
+    recognition.onend = () => setIsListening(false);
   };
 
   const handleKeyPress = (e) => {
@@ -145,7 +166,7 @@ const ChatBot = () => {
           <div className="bg-[#1e105c] p-4 flex justify-between items-center text-white shadow-md z-10">
             <div className="flex items-center gap-2">
               <div className="w-2.5 h-2.5 bg-green-400 rounded-full animate-pulse"></div>
-              <span className="font-semibold tracking-wide">AI Assistant</span>
+              <span className="font-semibold tracking-wide">Your AI Assistant</span>
             </div>
             <button onClick={toggleChat} className="text-white/80 hover:text-white">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -162,11 +183,7 @@ const ChatBot = () => {
                   {msg.text}
                 </div>
               ))}
-              {isTyping && (
-                <div className="self-start bg-white border border-gray-200 px-4 py-3 rounded-t-xl rounded-br-xl shadow-sm w-fit">
-                  <div className="flex gap-1"><div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div><div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce [animation-delay:-0.15s]"></div><div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce [animation-delay:-0.3s]"></div></div>
-                </div>
-              )}
+              {isTyping && <div className="self-start text-gray-400 text-xs ml-4">Thinking...</div>}
               <div ref={messagesEndRef} />
             </div>
           </div>
@@ -175,11 +192,11 @@ const ChatBot = () => {
           <div className="p-3 bg-white border-t border-gray-100">
             <div className="flex items-center gap-2">
               
-              {/* BUTTON 1: SPEAKER (HEAR THE BOT) */}
+              {/* BUTTON 1: TOGGLE VOICE (STOP/START) */}
               <button 
-                onClick={() => setIsVoiceOn(!isVoiceOn)}
+                onClick={handleVoiceToggle} // <--- UPDATED FUNCTION HERE
                 className={`p-2 rounded-full transition-all shrink-0 ${isVoiceOn ? "bg-green-100 text-green-600" : "text-gray-400 hover:text-green-600 hover:bg-gray-100"}`}
-                title={isVoiceOn ? "Sound ON" : "Sound OFF"}
+                title={isVoiceOn ? "Stop Talking" : "Read to me"}
               >
                 {isVoiceOn ? (
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5"><path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 001.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06zM18.584 5.106a.75.75 0 011.06 0c3.808 3.807 3.808 9.98 0 13.788a.75.75 0 11-1.06-1.06 8.25 8.25 0 000-11.668.75.75 0 010-1.06z" /><path d="M15.932 7.757a.75.75 0 011.061 0 6 6 0 010 8.486.75.75 0 01-1.06-1.061 4.5 4.5 0 000-6.364.75.75 0 010-1.06z" /></svg>
@@ -188,16 +205,11 @@ const ChatBot = () => {
                 )}
               </button>
 
-              {/* BUTTON 2: MICROPHONE (RECORDING) */}
               <button 
                 onClick={startListening}
                 className={`p-2 rounded-full transition-all shrink-0 ${isListening ? "bg-red-500 text-white animate-pulse" : "text-gray-400 hover:text-red-500 hover:bg-gray-100"}`}
-                title="Speak to Chat"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-                  <path d="M8.25 4.5a3.75 3.75 0 117.5 0v8.25a3.75 3.75 0 11-7.5 0V4.5z" />
-                  <path d="M6 10.5a.75.75 0 01.75.75v1.5a5.25 5.25 0 1010.5 0v-1.5a.75.75 0 011.5 0v1.5a6.751 6.751 0 01-6 6.709v2.291h3a.75.75 0 010 1.5h-7.5a.75.75 0 010-1.5h3v-2.291a6.751 6.751 0 01-6-6.709v-1.5A.75.75 0 016 10.5z" />
-                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5"><path d="M8.25 4.5a3.75 3.75 0 117.5 0v8.25a3.75 3.75 0 11-7.5 0V4.5z" /><path d="M6 10.5a.75.75 0 01.75.75v1.5a5.25 5.25 0 1010.5 0v-1.5a.75.75 0 011.5 0v1.5a6.751 6.751 0 01-6 6.709v2.291h3a.75.75 0 010 1.5h-7.5a.75.75 0 010-1.5h3v-2.291a6.751 6.751 0 01-6-6.709v-1.5A.75.75 0 016 10.5z" /></svg>
               </button>
 
               <input
@@ -209,27 +221,17 @@ const ChatBot = () => {
                 className="flex-1 px-4 py-2.5 bg-gray-100 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-[#1e105c]/50 transition-all text-gray-700 placeholder-gray-400"
               />
 
-              <button
-                onClick={() => handleSendMessage()}
-                disabled={!inputText.trim() || isTyping}
-                className={`p-2.5 rounded-full text-white transition-all shadow-md shrink-0 ${!inputText.trim() ? "bg-gray-300 cursor-not-allowed" : "bg-[#1e105c] hover:bg-[#2a1680] hover:scale-105 active:scale-95"}`}
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                </svg>
+              <button onClick={() => handleSendMessage()} disabled={!inputText.trim() || isTyping} className={`p-2.5 rounded-full text-white transition-all shadow-md shrink-0 ${!inputText.trim() ? "bg-gray-300" : "bg-[#1e105c]"}`}>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" /></svg>
               </button>
             </div>
           </div>
         </div>
       )}
 
-      {/* OPEN CHAT BUTTON */}
-      <button onClick={toggleChat} className="group w-14 h-14 bg-[#1e105c] rounded-full shadow-lg shadow-[#1e105c]/30 flex items-center justify-center text-white hover:scale-110 transition-all duration-300">
-        {isOpen ? (
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 transform group-hover:rotate-90 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
-        ) : (
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" /></svg>
-        )}
+      {/* OPEN BTN */}
+      <button onClick={toggleChat} className="group w-14 h-14 bg-[#1e105c] rounded-full shadow-lg text-white flex items-center justify-center">
+        {isOpen ? <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg> : <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" /></svg>}
       </button>
     </div>
   );

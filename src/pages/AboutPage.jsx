@@ -1,7 +1,7 @@
 // src/pages/AboutPage.jsx
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import pxBranding from "../assets/PX_BRANDING_40.png";
+import pxBranding from "../images/40.jpg";
 import { useScrollAnimation } from "../utils/useScrollAnimation";
 import AOS from "aos";
 import "aos/dist/aos.css";
