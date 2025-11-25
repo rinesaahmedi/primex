@@ -90,7 +90,6 @@ function App() {
           <Route path="/certificate" element={<CertificatePage />} />
           <Route path="/appointments" element={<AppointmentPage />} />
           <Route path="/terms" element={<Terms />} />
-          <Route path="/certificate" element={<CertificatePage />} />
         </Routes>
       </main>
 
