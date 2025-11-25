@@ -18,48 +18,39 @@ CALL TO ACTIONS:
 `;
 
 // THE MAIN FUNCTION
+// backend/controllers/aiController.js (or chatController.js)
+
 const handleChat = async (req, res) => {
   const { message, includeAudio } = req.body;
-
-  // Validate message parameter
-  if (!message || typeof message !== 'string') {
-    return res.status(400).json({ reply: "Message is required and must be a string." });
-  }
-
-  // Check if Pinecone index is initialized
-  if (!pineconeIndex) {
-    return res.status(500).json({ reply: "Database connection is not configured. Please check server environment variables (PINECONE_API_KEY)." });
-  }
+  console.log(`\n--- NEW REQUEST ---`);
+  console.log(`User Message: "${message}"`);
+  console.log(`Audio Requested? ${includeAudio}`);
 
   try {
-    // A. Create Embedding
+    // 1. Embedding
     const embeddingResponse = await openai.embeddings.create({
       model: "text-embedding-3-small", 
       input: message,
     });
-    
     const vector = embeddingResponse.data[0].embedding;
 
-    // B. Query Pinecone
+    // 2. Pinecone
     const queryResponse = await pineconeIndex.query({
       vector: vector,
       topK: 3, 
       includeMetadata: true,
     });
 
-    // C. Extract context
     const contextText = queryResponse.matches
       .map((match) => match.metadata?.text || "") 
       .join("\n\n---\n\n");
 
-    // D. Build Prompt
     const finalSystemPrompt = `
       ${BASE_SYSTEM_PROMPT}
-      Here is context from our database: ${contextText}
-      If the context doesn't have the answer, use general knowledge.
+      Here is context: ${contextText}
     `;
 
-    // E. Generate Text Answer
+    // 3. Text Generation
     const completion = await openai.chat.completions.create({
       model: "gpt-4o-mini", 
       messages: [
@@ -70,27 +61,64 @@ const handleChat = async (req, res) => {
     });
 
     const replyText = completion.choices[0].message.content;
+    console.log(`Bot Reply: "${replyText.substring(0, 50)}..."`);
+    
     let audioBase64 = null;
 
-  // F. Generate Audio (If requested)
-    if (includeAudio) { // <--- This must be TRUE
-      const mp3 = await openai.audio.speech.create({
-        model: "tts-1",
-        voice: "shimmer",
-        input: replyText,
-      });
+    // 4. Audio Generation (DEBUGGING ADDED HERE)
+    if (includeAudio) {
+      try {
+        console.log("Attempting to generate audio with OpenAI...");
+        const mp3 = await openai.audio.speech.create({
+          model: "tts-1",
+          voice: "shimmer",
+          input: replyText,
+        });
+        
+        console.log("Audio generated successfully. Converting to buffer...");
+        const buffer = Buffer.from(await mp3.arrayBuffer());
+        audioBase64 = buffer.toString('base64');
+        console.log("Audio converted to Base64. Size:", audioBase64.length);
 
-      const buffer = Buffer.from(await mp3.arrayBuffer());
-      audioBase64 = buffer.toString('base64');
+      } catch (audioError) {
+        console.error("!!! AUDIO GENERATION FAILED !!!");
+        console.error(audioError.message);
+        // We do NOT crash the server; we just send text without audio
+      }
+    } else {
+      console.log("Audio skipped (Client sent includeAudio: false)");
     }
 
-    // Send response
     res.json({ reply: replyText, audio: audioBase64 });
 
   } catch (error) {
-    console.error("Chat API Error:", error); 
-    res.status(500).json({ reply: "I'm having trouble connecting right now." });
+    console.error("General API Error:", error); 
+    res.status(500).json({ reply: "Error connecting to server." });
   }
 };
 
-module.exports = { handleChat };
+// ... existing imports and handleChat code ...
+
+// NEW FUNCTION: Generate Audio for existing text
+const generateSpeechOnly = async (req, res) => {
+  const { text } = req.body;
+
+  try {
+    const mp3 = await openai.audio.speech.create({
+      model: "tts-1",
+      voice: "shimmer",
+      input: text,
+    });
+
+    const buffer = Buffer.from(await mp3.arrayBuffer());
+    const audioBase64 = buffer.toString('base64');
+
+    res.json({ audio: audioBase64 });
+  } catch (error) {
+    console.error("TTS Error:", error);
+    res.status(500).json({ error: "Failed to generate speech" });
+  }
+};
+
+// Make sure to add it to the exports!
+module.exports = { handleChat, generateSpeechOnly };
