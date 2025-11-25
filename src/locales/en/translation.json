@@ -255,8 +255,7 @@
         "cv": "Upload CV (pdf, doc, docx)",
         "position": "Select Position",
 
-        "cvPlaceholder": "No file chosen",
-        "privacy": "I agree to the"
+        "cvPlaceholder": "No file chosen"
       },
       "actions": {
         "chooseFile": "Choose file",
