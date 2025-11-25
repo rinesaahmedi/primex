@@ -191,7 +191,7 @@
         },
         {
           "name": "Zertifikate",
-          "url": "/certificates",
+          "url": "/certificate",
           "external": false
         }
       ]
