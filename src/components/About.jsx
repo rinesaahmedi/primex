@@ -9,6 +9,8 @@ const About = () => {
   const points = t("about.whyPrimex.points", { returnObjects: true }) || [];
   const [sectionRef, isVisible] = useScrollAnimation({ threshold: 0.1 });
 
+  const LAYOUT = "max-w-7xl mx-auto lg:px-12";
+
   // Light gradients for each card
   const gradientClasses = [
     "bg-gradient-to-br from-indigo-50 via-blue-50 to-slate-50",
@@ -19,7 +21,10 @@ const About = () => {
 
   return (
     <section id="about" className="py-20 bg-white">
-      <div ref={sectionRef} className="container mx-auto px-6 max-w-6xl">
+      <div
+        ref={sectionRef}
+        className={`container mx-auto px-6 max-w-6xl ${LAYOUT}`}
+      >
         <div className="grid gap-12 lg:grid-cols-2 items-center">
           {/* LEFT SIDE */}
           <div

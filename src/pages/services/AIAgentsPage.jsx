@@ -3,62 +3,18 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useScrollAnimation } from "../../utils/useScrollAnimation";
-import {
-  ArrowLeft,
-  CheckCircle2,
-  Zap,
-  Clock,
-  Shield,
-  Globe,
-  Database,
-  TrendingUp,
-  DollarSign,
-  Users,
-  Activity,
-  BarChart3,
-} from "lucide-react";
+import { ArrowLeft, ArrowRight, Zap } from "lucide-react";
 
 const AIAgentsPage = () => {
   const { t } = useTranslation();
   const [sectionRef, isVisible] = useScrollAnimation({ threshold: 0.1 });
 
-  // Define agent names — update or extend as needed
-  const agents = [
-    {
-      id: 1,
-      title: "Order Confirmation",
-      subtitle: "Order confirmation & receipts",
-    },
-    {
-      id: 2,
-      title: "Product Data Management",
-      subtitle: "Listing compliance, data quality & marketplace optimization",
-    },
-    { id: 3, title: "Sales Outreach", subtitle: "Lead follow-ups & nurturing" },
-    {
-      id: 4,
-      title: "Invoice Processor",
-      subtitle: "Automated invoice handling",
-    },
-    {
-      id: 5,
-      title: "Content Generator",
-      subtitle: "Marketing & copy assistance",
-    },
-    { id: 6, title: "Data Sync", subtitle: "Integrations & ETL" },
-    {
-      id: 7,
-      title: "Analytics Reporter",
-      subtitle: "Scheduled reports & insights",
-    },
-    { id: 8, title: "Inventory Manager", subtitle: "Stock updates & alerts" },
-    { id: 9, title: "Scheduler", subtitle: "Booking & calendar automation" },
-    { id: 10, title: "Custom Agent", subtitle: "Tailored automation" },
-  ];
+  // Generate an array from 1 to 13 to map through your agents
+  const agentIds = Array.from({ length: 13 }, (_, i) => i + 1);
 
   return (
     <section className="min-h-screen bg-white pt-32 pb-24 md:pt-40 md:pb-32">
-      <div className="max-w-5xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-6">
         {/* Back Button */}
         <Link
           to="/#services"
@@ -68,52 +24,73 @@ const AIAgentsPage = () => {
           <span className="font-medium">Back to Services</span>
         </Link>
 
-        {/* AI Agents Grid */}
+        {/* Header */}
         <div
+          ref={sectionRef}
           className={`mb-16 ${isVisible ? "lift-up-subtle" : ""}`}
-          style={{ animationDelay: isVisible ? "0.5s" : "0s" }}
         >
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#2378FF]/10 text-[#2378FF] text-sm font-semibold mb-6">
+            <Zap className="w-4 h-4" />
+            <span>13 Specialized Agents</span>
+          </div>
           <h2
-            className="text-3xl md:text-4xl font-bold text-gray-900 mb-8"
+            className="text-3xl md:text-5xl font-bold text-gray-900 mb-6"
             style={{ fontFamily: "var(--font-serif)" }}
           >
-            Our AI Agents
+            Our AI Workforce
           </h2>
-          <p className="text-lg text-gray-600 mb-8 max-w-2xl">
-            Explore our specialized AI agents designed to automate and optimize
-            different aspects of your operations.
+          <p className="text-xl text-gray-600 mb-12 max-w-3xl leading-relaxed">
+            Stop trying to do everything with one tool. Explore our specialized
+            AI agents, each trained to automate a specific complex process in
+            your company—from cleaning product data to handling complaints in
+            seconds.
           </p>
+
+          {/* AI Agents Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {agents.map((agent) => {
-              const shortKey = `agents.agent${agent.id}.short`;
-              const shortText = t(shortKey, {
-                defaultValue:
-                  "Specialized AI agent designed to automate and optimize operational workflows.",
+            {agentIds.map((id) => {
+              // Construct the key (e.g., "agent1", "agent2") to match your JSON structure
+              const agentKey = `agent${id}`;
+
+              const badge = t(`agents.${agentKey}.badge`, {
+                defaultValue: `Agent ${id}`,
+              });
+              const title = t(`agents.${agentKey}.title`, {
+                defaultValue: "Coming Soon",
+              });
+              const subtitle = t(`agents.${agentKey}.subtitle`, {
+                defaultValue: "Loading agent details...",
               });
 
               return (
                 <Link
-                  key={agent.id}
-                  to={`/services/ai-agents/agent${agent.id}`}
-                  className="group bg-white rounded-xl p-6 border-2 border-slate-200 hover:border-[#2378FF] hover:shadow-lg transition-all duration-300"
+                  key={id}
+                  // VITAL: This creates the link "/services/ai-agents/agent1"
+                  // Your AgentTemplate will grab "agent1" from the URL to load the data.
+                  to={`/services/ai-agents/${agentKey}`}
+                  className="group flex flex-col justify-between bg-white rounded-2xl p-8 border border-slate-200 hover:border-[#2378FF] hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
                 >
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[#2378FF] to-[#1f5fcc] flex items-center justify-center text-white font-bold text-lg">
-                      {agent.id}
+                  <div>
+                    <div className="flex items-center justify-between mb-6">
+                      <div className="w-10 h-10 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-center text-[#2378FF] font-bold text-lg group-hover:bg-[#2378FF] group-hover:text-white transition-colors duration-300">
+                        {id}
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-gray-900 group-hover:text-[#2378FF] transition-colors">
-                        {agent.title}
-                      </h3>
-                      <p className="text-sm text-gray-500">{agent.subtitle}</p>
+
+                    <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-[#2378FF] transition-colors">
+                      {badge}
+                    </h3>
+                    <div className="text-xs font-semibold uppercase tracking-wider text-[#2378FF] mb-3 opacity-80">
+                      {title}
                     </div>
+                    <p className="text-gray-600 text-sm leading-relaxed mb-6 line-clamp-3">
+                      {subtitle}
+                    </p>
                   </div>
-                  <p className="text-gray-600 text-sm leading-relaxed mb-4">
-                    {shortText}
-                  </p>
-                  <div className="flex items-center text-[#2378FF] font-semibold text-sm group-hover:gap-2 transition-all">
-                    <span>Learn more</span>
-                    <ArrowLeft className="w-4 h-4 ml-1 rotate-180 group-hover:translate-x-1 transition-transform" />
+
+                  <div className="flex items-center text-[#2378FF] font-semibold text-sm group-hover:gap-2 transition-all mt-auto pt-4 border-t border-slate-100">
+                    <span>View Capabilities</span>
+                    <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </Link>
               );
@@ -124,29 +101,29 @@ const AIAgentsPage = () => {
         {/* CTA Section */}
         <div
           className={`${isVisible ? "lift-up-subtle" : ""}`}
-          style={{ animationDelay: isVisible ? "0.6s" : "0s" }}
+          style={{ animationDelay: isVisible ? "0.2s" : "0s" }}
         >
-          <div className="bg-gradient-to-br from-[#081333] via-[#1659bd] to-[#fadebc] rounded-2xl p-8 md:p-12 text-white">
+          <div className="bg-gradient-to-br from-[#081333] via-[#1659bd] to-[#fadebc] rounded-3xl p-8 md:p-16 text-center text-white shadow-2xl">
             <h3
-              className="text-2xl md:text-3xl font-bold mb-4"
+              className="text-3xl md:text-4xl font-bold mb-6"
               style={{ fontFamily: "var(--font-serif)" }}
             >
-              Ready to Transform Your Operations?
+              Not sure which Agent you need?
             </h3>
-            <p className="text-white/90 mb-8 text-lg max-w-2xl">
-              Let's discuss how AI agents can automate your workflows and reduce
-              operational costs by up to 80%.
+            <p className="text-white/90 mb-10 text-lg max-w-2xl mx-auto">
+              We can analyze your current workflows and tell you exactly which
+              agents will save you the most time and money.
             </p>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap justify-center gap-4">
               <Link
                 to="/business"
-                className="inline-flex items-center justify-center px-8 py-3 bg-white text-[#2378FF] font-semibold rounded-xl hover:bg-white/90 transition-all shadow-lg hover:shadow-xl"
+                className="inline-flex items-center justify-center px-8 py-4 bg-white text-[#2378FF] font-bold rounded-xl hover:bg-white/90 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
               >
                 Schedule a Consultation
               </Link>
               <Link
                 to="/#contact"
-                className="inline-flex items-center justify-center px-8 py-3 border-2 border-white text-white font-semibold rounded-xl hover:bg-white hover:text-[#2378FF] transition-all"
+                className="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-bold rounded-xl hover:bg-white/10 transition-all"
               >
                 Contact Us
               </Link>

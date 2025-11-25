@@ -18,6 +18,8 @@ export default function Services() {
   const services = t("services.items", { returnObjects: true }) || [];
   const [sectionRef, isVisible] = useScrollAnimation({ threshold: 0.1 });
 
+  const LAYOUT = "max-w-7xl mx-auto lg:px-12";
+
   const serviceIcons = [
     Cpu, // 1. AI Automation (Processing/Intelligence)
     BarChart3, // 2. Operational Services (Sales/Finance metrics)
@@ -50,7 +52,10 @@ export default function Services() {
       <div className="absolute -top-24 -right-10 h-72 w-72 rounded-full bg-[#fadebc44] blur-3xl opacity-80 pointer-events-none" />
       <div className="absolute -bottom-32 -left-10 h-72 w-72 rounded-full bg-[#2378ff26] blur-3xl opacity-60 pointer-events-none" />
 
-      <div ref={sectionRef} className="relative max-w-6xl mx-auto px-6">
+      <div
+        ref={sectionRef}
+        className={`relative max-w-6xl mx-auto px-6 ${LAYOUT}`}
+      >
         {/* Header */}
         <div
           className={`text-center mb-14 animate-lift-blur-subtle ${

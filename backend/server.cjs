@@ -1,12 +1,15 @@
-const path = require("path"); // Define this ONLY once at the very top
+const path = require("path");
 
-// Configure dotenv immediately using the path
+// Configure dotenv to find .env file in root/server or root
 require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 
 const express = require("express");
 const cors = require("cors");
 const { google } = require("googleapis");
 const nodemailer = require("nodemailer");
+const multer = require("multer");
+const { Pinecone } = require('@pinecone-database/pinecone');
+const OpenAI = require('openai');
 
 const app = express();
 const port = 5000;
@@ -14,37 +17,109 @@ const port = 5000;
 app.use(cors());
 app.use(express.json());
 
-// --- 1. VERIFY CREDENTIALS ON STARTUP ---
-console.log("------------------------------------------------");
-console.log("Server Starting...");
-console.log("Email User from .env:", process.env.SMTP_USER ? process.env.SMTP_USER : "MISSING!");
-console.log("Email Pass from .env:", process.env.SMTP_PASS ? "Loaded (Hidden)" : "MISSING!");
-console.log("Owner Email:", process.env.OWNER_EMAIL);
-console.log("------------------------------------------------");
+// Multer setup for handling file uploads in memory
+const upload = multer({ storage: multer.memoryStorage() });
 
-// --- 2. CONFIGURE EMAIL ---
-const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 465, // Use 465 for Gmail SSL
-  secure: true, 
-  auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS, // MUST be the 16-char App Password
-  },
+
+// 1. Initialize Pinecone
+const pc = new Pinecone({
+  apiKey: process.env.PINECONE_API_KEY,
 });
 
-// Verify connection immediately
-transporter.verify(function (error, success) {
-  if (error) {
-    console.error("❌ EMAIL CONNECTION FAILED!");
-    console.error(error);
-    console.log("HINT: Did you use a Gmail App Password? standard passwords won't work.");
-  } else {
-    console.log("✅ Email Server is ready to send messages.");
+// 2. Connect to the Index
+const index = pc.index('pdf-embeddings-index');
+
+// 3. Initialize OpenAI
+const openai = new OpenAI({ 
+  apiKey: process.env.OPENAI_API_KEY,
+});
+
+// BASE KNOWLEDGE
+const BASE_SYSTEM_PROMPT = `
+You are the AI Support Assistant for PrimeX. Your goal is to be helpful, professional, and encourage users to book an appointment.
+
+CORE INFORMATION:
+- Company: PrimeX
+- Services: AI Agents, Custom Software, Graphic Design, Admin Support.
+- Tone: Professional, modern, concise, and friendly.
+
+PRICING:
+- Tell them: "Our pricing depends on the complexity of the project. We offer custom quotes tailored to your needs."
+
+CALL TO ACTIONS:
+- "Would you like to book a free consultation?"
+- "You can apply to work with us on our Apply page."
+`;
+
+// ==================================================================
+// ROUTE: AI CHAT (WITH PINECONE RAG)
+// ==================================================================
+app.post('/api/chat', async (req, res) => {
+  const { message } = req.body;
+
+  try {
+    // A. Create Embedding for user's query
+    // We use text-embedding-3-small (newer) or text-embedding-ada-002
+    const embeddingResponse = await openai.embeddings.create({
+      model: "text-embedding-3-small", 
+      input: message,
+    });
+    
+    const vector = embeddingResponse.data[0].embedding;
+
+    // B. Query Pinecone for relevant context
+    const queryResponse = await index.query({
+      vector: vector,
+      topK: 3, // Get top 3 most relevant chunks
+      includeMetadata: true,
+    });
+
+    // C. Extract context text from Pinecone results
+    const contextText = queryResponse.matches
+      .map((match) => match.metadata?.text || "") 
+      .join("\n\n---\n\n");
+
+    // D. Build the final prompt
+    const finalSystemPrompt = `
+      ${BASE_SYSTEM_PROMPT}
+
+      Here is some specific context from our internal database that might help answer the user:
+      ${contextText}
+
+      If the context doesn't have the answer, use your general knowledge but mention you are not 100% sure.
+    `;
+
+    // E. Generate Answer
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4o-mini", // Better and cheaper than 3.5
+      messages: [
+        { role: "system", content: finalSystemPrompt },
+        { role: "user", content: message }
+      ],
+      temperature: 0.7,
+    });
+
+    res.json({ reply: completion.choices[0].message.content });
+
+  } catch (error) {
+    console.error("Chat API Error:", error); 
+    res.status(500).json({ reply: "I'm having a little trouble connecting to my brain right now. Please try again in a moment." });
   }
 });
 
-// --- 3. CONFIGURE CALENDAR ---
+// ==================================================================
+// EMAIL & CALENDAR CONFIGURATION
+// ==================================================================
+const transporter = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true,
+  auth: {
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS, 
+  },
+});
+
 const keyFile = path.join(__dirname, "../keys/calendar-key.json");
 const MY_CALENDAR_ID = "12f3606e67d25124ae81e80895f7c00c64cb0e705205ec0a0c67676c9a249d3d@group.calendar.google.com";
 
@@ -58,7 +133,9 @@ async function getCalendarClient() {
   return google.calendar({ version: "v3", auth: client });
 }
 
-// --- API: AVAILABLE SLOTS ---
+// ==================================================================
+// ROUTE: GET AVAILABLE SLOTS
+// ==================================================================
 app.get("/api/available-slots", async (req, res) => {
   try {
     const { date, tzOffset } = req.query;
@@ -92,13 +169,12 @@ app.get("/api/available-slots", async (req, res) => {
 
 function calculateSlots(year, month, day, offsetMinutes, events) {
   const slots = [];
-  const startHour = 9; 
-  const endHour = 17;
+  const definedTimes = [{ h: 8, m: 0 }, { h: 10, m: 0 }, { h: 14, m: 0 }];
   const duration = 60;
 
-  for (let time = startHour * 60; time < endHour * 60; time += duration) {
-    const h = Math.floor(time / 60);
-    const m = time % 60;
+  for (const time of definedTimes) {
+    const h = time.h;
+    const m = time.m;
     const slotStartMs = Date.UTC(year, month, day, h, m, 0) + offsetMinutes * 60 * 1000;
     const slotEndMs = slotStartMs + duration * 60 * 1000;
 
@@ -107,22 +183,25 @@ function calculateSlots(year, month, day, offsetMinutes, events) {
       const evStart = new Date(event.start.dateTime || event.start.date).getTime();
       const evEnd = new Date(event.end.dateTime || event.end.date).getTime();
       if (evStart < slotEndMs && evEnd > slotStartMs) {
-        isBusy = true; break;
+        isBusy = true;
+        break;
       }
     }
-    if (!isBusy) slots.push(`${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}`);
+
+    if (!isBusy) {
+      const timeString = `${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}`;
+      slots.push(timeString);
+    }
   }
   return slots;
 }
 
-// --- API: BOOK APPOINTMENT ---
+// ==================================================================
+// ROUTE: BOOK APPOINTMENT
+// ==================================================================
 app.post("/api/book-appointment", async (req, res) => {
   try {
-    const { name, email, date, time, tzOffset } = req.body;
-    console.log(`\n--- NEW BOOKING REQUEST ---`);
-    console.log(`User: ${name} (${email})`);
-
-    // 1. Calculate Times
+    const { name, email, phone, topic, date, time, tzOffset } = req.body;
     const [year, month, day] = date.split("-").map(Number);
     const [hour, minute] = time.split(":").map(Number);
     const offsetMinutes = parseInt(tzOffset) || 0;
@@ -130,53 +209,129 @@ app.post("/api/book-appointment", async (req, res) => {
     const slotStartMs = Date.UTC(year, month - 1, day, hour, minute, 0) + offsetMinutes * 60 * 1000;
     const slotEndMs = slotStartMs + 60 * 60 * 1000;
 
-    const startIso = new Date(slotStartMs).toISOString();
-    const endIso = new Date(slotEndMs).toISOString();
-
-    // 2. Add to Google Calendar
     const calendar = await getCalendarClient();
     const insertRes = await calendar.events.insert({
       calendarId: MY_CALENDAR_ID,
       resource: {
         summary: `Appointment: ${name}`,
-        description: `Client Email: ${email}`,
-        start: { dateTime: startIso },
-        end: { dateTime: endIso },
+        description: `Topic: ${topic}\nPhone: ${phone}\nEmail: ${email}`,
+        start: { dateTime: new Date(slotStartMs).toISOString() },
+        end: { dateTime: new Date(slotEndMs).toISOString() },
       },
     });
-    console.log("✅ Google Calendar Event Created");
 
-    // 3. Send Emails (Using Reply-To)
-    const userMailOptions = {
-      from: `"PrimEx Appointments" <${process.env.SMTP_USER}>`,
-      to: email, 
-      subject: "Appointment Confirmed - PrimEx",
-      text: `Hello ${name},\n\nYour appointment is confirmed for ${date} at ${time}.\n\nThank you,\nPrimEx Team`,
-    };
+    const clientHtml = `<h2>Confirmed</h2><p>${date} at ${time}</p>`;
+    const ownerHtml = `<h2>New Booking</h2><p>${name} - ${topic}</p>`;
 
-    const ownerMailOptions = {
+    await transporter.sendMail({
+      from: `"PrimEx" <${process.env.SMTP_USER}>`,
+      to: email,
+      subject: "Appointment Confirmed",
+      html: clientHtml,
+    });
+    await transporter.sendMail({
       from: `"PrimEx System" <${process.env.SMTP_USER}>`,
       to: process.env.OWNER_EMAIL,
-      replyTo: email, // <--- This allows you to click Reply and email the client
       subject: `New Appointment: ${name}`,
-      text: `New booking!\n\nName: ${name}\nEmail: ${email}\nDate: ${date}\nTime: ${time}`,
-    };
-
-    // Await the email sending so we see errors in the log
-    try {
-      await transporter.sendMail(userMailOptions);
-      console.log("✅ Email sent to Client");
-      await transporter.sendMail(ownerMailOptions);
-      console.log("✅ Email sent to Owner");
-    } catch (emailErr) {
-      console.error("❌ FAILED TO SEND EMAIL:", emailErr);
-    }
+      html: ownerHtml,
+    });
 
     res.json({ message: "Booking successful!", eventId: insertRes.data.id });
-
   } catch (error) {
-    console.error("❌ SERVER ERROR:", error);
+    console.error("Booking Error:", error);
     res.status(500).json({ message: "Failed to book appointment" });
+  }
+});
+
+// ==================================================================
+// ROUTE: SEND APPLY FORM (FIXED)
+// ==================================================================
+app.post("/send-apply-form", upload.single("cv"), async (req, res) => {
+  try {
+    const { name, email, phone, linkedin, country, position, description } = req.body;
+
+    // 1. Define Email HTML for the Owner
+    const ownerHtml = `
+      <div style="font-family: Arial;">
+        <h3>New Job Application</h3>
+        <p><strong>Position:</strong> ${position}</p>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Phone:</strong> ${phone}</p>
+        <p><strong>LinkedIn:</strong> ${linkedin}</p>
+        <p><strong>Country:</strong> ${country}</p>
+        <p><strong>Message:</strong> ${description}</p>
+      </div>
+    `;
+
+    // 2. Define Email HTML for the Applicant
+    const applicantHtml = `
+      <div style="font-family: Arial;">
+        <h3>Application Received</h3>
+        <p>Hi ${name}, thanks for applying to PrimEx for the ${position} role. We will review your CV and get back to you.</p>
+      </div>
+    `;
+
+    // 3. Prepare Attachment (CV)
+    const attachments = req.file ? [{
+      filename: req.file.originalname,
+      content: req.file.buffer
+    }] : [];
+
+    // 4. Send Email to Owner
+    await transporter.sendMail({
+      from: `"PrimEx Careers" <${process.env.SMTP_USER}>`,
+      to: process.env.OWNER_EMAIL,
+      subject: `New Application: ${name} - ${position}`,
+      html: ownerHtml,
+      replyTo: email,
+      attachments: attachments // Attach the CV
+    });
+
+    // 5. Send Email to Applicant
+    if (email) {
+      await transporter.sendMail({
+        from: `"PrimEx Careers" <${process.env.SMTP_USER}>`,
+        to: email,
+        subject: "We received your application",
+        html: applicantHtml,
+      });
+    }
+
+    return res.json({ success: true });
+  } catch (err) {
+    console.error("/send-apply-form error:", err);
+    return res.status(500).json({ success: false, message: "Server error" });
+  }
+});
+
+// ==================================================================
+// ROUTE: BUSINESS INQUIRY FORM
+// ==================================================================
+app.post("/send-business-inquiry", async (req, res) => {
+  try {
+    const { companyName, contactPerson, email, phone, businessType, website, message } = req.body;
+
+    const ownerHtml = `
+      <h3>New Business Inquiry</h3>
+      <p><strong>Company:</strong> ${companyName}</p>
+      <p><strong>Contact:</strong> ${contactPerson}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Message:</strong> ${message}</p>
+    `;
+
+    await transporter.sendMail({
+      from: `"PrimEx Business" <${process.env.SMTP_USER}>`,
+      to: process.env.OWNER_EMAIL,
+      replyTo: email,
+      subject: `Business Inquiry: ${companyName}`,
+      html: ownerHtml,
+    });
+
+    res.json({ success: true });
+  } catch (err) {
+    console.error("/send-business-inquiry error:", err);
+    res.status(500).json({ success: false, message: "Server error" });
   }
 });
 
