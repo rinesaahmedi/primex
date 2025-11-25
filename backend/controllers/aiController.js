@@ -72,8 +72,8 @@ const handleChat = async (req, res) => {
     const replyText = completion.choices[0].message.content;
     let audioBase64 = null;
 
-    // F. Generate Audio (If requested)
-    if (includeAudio) {
+  // F. Generate Audio (If requested)
+    if (includeAudio) { // <--- This must be TRUE
       const mp3 = await openai.audio.speech.create({
         model: "tts-1",
         voice: "shimmer",
