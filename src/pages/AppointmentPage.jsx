@@ -138,11 +138,20 @@ const AppointmentPage = () => {
   return (
     <>
       <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+
+        /* Global Font Application for this component */
+        .montserrat-app, 
+        .montserrat-app input, 
+        .montserrat-app button,
+        .react-calendar {
+          font-family: 'Montserrat', sans-serif !important;
+        }
+
         .react-calendar {
           border: none !important;
           width: 100% !important;
           background: transparent !important;
-          font-family: inherit;
         }
         .react-calendar__navigation {
           margin-bottom: 15px;
@@ -151,9 +160,9 @@ const AppointmentPage = () => {
           min-width: 44px;
           background: none;
           font-size: 1.1rem;
-          font-family: serif;
           font-weight: 700;
           color: #1e3a8a;
+          /* Removed serif, enforced Montserrat above */
         }
         .react-calendar__navigation button:enabled:hover,
         .react-calendar__navigation button:enabled:focus {
@@ -207,12 +216,14 @@ const AppointmentPage = () => {
         }
       `}</style>
 
-      <div className="min-h-screen bg-gray-50 flex flex-col items-center pt-32 pb-12 px-4 sm:px-6 lg:px-8 font-sans text-gray-800">
+      {/* Added 'montserrat-app' class here */}
+      <div className="montserrat-app min-h-screen bg-gray-50 flex flex-col items-center pt-32 pb-12 px-4 sm:px-6 lg:px-8 text-gray-800">
         <div className="w-full max-w-6xl bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100 flex flex-col md:flex-row min-h-[500px]">
           {/* LEFT PANEL: CALENDAR */}
           <div className="w-full md:w-5/12 bg-slate-50 p-6 md:p-8 border-b md:border-b-0 md:border-r border-gray-100 flex flex-col items-center">
             <div className="w-full max-w-[340px]">
-              <h2 className="text-2xl font-serif font-bold text-blue-900 mb-1">
+              {/* Removed font-serif */}
+              <h2 className="text-2xl font-bold text-blue-900 mb-1">
                 Select Date
               </h2>
               <p className="text-gray-500 text-sm mb-6 font-medium">
@@ -236,9 +247,11 @@ const AppointmentPage = () => {
           <div className="w-full md:w-7/12 p-6 md:p-10 bg-white">
             {!showForm ? (
               <div className="animate-fade-in">
-                <h3 className="text-xl font-serif font-bold text-blue-900 mb-5 flex items-center gap-3">
+                {/* Removed font-serif */}
+                <h3 className="text-xl font-bold text-blue-900 mb-5 flex items-center gap-3">
                   Available Times
-                  <span className="text-xs font-sans font-normal text-gray-500 bg-gray-100 px-2 py-1 rounded-full border border-gray-200">
+                  {/* Removed font-sans */}
+                  <span className="text-xs font-normal text-gray-500 bg-gray-100 px-2 py-1 rounded-full border border-gray-200">
                     {date.toLocaleDateString("en-US", {
                       month: "short",
                       day: "numeric",
@@ -277,7 +290,8 @@ const AppointmentPage = () => {
               // BOOKING FORM
               <div className="animate-fade-in-up max-w-lg mx-auto md:mx-0">
                 <div className="flex justify-between items-center mb-4">
-                  <h3 className="text-xl font-serif font-bold text-blue-900">
+                  {/* Removed font-serif */}
+                  <h3 className="text-xl font-bold text-blue-900">
                     Confirm Booking
                   </h3>
                   <button
@@ -298,7 +312,8 @@ const AppointmentPage = () => {
                     <p className="text-[10px] text-blue-400 uppercase tracking-widest font-bold">
                       Date
                     </p>
-                    <p className="text-blue-900 font-bold font-serif text-base">
+                    {/* Removed font-serif */}
+                    <p className="text-blue-900 font-bold text-base">
                       {date.toLocaleDateString()}
                     </p>
                   </div>
@@ -306,7 +321,8 @@ const AppointmentPage = () => {
                     <p className="text-[10px] text-blue-400 uppercase tracking-widest font-bold">
                       Time
                     </p>
-                    <p className="text-blue-900 font-bold font-serif text-base">
+                    {/* Removed font-serif */}
+                    <p className="text-blue-900 font-bold text-base">
                       {selectedTime}
                     </p>
                   </div>
@@ -392,7 +408,7 @@ const AppointmentPage = () => {
                               className="sr-only"
                             />
 
-                            {/* Checkbox Circle (Slightly smaller to match text) */}
+                            {/* Checkbox Circle */}
                             <div
                               className={`
                                 w-4 h-4 rounded-full border flex items-center justify-center mr-2.5 flex-shrink-0 transition-all duration-200
@@ -408,7 +424,6 @@ const AppointmentPage = () => {
                               )}
                             </div>
 
-                            {/* TEXT IS NOW SMALLER (text-xs) */}
                             <span
                               className={`font-medium text-xs leading-snug transition-colors ${
                                 isSelected ? "text-blue-900" : "text-gray-600"
