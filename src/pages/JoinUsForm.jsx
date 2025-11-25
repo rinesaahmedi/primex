@@ -19,7 +19,7 @@ function JoinUsForm() {
   // State for the custom dropdowns visibility
   const [isPositionOpen, setIsPositionOpen] = useState(false);
   const [isCountryOpen, setIsCountryOpen] = useState(false); // NEW STATE
-  
+
   const positionDropdownRef = useRef(null);
   const countryDropdownRef = useRef(null); // NEW REF
   const fileInputRef = useRef(null);
@@ -349,11 +349,12 @@ function JoinUsForm() {
 
             {/* ROW 3: Country & Position */}
             <div className="grid md:grid-cols-2 gap-5">
-              
               {/* --- CUSTOM COUNTRY DROPDOWN (Replacing <select>) --- */}
               <div className="relative" ref={countryDropdownRef}>
                 <div
-                  onClick={() => !isSubmitting && setIsCountryOpen(!isCountryOpen)}
+                  onClick={() =>
+                    !isSubmitting && setIsCountryOpen(!isCountryOpen)
+                  }
                   className={`w-full rounded-xl border px-5 py-3.5 text-base cursor-pointer flex justify-between items-center bg-white/10 transition-all
                     ${
                       errors.country
@@ -366,7 +367,9 @@ function JoinUsForm() {
                       formData.country ? "text-white" : "text-white/60"
                     }
                   >
-                    {formData.country || t("forms.join.fields.country") || "Select Country"}
+                    {formData.country ||
+                      t("forms.join.fields.country") ||
+                      "Select Country"}
                   </span>
                   {/* Chevron Icon */}
                   <svg
@@ -377,14 +380,21 @@ function JoinUsForm() {
                     stroke="currentColor"
                     viewBox="0 0 24 24"
                   >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M19 9l-7 7-7-7"
+                    />
                   </svg>
                 </div>
 
                 {isCountryOpen && (
                   <div className="absolute z-50 mt-2 w-full rounded-xl border border-white/20 bg-[#081333]/95 backdrop-blur-xl shadow-2xl overflow-hidden max-h-60 overflow-y-auto custom-scrollbar">
                     {loadingCountries ? (
-                      <div className="px-5 py-3 text-white/60 text-sm">Loading...</div>
+                      <div className="px-5 py-3 text-white/60 text-sm">
+                        Loading...
+                      </div>
                     ) : (
                       countries.map((c, i) => (
                         <div
@@ -405,7 +415,9 @@ function JoinUsForm() {
               {/* --- CUSTOM POSITION DROPDOWN --- */}
               <div className="relative" ref={positionDropdownRef}>
                 <div
-                  onClick={() => !isSubmitting && setIsPositionOpen(!isPositionOpen)}
+                  onClick={() =>
+                    !isSubmitting && setIsPositionOpen(!isPositionOpen)
+                  }
                   className={`w-full rounded-xl border px-5 py-3.5 text-base cursor-pointer flex justify-between items-center bg-white/10 transition-all
                     ${
                       errors.position
@@ -418,7 +430,9 @@ function JoinUsForm() {
                       formData.position ? "text-white" : "text-white/60"
                     }
                   >
-                    {formData.position || t("forms.join.fields.position") || "Select Position"}
+                    {formData.position ||
+                      t("forms.join.fields.position") ||
+                      "Select Position"}
                   </span>
                   <svg
                     className={`w-4 h-4 text-white/70 transition-transform duration-200 ${
@@ -428,7 +442,12 @@ function JoinUsForm() {
                     stroke="currentColor"
                     viewBox="0 0 24 24"
                   >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M19 9l-7 7-7-7"
+                    />
                   </svg>
                 </div>
 
@@ -523,30 +542,6 @@ function JoinUsForm() {
                 )}
               </div>
               <ErrorMsg field="cvFile" />
-            </div>
-
-            {/* Privacy Checkbox */}
-            <div>
-              <label className="flex items-start gap-3 text-sm text-white/90 group cursor-pointer">
-                <input
-                  type="checkbox"
-                  name="privacyAccepted"
-                  checked={formData.privacyAccepted}
-                  onChange={handleChange}
-                  disabled={isSubmitting}
-                  className={`mt-1 w-4 h-4 rounded border bg-white/10 text-white focus:ring-2 focus:ring-white/50 transition-colors
-                    ${
-                      errors.privacyAccepted
-                        ? "border-red-400 ring-red-400"
-                        : "border-white/30"
-                    }`}
-                />
-                <span className={errors.privacyAccepted ? "text-red-200" : ""}>
-                  {t("forms.join.fields.privacy")}{" "}
-                  <span className="underline">Privacy Policy</span>
-                </span>
-              </label>
-              <ErrorMsg field="privacyAccepted" />
             </div>
 
             <button
