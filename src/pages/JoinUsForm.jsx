@@ -10,18 +10,56 @@ function JoinUsForm() {
     phone: "",
     linkedin: "",
     country: "",
-    position: "", // NEW FIELD
+    position: "",
     description: "",
     privacyAccepted: false,
     cvFile: null,
   });
 
+  // State for the custom dropdowns visibility
+  const [isPositionOpen, setIsPositionOpen] = useState(false);
+  const [isCountryOpen, setIsCountryOpen] = useState(false); // NEW STATE
+  
+  const positionDropdownRef = useRef(null);
+  const countryDropdownRef = useRef(null); // NEW REF
+  const fileInputRef = useRef(null);
+
   const [errors, setErrors] = useState({});
   const [countries, setCountries] = useState([]);
   const [loadingCountries, setLoadingCountries] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [fetchError, setFetchError] = useState(null);
-  const fileInputRef = useRef(null);
+
+  // List of positions
+  const positionOptions = [
+    "Operations & Support",
+    "Creative & Design",
+    "Technology & AI",
+    "Other",
+  ];
+
+  // Close dropdowns if clicked outside
+  useEffect(() => {
+    function handleClickOutside(event) {
+      // Close Position Dropdown
+      if (
+        positionDropdownRef.current &&
+        !positionDropdownRef.current.contains(event.target)
+      ) {
+        setIsPositionOpen(false);
+      }
+      // Close Country Dropdown
+      if (
+        countryDropdownRef.current &&
+        !countryDropdownRef.current.contains(event.target)
+      ) {
+        setIsCountryOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   useEffect(() => {
     const fetchCountries = async () => {
@@ -38,10 +76,8 @@ function JoinUsForm() {
           .sort((a, b) => a.localeCompare(b));
 
         setCountries(countryList);
-        setFetchError(null);
       } catch (err) {
         console.error("Error fetching countries:", err);
-        setFetchError("Failed to load countries");
         setCountries([]);
       } finally {
         setLoadingCountries(false);
@@ -68,15 +104,12 @@ function JoinUsForm() {
     if (!formData.phone.trim())
       newErrors.phone = t("forms.validation.required");
 
-    if (!formData.linkedin.trim()) {
-      newErrors.linkedin = t("forms.validation.required");
-    } else if (!urlRegex.test(formData.linkedin)) {
+    if (formData.linkedin.trim() && !urlRegex.test(formData.linkedin)) {
       newErrors.linkedin = "Please enter a valid URL";
     }
 
     if (!formData.country) newErrors.country = t("forms.validation.required");
 
-    // NEW POSITION VALIDATION
     if (!formData.position) newErrors.position = t("forms.validation.required");
 
     if (!formData.description.trim())
@@ -144,6 +177,20 @@ function JoinUsForm() {
     }));
   };
 
+  // Helper for custom Position selection
+  const handlePositionSelect = (value) => {
+    setFormData((prev) => ({ ...prev, position: value }));
+    if (errors.position) setErrors((prev) => ({ ...prev, position: null }));
+    setIsPositionOpen(false);
+  };
+
+  // NEW Helper for custom Country selection
+  const handleCountrySelect = (value) => {
+    setFormData((prev) => ({ ...prev, country: value }));
+    if (errors.country) setErrors((prev) => ({ ...prev, country: null }));
+    setIsCountryOpen(false);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (isSubmitting) return;
@@ -158,7 +205,7 @@ function JoinUsForm() {
       fd.append("phone", formData.phone);
       fd.append("linkedin", formData.linkedin);
       fd.append("country", formData.country);
-      fd.append("position", formData.position); // SEND POSITION
+      fd.append("position", formData.position);
       fd.append("description", formData.description);
       fd.append("privacyAccepted", formData.privacyAccepted ? "true" : "false");
       if (formData.cvFile) fd.append("cv", formData.cvFile);
@@ -285,7 +332,7 @@ function JoinUsForm() {
                 <input
                   type="url"
                   name="linkedin"
-                  placeholder={t("forms.join.fields.linkedin")}
+                  placeholder={`${t("forms.join.fields.linkedin")} (Optional)`}
                   value={formData.linkedin}
                   onChange={handleChange}
                   disabled={isSubmitting}
@@ -300,77 +347,107 @@ function JoinUsForm() {
               </div>
             </div>
 
-            {/* ROW 3: Country & Position (NEW) */}
+            {/* ROW 3: Country & Position */}
             <div className="grid md:grid-cols-2 gap-5">
-              <div>
-                <select
-                  name="country"
-                  value={formData.country}
-                  onChange={handleChange}
-                  disabled={isSubmitting}
-                  className={`w-full rounded-xl border bg-white/10 px-5 py-3.5 text-base text-white focus:outline-none focus:ring-2 focus:bg-white/15 transition-all disabled:opacity-50 appearance-none
+              
+              {/* --- CUSTOM COUNTRY DROPDOWN (Replacing <select>) --- */}
+              <div className="relative" ref={countryDropdownRef}>
+                <div
+                  onClick={() => !isSubmitting && setIsCountryOpen(!isCountryOpen)}
+                  className={`w-full rounded-xl border px-5 py-3.5 text-base cursor-pointer flex justify-between items-center bg-white/10 transition-all
                     ${
                       errors.country
                         ? "border-red-400 focus:ring-red-400"
-                        : "border-white/30 focus:ring-white/50"
-                    }`}
+                        : "border-white/30 hover:bg-white/15"
+                    } ${isSubmitting ? "opacity-50 cursor-not-allowed" : ""}`}
                 >
-                  <option value="" className="bg-[#081333]">
-                    {t("forms.join.fields.country")}
-                  </option>
-                  {!loadingCountries &&
-                    countries.map((c, i) => (
-                      <option key={i} value={c} className="bg-[#081333]">
-                        {c}
-                      </option>
-                    ))}
-                </select>
+                  <span
+                    className={
+                      formData.country ? "text-white" : "text-white/60"
+                    }
+                  >
+                    {formData.country || t("forms.join.fields.country") || "Select Country"}
+                  </span>
+                  {/* Chevron Icon */}
+                  <svg
+                    className={`w-4 h-4 text-white/70 transition-transform duration-200 ${
+                      isCountryOpen ? "rotate-180" : ""
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+
+                {isCountryOpen && (
+                  <div className="absolute z-50 mt-2 w-full rounded-xl border border-white/20 bg-[#081333]/95 backdrop-blur-xl shadow-2xl overflow-hidden max-h-60 overflow-y-auto custom-scrollbar">
+                    {loadingCountries ? (
+                      <div className="px-5 py-3 text-white/60 text-sm">Loading...</div>
+                    ) : (
+                      countries.map((c, i) => (
+                        <div
+                          key={i}
+                          onClick={() => handleCountrySelect(c)}
+                          className="px-5 py-3 text-white hover:bg-white/20 cursor-pointer transition-colors text-sm border-b border-white/10 last:border-0"
+                        >
+                          {c}
+                        </div>
+                      ))
+                    )}
+                  </div>
+                )}
                 <ErrorMsg field="country" />
               </div>
-              <div>
-                <select
-                  name="position"
-                  value={formData.position}
-                  onChange={handleChange}
-                  disabled={isSubmitting}
-                  className={`w-full rounded-xl border bg-white/10 px-5 py-3.5 text-base text-white focus:outline-none focus:ring-2 focus:bg-white/15 transition-all disabled:opacity-50 appearance-none
+              {/* --- END CUSTOM COUNTRY DROPDOWN --- */}
+
+              {/* --- CUSTOM POSITION DROPDOWN --- */}
+              <div className="relative" ref={positionDropdownRef}>
+                <div
+                  onClick={() => !isSubmitting && setIsPositionOpen(!isPositionOpen)}
+                  className={`w-full rounded-xl border px-5 py-3.5 text-base cursor-pointer flex justify-between items-center bg-white/10 transition-all
                     ${
                       errors.position
                         ? "border-red-400 focus:ring-red-400"
-                        : "border-white/30 focus:ring-white/50"
-                    }`}
+                        : "border-white/30 hover:bg-white/15"
+                    } ${isSubmitting ? "opacity-50 cursor-not-allowed" : ""}`}
                 >
-                  <option value="" className="bg-[#081333]">
-                    {t("forms.join.fields.position") || "Select Position"}
-                  </option>
-
-                  <option
-                    value="Operations & Support"
-                    className="bg-[#081333] text-white"
+                  <span
+                    className={
+                      formData.position ? "text-white" : "text-white/60"
+                    }
                   >
-                    Operations & Support
-                  </option>
-
-                  <option
-                    value="Creative & Design"
-                    className="bg-[#081333] text-white"
+                    {formData.position || t("forms.join.fields.position") || "Select Position"}
+                  </span>
+                  <svg
+                    className={`w-4 h-4 text-white/70 transition-transform duration-200 ${
+                      isPositionOpen ? "rotate-180" : ""
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
                   >
-                    Creative & Design
-                  </option>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
 
-                  <option
-                    value="Technology & AI"
-                    className="bg-[#081333] text-white"
-                  >
-                    Technology & AI
-                  </option>
-
-                  <option value="Other" className="bg-[#081333] text-white">
-                    Other
-                  </option>
-                </select>
+                {isPositionOpen && (
+                  <div className="absolute z-50 mt-2 w-full rounded-xl border border-white/20 bg-[#081333]/95 backdrop-blur-xl shadow-2xl overflow-hidden max-h-60 overflow-y-auto">
+                    {positionOptions.map((option, index) => (
+                      <div
+                        key={index}
+                        onClick={() => handlePositionSelect(option)}
+                        className="px-5 py-3 text-white hover:bg-white/20 cursor-pointer transition-colors text-sm border-b border-white/10 last:border-0"
+                      >
+                        {option}
+                      </div>
+                    ))}
+                  </div>
+                )}
                 <ErrorMsg field="position" />
               </div>
+              {/* --- END CUSTOM POSITION DROPDOWN --- */}
             </div>
 
             <div>
