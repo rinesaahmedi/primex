@@ -8,8 +8,8 @@ const cors = require("cors");
 const { google } = require("googleapis");
 const nodemailer = require("nodemailer");
 const multer = require("multer");
-const { Pinecone } = require("@pinecone-database/pinecone");
-const OpenAI = require("openai");
+const { Pinecone } = require('@pinecone-database/pinecone');
+const OpenAI = require('openai');
 
 const app = express();
 const port = 5000;
@@ -20,31 +20,32 @@ app.use(express.json());
 // Multer setup for handling file uploads in memory
 const upload = multer({ storage: multer.memoryStorage() });
 
+
 // 1. Initialize Pinecone
 const pc = new Pinecone({
   apiKey: process.env.PINECONE_API_KEY,
 });
 
 // 2. Connect to the Index
-const index = pc.index("pdf-embeddings-index");
+const index = pc.index('pdf-embeddings-index');
 
 // 3. Initialize OpenAI
-const openai = new OpenAI({
+const openai = new OpenAI({ 
   apiKey: process.env.OPENAI_API_KEY,
 });
 
 // BASE KNOWLEDGE
 const BASE_SYSTEM_PROMPT = `
 You are the AI Support Assistant for PrimeX. Your goal is to be helpful, professional, and encourage users to book an appointment.
- 
+
 CORE INFORMATION:
 - Company: PrimeX
 - Services: AI Agents, Custom Software, Graphic Design, Admin Support.
 - Tone: Professional, modern, concise, and friendly.
- 
+
 PRICING:
 - Tell them: "Our pricing depends on the complexity of the project. We offer custom quotes tailored to your needs."
- 
+
 CALL TO ACTIONS:
 - "Would you like to book a free consultation?"
 - "You can apply to work with us on our Apply page."
@@ -53,58 +54,69 @@ CALL TO ACTIONS:
 // ==================================================================
 // ROUTE: AI CHAT (WITH PINECONE RAG)
 // ==================================================================
-app.post("/api/chat", async (req, res) => {
-  const { message } = req.body;
+app.post('/api/chat', async (req, res) => {
+  const { message, includeAudio } = req.body; // <--- ADD includeAudio
 
   try {
-    // A. Create Embedding for user's query
-    // We use text-embedding-3-small (newer) or text-embedding-ada-002
+    // A. Create Embedding
     const embeddingResponse = await openai.embeddings.create({
-      model: "text-embedding-3-small",
+      model: "text-embedding-3-small", 
       input: message,
     });
-
+    
     const vector = embeddingResponse.data[0].embedding;
 
-    // B. Query Pinecone for relevant context
+    // B. Query Pinecone
     const queryResponse = await index.query({
       vector: vector,
-      topK: 3, // Get top 3 most relevant chunks
+      topK: 3, 
       includeMetadata: true,
     });
 
-    // C. Extract context text from Pinecone results
+    // C. Extract context
     const contextText = queryResponse.matches
-      .map((match) => match.metadata?.text || "")
+      .map((match) => match.metadata?.text || "") 
       .join("\n\n---\n\n");
 
-    // D. Build the final prompt
+    // D. Build Prompt
     const finalSystemPrompt = `
       ${BASE_SYSTEM_PROMPT}
- 
-      Here is some specific context from our internal database that might help answer the user:
-      ${contextText}
- 
-      If the context doesn't have the answer, use your general knowledge but mention you are not 100% sure.
+      Here is context from our database: ${contextText}
+      If the context doesn't have the answer, use general knowledge.
     `;
 
-    // E. Generate Answer
+    // E. Generate Text Answer
     const completion = await openai.chat.completions.create({
-      model: "gpt-4o-mini", // Better and cheaper than 3.5
+      model: "gpt-4o-mini", 
       messages: [
         { role: "system", content: finalSystemPrompt },
-        { role: "user", content: message },
+        { role: "user", content: message }
       ],
       temperature: 0.7,
     });
 
-    res.json({ reply: completion.choices[0].message.content });
+    const replyText = completion.choices[0].message.content;
+    let audioBase64 = null;
+
+    // F. Generate Audio (If requested)
+    if (includeAudio) {
+      const mp3 = await openai.audio.speech.create({
+        model: "tts-1",       // Standard lightweight TTS model
+        voice: "shimmer",     // Options: alloy, echo, fable, onyx, nova, shimmer
+        input: replyText,
+      });
+
+      // Convert raw audio buffer to Base64 string to send to frontend
+      const buffer = Buffer.from(await mp3.arrayBuffer());
+      audioBase64 = buffer.toString('base64');
+    }
+
+    // Send both text and audio back
+    res.json({ reply: replyText, audio: audioBase64 });
+
   } catch (error) {
-    console.error("Chat API Error:", error);
-    res.status(500).json({
-      reply:
-        "I'm having a little trouble connecting to my brain right now. Please try again in a moment.",
-    });
+    console.error("Chat API Error:", error); 
+    res.status(500).json({ reply: "I'm having trouble connecting right now." });
   }
 });
 
@@ -117,13 +129,12 @@ const transporter = nodemailer.createTransport({
   secure: true,
   auth: {
     user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS,
+    pass: process.env.SMTP_PASS, 
   },
 });
 
 const keyFile = path.join(__dirname, "../keys/calendar-key.json");
-const MY_CALENDAR_ID =
-  "12f3606e67d25124ae81e80895f7c00c64cb0e705205ec0a0c67676c9a249d3d@group.calendar.google.com";
+const MY_CALENDAR_ID = "12f3606e67d25124ae81e80895f7c00c64cb0e705205ec0a0c67676c9a249d3d@group.calendar.google.com";
 
 const auth = new google.auth.GoogleAuth({
   keyFile,
@@ -149,10 +160,8 @@ app.get("/api/available-slots", async (req, res) => {
     const day = parseInt(parts[2], 10);
     const clientOffsetMinutes = parseInt(tzOffset) || 0;
 
-    const startOfDayMs =
-      Date.UTC(year, month, day, 0, 0, 0) + clientOffsetMinutes * 60 * 1000;
-    const endOfDayMs =
-      Date.UTC(year, month, day, 23, 59, 59) + clientOffsetMinutes * 60 * 1000;
+    const startOfDayMs = Date.UTC(year, month, day, 0, 0, 0) + clientOffsetMinutes * 60 * 1000;
+    const endOfDayMs = Date.UTC(year, month, day, 23, 59, 59) + clientOffsetMinutes * 60 * 1000;
 
     const calendar = await getCalendarClient();
     const response = await calendar.events.list({
@@ -163,13 +172,7 @@ app.get("/api/available-slots", async (req, res) => {
       orderBy: "startTime",
     });
 
-    const slots = calculateSlots(
-      year,
-      month,
-      day,
-      clientOffsetMinutes,
-      response.data.items || []
-    );
+    const slots = calculateSlots(year, month, day, clientOffsetMinutes, response.data.items || []);
     res.json(slots);
   } catch (error) {
     console.error("Calendar Error:", error);
@@ -179,25 +182,18 @@ app.get("/api/available-slots", async (req, res) => {
 
 function calculateSlots(year, month, day, offsetMinutes, events) {
   const slots = [];
-  const definedTimes = [
-    { h: 8, m: 0 },
-    { h: 10, m: 0 },
-    { h: 14, m: 0 },
-  ];
+  const definedTimes = [{ h: 8, m: 0 }, { h: 10, m: 0 }, { h: 14, m: 0 }];
   const duration = 60;
 
   for (const time of definedTimes) {
     const h = time.h;
     const m = time.m;
-    const slotStartMs =
-      Date.UTC(year, month, day, h, m, 0) + offsetMinutes * 60 * 1000;
+    const slotStartMs = Date.UTC(year, month, day, h, m, 0) + offsetMinutes * 60 * 1000;
     const slotEndMs = slotStartMs + duration * 60 * 1000;
 
     let isBusy = false;
     for (const event of events) {
-      const evStart = new Date(
-        event.start.dateTime || event.start.date
-      ).getTime();
+      const evStart = new Date(event.start.dateTime || event.start.date).getTime();
       const evEnd = new Date(event.end.dateTime || event.end.date).getTime();
       if (evStart < slotEndMs && evEnd > slotStartMs) {
         isBusy = true;
@@ -206,9 +202,7 @@ function calculateSlots(year, month, day, offsetMinutes, events) {
     }
 
     if (!isBusy) {
-      const timeString = `${h.toString().padStart(2, "0")}:${m
-        .toString()
-        .padStart(2, "0")}`;
+      const timeString = `${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}`;
       slots.push(timeString);
     }
   }
@@ -225,9 +219,7 @@ app.post("/api/book-appointment", async (req, res) => {
     const [hour, minute] = time.split(":").map(Number);
     const offsetMinutes = parseInt(tzOffset) || 0;
 
-    const slotStartMs =
-      Date.UTC(year, month - 1, day, hour, minute, 0) +
-      offsetMinutes * 60 * 1000;
+    const slotStartMs = Date.UTC(year, month - 1, day, hour, minute, 0) + offsetMinutes * 60 * 1000;
     const slotEndMs = slotStartMs + 60 * 60 * 1000;
 
     const calendar = await getCalendarClient();
@@ -269,8 +261,7 @@ app.post("/api/book-appointment", async (req, res) => {
 // ==================================================================
 app.post("/send-apply-form", upload.single("cv"), async (req, res) => {
   try {
-    const { name, email, phone, linkedin, country, position, description } =
-      req.body;
+    const { name, email, phone, linkedin, country, position, description } = req.body;
 
     // 1. Define Email HTML for the Owner
     const ownerHtml = `
@@ -295,14 +286,10 @@ app.post("/send-apply-form", upload.single("cv"), async (req, res) => {
     `;
 
     // 3. Prepare Attachment (CV)
-    const attachments = req.file
-      ? [
-          {
-            filename: req.file.originalname,
-            content: req.file.buffer,
-          },
-        ]
-      : [];
+    const attachments = req.file ? [{
+      filename: req.file.originalname,
+      content: req.file.buffer
+    }] : [];
 
     // 4. Send Email to Owner
     await transporter.sendMail({
@@ -311,7 +298,7 @@ app.post("/send-apply-form", upload.single("cv"), async (req, res) => {
       subject: `New Application: ${name} - ${position}`,
       html: ownerHtml,
       replyTo: email,
-      attachments: attachments, // Attach the CV
+      attachments: attachments // Attach the CV
     });
 
     // 5. Send Email to Applicant
@@ -336,15 +323,7 @@ app.post("/send-apply-form", upload.single("cv"), async (req, res) => {
 // ==================================================================
 app.post("/send-business-inquiry", async (req, res) => {
   try {
-    const {
-      companyName,
-      contactPerson,
-      email,
-      phone,
-      businessType,
-      website,
-      message,
-    } = req.body;
+    const { companyName, contactPerson, email, phone, businessType, website, message } = req.body;
 
     const ownerHtml = `
       <h3>New Business Inquiry</h3>
