@@ -8,6 +8,11 @@ YOUR GOAL:
 2. Qualify the user's needs (determine which service they need).
 3. Guide them towards booking a consultation or applying (if looking for a job).
 
+
+BRANDING & PRONUNCIATION:
+- **Written Output:** Always spell the company name clearly as "PrimeX" in all text responses.
+- **Spoken/Reading:** If speaking or conceptualizing the name, pronounce/read it as "PREE-MEX".
+
 SERVICES DOMAIN:
 - AI Agents & Automation
 - Software Development (Web/Mobile)
@@ -47,18 +52,15 @@ CONVERSION & TONE:
 const handleChat = async (req, res) => {
   const { message, includeAudio } = req.body;
   console.log(`\n--- NEW REQUEST ---`);
-  console.log(`User Message: "${message}"`);
-  console.log(`Audio Requested? ${includeAudio}`);
 
   try {
-    // 1. Embedding
+    // 1. Embedding & 2. Pinecone (Same as before)
     const embeddingResponse = await openai.embeddings.create({
       model: "text-embedding-3-small",
       input: message,
     });
     const vector = embeddingResponse.data[0].embedding;
 
-    // 2. Pinecone
     const queryResponse = await pineconeIndex.query({
       vector: vector,
       topK: 3,
@@ -89,29 +91,34 @@ const handleChat = async (req, res) => {
 
     let audioBase64 = null;
 
-    // 4. Audio Generation (DEBUGGING ADDED HERE)
+    // 4. Audio Generation
     if (includeAudio) {
       try {
         console.log("Attempting to generate audio with OpenAI...");
+
+        // --- CUSTOM PRONUNCIATION FIX ---
+        // We replace the written name with the phonetic spelling for the audio engine only.
+        // /g ensures we replace all occurrences, not just the first one.
+        const textForSpeech = replyText.replace(/PrimeX/g, "PREE-MEX");
+
         const mp3 = await openai.audio.speech.create({
           model: "tts-1",
           voice: "shimmer",
-          input: replyText,
+          input: textForSpeech, // <--- Use the phonetic text here
         });
 
         console.log("Audio generated successfully. Converting to buffer...");
         const buffer = Buffer.from(await mp3.arrayBuffer());
         audioBase64 = buffer.toString("base64");
-        console.log("Audio converted to Base64. Size:", audioBase64.length);
       } catch (audioError) {
         console.error("!!! AUDIO GENERATION FAILED !!!");
         console.error(audioError.message);
-        // We do NOT crash the server; we just send text without audio
       }
     } else {
       console.log("Audio skipped (Client sent includeAudio: false)");
     }
 
+    // Send the original written text (PrimeX) to the UI, but the audio contains "PREE-MEX"
     res.json({ reply: replyText, audio: audioBase64 });
   } catch (error) {
     console.error("General API Error:", error);
@@ -119,17 +126,18 @@ const handleChat = async (req, res) => {
   }
 };
 
-// ... existing imports and handleChat code ...
-
-// NEW FUNCTION: Generate Audio for existing text
+// Update this function as well to maintain consistency
 const generateSpeechOnly = async (req, res) => {
   const { text } = req.body;
 
   try {
+    // --- CUSTOM PRONUNCIATION FIX ---
+    const textForSpeech = text.replace(/PrimeX/g, "PREE-MEX");
+
     const mp3 = await openai.audio.speech.create({
       model: "tts-1",
       voice: "shimmer",
-      input: text,
+      input: textForSpeech,
     });
 
     const buffer = Buffer.from(await mp3.arrayBuffer());
