@@ -249,7 +249,10 @@
         "description": "Erzähl uns kurz von dir...",
         "privacy": "Ich akzeptiere die Datenschutzerklärung",
         "cv": "Lebenslauf hochladen",
-        "cvPlaceholder": "Keine Datei ausgewählt"
+        "cvPlaceholder": "Keine Datei ausgewählt",
+        "privacyLabel": "Ich habe die Datenschutzerklärung gelesen und akzeptiere sie",
+        "privacyPreLink": "Ich stimme der",
+        "privacyLink": "Datenschutzerklärung zu"
       },
       "actions": {
         "chooseFile": "Datei auswählen",
@@ -260,6 +263,18 @@
         "fileType": "Nicht unterstützter Dateityp (PDF, DOC, DOCX)"
       },
       "submit": "Jetzt bewerben"
+    },
+    "legal": {
+      "title": "Datenschutzerklärung",
+      "close": "Schließen",
+      "collectionTitle": "1. Datenerfassung",
+      "collectionText": "Wir erfassen personenbezogene Daten...",
+      "usageTitle": "2. Nutzung",
+      "usageText": "Ihre Daten werden nur für die Rekrutierung genutzt...",
+      "securityTitle": "3. Sicherheit",
+      "securityText": "Wir ergreifen Sicherheitsmaßnahmen...",
+      "rightsTitle": "4. Ihre Rechte",
+      "rightsText": "Sie haben das Recht auf Auskunft..."
     },
     "business": {
       "sectionLabel": "BUSINESS ANFRAGE",

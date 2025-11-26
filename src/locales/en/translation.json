@@ -270,7 +270,10 @@
         "description": "Tell us briefly about yourself...",
         "privacy": "I accept the privacy policy",
         "cv": "Upload CV",
-        "cvPlaceholder": "No file selected"
+        "cvPlaceholder": "No file selected",
+        "privacyLabel": "I have read and accept the Privacy Policy",
+        "privacyPreLink": "I agree to the",
+        "privacyLink": "Privacy Policy & Terms"
       },
       "actions": {
         "chooseFile": "Choose File",
@@ -281,6 +284,29 @@
         "fileType": "Unsupported file type (PDF, DOC, DOCX)"
       },
       "submit": "Apply Now"
+    },
+    "legal": {
+      "title": "Recruitment Privacy Policy",
+      "close": "Close & Return to Form",
+      "intro": "We value your trust and are committed to protecting your personal data. This policy explains how we handle your information during the recruitment process.",
+      "sections": {
+        "typesTitle": "1. Data We Collect",
+        "typesText": "We collect personal data that you provide to us directly. This includes: Identifiers (Name, Email, Phone, Address), Professional Information (CV/Resume, Cover Letter, Portfolio, Employment History, Education, Certifications), and Social Media Profiles (e.g., LinkedIn). We may also collect data from interviews or coding tests.",
+        "purposeTitle": "2. Purpose of Processing",
+        "purposeText": "Your data is processed solely for recruitment purposes: To evaluate your qualifications for the role; To communicate with you regarding your application and interview schedule; To verify your information and conduct background checks (where legally permissible); and to improve our recruitment process.",
+        "basisTitle": "3. Legal Basis for Processing",
+        "basisText": "We process your personal data based on your consent (when you apply) and our legitimate interest in finding qualified candidates. If you are hired, the processing will be based on the necessity to enter into an employment contract.",
+        "sharingTitle": "4. Data Sharing & Third Parties",
+        "sharingText": "Your data is strictly confidential. It is accessible only to our internal HR team and hiring managers. We may share data with trusted third-party service providers (e.g., Applicant Tracking Systems, Cloud Storage) who process data on our behalf under strict confidentiality agreements. We do not sell your data.",
+        "retentionTitle": "5. Data Retention",
+        "retentionText": "If your application is successful, your data will be transferred to our employee file. If unsuccessful, we retain your data for a period of up to 12 months to consider you for future opportunities. After this period, your data will be securely deleted unless you request earlier deletion.",
+        "securityTitle": "6. Security Measures",
+        "securityText": "We implement industry-standard technical and organizational measures to protect your data against unauthorized access, loss, or alteration. This includes encryption, access controls, and regular security audits.",
+        "rightsTitle": "7. Your Rights",
+        "rightsText": "You have the right to: Request access to the personal data we hold about you; Request correction of inaccurate data; Request deletion of your data ('Right to be Forgotten'); Withdraw your consent at any time; and Object to processing based on legitimate interests.",
+        "contactTitle": "8. Contact Us",
+        "contactText": "If you have any questions about this privacy policy or wish to exercise your rights, please contact our Data Protection Officer at privacy@company.com."
+      }
     },
     "business": {
       "sectionLabel": "BUSINESS INQUIRY",

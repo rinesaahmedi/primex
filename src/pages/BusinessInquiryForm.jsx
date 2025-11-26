@@ -145,7 +145,7 @@ const BusinessInquiryForm = () => {
 
   return (
     <section className="bg-gradient-to-br from-[#081333] via-[#1659bd] to-[#ffffff] text-white py-16 md:py-24 min-h-screen">
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-6 py-10">
         {/* Header Section */}
         <div className="text-center mb-12 md:mb-16 max-w-3xl mx-auto">
           <p className="text-sm font-semibold tracking-[0.2em] text-white/80 mb-4 uppercase">
