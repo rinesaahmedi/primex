@@ -1,16 +1,19 @@
 const express = require("express");
 const router = express.Router();
-const multer = require("multer");
-const formController = require("../controllers/formController");
+const multer = require("multer"); // Import multer
+const {
+  sendApplyForm,
+  sendBusinessInquiry,
+} = require("../controllers/formController"); // Update path
 
-// Setup Multer here since it's only used for forms
-const upload = multer({ storage: multer.memoryStorage() });
+// Configure Multer (store in memory for email attachment)
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 
-router.post(
-  "/send-apply-form",
-  upload.single("cv"),
-  formController.sendApplyForm
-);
-router.post("/send-business-inquiry", formController.sendBusinessInquiry);
+// Apply 'upload.single("cv")' middleware
+// "cv" must match the name used in frontend: fd.append("cv", formData.cvFile);
+router.post("/send-apply-form", upload.single("cv"), sendApplyForm);
+
+router.post("/send-business-inquiry", sendBusinessInquiry);
 
 module.exports = router;
