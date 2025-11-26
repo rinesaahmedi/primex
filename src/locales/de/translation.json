@@ -331,5 +331,16 @@
       "title": "Folgen Sie uns"
     },
     "copyright": "Alle Rechte vorbehalten."
+  },
+
+  "chatbot": {
+    "header_title": "KI-Support-Agent",
+    "welcome_message": "Hallo! 👋 Wie kann ich Ihnen heute mit unseren KI-Diensten helfen?",
+    "browser_not_supported": "Browser wird nicht unterstützt",
+    "typing": "Nachdenken...",
+    "stop_talking": "Sprachausgabe stoppen",
+    "read_to_me": "Vorlesen",
+    "listening": "Zuhören...",
+    "type_placeholder": "Nachricht eingeben..."
   }
 }

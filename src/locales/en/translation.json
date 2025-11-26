@@ -348,5 +348,16 @@
       "title": "Follow Us On"
     },
     "copyright": "All Rights Reserved."
+  },
+
+  "chatbot": {
+    "header_title": "AI Support Agent",
+    "welcome_message": "Hello! 👋 How can I help you with our AI services today?",
+    "browser_not_supported": "Browser not supported",
+    "typing": "Thinking...",
+    "stop_talking": "Stop Talking",
+    "read_to_me": "Read to me",
+    "listening": "Listening...",
+    "type_placeholder": "Type a message..."
   }
 }
