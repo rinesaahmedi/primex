@@ -166,7 +166,7 @@ const ChatBot = () => {
           <div className="bg-[#1e105c] p-4 flex justify-between items-center text-white shadow-md z-10">
             <div className="flex items-center gap-2">
               <div className="w-2.5 h-2.5 bg-green-400 rounded-full animate-pulse"></div>
-              <span className="font-semibold tracking-wide">Your AI Assistant</span>
+              <span className="font-semibold tracking-wide">AI Support Agent</span>
             </div>
             <button onClick={toggleChat} className="text-white/80 hover:text-white">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
