@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import axios from "axios";
+import { useTranslation } from "react-i18next"; // Added import
 
 // Simple Checkmark Icon Component
 const CheckIcon = ({ className }) => (
@@ -17,6 +18,7 @@ const CheckIcon = ({ className }) => (
 );
 
 const AppointmentPage = () => {
+  const { t, i18n } = useTranslation(); // Initialize hook
   const [date, setDate] = useState(new Date());
   const [availableSlots, setAvailableSlots] = useState([]);
   const [selectedTime, setSelectedTime] = useState("");
@@ -35,20 +37,19 @@ const AppointmentPage = () => {
   const [selectedTopics, setSelectedTopics] = useState([]);
   const [otherTopic, setOtherTopic] = useState("");
 
+  // CHANGED: Use keys instead of full English sentences
   const businessOptions = [
-    "Order Management & Logistics",
-    "Customer Support",
-    "Product & Content Management",
-    "Design & Creative Services",
-    "Technology & Development",
-    "AI Solutions",
-    "Other",
+    "orderManagement",
+    "customerSupport",
+    "productContent",
+    "designCreative",
+    "technologyDev",
+    "aiSolutions",
+    "other",
   ];
 
   // Helper: Format Date to YYYY-MM-DD (Local Time)
   const formatDateString = (dateObj) => {
-    // This ensures we get the date string relative to the user's timezone selection
-    // equivalent to format 'YYYY-MM-DD'
     return dateObj.toLocaleDateString("en-CA");
   };
 
@@ -58,13 +59,11 @@ const AppointmentPage = () => {
     const month = activeStartDate.getMonth() + 1;
     const tzOffset = new Date().getTimezoneOffset();
 
-    // Call the new backend endpoint
     axios
       .get(
         `http://localhost:5000/api/unavailable-dates?year=${year}&month=${month}&tzOffset=${tzOffset}`
       )
       .then((response) => {
-        // Expecting array: ["2025-11-26", "2025-11-28"]
         setUnavailableDates(response.data);
       })
       .catch((error) =>
@@ -89,13 +88,11 @@ const AppointmentPage = () => {
       );
   };
 
-  // Initial Load
   useEffect(() => {
     fetchMonthlyAvailability(new Date());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // When selected date changes
   useEffect(() => {
     fetchSlots();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -107,23 +104,16 @@ const AppointmentPage = () => {
     setSelectedTime("");
   };
 
-  // Detect when user switches months (Next/Prev buttons)
   const handleActiveStartDateChange = ({ activeStartDate }) => {
     fetchMonthlyAvailability(activeStartDate);
   };
 
-  // Logic to disable specific calendar tiles
   const isTileDisabled = ({ date, view }) => {
     if (view === "month") {
-      // 1. Disable Weekends (Saturday=6, Sunday=0)
       if (date.getDay() === 0 || date.getDay() === 6) return true;
-
-      // 2. Disable Past Dates
       const today = new Date();
       today.setHours(0, 0, 0, 0);
       if (date < today) return true;
-
-      // 3. Disable Dates returned from Backend as "Unavailable"
       const dateStr = formatDateString(date);
       if (unavailableDates.includes(dateStr)) return true;
     }
@@ -135,11 +125,11 @@ const AppointmentPage = () => {
     setShowForm(true);
   };
 
-  const toggleTopic = (option) => {
+  const toggleTopic = (optionKey) => {
     setSelectedTopics((prev) =>
-      prev.includes(option)
-        ? prev.filter((t) => t !== option)
-        : [...prev, option]
+      prev.includes(optionKey)
+        ? prev.filter((t) => t !== optionKey)
+        : [...prev, optionKey]
     );
   };
 
@@ -152,12 +142,17 @@ const AppointmentPage = () => {
 
     if (!selectedTopics || selectedTopics.length === 0) {
       setIsBooking(false);
-      alert("Please select at least one topic");
+      alert(t("appointment.alerts.selectTopic")); // Translated alert
       return;
     }
 
-    const finalTopics = selectedTopics.map((t) =>
-      t === "Other" ? otherTopic.trim() || "Other" : t
+    // Map keys to readable strings (localized) before sending to backend,
+    // OR just send the keys if your backend handles it.
+    // Here we send the English or German string based on current language.
+    const finalTopics = selectedTopics.map((key) =>
+      key === "other"
+        ? otherTopic.trim() || t("appointment.topics.other")
+        : t(`appointment.topics.${key}`)
     );
 
     const bookingData = {
@@ -168,15 +163,16 @@ const AppointmentPage = () => {
       date: formattedDate,
       time: selectedTime,
       tzOffset,
+      language: i18n.language, // Optional: send language to backend
     };
 
     axios
       .post("http://localhost:5000/api/book-appointment", bookingData)
       .then((response) => {
         setIsBooking(false);
-        alert(response.data.message);
+        // You might want to use a translated success message instead of backend response
+        alert(response.data.message || t("appointment.alerts.success"));
 
-        // Reset
         setName("");
         setEmail("");
         setPhone("");
@@ -185,13 +181,12 @@ const AppointmentPage = () => {
         setSelectedTime("");
         setShowForm(false);
 
-        // Refresh Data
         fetchSlots();
         fetchMonthlyAvailability(date);
       })
       .catch((error) => {
         setIsBooking(false);
-        alert(error.response?.data?.message || "Error booking appointment");
+        alert(error.response?.data?.message || t("appointment.alerts.error"));
       });
   };
 
@@ -199,15 +194,9 @@ const AppointmentPage = () => {
     <>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
-
-        /* Global Font Application */
-        .montserrat-app, 
-        .montserrat-app input, 
-        .montserrat-app button,
-        .react-calendar {
+        .montserrat-app, .montserrat-app input, .montserrat-app button, .react-calendar {
           font-family: 'Montserrat', sans-serif !important;
         }
-
         .react-calendar {
           border: none !important;
           width: 100% !important;
@@ -268,13 +257,11 @@ const AppointmentPage = () => {
           color: white !important;
           box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.4);
         }
-        
-        /* DISABLED TILES STYLE (Past dates, Weekends, No Slots) */
         .react-calendar__tile:disabled {
           background-color: transparent !important;
-          color: #e5e7eb !important; /* Lighter gray */
+          color: #e5e7eb !important;
           cursor: not-allowed !important;
-          text-decoration: line-through; /* Visual indicator */
+          text-decoration: line-through;
           opacity: 0.9;
         }
       `}</style>
@@ -285,10 +272,10 @@ const AppointmentPage = () => {
           <div className="w-full md:w-5/12 bg-slate-50 p-6 md:p-8 border-b md:border-b-0 md:border-r border-gray-100 flex flex-col items-center">
             <div className="w-full max-w-[340px]">
               <h2 className="text-2xl font-bold text-blue-900 mb-1">
-                Select Date
+                {t("appointment.selectDate")}
               </h2>
               <p className="text-gray-500 text-sm mb-6 font-medium">
-                Choose a day to see available slots.
+                {t("appointment.chooseDay")}
               </p>
 
               <Calendar
@@ -296,9 +283,11 @@ const AppointmentPage = () => {
                 value={date}
                 prev2Label={null}
                 next2Label={null}
-                minDate={new Date()} // Prevents navigating to past months (visual only)
-                tileDisabled={isTileDisabled} // The logic to block unavailable dates
-                onActiveStartDateChange={handleActiveStartDateChange} // Fetch new data on month swap
+                minDate={new Date()}
+                tileDisabled={isTileDisabled}
+                onActiveStartDateChange={handleActiveStartDateChange}
+                // Determine locale for calendar based on i18n
+                locale={i18n.language}
               />
             </div>
           </div>
@@ -308,20 +297,21 @@ const AppointmentPage = () => {
             {!showForm ? (
               <div className="animate-fade-in">
                 <h3 className="text-xl font-bold text-blue-900 mb-5 flex items-center gap-3">
-                  Available Times
+                  {t("appointment.availableTimes")}
                   <span className="text-xs font-normal text-gray-500 bg-gray-100 px-2 py-1 rounded-full border border-gray-200">
-                    {date.toLocaleDateString("en-US", {
-                      month: "short",
-                      day: "numeric",
-                    })}
+                    {date.toLocaleDateString(
+                      i18n.language === "de" ? "de-DE" : "en-US",
+                      {
+                        month: "short",
+                        day: "numeric",
+                      }
+                    )}
                   </span>
                 </h3>
 
                 {availableSlots.length === 0 ? (
                   <div className="flex flex-col items-center justify-center h-56 text-gray-400 border-2 border-dashed border-gray-100 rounded-2xl bg-gray-50">
-                    <p className="font-medium">
-                      No slots available for this date.
-                    </p>
+                    <p className="font-medium">{t("appointment.noSlots")}</p>
                   </div>
                 ) : (
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
@@ -349,7 +339,7 @@ const AppointmentPage = () => {
               <div className="animate-fade-in-up max-w-lg mx-auto md:mx-0">
                 <div className="flex justify-between items-center mb-4">
                   <h3 className="text-xl font-bold text-blue-900">
-                    Confirm Booking
+                    {t("appointment.confirmBooking")}
                   </h3>
                   <button
                     onClick={() => setShowForm(false)}
@@ -360,22 +350,24 @@ const AppointmentPage = () => {
                         : "hover:text-blue-600 hover:decoration-blue-600"
                     }`}
                   >
-                    Change Time
+                    {t("appointment.changeTime")}
                   </button>
                 </div>
 
                 <div className="bg-blue-50/50 border border-blue-100 px-4 py-3 rounded-xl mb-5 flex items-center justify-between shadow-sm">
                   <div>
                     <p className="text-[10px] text-blue-400 uppercase tracking-widest font-bold">
-                      Date
+                      {t("appointment.dateLabel")}
                     </p>
                     <p className="text-blue-900 font-bold text-base">
-                      {date.toLocaleDateString()}
+                      {date.toLocaleDateString(
+                        i18n.language === "de" ? "de-DE" : "en-US"
+                      )}
                     </p>
                   </div>
                   <div className="text-right">
                     <p className="text-[10px] text-blue-400 uppercase tracking-widest font-bold">
-                      Time
+                      {t("appointment.timeLabel")}
                     </p>
                     <p className="text-blue-900 font-bold text-base">
                       {selectedTime}
@@ -386,7 +378,7 @@ const AppointmentPage = () => {
                 <form onSubmit={handleBooking} className="space-y-4">
                   <div>
                     <label className="block text-xs font-bold text-gray-700 mb-1 ml-1">
-                      Full Name
+                      {t("appointment.fullName")}
                     </label>
                     <input
                       type="text"
@@ -394,7 +386,7 @@ const AppointmentPage = () => {
                       onChange={(e) => setName(e.target.value)}
                       required
                       disabled={isBooking}
-                      placeholder="e.g. John Doe"
+                      placeholder={t("appointment.placeholders.name")}
                       className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all font-medium text-sm placeholder-gray-400 disabled:opacity-60 disabled:cursor-not-allowed"
                     />
                   </div>
@@ -402,7 +394,7 @@ const AppointmentPage = () => {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                       <label className="block text-xs font-bold text-gray-700 mb-1 ml-1">
-                        Email Address
+                        {t("appointment.email")}
                       </label>
                       <input
                         type="email"
@@ -410,13 +402,13 @@ const AppointmentPage = () => {
                         onChange={(e) => setEmail(e.target.value)}
                         required
                         disabled={isBooking}
-                        placeholder="john@company.com"
+                        placeholder={t("appointment.placeholders.email")}
                         className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all font-medium text-sm placeholder-gray-400 disabled:opacity-60 disabled:cursor-not-allowed"
                       />
                     </div>
                     <div>
                       <label className="block text-xs font-bold text-gray-700 mb-1 ml-1">
-                        Phone Number
+                        {t("appointment.phone")}
                       </label>
                       <input
                         type="tel"
@@ -424,7 +416,7 @@ const AppointmentPage = () => {
                         onChange={(e) => setPhone(e.target.value)}
                         required
                         disabled={isBooking}
-                        placeholder="+1 234 567 890"
+                        placeholder={t("appointment.placeholders.phone")}
                         className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all font-medium text-sm placeholder-gray-400 disabled:opacity-60 disabled:cursor-not-allowed"
                       />
                     </div>
@@ -433,14 +425,14 @@ const AppointmentPage = () => {
                   {/* Business Topic Selection */}
                   <div>
                     <label className="block text-xs font-bold text-gray-700 mb-2 ml-1">
-                      Business Type / Topic
+                      {t("appointment.businessType")}
                     </label>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                      {businessOptions.map((option) => {
-                        const isSelected = selectedTopics.includes(option);
+                      {businessOptions.map((optionKey) => {
+                        const isSelected = selectedTopics.includes(optionKey);
                         return (
                           <label
-                            key={option}
+                            key={optionKey}
                             className={`
                               relative flex items-center p-3 rounded-xl border-2 cursor-pointer transition-all duration-200 ease-in-out group select-none
                               ${
@@ -459,7 +451,7 @@ const AppointmentPage = () => {
                               type="checkbox"
                               disabled={isBooking}
                               checked={isSelected}
-                              onChange={() => toggleTopic(option)}
+                              onChange={() => toggleTopic(optionKey)}
                               className="sr-only"
                             />
 
@@ -484,7 +476,8 @@ const AppointmentPage = () => {
                                 isSelected ? "text-blue-900" : "text-gray-600"
                               }`}
                             >
-                              {option}
+                              {/* TRANSLATE THE KEY HERE */}
+                              {t(`appointment.topics.${optionKey}`)}
                             </span>
                           </label>
                         );
@@ -495,21 +488,21 @@ const AppointmentPage = () => {
                   {/* "Other" Input */}
                   <div
                     className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                      selectedTopics.includes("Other")
+                      selectedTopics.includes("other")
                         ? "max-h-24 opacity-100 mt-2"
                         : "max-h-0 opacity-0 mt-0"
                     }`}
                   >
                     <label className="block text-xs font-bold text-gray-700 mb-1 ml-1">
-                      Please specify the topic
+                      {t("appointment.specifyTopic")}
                     </label>
                     <input
                       type="text"
                       value={otherTopic}
                       onChange={(e) => setOtherTopic(e.target.value)}
-                      required={selectedTopics.includes("Other")}
+                      required={selectedTopics.includes("other")}
                       disabled={isBooking}
-                      placeholder="What would you like to discuss?"
+                      placeholder={t("appointment.placeholders.topic")}
                       className="w-full px-4 py-2.5 bg-white border border-blue-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all shadow-sm font-medium text-sm disabled:opacity-60"
                     />
                   </div>
@@ -549,10 +542,10 @@ const AppointmentPage = () => {
                             d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                           ></path>
                         </svg>
-                        Processing...
+                        {t("appointment.processing")}
                       </>
                     ) : (
-                      "Confirm Appointment"
+                      t("appointment.confirmButton")
                     )}
                   </button>
                 </form>

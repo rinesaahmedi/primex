@@ -65,23 +65,20 @@ const Footer = () => {
   /** -----------------------------
    * Translation Data
    * ----------------------------*/
-  const companyName = t("footer.company.name", "PrimEx");
-  const companyDescription = t("footer.company.description", "");
+  const companyDescription = t("footer.company.description");
   const pageLinks = t("footer.pages.links", { returnObjects: true }) || [];
-
   const hours = t("footer.hours.times", { returnObjects: true }) || [];
-  const contactTitle = t("footer.contact.title", "Contact Us");
-  const contactEmail = t("footer.contact.email", "info@primexeu.com");
-  const contactPhone = t("footer.contact.phone", "+383 49 937 863");
-  const contactLocation = t(
-    "footer.contact.location",
-    "7 Shtatori, Fushë Kosovë 12010"
-  );
-  const socialTitle = t("footer.social.title", "Follow Us On");
-  const copyright = t("footer.copyright", "");
+
+  const contactTitle = t("footer.contact.title");
+  const contactEmail = t("footer.contact.email");
+  const contactPhone = t("footer.contact.phone");
+  const contactLocation = t("footer.contact.location");
+
+  const socialTitle = t("footer.social.title");
+  const copyright = t("footer.copyright");
 
   return (
-    <footer className="bg-linear-to-br from-[#081333] via-[#123a78] to-[#081333] text-white">
+    <footer className="bg-gradient-to-br from-[#081333] via-[#123a78] to-[#081333] text-white">
       <div className="max-w-6xl mx-auto px-6 py-16">
         {/* ================= TOP GRID ================= */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
@@ -99,7 +96,11 @@ const Footer = () => {
 
           {/* -------- PAGES -------- */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Pages</h4>
+            {/* CHANGED: Translated Title */}
+            <h4 className="text-lg font-semibold mb-4">
+              {t("footer.pages.title")}
+            </h4>
+
             <ul className="space-y-3">
               {pageLinks.map((link, i) => {
                 const key = `${link.name}-${i}`;
@@ -153,7 +154,10 @@ const Footer = () => {
 
           {/* -------- WORKING HOURS -------- */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Working Hours</h4>
+            {/* CHANGED: Translated Title */}
+            <h4 className="text-lg font-semibold mb-4">
+              {t("footer.hours.title")}
+            </h4>
             <ul className="space-y-2">
               {hours.map((time, i) => (
                 <li key={i} className="text-slate-300">
@@ -167,28 +171,20 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">{contactTitle}</h4>
 
-            {/* 1. Added 'gap-4' (or whatever size you prefer) for uniform spacing */}
             <div className="flex flex-col gap-4">
               <a
-                href={`mailto:${contactEmail
-                  .replace("E-mail: ", "")
-                  .replace("E-Mail: ", "")}`}
+                href={`mailto:${contactEmail}`}
                 className="text-slate-300 hover:text-[#2378FF] transition"
               >
                 {contactEmail}
               </a>
 
               <a
-                href={`tel:${contactPhone
-                  .replace("Phone: ", "")
-                  .replace("Telefon: ", "")
-                  .replace(/\s/g, "")}`}
+                href={`tel:${contactPhone.replace(/\s/g, "")}`}
                 className="text-slate-300 hover:text-[#2378FF] transition"
               >
                 {contactPhone}
               </a>
-
-              {/* 2. Removed the <br></br> tag here */}
 
               <a
                 href="https://maps.app.goo.gl/1AvD5MdteLP1Zy5n8"
@@ -199,6 +195,7 @@ const Footer = () => {
                 {contactLocation}
               </a>
             </div>
+
             {/* -------- SOCIAL -------- */}
             <div className="mt-6">
               <h4 className="text-lg font-semibold mb-4">{socialTitle}</h4>

@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 function JoinUsForm() {
   const { t } = useTranslation();
 
+  // --- STATE MANAGEMENT ---
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -16,38 +17,40 @@ function JoinUsForm() {
     cvFile: null,
   });
 
-  // State for the custom dropdowns visibility
+  // UI States
   const [isPositionOpen, setIsPositionOpen] = useState(false);
-  const [isCountryOpen, setIsCountryOpen] = useState(false); // NEW STATE
-
-  const positionDropdownRef = useRef(null);
-  const countryDropdownRef = useRef(null); // NEW REF
-  const fileInputRef = useRef(null);
+  const [isCountryOpen, setIsCountryOpen] = useState(false);
+  const [showPrivacyModal, setShowPrivacyModal] = useState(false); // New: Modal State
 
   const [errors, setErrors] = useState({});
   const [countries, setCountries] = useState([]);
   const [loadingCountries, setLoadingCountries] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // List of positions
+  // Refs
+  const positionDropdownRef = useRef(null);
+  const countryDropdownRef = useRef(null);
+  const fileInputRef = useRef(null);
+
+  // Options keys (must match JSON "forms.options")
   const positionOptions = [
-    "Operations & Support",
-    "Creative & Design",
-    "Technology & AI",
-    "Other",
+    "operationsSupport",
+    "creativeDesign",
+    "technologyAI",
+    "other",
   ];
 
-  // Close dropdowns if clicked outside
+  // --- EFFECTS ---
+
+  // Close dropdowns on outside click
   useEffect(() => {
     function handleClickOutside(event) {
-      // Close Position Dropdown
       if (
         positionDropdownRef.current &&
         !positionDropdownRef.current.contains(event.target)
       ) {
         setIsPositionOpen(false);
       }
-      // Close Country Dropdown
       if (
         countryDropdownRef.current &&
         !countryDropdownRef.current.contains(event.target)
@@ -61,6 +64,7 @@ function JoinUsForm() {
     };
   }, []);
 
+  // Fetch Countries
   useEffect(() => {
     const fetchCountries = async () => {
       try {
@@ -87,7 +91,8 @@ function JoinUsForm() {
     fetchCountries();
   }, []);
 
-  // --- VALIDATION LOGIC ---
+  // --- VALIDATION & HANDLERS ---
+
   const validateForm = () => {
     const newErrors = {};
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -105,13 +110,11 @@ function JoinUsForm() {
       newErrors.phone = t("forms.validation.required");
 
     if (formData.linkedin.trim() && !urlRegex.test(formData.linkedin)) {
-      newErrors.linkedin = "Please enter a valid URL";
+      newErrors.linkedin = t("forms.validation.invalidUrl");
     }
 
     if (!formData.country) newErrors.country = t("forms.validation.required");
-
     if (!formData.position) newErrors.position = t("forms.validation.required");
-
     if (!formData.description.trim())
       newErrors.description = t("forms.validation.required");
 
@@ -121,8 +124,9 @@ function JoinUsForm() {
       newErrors.cvFile = errors.cvFile;
     }
 
-    if (!formData.privacyAccepted)
+    if (!formData.privacyAccepted) {
       newErrors.privacyAccepted = t("forms.validation.acceptPrivacy");
+    }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -142,7 +146,7 @@ function JoinUsForm() {
         setFormData((prev) => ({ ...prev, cvFile: null }));
         return;
       }
-      const maxSize = 5 * 1024 * 1024;
+      const maxSize = 5 * 1024 * 1024; // 5MB
       const allowed = [
         "application/pdf",
         "application/msword",
@@ -152,7 +156,7 @@ function JoinUsForm() {
       if (file.size > maxSize) {
         setErrors((prev) => ({
           ...prev,
-          cvFile: "File is too large (max 5MB)",
+          cvFile: t("forms.validation.fileTooLarge"),
         }));
         setFormData((prev) => ({ ...prev, cvFile: null }));
         return;
@@ -161,7 +165,10 @@ function JoinUsForm() {
         !allowed.includes(file.type) &&
         !file.name.match(/\.(pdf|doc|docx)$/i)
       ) {
-        setErrors((prev) => ({ ...prev, cvFile: "Unsupported file type" }));
+        setErrors((prev) => ({
+          ...prev,
+          cvFile: t("forms.validation.fileType"),
+        }));
         setFormData((prev) => ({ ...prev, cvFile: null }));
         return;
       }
@@ -177,14 +184,12 @@ function JoinUsForm() {
     }));
   };
 
-  // Helper for custom Position selection
   const handlePositionSelect = (value) => {
     setFormData((prev) => ({ ...prev, position: value }));
     if (errors.position) setErrors((prev) => ({ ...prev, position: null }));
     setIsPositionOpen(false);
   };
 
-  // NEW Helper for custom Country selection
   const handleCountrySelect = (value) => {
     setFormData((prev) => ({ ...prev, country: value }));
     if (errors.country) setErrors((prev) => ({ ...prev, country: null }));
@@ -194,7 +199,12 @@ function JoinUsForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (isSubmitting) return;
-    if (!validateForm()) return;
+
+    if (!validateForm()) {
+      // Optional: scroll to top or show toast
+      console.log("Validation failed", errors);
+      return;
+    }
 
     setIsSubmitting(true);
 
@@ -210,6 +220,7 @@ function JoinUsForm() {
       fd.append("privacyAccepted", formData.privacyAccepted ? "true" : "false");
       if (formData.cvFile) fd.append("cv", formData.cvFile);
 
+      // NOTE: Ensure this URL is correct for your environment
       const response = await fetch("http://localhost:5000/send-apply-form", {
         method: "POST",
         body: fd,
@@ -218,7 +229,7 @@ function JoinUsForm() {
       const result = await response.json();
 
       if (result.success) {
-        alert("✅ Application sent successfully!");
+        alert(t("forms.alerts.success"));
         setFormData({
           name: "",
           email: "",
@@ -233,11 +244,11 @@ function JoinUsForm() {
         setErrors({});
         if (fileInputRef.current) fileInputRef.current.value = "";
       } else {
-        alert("❌ Failed to send application.");
+        alert(t("forms.alerts.error"));
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("❌ An error occurred.");
+      alert(t("forms.alerts.genericError"));
     } finally {
       setIsSubmitting(false);
     }
@@ -251,8 +262,8 @@ function JoinUsForm() {
     ) : null;
 
   return (
-    <section className="bg-gradient-to-br from-[#081333] via-[#1659bd] to-[#ffffff] text-white py-16 md:py-24 min-h-screen">
-      <div className="max-w-6xl mx-auto px-6">
+    <section className="bg-gradient-to-br from-[#081333] via-[#1659bd] to-[#ffffff] text-white py-16 md:py-24 min-h-screen relative">
+      <div className="max-w-6xl mx-auto px-6 py-10">
         <div className="text-center mb-12 md:mb-16 max-w-3xl mx-auto">
           <p className="text-sm font-semibold tracking-[0.2em] text-white/80 mb-4 uppercase">
             {t("forms.join.sectionLabel")}
@@ -271,7 +282,7 @@ function JoinUsForm() {
             onSubmit={handleSubmit}
             noValidate
           >
-            {/* ROW 1: Name & Email */}
+            {/* Name & Email */}
             <div className="grid md:grid-cols-2 gap-5">
               <div>
                 <input
@@ -309,7 +320,7 @@ function JoinUsForm() {
               </div>
             </div>
 
-            {/* ROW 2: Phone & LinkedIn */}
+            {/* Phone & LinkedIn */}
             <div className="grid md:grid-cols-2 gap-5">
               <div>
                 <input
@@ -332,7 +343,7 @@ function JoinUsForm() {
                 <input
                   type="url"
                   name="linkedin"
-                  placeholder={`${t("forms.join.fields.linkedin")} (Optional)`}
+                  placeholder={t("forms.join.fields.linkedin")}
                   value={formData.linkedin}
                   onChange={handleChange}
                   disabled={isSubmitting}
@@ -347,9 +358,9 @@ function JoinUsForm() {
               </div>
             </div>
 
-            {/* ROW 3: Country & Position */}
+            {/* Country & Position */}
             <div className="grid md:grid-cols-2 gap-5">
-              {/* --- CUSTOM COUNTRY DROPDOWN (Replacing <select>) --- */}
+              {/* Country */}
               <div className="relative" ref={countryDropdownRef}>
                 <div
                   onClick={() =>
@@ -367,11 +378,8 @@ function JoinUsForm() {
                       formData.country ? "text-white" : "text-white/60"
                     }
                   >
-                    {formData.country ||
-                      t("forms.join.fields.country") ||
-                      "Select Country"}
+                    {formData.country || t("forms.join.fields.country")}
                   </span>
-                  {/* Chevron Icon */}
                   <svg
                     className={`w-4 h-4 text-white/70 transition-transform duration-200 ${
                       isCountryOpen ? "rotate-180" : ""
@@ -393,7 +401,7 @@ function JoinUsForm() {
                   <div className="absolute z-50 mt-2 w-full rounded-xl border border-white/20 bg-[#081333]/95 backdrop-blur-xl shadow-2xl overflow-hidden max-h-60 overflow-y-auto custom-scrollbar">
                     {loadingCountries ? (
                       <div className="px-5 py-3 text-white/60 text-sm">
-                        Loading...
+                        {t("forms.general.loading")}
                       </div>
                     ) : (
                       countries.map((c, i) => (
@@ -410,9 +418,8 @@ function JoinUsForm() {
                 )}
                 <ErrorMsg field="country" />
               </div>
-              {/* --- END CUSTOM COUNTRY DROPDOWN --- */}
 
-              {/* --- CUSTOM POSITION DROPDOWN --- */}
+              {/* Position */}
               <div className="relative" ref={positionDropdownRef}>
                 <div
                   onClick={() =>
@@ -430,9 +437,9 @@ function JoinUsForm() {
                       formData.position ? "text-white" : "text-white/60"
                     }
                   >
-                    {formData.position ||
-                      t("forms.join.fields.position") ||
-                      "Select Position"}
+                    {formData.position
+                      ? t(`forms.options.${formData.position}`)
+                      : t("forms.join.fields.position")}
                   </span>
                   <svg
                     className={`w-4 h-4 text-white/70 transition-transform duration-200 ${
@@ -453,22 +460,22 @@ function JoinUsForm() {
 
                 {isPositionOpen && (
                   <div className="absolute z-50 mt-2 w-full rounded-xl border border-white/20 bg-[#081333]/95 backdrop-blur-xl shadow-2xl overflow-hidden max-h-60 overflow-y-auto">
-                    {positionOptions.map((option, index) => (
+                    {positionOptions.map((optionKey, index) => (
                       <div
                         key={index}
-                        onClick={() => handlePositionSelect(option)}
+                        onClick={() => handlePositionSelect(optionKey)}
                         className="px-5 py-3 text-white hover:bg-white/20 cursor-pointer transition-colors text-sm border-b border-white/10 last:border-0"
                       >
-                        {option}
+                        {t(`forms.options.${optionKey}`)}
                       </div>
                     ))}
                   </div>
                 )}
                 <ErrorMsg field="position" />
               </div>
-              {/* --- END CUSTOM POSITION DROPDOWN --- */}
             </div>
 
+            {/* Description */}
             <div>
               <textarea
                 name="description"
@@ -487,7 +494,7 @@ function JoinUsForm() {
               <ErrorMsg field="description" />
             </div>
 
-            {/* CV Upload Section */}
+            {/* CV Upload */}
             <div className="flex flex-col gap-2">
               <label className="text-sm text-white/90">
                 {t("forms.join.fields.cv")}
@@ -544,6 +551,38 @@ function JoinUsForm() {
               <ErrorMsg field="cvFile" />
             </div>
 
+            {/* PRIVACY CHECKBOX SECTION (Added) */}
+            <div className="flex items-start gap-3 mt-4">
+              <div className="relative flex items-center h-6">
+                <input
+                  id="privacyAccepted"
+                  name="privacyAccepted"
+                  type="checkbox"
+                  checked={formData.privacyAccepted}
+                  onChange={handleChange}
+                  disabled={isSubmitting}
+                  className="w-5 h-5 rounded border-white/30 bg-white/10 text-blue-600 focus:ring-blue-500 focus:ring-offset-0 transition cursor-pointer"
+                />
+              </div>
+              <div className="text-sm">
+                <label
+                  htmlFor="privacyAccepted"
+                  className="font-medium text-white/90 select-none"
+                >
+                  {t("forms.join.fields.privacyPreLink")}{" "}
+                  <button
+                    type="button"
+                    onClick={() => setShowPrivacyModal(true)}
+                    className="text-blue-300 underline hover:text-blue-200 transition-colors"
+                  >
+                    {t("forms.join.fields.privacyLink")}
+                  </button>
+                </label>
+                <ErrorMsg field="privacyAccepted" />
+              </div>
+            </div>
+
+            {/* Submit Button */}
             <button
               type="submit"
               disabled={isSubmitting}
@@ -553,11 +592,144 @@ function JoinUsForm() {
                   : "hover:bg-white/90 hover:-translate-y-0.5"
               }`}
             >
-              {isSubmitting ? "Sending..." : t("forms.join.submit")}
+              {isSubmitting
+                ? t("forms.general.sending")
+                : t("forms.join.submit")}
             </button>
           </form>
         </div>
       </div>
+
+      {/* --- PRIVACY POLICY MODAL (Added) --- */}
+      {showPrivacyModal && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 pt-20 bg-black/70 backdrop-blur-sm transition-all">
+          <div className="bg-white text-gray-800 w-full max-w-2xl rounded-2xl shadow-2xl relative flex flex-col max-h-[85vh]">
+            {/* Modal Header */}
+            <div className="flex justify-between items-center p-6 border-b border-gray-100">
+              <h3 className="text-xl font-bold text-[#081333]">
+                {t("forms.legal.title")}
+              </h3>
+              <button
+                type="button"
+                onClick={() => setShowPrivacyModal(false)}
+                className="text-gray-400 hover:text-gray-600 transition-colors p-2"
+              >
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
+
+            {/* Modal Body (Scrollable) */}
+            <div className="p-6 overflow-y-auto custom-scrollbar leading-relaxed text-sm text-gray-600 space-y-6">
+              {/* Introduction */}
+              <p className="italic text-gray-500 mb-4">
+                {t("forms.legal.intro")}
+              </p>
+
+              {/* Section 1: Data Collection */}
+              <div>
+                <h4 className="font-bold text-[#081333] mb-2">
+                  {t("forms.legal.sections.typesTitle")}
+                </h4>
+                <p className="text-justify">
+                  {t("forms.legal.sections.typesText")}
+                </p>
+              </div>
+
+              {/* Section 2: Purpose */}
+              <div>
+                <h4 className="font-bold text-[#081333] mb-2">
+                  {t("forms.legal.sections.purposeTitle")}
+                </h4>
+                <p className="text-justify">
+                  {t("forms.legal.sections.purposeText")}
+                </p>
+              </div>
+
+              {/* Section 3: Legal Basis */}
+              <div>
+                <h4 className="font-bold text-[#081333] mb-2">
+                  {t("forms.legal.sections.basisTitle")}
+                </h4>
+                <p className="text-justify">
+                  {t("forms.legal.sections.basisText")}
+                </p>
+              </div>
+
+              {/* Section 4: Data Sharing */}
+              <div>
+                <h4 className="font-bold text-[#081333] mb-2">
+                  {t("forms.legal.sections.sharingTitle")}
+                </h4>
+                <p className="text-justify">
+                  {t("forms.legal.sections.sharingText")}
+                </p>
+              </div>
+
+              {/* Section 5: Retention */}
+              <div>
+                <h4 className="font-bold text-[#081333] mb-2">
+                  {t("forms.legal.sections.retentionTitle")}
+                </h4>
+                <p className="text-justify">
+                  {t("forms.legal.sections.retentionText")}
+                </p>
+              </div>
+
+              {/* Section 6: Security */}
+              <div>
+                <h4 className="font-bold text-[#081333] mb-2">
+                  {t("forms.legal.sections.securityTitle")}
+                </h4>
+                <p className="text-justify">
+                  {t("forms.legal.sections.securityText")}
+                </p>
+              </div>
+
+              {/* Section 7: Rights */}
+              <div>
+                <h4 className="font-bold text-[#081333] mb-2">
+                  {t("forms.legal.sections.rightsTitle")}
+                </h4>
+                <p className="text-justify">
+                  {t("forms.legal.sections.rightsText")}
+                </p>
+              </div>
+
+              {/* Section 8: Contact */}
+              <div>
+                <h4 className="font-bold text-[#081333] mb-2">
+                  {t("forms.legal.sections.contactTitle")}
+                </h4>
+                <p className="text-justify">
+                  {t("forms.legal.sections.contactText")}
+                </p>
+              </div>
+            </div>
+            {/* Modal Footer */}
+            <div className="p-6 border-t border-gray-100 bg-gray-50 rounded-b-2xl flex justify-end">
+              <button
+                type="button"
+                onClick={() => setShowPrivacyModal(false)}
+                className="px-6 py-2.5 bg-[#081333] text-white rounded-xl font-medium hover:bg-[#162a66] transition-colors"
+              >
+                {t("forms.legal.close")}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

@@ -1,6 +1,6 @@
 const { transporter } = require("../config/email");
 
-// Helper to format text (turns newlines into <br>)
+// Helper must be defined before use
 const formatText = (text) => {
   if (!text) return "<em>Not provided</em>";
   return text.replace(/\n/g, "<br>");
@@ -11,6 +11,9 @@ const formatText = (text) => {
 // ==================================================================
 exports.sendApplyForm = async (req, res) => {
   try {
+    // 1. Check if file exists (Optional, depending on if you want it mandatory on backend too)
+    // Note: React 'validateForm' already checks this, but good to be safe.
+
     const {
       name = "N/A",
       email = "N/A",
@@ -20,6 +23,8 @@ exports.sendApplyForm = async (req, res) => {
       position = "General",
       description = "",
     } = req.body;
+
+    console.log("Received Application from:", name); // Debugging
 
     // --- A. HTML for the COMPANY (Owner) ---
     const ownerHtml = `
@@ -43,7 +48,6 @@ exports.sendApplyForm = async (req, res) => {
             )}</p>
           </div>
         </div>
-        <div style="padding: 15px; background-color: #eee; text-align: center; font-size: 12px; color: #666;">Sent via PrimeX Careers System</div>
       </div>
     `;
 
@@ -65,10 +69,10 @@ exports.sendApplyForm = async (req, res) => {
           </div>
           <p style="font-size: 16px; color: #333;">Best regards,<br><strong>PrimeX HR Team</strong></p>
         </div>
-        <div style="background-color: #f9fafb; padding: 15px; text-align: center; font-size: 12px; color: #888;">&copy; ${new Date().getFullYear()} PrimeX. All rights reserved.</div>
       </div>
     `;
 
+    // Prepare attachment if file exists
     const attachments = req.file
       ? [{ filename: req.file.originalname, content: req.file.buffer }]
       : [];
@@ -114,7 +118,6 @@ exports.sendBusinessInquiry = async (req, res) => {
       message = "",
     } = req.body;
 
-    // --- A. HTML for the COMPANY (Owner) ---
     const ownerHtml = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #333; border-radius: 8px; overflow: hidden;">
         <div style="background-color: #1e3a8a; padding: 20px; text-align: center;">
@@ -138,7 +141,6 @@ exports.sendBusinessInquiry = async (req, res) => {
       </div>
     `;
 
-    // --- B. HTML for the CLIENT (Confirmation) ---
     const clientHtml = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden;">
         <div style="background-color: #1e3a8a; padding: 20px; text-align: center;">
@@ -146,24 +148,14 @@ exports.sendBusinessInquiry = async (req, res) => {
         </div>
         <div style="padding: 30px; background-color: #ffffff;">
           <p style="font-size: 16px; color: #333; margin-top: 0;">Hi <strong>${contactPerson}</strong>,</p>
-          
           <p style="font-size: 16px; color: #555; line-height: 1.6;">
             Thank you for reaching out to PrimeX regarding <strong>${businessType}</strong>.
           </p>
-          
-          <div style="background-color: #f3f4f6; padding: 15px; border-left: 4px solid #1e3a8a; margin: 20px 0; border-radius: 4px;">
-            <p style="margin: 0; color: #555; font-size: 14px;">
-              Our team has received your details and will get back to you shortly to discuss how we can help <strong>${companyName}</strong>.
-            </p>
-          </div>
-
           <p style="font-size: 16px; color: #333;">Best regards,<br><strong>PrimeX Business Team</strong></p>
         </div>
-        <div style="background-color: #f9fafb; padding: 15px; text-align: center; font-size: 12px; color: #888;">&copy; ${new Date().getFullYear()} PrimeX. All rights reserved.</div>
       </div>
     `;
 
-    // 1. Send to Owner
     await transporter.sendMail({
       from: `"PrimeX Business" <${process.env.SMTP_USER}>`,
       to: process.env.OWNER_EMAIL,
@@ -172,7 +164,6 @@ exports.sendBusinessInquiry = async (req, res) => {
       html: ownerHtml,
     });
 
-    // 2. Send to Client (Confirmation)
     if (email) {
       await transporter.sendMail({
         from: `"PrimeX Solutions" <${process.env.SMTP_USER}>`,

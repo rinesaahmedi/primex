@@ -26,11 +26,14 @@ const TimelineCard = ({
 
       <div
         className={`bg-white rounded-3xl shadow-xl border border-gray-100 p-6 md:p-8 transition-all duration-500 ${
-          isVisible ? 'lift-up-subtle' : ''
+          isVisible ? "lift-up-subtle" : ""
         }`}
-        style={{ animationDelay: isVisible ? `${delay}ms` : '0ms' }}
+        style={{ animationDelay: isVisible ? `${delay}ms` : "0ms" }}
       >
-        <h3 className="text-2xl font-semibold text-[#2378FF] mb-3" style={{ fontFamily: 'var(--font-serif)' }}>
+        <h3
+          className="text-2xl font-semibold text-[#2378FF] mb-3"
+          style={{ fontFamily: "var(--font-serif)" }}
+        >
           {title}
         </h3>
 
@@ -114,7 +117,7 @@ const AboutPage = () => {
           >
             <img
               src={pxBranding}
-              alt="PrimEx 40 Years of Experience"
+              alt={t("about.imageAlt")}
               className="w-full h-auto rounded-[32px] shadow-2xl border border-white/10"
             />
           </div>
@@ -126,13 +129,13 @@ const AboutPage = () => {
             data-aos="fade-up"
             data-aos-delay="200"
           >
-            About PrimEx
+            {t("about.pill")}
           </span>
 
           {/* TITLE */}
           <h1
             className="text-2xl sm:text-3xl md:text-4xl font-bold text-white/95 mb-3 max-w-2xl leading-snug"
-            style={{ fontFamily: 'var(--font-serif)' }}
+            style={{ fontFamily: "var(--font-serif)" }}
             data-aos="fade-up"
             data-aos-delay="350"
           >
@@ -165,12 +168,14 @@ const AboutPage = () => {
           {/* Header */}
           <div className="mb-12 text-center">
             <div className="inline-block" data-aos="fade-up">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2" style={{ fontFamily: 'var(--font-serif)' }}>
-                The PrimEx Story
+              <h2
+                className="text-3xl md:text-4xl font-bold text-gray-900 mb-2"
+                style={{ fontFamily: "var(--font-serif)" }}
+              >
+                {t("about.storyTitle")}
               </h2>
               <p className="text-sm md:text-base text-gray-600">
-                From family tradition to AI-powered operations for leaders across
-                the DACH region.
+                {t("about.storySubtitle")}
               </p>
             </div>
           </div>
@@ -184,7 +189,7 @@ const AboutPage = () => {
               <TimelineCard
                 title={t("about.whoWeAre.title")}
                 description={t("about.whoWeAre.description")}
-                additionalText="With 40+ years of family experience and a decade in the DACH market, PrimEx blends tradition with cutting-edge AI workflows."
+                additionalText={t("about.whoWeAre.additional")}
                 delay={0}
               />
 
