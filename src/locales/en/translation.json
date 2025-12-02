@@ -356,13 +356,13 @@
         { "name": "Services", "hash": "#services" },
         { "name": "Partners", "hash": "#partners" },
         { "name": "Contact", "hash": "#contact" },
-        { "name": "Careers", "url": "/apply" },
-        { "name": "For Business", "url": "/business" }
+        { "name": "Certificate", "url": "/certificate" },
+        { "name": "Terms & Conditions", "url": "/terms" }
       ]
     },
     "hours": {
       "title": "Working Hours",
-      "times": ["Mon - Fri: 09:00 - 17:00", "Sat: 10:00 - 14:00", "Sun: Closed"]
+      "times": ["Mon - Fri: 08:00 - 16:30", "Sat - Sun: Closed"]
     },
     "contact": {
       "title": "Contact Us",

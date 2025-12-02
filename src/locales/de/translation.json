@@ -324,16 +324,15 @@
         { "name": "Dienstleistungen", "hash": "#services" },
         { "name": "Partner", "hash": "#partners" },
         { "name": "Kontakt", "hash": "#contact" },
-        { "name": "Karriere", "url": "/apply" },
-        { "name": "Für Unternehmen", "url": "/business" }
+        { "name": "Zertifikat", "url": "/certificate" },
+        { "name": "Allgemeine Geschäftsbedingungen", "url": "/terms" }
       ]
     },
     "hours": {
       "title": "Öffnungszeiten",
       "times": [
-        "Mo - Fr: 09:00 - 17:00",
-        "Sa: 10:00 - 14:00",
-        "So: Geschlossen"
+        "Mo - Fr: 08:00 - 16:30",
+        "Sa - So: Geschlossen"
       ]
     },
     "contact": {
