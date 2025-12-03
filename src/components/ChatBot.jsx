@@ -99,68 +99,68 @@ const ChatBot = () => {
   };
 
   // --- HANDLE SENDING MESSAGE ---
- const handleSendMessage = async (overrideText = null) => {
-  const textToSend =
-    typeof overrideText === "string" ? overrideText : inputText;
-  if (!textToSend.trim()) return;
+  const handleSendMessage = async (overrideText = null) => {
+    const textToSend =
+      typeof overrideText === "string" ? overrideText : inputText;
+    if (!textToSend.trim()) return;
 
-  // Stop any playing audio
-  audioPlayerRef.current.pause();
+    // Stop any playing audio
+    audioPlayerRef.current.pause();
 
-  const userMessage = {
-    id: Date.now(),
-    text: textToSend,
-    sender: "user",
-  };
-
-  // Optimistic update: show user message immediately
-  setMessages((prev) => [...prev, userMessage]);
-  setInputText("");
-  setIsTyping(true);
-
-  // Build a compact conversation history to send to the backend
-  // We map local messages to OpenAI-style roles
-  const historyPayload = [...messages, userMessage]
-    .slice(-10) // Limit to the last 10 messages to keep payload small
-    .map((m) => ({
-      role: m.sender === "user" ? "user" : "assistant",
-      content: m.text,
-    }));
-
-  try {
-    const response = await fetch("http://localhost:5000/api/chat", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        message: textToSend,
-        includeAudio: isVoiceOn,
-        language: i18n.language, // 'en' or 'de'
-        history: historyPayload,  // <-- NEW: send conversation memory
-      }),
-    });
-
-    const data = await response.json();
-
-    const botMessage = {
-      id: Date.now() + 1,
-      text: data.reply,
-      sender: "bot",
+    const userMessage = {
+      id: Date.now(),
+      text: textToSend,
+      sender: "user",
     };
 
-    setMessages((prev) => [...prev, botMessage]);
+    // Optimistic update: show user message immediately
+    setMessages((prev) => [...prev, userMessage]);
+    setInputText("");
+    setIsTyping(true);
 
-    if (data.audio && isVoiceOn) {
-      audioPlayerRef.current.src = `data:audio/mp3;base64,${data.audio}`;
-      audioPlayerRef.current
-        .play()
-        .catch((e) => console.error("Audio play error:", e));
+    // Build a compact conversation history to send to the backend
+    // Only send PAST messages, not the current one (backend handles current)
+    const historyPayload = messages
+      .slice(-10) 
+      .map((m) => ({
+        role: m.sender === "user" ? "user" : "assistant",
+        content: m.text,
+      }));
+
+    try {
+      const response = await fetch("http://localhost:5000/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          message: textToSend,
+          includeAudio: isVoiceOn,
+          language: i18n.language,
+          history: historyPayload, 
+        }),
+      });
+
+      const data = await response.json();
+
+      const botMessage = {
+        id: Date.now() + 1,
+        text: data.reply,
+        sender: "bot",
+      };
+
+      setMessages((prev) => [...prev, botMessage]);
+
+      if (data.audio && isVoiceOn) {
+        audioPlayerRef.current.src = `data:audio/mp3;base64,${data.audio}`;
+        audioPlayerRef.current
+          .play()
+          .catch((e) => console.error("Audio play error:", e));
+      }
+    } catch (error) {
+      console.error("Error sending message:", error);
+    } finally {
+      setIsTyping(false);
     }
-  } catch (error) {
-    console.error("Error sending message:", error);
-  } finally {
-    setIsTyping(false);
-  }
-};
+  };
 
 
   // --- MICROPHONE LOGIC ---
@@ -207,6 +207,7 @@ const ChatBot = () => {
                 {t("chatbot.header_title")}
               </span>
             </div>
+            {/* THIS IS THE 'X' BUTTON THAT REMAINS */}
             <button
               onClick={toggleChat}
               className="text-white/80 hover:text-white"
@@ -368,21 +369,12 @@ const ChatBot = () => {
         </div>
       )}
 
-      {/* OPEN BTN */}
-      <button
-        onClick={toggleChat}
-        className="group w-14 h-14 bg-[#1e105c] rounded-full shadow-lg text-white flex items-center justify-center"
-      >
-        {isOpen ? (
-          <svg
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        ) : (
+      {/* OPEN BTN - Only shows if !isOpen */}
+      {!isOpen && (
+        <button
+          onClick={toggleChat}
+          className="group w-14 h-14 bg-[#1e105c] rounded-full shadow-lg text-white flex items-center justify-center"
+        >
           <svg
             className="h-7 w-7"
             fill="none"
@@ -394,8 +386,8 @@ const ChatBot = () => {
               d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
             />
           </svg>
-        )}
-      </button>
+        </button>
+      )}
     </div>
   );
 };
