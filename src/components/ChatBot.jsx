@@ -99,55 +99,69 @@ const ChatBot = () => {
   };
 
   // --- HANDLE SENDING MESSAGE ---
-  const handleSendMessage = async (overrideText = null) => {
-    const textToSend =
-      typeof overrideText === "string" ? overrideText : inputText;
-    if (!textToSend.trim()) return;
+ const handleSendMessage = async (overrideText = null) => {
+  const textToSend =
+    typeof overrideText === "string" ? overrideText : inputText;
+  if (!textToSend.trim()) return;
 
-    audioPlayerRef.current.pause();
+  // Stop any playing audio
+  audioPlayerRef.current.pause();
 
-    const userMessage = {
-      id: Date.now(),
-      text: textToSend,
-      sender: "user",
+  const userMessage = {
+    id: Date.now(),
+    text: textToSend,
+    sender: "user",
+  };
+
+  // Optimistic update: show user message immediately
+  setMessages((prev) => [...prev, userMessage]);
+  setInputText("");
+  setIsTyping(true);
+
+  // Build a compact conversation history to send to the backend
+  // We map local messages to OpenAI-style roles
+  const historyPayload = [...messages, userMessage]
+    .slice(-10) // Limit to the last 10 messages to keep payload small
+    .map((m) => ({
+      role: m.sender === "user" ? "user" : "assistant",
+      content: m.text,
+    }));
+
+  try {
+    const response = await fetch("http://localhost:5000/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        message: textToSend,
+        includeAudio: isVoiceOn,
+        language: i18n.language, // 'en' or 'de'
+        history: historyPayload,  // <-- NEW: send conversation memory
+      }),
+    });
+
+    const data = await response.json();
+
+    const botMessage = {
+      id: Date.now() + 1,
+      text: data.reply,
+      sender: "bot",
     };
 
-    setMessages((prev) => [...prev, userMessage]);
-    setInputText("");
-    setIsTyping(true);
+    setMessages((prev) => [...prev, botMessage]);
 
-    try {
-      const response = await fetch("http://localhost:5000/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          message: textToSend,
-          includeAudio: isVoiceOn,
-          language: i18n.language, // Pass 'en' or 'de' to backend
-        }),
-      });
-
-      const data = await response.json();
-
-      const botMessage = {
-        id: Date.now() + 1,
-        text: data.reply,
-        sender: "bot",
-      };
-      setMessages((prev) => [...prev, botMessage]);
-
-      if (data.audio && isVoiceOn) {
-        audioPlayerRef.current.src = `data:audio/mp3;base64,${data.audio}`;
-        audioPlayerRef.current
-          .play()
-          .catch((e) => console.error("Audio play error:", e));
-      }
-    } catch (error) {
-      console.error("Error sending message:", error);
-    } finally {
-      setIsTyping(false);
+    if (data.audio && isVoiceOn) {
+      audioPlayerRef.current.src = `data:audio/mp3;base64,${data.audio}`;
+      audioPlayerRef.current
+        .play()
+        .catch((e) => console.error("Audio play error:", e));
     }
-  };
+  } catch (error) {
+    console.error("Error sending message:", error);
+  } finally {
+    setIsTyping(false);
+  }
+};
+
 
   // --- MICROPHONE LOGIC ---
   const startListening = () => {

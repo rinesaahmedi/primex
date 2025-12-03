@@ -8,7 +8,6 @@ YOUR GOAL:
 2. Qualify the user's needs (determine which service they need).
 3. Guide them towards booking a consultation or applying (if looking for a job).
 
-
 BRANDING & PRONUNCIATION:
 - **Written Output:** Always spell the company name clearly as "PrimeX" in all text responses.
 - **Spoken/Reading:** If speaking or conceptualizing the name, pronounce/read it as "PREE-MEX".
@@ -20,6 +19,13 @@ SERVICES DOMAIN:
 - E-Commerce Management (Order Management, Logistics)
 - Sales & Bookkeeping Support
 - Assistant Administration
+
+CONVERSATION MEMORY (IMPORTANT):
+- You can see the full conversation history in this chat.
+- Remember names, preferences, goals, and constraints the user already told you (budget, timeline, industry, etc.) and reuse them naturally.
+- Refer back to earlier parts of the conversation when helpful, e.g. "Earlier you mentioned…" or "Based on what you told me before…".
+- Do NOT invent memories that are not in the conversation history.
+- Do NOT claim to remember past chats or other sessions; your memory is only for THIS conversation.
 
 INSTRUCTIONS FOR USING CONTEXT:
 - You will be provided with "Relevant Knowledge" retrieved from our database.
@@ -46,21 +52,22 @@ CONVERSION & TONE:
 - Use a "Helpful Professional" tone. Not stiff, but not slangy.
 - **The Hook:** End your helpful answers with a low-friction question, e.g., "Does that sound like what you're looking for?" or "Would you like to see how this fits your specific timeline?"
 `;
+
 // THE MAIN FUNCTION
 // backend/controllers/aiController.js (or chatController.js)
-
 const handleChat = async (req, res) => {
-  const { message, includeAudio } = req.body;
+  const { message, includeAudio, history = [], language } = req.body;
   console.log(`\n--- NEW REQUEST ---`);
 
   try {
-    // 1. Embedding & 2. Pinecone (Same as before)
+    // 1. Embedding
     const embeddingResponse = await openai.embeddings.create({
       model: "text-embedding-3-small",
       input: message,
     });
     const vector = embeddingResponse.data[0].embedding;
 
+    // 2. Pinecone
     const queryResponse = await pineconeIndex.query({
       vector: vector,
       topK: 3,
@@ -76,11 +83,20 @@ const handleChat = async (req, res) => {
       Here is context: ${contextText}
     `;
 
+    // Build chat history for OpenAI (from frontend memory)
+    const historyMessages = Array.isArray(history)
+      ? history.map((m) => ({
+          role: m.role === "assistant" ? "assistant" : "user",
+          content: m.content,
+        }))
+      : [];
+
     // 3. Text Generation
     const completion = await openai.chat.completions.create({
       model: "gpt-4o-mini",
       messages: [
         { role: "system", content: finalSystemPrompt },
+        ...historyMessages,
         { role: "user", content: message },
       ],
       temperature: 0.7,
@@ -91,20 +107,18 @@ const handleChat = async (req, res) => {
 
     let audioBase64 = null;
 
-    // 4. Audio Generation
+    // 4. Audio Generation (optional)
     if (includeAudio) {
       try {
         console.log("Attempting to generate audio with OpenAI...");
 
-        // --- CUSTOM PRONUNCIATION FIX ---
-        // We replace the written name with the phonetic spelling for the audio engine only.
-        // /g ensures we replace all occurrences, not just the first one.
+        // Replace PrimeX with phonetic spelling for TTS only
         const textForSpeech = replyText.replace(/PrimeX/g, "PREE-MEX");
 
         const mp3 = await openai.audio.speech.create({
           model: "tts-1",
           voice: "shimmer",
-          input: textForSpeech, // <--- Use the phonetic text here
+          input: textForSpeech,
         });
 
         console.log("Audio generated successfully. Converting to buffer...");
@@ -118,14 +132,13 @@ const handleChat = async (req, res) => {
       console.log("Audio skipped (Client sent includeAudio: false)");
     }
 
-    // Send the original written text (PrimeX) to the UI, but the audio contains "PREE-MEX"
+    // Send the original written text (with "PrimeX") and optional audio
     res.json({ reply: replyText, audio: audioBase64 });
   } catch (error) {
     console.error("General API Error:", error);
     res.status(500).json({ reply: "Error connecting to server." });
   }
 };
-
 // Update this function as well to maintain consistency
 const generateSpeechOnly = async (req, res) => {
   const { text } = req.body;
