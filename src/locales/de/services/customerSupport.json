@@ -1,0 +1,68 @@
+{
+  "customerSupport": {
+    "title": "Customer Support",
+    "subtitle": "Multilingual service desks handle inquiries, after-sales care, claims, and retention programs across every channel.",
+    "intro": {
+      "title": "Multilingual service desks that boost satisfaction",
+      "description": "PrimEx operates 24/7 service desks that handle inquiries, after-sales care, claims, and retention programs across every channel—email, phone, chat, and social. Our multilingual teams (DE, EN, and more) deliver consistent, brand-aligned support that turns customers into advocates."
+    },
+    "highlights": [
+      "24/7 multilingual support",
+      "Omnichannel handling",
+      "Claims & retention"
+    ],
+    "services": {
+      "inquiry": {
+        "title": "Inquiry Management",
+        "description": "Professional multilingual teams handle customer questions, product information requests, and technical support across email, phone, chat, and social channels.",
+        "features": [
+          "Multi-channel ticket routing",
+          "First-response time optimization",
+          "Knowledge base integration"
+        ]
+      },
+      "afterSales": {
+        "title": "After-sales Care",
+        "description": "Proactive follow-up, warranty support, and maintenance guidance ensure customers stay satisfied long after purchase.",
+        "features": [
+          "Warranty & service coordination",
+          "Product usage guidance",
+          "Satisfaction surveys & feedback"
+        ]
+      },
+      "claims": {
+        "title": "Claims Processing",
+        "description": "Efficient claims handling with clear communication, fast resolution, and documentation that protects both customer and brand.",
+        "features": [
+          "Claims intake & triage",
+          "Resolution workflows",
+          "Documentation & reporting"
+        ]
+      },
+      "retention": {
+        "title": "Retention Programs",
+        "description": "Loyalty initiatives, win-back campaigns, and personalized outreach that turn one-time buyers into repeat customers.",
+        "features": [
+          "Loyalty program management",
+          "Win-back campaigns",
+          "Personalized customer journeys"
+        ]
+      }
+    },
+    "whyChoose": {
+      "title": "Why choose PrimEx customer support",
+      "items": [
+        "40+ years of furniture industry expertise",
+        "Multilingual support (DE, EN, and more)",
+        "24/7 availability across time zones",
+        "Brand-aligned communication and tone",
+        "Scalable capacity for peak seasons",
+        "Integrated with your CRM and ticketing systems"
+      ]
+    },
+    "cta": {
+      "title": "Let's assemble your service desk",
+      "description": "We deliver support that reflects your brand values handling inquiries, claims, and retention."
+    }
+  }
+}

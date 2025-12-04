@@ -7,15 +7,15 @@ import deBase from "./locales/de/translation.json";
 import enAiAgents from "./locales/en/services/aiAgents.json";
 import enSoftwareDeveloper from "./locales/en/services/softwareDeveloper.json";
 import enGraphicDesigner from "./locales/en/services/graphicDesigner.json";
-import enAssistantAdministrator from "./locales/en/services/assistantAdministrator.json";
-import enSalesBookkeeping from "./locales/en/services/salesBookkeeping.json";
+import enCustomerSupport from "./locales/en/services/customerSupport.json";
+import enOperationalService from "./locales/en/services/operationalService.json";
 import enECommerce from "./locales/en/services/eCommerce.json";
 
 import deAiAgents from "./locales/de/services/aiAgents.json";
 import deSoftwareDeveloper from "./locales/de/services/softwareDeveloper.json";
 import deGraphicDesigner from "./locales/de/services/graphicDesigner.json";
-import deAssistantAdministrator from "./locales/de/services/assistantAdministrator.json";
-import deSalesBookkeeping from "./locales/de/services/salesBookkeeping.json";
+import deCustomerSupport from "./locales/de/services/customerSupport.json";
+import deOperationalService from "./locales/de/services/operationalService.json";
 import deECommerce from "./locales/de/services/eCommerce.json";
 
 const mergeDeep = (target, source) => {
@@ -53,8 +53,8 @@ const en = buildTranslation(
   enAiAgents,
   enSoftwareDeveloper,
   enGraphicDesigner,
-  enAssistantAdministrator,
-  enSalesBookkeeping,
+  enCustomerSupport,
+  enOperationalService,
   enECommerce
 );
 
@@ -63,8 +63,8 @@ const de = buildTranslation(
   deAiAgents,
   deSoftwareDeveloper,
   deGraphicDesigner,
-  deAssistantAdministrator,
-  deSalesBookkeeping,
+  deCustomerSupport,
+  deOperationalService,
   deECommerce
 );
 

@@ -18,8 +18,8 @@ import BusinessInquiryForm from "./pages/BusinessInquiryForm.jsx";
 import AIAgentsPage from "./pages/services/AIAgentsPage";
 import SoftwareDeveloperPage from "./pages/services/SoftwareDeveloperPage";
 import GraphicDesignerPage from "./pages/services/GraphicDesignerPage";
-import AssistantAdministratorPage from "./pages/services/AssistantAdministratorPage";
-import SalesBookkeepingPage from "./pages/services/SalesBookkeepingPage";
+import Cost from "./pages/services/CustomerSupportPage.jsx";
+import OperationalServicePage from "./pages/services/OperationalServicePage";
 import ECommercePage from "./pages/services/ECommercePage";
 
 // Agent Pages
@@ -76,12 +76,12 @@ function App() {
             element={<GraphicDesignerPage />}
           />
           <Route
-            path="/services/assistant-administrator"
-            element={<AssistantAdministratorPage />}
+            path="/services/customer-support"
+            element={<Cost />}
           />
           <Route
-            path="/services/sales-bookkeeping"
-            element={<SalesBookkeepingPage />}
+            path="/services/operational-service"
+            element={<OperationalServicePage />}
           />
           <Route path="/services/e-commerce" element={<ECommercePage />} />
 

@@ -37,8 +37,8 @@ export default function Services() {
   // 6. IT Development & Technical Consulting
   const serviceSlugs = [
     "ai-agents", // 1. AI Automation & Virtual Assistants
-    "sales-bookkeeping", // 2. Operational Services
-    "assistant-administrator", // 3. Customer Support
+    "operational-service", // 2. Operational Services
+    "customer-support", // 3. Customer Support
     "e-commerce", // 4. E-commerce & Product Data
     "graphic-designer", // 5. Design & 3D Visualization
     "software-developer", // 6. IT Development & Technical Consulting

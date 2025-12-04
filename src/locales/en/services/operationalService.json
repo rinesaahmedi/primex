@@ -1,0 +1,69 @@
+{
+  "operationalServices": {
+    "title": "Operational Services",
+    "subtitle": "Back-office teams manage order processing, logistics coordination, procurement, and compliance across the furniture supply chain.",
+    "intro": {
+      "title": "Your reliable partner for back-office efficiency",
+      "description": "For over ten years, we have supported the furniture industry in Germany, Austria, and Switzerland. We take the pressure off your internal teams by handling the heavy lifting—from logistics to accounting—allowing you to strengthen your market presence."
+    },
+    "sections": {
+      "orderProcessing": {
+        "title": "Order Processing",
+        "description": "Unprocessed orders and incorrect entries frustrate customers. We provide precise, fast, and seamless handling of all orders to ensure timely processing and maximum satisfaction.",
+        "features": {
+          "1": "Fast Processing: Handling high volumes effortlessly.",
+          "2": "Accuracy: Reducing returns caused by order errors.",
+          "3": "Seamless Workflow: Direct integration into your systems."
+        }
+      },
+      "logistics": {
+        "title": "Logistics & Dropshipping",
+        "description": "We optimize your supply chain. Leveraging cooperation with top partners like Hermes, Anton Röhr, Rhenus, Grabowski, and DHL, we ensure your furniture reaches the customer safely.",
+        "features": {
+          "1": "Top-Tier Partnerships: Direct coordination with major carriers.",
+          "2": "Supply Chain Optimization: Streamlined distribution workflows.",
+          "3": "Dropshipping Management: Efficient B2C fulfillment."
+        }
+      },
+      "sales": {
+        "title": "Sales Management",
+        "description": "We support both traditional stores and online shops. Our team manages global wholesale and retail sales coordination for B2B and B2C channels, ensuring no opportunity is lost.",
+        "features": {
+          "1": "Omnichannel Support: Managing sales across all platforms.",
+          "2": "Revenue Growth: Dedicated teams focused on conversion.",
+          "3": "Market Expansion: Support for entering new territories."
+        }
+      },
+      "bookkeeping": {
+        "title": "Bookkeeping",
+        "description": "Transparency and accuracy for your success. We manage your financial records and reporting, ensuring full compliance with international accounting standards.",
+        "features": {
+          "1": "Transaction Recording: Precise financial tracking.",
+          "2": "Reporting: Clear, actionable financial insights.",
+          "3": "Compliance: Adherence to DACH and international regulations."
+        }
+      }
+    },
+    "whyChoose": {
+      "title": "Why choose PrimEx for Operations",
+      "items": [
+        {
+          "title": "Experience",
+          "desc": "40+ years of family tradition in the furniture business."
+        },
+        {
+          "title": "Cost-Efficiency",
+          "desc": "High-quality services at fair prices via our Kosovo location."
+        },
+        {
+          "title": "Flexibility",
+          "desc": "Individual solutions tailored to your specific needs."
+        },
+        {
+          "title": "Vision",
+          "desc": "We help you optimize internal processes to surge ahead of the competition."
+        }
+      ]
+    }
+  }
+}

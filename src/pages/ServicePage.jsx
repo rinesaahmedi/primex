@@ -19,8 +19,8 @@ const ServicePage = () => {
   // 5. IT Development & Technical Consulting
   const slugToIndex = {
     "ai-agents": 0, // AI Automation & Virtual Assistants
-    "sales-bookkeeping": 1, // Operational Services
-    "assistant-administrator": 2, // Customer Support
+    "operational-service": 1, // Operational Services
+    "customer-support": 2, // Customer Support
     "e-commerce": 3, // E-commerce & Product Data
     "graphic-designer": 4, // Design & 3D Visualization
     "software-developer": 5, // IT Development & Technical Consulting
@@ -30,8 +30,8 @@ const ServicePage = () => {
     "ai-agents": "aiAgents",
     "software-developer": "softwareDeveloper",
     "graphic-designer": "graphicDesigner",
-    "assistant-administrator": "assistantAdministrator",
-    "sales-bookkeeping": "salesBookkeeping",
+    "customer-support": "customerSupport",
+    "operational-service": "operationalService",
     "e-commerce": "eCommerce",
   };
 
