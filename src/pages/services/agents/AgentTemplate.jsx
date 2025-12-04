@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams, Navigate } from "react-router-dom"; // Import useParams
+import { Link, useParams, Navigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useScrollAnimation } from "../../../utils/useScrollAnimation";
 import {
@@ -13,19 +13,176 @@ import {
   Activity,
 } from "lucide-react";
 
-// Import your images here
-import agentOverviewImg from "../../../images/client2.webp";
-// ... other imports
+// =================================================================================
+// 1. ALL IMAGE IMPORTS (Based on your Screenshots)
+// Path: ../../../images/FOTOT E SERVISEVE/...
+// =================================================================================
+
+// --- ALL IN ONE ASSISTANT ---
+import allInOne1 from "../../../images/FOTOT E SERVISEVE/ALL IN ONE ASSISTANT/ALL IN ONE ASSISTANT.png";
+// Note: Use exact filename for the AI AGENT one if needed, e.g.:
+// import allInOne2 from "../../../images/FOTOT E SERVISEVE/ALL IN ONE ASSISTANT/ALL IN ONE ASSISTANT AI AGENT.png";
+
+// --- COMPLAINS ---
+import complains1 from "../../../images/FOTOT E SERVISEVE/COMPLAINS/COMPLAINS AGENT.png";
+import complains2 from "../../../images/FOTOT E SERVISEVE/COMPLAINS/COMPLAINS AGENT 2.png";
+
+// --- CONTENT GENERATION ---
+// (Filenames were cut off in screenshot, assumed "CONTENT GENERATION AI AGENT.png")
+import contentGen1 from "../../../images/FOTOT E SERVISEVE/CONTENT GENERATION/CONTENT GENERATION AI AGENT.png";
+import contentGen2 from "../../../images/FOTOT E SERVISEVE/CONTENT GENERATION/CONTENT GENERATION AI AGENT 2.png"; 
+// If the file is actually just "CONTENT GENERATION.png", please remove " AI AGENT" from above.
+
+// --- CRM INTEGRATION ---
+import crm1 from "../../../images/FOTOT E SERVISEVE/CRM INTEGRATION/CRM INTEGRATION.jpg";
+import crm2 from "../../../images/FOTOT E SERVISEVE/CRM INTEGRATION/CRM INTEGRATION 2.jpg.png";
+
+// --- DPP ---
+import dpp1 from "../../../images/FOTOT E SERVISEVE/DPP/DIGITAL PRODUCT PASSPORT.png";
+
+// --- EDI 2.0 ---
+import edi1 from "../../../images/FOTOT E SERVISEVE/EDI 2.0/EDI 2.0.png";
+import edi2 from "../../../images/FOTOT E SERVISEVE/EDI 2.0/EDI 2.0 -2.png";
+
+// --- EUDR ---
+import eudr1 from "../../../images/FOTOT E SERVISEVE/EUDR/EUDR.png";
+
+// --- KITCHEN ORDER CONFIRMATION ---
+import kitchen1 from "../../../images/FOTOT E SERVISEVE/KITCHEN ORDER CONFIRMATION/KITCHEN ORDER CONFIRMATION.png";
+
+// --- ORDER CONFIRMATION ---
+import orderConf1 from "../../../images/FOTOT E SERVISEVE/ORDER CONFIRMATION/ORDER CONFIRMATION.png";
+import orderConf2 from "../../../images/FOTOT E SERVISEVE/ORDER CONFIRMATION/ORDER CONFIRMATION 2.png";
+import orderConf3 from "../../../images/FOTOT E SERVISEVE/ORDER CONFIRMATION/ORDER CONFIRMATION 3.png";
+
+// --- ORDER PROCESSING ---
+import orderProc1 from "../../../images/FOTOT E SERVISEVE/ORDER PROCESSING/ORDER PROCESSING.jpg";
+import orderProc2 from "../../../images/FOTOT E SERVISEVE/ORDER PROCESSING/ORDER PROCESSING 2.jpg.png";
+import orderProc3 from "../../../images/FOTOT E SERVISEVE/ORDER PROCESSING/ORDER PROCESSING 3.jpg.png";
+
+// --- PDM ---
+import pdm1 from "../../../images/FOTOT E SERVISEVE/PDM/PDM.png";
+import pdm2 from "../../../images/FOTOT E SERVISEVE/PDM/PDM 2.png";
+import pdm3 from "../../../images/FOTOT E SERVISEVE/PDM/PDM 3.png";
+import pdm4 from "../../../images/FOTOT E SERVISEVE/PDM/PDM 4.png";
+
+// --- SMM (Social Media) ---
+import smm1 from "../../../images/FOTOT E SERVISEVE/SMM/SOCIAL MEDIA AGENT.png";
+import smm2 from "../../../images/FOTOT E SERVISEVE/SMM/SOCIAL MEDIA AGENT 2.png";
+
+// --- VIRTUAL SECRETARY ---
+import vs1 from "../../../images/FOTOT E SERVISEVE/VIRTUAL SECRETARY/VIRTUAL SECRETARY.png";
+import vs2 from "../../../images/FOTOT E SERVISEVE/VIRTUAL SECRETARY/VIRTUAL SECRETARY 2.png";
+import vs3 from "../../../images/FOTOT E SERVISEVE/VIRTUAL SECRETARY/VIRTUAL SECRETARY 3.png";
+import vs4 from "../../../images/FOTOT E SERVISEVE/VIRTUAL SECRETARY/VIRTUAL SECRETARY 4.png";
+
+// Placeholder
+const placeholderImg = "https://via.placeholder.com/600x400?text=Agent+Image";
+
+// =================================================================================
+// 2. CONFIGURATION: MAP IDs TO IMAGES
+// =================================================================================
+const AGENT_ASSETS = {
+  // agent1: Product Data Management
+  agent1: {
+    main: pdm1,
+    capabilities: pdm2,
+    useCases: pdm3,
+    cta: pdm4,
+  },
+
+  // agent2: Content & Listing
+  agent2: {
+    main: contentGen1,
+    capabilities: contentGen2,
+  },
+
+  // agent3: Virtual Secretary
+  agent3: {
+    main: vs1,
+    capabilities: vs2,
+    useCases: vs3,
+    cta: vs4,
+  },
+
+  // agent4: All-in-One Assistant
+  agent4: {
+    main: allInOne1,
+  },
+
+  // agent5: Social Media Management
+  agent5: {
+    main: smm1,
+    capabilities: smm2,
+  },
+
+  // agent6: CRM Integration
+  agent6: {
+    main: crm1,
+    capabilities: crm2,
+  },
+
+  // agent7: Order Processing
+  agent7: {
+    main: orderProc1,
+    capabilities: orderProc2,
+    useCases: orderProc3,
+  },
+
+  // agent8: Order Confirmation Checking
+  agent8: {
+    main: orderConf1,
+    capabilities: orderConf2,
+    useCases: orderConf3,
+  },
+
+  // agent9: Kitchen Order Confirmation
+  agent9: {
+    main: kitchen1,
+  },
+
+  // agent10: EDI 2.0
+  agent10: {
+    main: edi1,
+    capabilities: edi2,
+  },
+
+  // agent11: Complaints Handling
+  agent11: {
+    main: complains1,
+    capabilities: complains2,
+  },
+
+  // agent12: EUDR Compliance
+  agent12: {
+    main: eudr1,
+  },
+
+  // agent13: Digital Product Passport
+  agent13: {
+    main: dpp1,
+  },
+
+  // Fallback
+  default: {
+    main: placeholderImg,
+  },
+};
 
 const AgentTemplate = () => {
   const { t } = useTranslation();
-  const { agentId } = useParams(); // This grabs "agent1", "agent2", etc. from the URL
+  const { agentId } = useParams();
   const [sectionRef, isVisible] = useScrollAnimation({ threshold: 0.1 });
   const [activeVisual, setActiveVisual] = useState("overview");
 
-  // Validate agentId exists in translation (optional safety check)
+  // Validate agentId exists in translation
   const titleCheck = t(`agents.${agentId}.title`);
-  if (!titleCheck || titleCheck === `agents.${agentId}.title`) {
+  const translationExists = titleCheck && titleCheck !== `agents.${agentId}.title`;
+  
+  // Get Assets
+  const currentAgentAssets = AGENT_ASSETS[agentId] || AGENT_ASSETS["default"];
+
+  if (!translationExists) {
     return <Navigate to="/services/ai-agents" />;
   }
 
@@ -48,28 +205,34 @@ const AgentTemplate = () => {
     return () => observers.forEach((o) => o.disconnect());
   }, [agentId]);
 
+
+  // Helper to safely get image
+  const getVisualImage = (sectionKey) => {
+    return currentAgentAssets[sectionKey] || currentAgentAssets.main;
+  };
+
   // Dynamic Visuals Data
   const visuals = {
     overview: {
-      image: agentOverviewImg,
+      image: getVisualImage("overview"),
       title: t(`agents.${agentId}.visuals.overview.title`),
       description: t(`agents.${agentId}.visuals.overview.description`),
       label: t(`agents.${agentId}.visuals.label`),
     },
     capabilities: {
-      image: agentOverviewImg, // Replace with specific image if needed
+      image: getVisualImage("capabilities"),
       title: t(`agents.${agentId}.visuals.capabilities.title`),
       description: t(`agents.${agentId}.visuals.capabilities.description`),
       label: t(`agents.${agentId}.visuals.label`),
     },
     useCases: {
-      image: agentOverviewImg,
+      image: getVisualImage("useCases"),
       title: t(`agents.${agentId}.visuals.useCases.title`),
       description: t(`agents.${agentId}.visuals.useCases.description`),
       label: t(`agents.${agentId}.visuals.label`),
     },
     cta: {
-      image: agentOverviewImg,
+      image: getVisualImage("cta"),
       title: t(`agents.${agentId}.visuals.cta.title`),
       description: t(`agents.${agentId}.visuals.cta.description`),
       label: t(`agents.${agentId}.visuals.label`),
@@ -253,24 +416,31 @@ const AgentTemplate = () => {
 
             {/* Mobile Visual */}
             <div className="mt-10 md:hidden">
-              {/* Same as your existing mobile visual logic */}
+              <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-md">
+                <img
+                  src={currentVisual.image}
+                  alt={currentVisual.title}
+                  className="w-full max-h-[60vh] rounded-2xl mb-4 object-contain"
+                />
+              </div>
             </div>
           </div>
 
           {/* RIGHT COLUMN (Sticky) */}
           <div className="hidden md:block">
             <div className="sticky top-28">
-              {/* Same as your existing sticky logic */}
-              <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-md">
+              <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-md transition-all duration-300 flex flex-col gap-3">
                 <p className="text-xs font-semibold uppercase tracking-wide text-slate-500 mb-3">
                   {currentVisual.label}
                 </p>
-                <img
-                  src={currentVisual.image}
-                  alt={currentVisual.title}
-                  className="w-full rounded-2xl mb-4"
-                />
-                <h3 className="text-xl font-semibold text-slate-900 mb-2">
+                <div className="bg-white rounded-2xl overflow-hidden w-full">
+                  <img
+                    src={currentVisual.image}
+                    alt={currentVisual.title}
+                    className="block w-full h-auto max-h-[75vh] rounded-2xl object-contain"
+                  />
+                </div>
+                <h3 className="text-xl font-semibold text-slate-900">
                   {currentVisual.title}
                 </h3>
                 <p className="text-sm text-slate-600">
@@ -281,6 +451,7 @@ const AgentTemplate = () => {
           </div>
         </div>
       </div>
+
     </section>
   );
 };
