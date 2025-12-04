@@ -1,69 +1,68 @@
 {
-    "serviceDetails": {
-      "softwareDeveloper": {
-        "hero": {
-          "eyebrow": "Embedded engineering squads",
-          "title": "Software Developers & IT Support built for modern operations",
-          "subtitle": "IT solutions without the friction: our team delivers tailored software and integrates virtual agents that collaborate with your people on order processing, customer care, logistics, and data management—boosting efficiency while safeguarding data protection concepts and cybersecurity.",
-          "highlights": [
-            "Full-stack web, mobile, and cloud",
-            "ERP/CRM & marketplace integrations",
-            "Virtual agents + automation runbooks"
-          ]
-        },
-        "pillars": [
-          {
-            "icon": "hammer",
-            "title": "Custom product pods",
-            "body": "Spin up cross-functional pods (PM + FE + BE + QA) that design, build, and operate digital products with Primex’s furniture-industry context built-in.",
-            "items": [
-              "Web + mobile experiences",
-              "Internal tooling & dashboards",
-              "Marketplace extensions"
-            ]
-          },
-          {
-            "icon": "database",
-            "title": "Integration & data fabric",
-            "body": "Stabilize your ERP, CRM, PIM, and logistics stack with certified integration engineers who speak SAP, Microsoft, Salesforce, and bespoke middleware.",
-            "items": [
-              "ERP/CRM connectors",
-              "Real-time inventory feeds",
-              "Marketplace compliance"
-            ]
-          },
-          {
-            "icon": "cpu",
-            "title": "AI & automation engineering",
-            "body": "Move from pilot to production with AI agents that automate claims, product data, and ops workflows—backed by MLOps runbooks and human-in-the-loop safeguards.",
-            "items": [
-              "LLM agent design",
-              "Virtual assistants for ops teams",
-              "Automation monitoring"
-            ]
-          },
-          {
-            "icon": "shield-check",
-            "title": "Security & continuity desk",
-            "body": "Prevent downtime with managed SecOps: proactive monitoring, automated patching, incident response, and ISO-ready documentation.",
-            "items": [
-              "24/7 monitoring",
-              "Zero-trust hardening",
-              "Incident & DR playbooks"
-            ]
-          }
-        ],
-   
-        "benefits": [
-          "40+ years of experience in the furniture industry",
-          "Cost-efficient solutions powered by our Kosovo-based delivery center",
-          "Young, dynamic specialists who bring fresh ideas to complex systems",
-          "State-of-the-art technology stack for every engagement",
-          "Multilingual teams and seamless communication across DACH & EN",
-          "Embedded collaboration that keeps stakeholders aligned in real time"
+  "softwareDeveloper": {
+    "hero": {
+      "eyebrow": "IT SERVICES",
+      "title": "IT Development & Technical Consulting",
+      "subtitle": "Bridging tradition with the digital future",
+      "description": "Engineers integrate ERPs/CRMs, build custom software, and advise on cybersecurity, infrastructure, and automation roadmaps. We combine over 40 years of furniture industry tradition with state-of-the-art technology. Our team delivers tailored software solutions and integrates virtual agents to collaborate with your people, solving the overload of modern retail."
+    },
+    "sections": {
+      "offeringsTitle": "Our Technical Capabilities",
+      "benefitsTitle": "Why choose PrimEx for IT"
+    },
+    "pillars": [
+      {
+        "icon": "hammer",
+        "title": "Custom Product Pods",
+        "body": "We provide young, dynamic specialists who bring innovative ideas to complex systems. We spin up cross-functional pods to build digital products with PrimEx furniture-industry context built-in.",
+        "items": [
+          "Web & Mobile Experiences: Custom B2B and B2C interfaces.",
+          "Internal Tooling: Dashboards to visualize data and workflows.",
+          "Marketplace Extensions: Plugins for seamless platform connection."
+        ]
+      },
+      {
+        "icon": "database",
+        "title": "Integration & Data Fabric",
+        "body": "Caught between ERP, phone, and email? We stabilize your stack. Our engineers connect your ERP, CRM, and logistics systems using SAP, Salesforce, Microsoft, and bespoke middleware for real-time data flow.",
+        "items": [
+          "Seamless Connectors: Eliminate data silos between systems.",
+          "Real-time Inventory: Prevent incorrect orders and overselling.",
+          "Unified Architecture: One source of truth for your data."
+        ]
+      },
+      {
+        "icon": "cpu",
+        "title": "AI Agent Development",
+        "body": "Solve the shortage of skilled workers. We develop 'Virtual Agents' that work 24/7 to handle unprocessed orders and unanswered offers, empowering your human potential to focus on what matters.",
+        "items": [
+          "Workflow Automation: Agents handle repetitive tasks.",
+          "Human-AI Collaboration: Virtual assistants working alongside staff.",
+          "24/7 Operations: Never absent, always working."
+        ]
+      },
+      {
+        "icon": "shield-check",
+        "title": "Consulting & Cybersecurity",
+        "body": "We ensure your infrastructure is safe and efficient. We provide high-level consulting on data protection concepts and cybersecurity to protect your business reputation.",
+        "items": [
+          "Data Protection Concepts: Compliant with DACH regulations.",
+          "Security Audits: Protecting against digital threats.",
+          "Automation Roadmaps: Strategic planning for digital growth."
         ]
       }
+    ],
+    "benefits": [
+      "Young Talent: Kosovo has Europe's youngest, most motivated population (70% under 30).",
+      "Location: Only two hours away from the DACH region by plane.",
+      "Communication: Fluent in English and German for seamless collaboration.",
+      "Efficiency: State-of-the-art infrastructure reducing costs without compromising quality."
+    ],
+    "cta": {
+      "title": "Ready to modernize your infrastructure?",
+      "body": "Let's build the digital future of your furniture business together.",
+      "primary": "Get in Touch",
+      "secondary": "Contact Us"
     }
   }
-   
-   
+}

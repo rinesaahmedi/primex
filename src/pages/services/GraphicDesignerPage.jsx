@@ -11,7 +11,13 @@ import {
   PenTool,
   Box,
   Sparkles,
+  Layers,
+  MonitorPlay,
+  MousePointer2
 } from "lucide-react";
+
+// Make sure this path is correct based on your folder structure
+import graphicImage from "../../assets/Services/graphic-design-3D-visualization.png";
 
 const iconMap = {
   render: Clapperboard,
@@ -44,8 +50,10 @@ const GraphicDesignerPage = () => {
   ];
 
   return (
-    <section className="min-h-screen bg-white pt-32 pb-24 md:pt-40 md:pb-32">
-      <div className="max-w-5xl mx-auto px-6">
+    <section className="min-h-screen bg-white pt-32 pb-24 md:pt-40 md:pb-32 overflow-hidden">
+      <div className="max-w-6xl mx-auto px-6">
+        
+        {/* Navigation */}
         <Link
           to="/#services"
           className="inline-flex items-center gap-2 text-[#2378FF] hover:text-[#1f5fcc] mb-8 transition-colors"
@@ -56,45 +64,110 @@ const GraphicDesignerPage = () => {
           </span>
         </Link>
 
+        {/* --- CREATIVE HERO SECTION --- */}
         <div
           ref={sectionRef}
-          className={`mb-12 ${isVisible ? "lift-up-subtle" : ""}`}
+          className={`mb-24 grid lg:grid-cols-2 gap-12 items-center ${isVisible ? "lift-up-subtle" : ""}`}
         >
-          {hero.eyebrow && (
-            <p className="text-xs uppercase tracking-[0.4em] text-[#2378FF] mb-4">
-              {hero.eyebrow}
-            </p>
-          )}
-          {hero.title && (
-            <h1
-              className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
-              style={{ fontFamily: "var(--font-serif)" }}
-            >
-              {hero.title}
-            </h1>
-          )}
-          {hero.subtitle && (
-            <p className="text-lg md:text-xl text-gray-600 leading-relaxed whitespace-pre-line">
-              {hero.subtitle}
-            </p>
-          )}
-          {Array.isArray(hero.highlights) && hero.highlights.length > 0 && (
-            <div className="mt-6 flex flex-wrap gap-3">
-              {hero.highlights.map((highlight, index) => (
-                <span
-                  key={index}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-200 text-sm text-slate-600 bg-white"
-                >
-                  <Sparkles className="w-4 h-4 text-[#2378FF]" />
-                  {highlight}
-                </span>
-              ))}
+          {/* Left Column: Text */}
+          <div className="relative z-10">
+            {hero.eyebrow && (
+              <div className="flex items-center gap-2 mb-4">
+                <Palette className="w-4 h-4 text-[#CDABFF]" />
+                <p className="text-xs uppercase tracking-[0.4em] text-[#2378FF] font-bold">
+                  {hero.eyebrow}
+                </p>
+              </div>
+            )}
+            
+            {hero.title && (
+              <h1
+                className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight"
+                style={{ fontFamily: "var(--font-serif)" }}
+              >
+                {hero.title}
+              </h1>
+            )}
+            
+            {hero.subtitle && (
+              <p className="text-lg md:text-xl text-gray-600 leading-relaxed whitespace-pre-line border-l-4 border-purple-200 pl-6 mb-8">
+                {hero.subtitle}
+              </p>
+            )}
+
+            {Array.isArray(hero.highlights) && hero.highlights.length > 0 && (
+              <div className="flex flex-wrap gap-3">
+                {hero.highlights.map((highlight, index) => (
+                  <span
+                    key={index}
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-purple-100 text-sm font-medium text-slate-700 bg-purple-50/50 backdrop-blur-sm"
+                  >
+                    <Sparkles className="w-3.5 h-3.5 text-purple-500" />
+                    {highlight}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Right Column: Creative Visual Showcase */}
+          <div className="relative group perspective-1000">
+            
+            {/* 1. Background Grid Pattern (Blueprint look) */}
+            <div className="absolute inset-0 bg-[linear-gradient(#e5e7eb_1px,transparent_1px),linear-gradient(90deg,#e5e7eb_1px,transparent_1px)] bg-[size:20px_20px] rounded-3xl -z-10 transform rotate-3 scale-110 opacity-50"></div>
+            
+            {/* 2. Abstract Blob behind image */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-blue-100 via-purple-100 to-pink-100 rounded-full blur-3xl opacity-60 -z-10"></div>
+
+            {/* 3. The Main Image Container */}
+            <div className="relative bg-white rounded-2xl p-2 shadow-2xl border border-slate-100 transform transition-transform duration-700 group-hover:rotate-1 group-hover:scale-[1.01]">
+              <div className="rounded-xl overflow-hidden relative">
+                <img 
+                  src={graphicImage} 
+                  alt="Graphic Design & 3D Visualization Portfolio" 
+                  className="w-full h-auto object-cover"
+                />
+                
+                {/* Overlay Gradient on Image */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              </div>
+
+              {/* 4. Floating 'UI Elements' to look like design software */}
+              
+              {/* Top Right Badge */}
+              <div className="absolute -top-6 -right-6 bg-white p-3 rounded-xl shadow-lg border border-slate-100 flex items-center gap-3 animate-float-slow hidden md:flex">
+                <div className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center">
+                  <MonitorPlay className="w-5 h-5 text-blue-500" />
+                </div>
+                <div>
+                  <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">RENDER</p>
+                  <p className="text-sm font-bold text-gray-800">4K Ready</p>
+                </div>
+              </div>
+
+              {/* Bottom Left Badge */}
+              <div className="absolute -bottom-6 -left-4 bg-white p-3 rounded-xl shadow-lg border border-slate-100 flex items-center gap-3 animate-float-delayed hidden md:flex">
+                <div className="w-10 h-10 bg-purple-50 rounded-lg flex items-center justify-center">
+                  <Layers className="w-5 h-5 text-purple-500" />
+                </div>
+                <div>
+                  <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">LAYERS</p>
+                  <p className="text-sm font-bold text-gray-800">Organized</p>
+                </div>
+              </div>
+
+              {/* Cursor Icon overlay */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 drop-shadow-lg">
+                <MousePointer2 className="w-12 h-12 fill-white/20" />
+              </div>
             </div>
-          )}
+          </div>
         </div>
+        {/* --- END HERO SECTION --- */}
+
 
         <div
-          className={`mb-12 ${isVisible ? "lift-up-subtle" : ""}`}
+          className={`mb-16 ${isVisible ? "lift-up-subtle" : ""}`}
           style={{ animationDelay: isVisible ? "0.1s" : "0s" }}
         >
           {sections.offeringsTitle && (
@@ -106,7 +179,7 @@ const GraphicDesignerPage = () => {
             </h2>
           )}
           {sections.offeringsSubtitle && (
-            <p className="text-gray-500 mb-6">{sections.offeringsSubtitle}</p>
+            <p className="text-gray-500 mb-8 max-w-2xl">{sections.offeringsSubtitle}</p>
           )}
 
           <div className="grid md:grid-cols-3 gap-6">
@@ -116,26 +189,31 @@ const GraphicDesignerPage = () => {
               return (
                 <div
                   key={index}
-                  className={`bg-linear-to-br ${colors.from} ${colors.to} rounded-2xl p-6 border border-slate-100 shadow-sm`}
+                  className={`group bg-gradient-to-br ${colors.from} ${colors.to} rounded-2xl p-8 border border-white shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1`}
                 >
-                  <Icon className={`w-8 h-8 ${colors.icon} mb-4`} />
+                  <div className={`w-12 h-12 rounded-xl bg-white/60 flex items-center justify-center mb-6 shadow-sm`}>
+                    <Icon className={`w-6 h-6 ${colors.icon}`} />
+                  </div>
+                  
                   {pillar.title && (
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                    <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-[#2378FF] transition-colors">
                       {pillar.title}
                     </h3>
                   )}
                   {pillar.body && (
-                    <p className="text-gray-600">{pillar.body}</p>
+                    <p className="text-gray-600 mb-4 leading-relaxed">{pillar.body}</p>
                   )}
                   {pillar.items && pillar.items.length > 0 && (
-                    <ul className="mt-4 space-y-2 text-sm text-gray-500">
-                      {pillar.items.map((item, idx) => (
-                        <li key={idx} className="flex gap-2">
-                          <span>•</span>
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
+                    <div className="pt-4 border-t border-white/50">
+                      <ul className="space-y-2 text-sm text-gray-600">
+                        {pillar.items.map((item, idx) => (
+                          <li key={idx} className="flex gap-2 items-start">
+                            <span className="text-purple-400 mt-1">•</span>
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   )}
                 </div>
               );
@@ -144,23 +222,23 @@ const GraphicDesignerPage = () => {
         </div>
 
         <div
-          className={`mb-12 ${isVisible ? "lift-up-subtle" : ""}`}
+          className={`mb-16 ${isVisible ? "lift-up-subtle" : ""}`}
           style={{ animationDelay: isVisible ? "0.2s" : "0s" }}
         >
           {sections.benefitsTitle && (
             <h2
-              className="text-3xl md:text-4xl font-bold text-gray-900 mb-6"
+              className="text-3xl md:text-4xl font-bold text-gray-900 mb-8"
               style={{ fontFamily: "var(--font-serif)" }}
             >
               {sections.benefitsTitle}
             </h2>
           )}
           <div className="bg-white rounded-2xl p-8 border-2 border-slate-200">
-            <ul className="grid md:grid-cols-2 gap-4">
+            <ul className="grid md:grid-cols-2 gap-x-8 gap-y-4">
               {benefits.map((benefit, index) => (
-                <li key={index} className="flex items-start gap-3">
-                  <CheckCircle2 className="w-6 h-6 text-[#2378FF] shrink-0 mt-0.5" />
-                  <span className="text-gray-700">{benefit}</span>
+                <li key={index} className="flex items-start gap-3 p-2 hover:bg-slate-50 rounded-lg transition-colors">
+                  <CheckCircle2 className="w-5 h-5 text-[#2378FF] shrink-0 mt-0.5" />
+                  <span className="text-gray-700 font-medium">{benefit}</span>
                 </li>
               ))}
             </ul>
@@ -171,27 +249,34 @@ const GraphicDesignerPage = () => {
           className={`${isVisible ? "lift-up-subtle" : ""}`}
           style={{ animationDelay: isVisible ? "0.3s" : "0s" }}
         >
-          <div className="bg-linear-to-br from-[#081333] via-[#1659bd] to-[#fadebc] rounded-2xl p-8 md:p-12 text-white">
-            {cta.title && (
-              <h3
-                className="text-2xl md:text-3xl font-bold mb-4"
-                style={{ fontFamily: "var(--font-serif)" }}
-              >
-                {cta.title}
-              </h3>
-            )}
-            {cta.body && (
-              <p className="text-white/90 mb-8 text-lg">{cta.body}</p>
-            )}
-            <div className="flex flex-wrap gap-4">
-              {cta.primary && (
-                <Link
-                  to="/business"
-                  className="inline-flex items-center justify-center px-8 py-3 bg-white text-[#2378FF] font-semibold rounded-xl hover:bg-white/90 transition-all shadow-lg hover:shadow-xl"
+          <div className="bg-gradient-to-br from-[#081333] via-[#1659bd] to-[#fadebc] rounded-2xl p-8 md:p-12 text-white relative overflow-hidden">
+            {/* Background Art */}
+            <div className="absolute right-0 bottom-0 opacity-10">
+               <PenTool className="w-64 h-64 -mr-10 -mb-10 text-white" />
+            </div>
+
+            <div className="relative z-10">
+              {cta.title && (
+                <h3
+                  className="text-2xl md:text-3xl font-bold mb-4"
+                  style={{ fontFamily: "var(--font-serif)" }}
                 >
-                  {cta.primary}
-                </Link>
+                  {cta.title}
+                </h3>
               )}
+              {cta.body && (
+                <p className="text-white/90 mb-8 text-lg max-w-2xl">{cta.body}</p>
+              )}
+              <div className="flex flex-wrap gap-4">
+                {cta.primary && (
+                  <Link
+                    to="/business"
+                    className="inline-flex items-center justify-center px-8 py-3 bg-white text-[#2378FF] font-semibold rounded-xl hover:bg-white/90 transition-all shadow-lg hover:shadow-xl"
+                  >
+                    {cta.primary}
+                  </Link>
+                )}
+              </div>
             </div>
           </div>
         </div>

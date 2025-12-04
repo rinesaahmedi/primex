@@ -1,6 +1,9 @@
 {
   "operationalServices": {
     "title": "Operational Services",
+    "hero":{
+      "eyebrow": "OPERATIONAL SERVICES"
+    },
     "subtitle": "Back-office teams manage order processing, logistics coordination, procurement, and compliance across the furniture supply chain.",
     "intro": {
       "title": "Your reliable partner for back-office efficiency",
