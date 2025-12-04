@@ -15,48 +15,61 @@ export default function PartnerTestimonials() {
   const prev = () =>
     setIndex((index - 1 + testimonials.length) % testimonials.length);
 
-  const current = testimonials[index];
+  // We no longer need 'const current = ...' because we map all of them below
 
   return (
     <section className="relative w-full py-20 md:py-28 bg-white">
       <div ref={sectionRef} className="max-w-5xl mx-auto px-6">
         {/* Testimonial content */}
         <div className={`text-center animate-lift-blur-subtle ${isVisible ? 'visible' : ''}`}>
-          {/* Quote */}
-          <blockquote 
-            className="text-3xl md:text-4xl lg:text-5xl font-light leading-tight mb-12 text-slate-900 max-w-4xl mx-auto" 
-            style={{ fontFamily: 'var(--font-serif)' }}
-          >
-            {current.quote}
-          </blockquote>
-
-          {/* Author info */}
-          <div className="mb-12">
-            <p className="text-lg font-semibold text-slate-900 mb-1">{current.company}</p>
-            <p className="text-slate-600">
-              <span className="font-medium text-slate-700">{current.person}</span>, {current.role}
-            </p>
+          
+          {/* 
+            GRID STACK TRICK: 
+            1. 'grid grid-cols-1' creates a single cell.
+            2. We map ALL quotes.
+            3. 'col-start-1 row-start-1' piles them all on top of each other.
+            4. The container stretches to fit the TALLEST quote.
+            5. We use opacity to show/hide, so the layout never jumps.
+          */}
+          <div className="relative grid grid-cols-1 mb-16 max-w-4xl mx-auto items-center">
+            {testimonials.map((testimonial, i) => (
+              <div 
+                key={i} 
+                className={`col-start-1 row-start-1 transition-opacity duration-500 ease-in-out ${
+                  i === index 
+                    ? "opacity-100 z-10" 
+                    : "opacity-0 -z-10 pointer-events-none"
+                }`}
+              >
+                <blockquote 
+                  className="text-3xl md:text-4xl lg:text-5xl font-light leading-tight text-slate-900 italic" 
+                  style={{ fontFamily: 'var(--font-serif)' }}
+                >
+                  &ldquo;{testimonial.quote}&rdquo;
+                </blockquote>
+              </div>
+            ))}
           </div>
 
           {/* Navigation */}
           <div className="flex items-center justify-center gap-6">
             <button
               onClick={prev}
-              className="w-10 h-10 rounded-full bg-slate-100 text-slate-600 hover:bg-[#2378FF] hover:text-white transition-all flex items-center justify-center"
+              className="w-12 h-12 rounded-full bg-slate-50 text-slate-600 hover:bg-[#2378FF] hover:text-white transition-all flex items-center justify-center border border-slate-200 hover:border-transparent"
               aria-label="Previous testimonial"
             >
-              <ChevronLeft className="w-5 h-5" />
+              <ChevronLeft className="w-6 h-6" />
             </button>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3">
               {testimonials.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => setIndex(i)}
-                  className={`h-1 rounded-full transition-all ${
+                  className={`h-1.5 rounded-full transition-all ${
                     i === index 
                       ? 'bg-[#2378FF] w-8' 
-                      : 'bg-slate-300 w-1.5 hover:bg-slate-400'
+                      : 'bg-slate-200 w-2 hover:bg-slate-300'
                   }`}
                   aria-label={`Go to testimonial ${i + 1}`}
                 />
@@ -65,10 +78,10 @@ export default function PartnerTestimonials() {
 
             <button
               onClick={next}
-              className="w-10 h-10 rounded-full bg-slate-100 text-slate-600 hover:bg-[#2378FF] hover:text-white transition-all flex items-center justify-center"
+              className="w-12 h-12 rounded-full bg-slate-50 text-slate-600 hover:bg-[#2378FF] hover:text-white transition-all flex items-center justify-center border border-slate-200 hover:border-transparent"
               aria-label="Next testimonial"
             >
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight className="w-6 h-6" />
             </button>
           </div>
         </div>

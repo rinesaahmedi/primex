@@ -139,42 +139,42 @@
   "partners": {
     "testimonials": [
       {
-        "quote": "Primex's AI agent reduced our claim processing time from 90 minutes to under 70 seconds. The efficiency gains are remarkable.",
-        "company": "Furniture Retail Group",
-        "person": "Michael Schneider",
-        "role": "Operations Director",
-        "image": "src/images/client2.webp"
+        "quote": "We went from 90-minute claim cycles to 70 seconds. I’ve spent longer deciding what sandwich to eat for lunch.",
+        "company": "Hidden",
+        "person": "Hidden",
+        "role": "Hidden",
+        "image": ""
       },
       {
-        "quote": "Their deep understanding of the furniture industry combined with cutting-edge AI technology has transformed our operations.",
-        "company": "Home Living Solutions",
-        "person": "Sarah Weber",
-        "role": "Chief Technology Officer",
-        "image": "src/images/client2.webp"
+        "quote": "The AI analyzed the damage photos and closed the ticket before I could even find my reading glasses.",
+        "company": "Hidden",
+        "person": "Hidden",
+        "role": "Hidden",
+        "image": ""
       },
       {
-        "quote": "The AI claims automation system integrates seamlessly with our ERP. We've seen an 80% reduction in operational costs.",
-        "company": "DACH Furniture Partners",
-        "person": "Thomas Müller",
-        "role": "Head of Customer Service",
-        "image": "src/images/client2.webp"
+        "quote": "Finally, an automation tool that actually speaks 'furniture'. It knows a missing screw from a broken leg without asking.",
+        "company": "Hidden",
+        "person": "Hidden",
+        "role": "Hidden",
+        "image": ""
       },
       {
-        "quote": "Primex doesn't just provide technology—they bring 40 years of industry expertise. That combination is invaluable.",
-        "company": "European Retail Network",
-        "person": "Anna Fischer",
-        "role": "VP of Operations",
-        "image": "src/images/client2.webp"
+        "quote": "It connects to our ERP so seamlessly, our IT director actually smiled today. We’re still in shock.",
+        "company": "Hidden",
+        "person": "Hidden",
+        "role": "Hidden",
+        "image": ""
       },
       {
-        "quote": "From product data management to logistics coordination, Primex handles it all with precision and speed.",
-        "company": "Modern Home Brands",
-        "person": "David Hoffmann",
-        "role": "Supply Chain Manager",
-        "image": "src/images/client2.webp"
+        "quote": "We used to dread Monday morning inboxes. Now the PrimEx agent handles the chaos while we drink our coffee.",
+        "company": "Hidden",
+        "person": "Hidden",
+        "role": "Hidden",
+        "image": ""
       }
     ]
-  },
+},
 
   "_comment": "=== CTA & ENGAGEMENT ===",
   "joinBusiness": {

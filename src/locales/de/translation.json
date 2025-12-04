@@ -154,6 +154,45 @@
       }
     ]
   },
+  "partners": {
+    "testimonials": [
+      {
+        "quote": "Wir haben die Bearbeitungszeit von 90 Minuten auf 70 Sekunden reduziert. Ich brauche länger, um mir mein Mittagessen auszusuchen.",
+        "company": "Hidden",
+        "person": "Hidden",
+        "role": "Hidden",
+        "image": ""
+      },
+      {
+        "quote": "Die KI hat die Schadensfotos analysiert und das Ticket geschlossen, noch bevor ich überhaupt meine Lesebrille finden konnte.",
+        "company": "Hidden",
+        "person": "Hidden",
+        "role": "Hidden",
+        "image": ""
+      },
+      {
+        "quote": "Endlich eine Automatisierung, die 'Möbel' versteht. Sie unterscheidet eine fehlende Schraube von einem gebrochenen Stuhlbein, ohne nachzufragen.",
+        "company": "Hidden",
+        "person": "Hidden",
+        "role": "Hidden",
+        "image": ""
+      },
+      {
+        "quote": "Die ERP-Integration lief so reibungslos, dass unser IT-Leiter heute tatsächlich gelächelt hat. Wir stehen immer noch unter Schock.",
+        "company": "Hidden",
+        "person": "Hidden",
+        "role": "Hidden",
+        "image": ""
+      },
+      {
+        "quote": "Früher graute uns vor dem Posteingang am Montagmorgen. Heute erledigt der PrimEx-Agent das Chaos, während wir unseren Kaffee trinken.",
+        "company": "Hidden",
+        "person": "Hidden",
+        "role": "Hidden",
+        "image": ""
+      }
+    ]
+},
 
   "_comment": "=== CTA & ENGAGEMENT ===",
   "joinBusiness": {
