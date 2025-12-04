@@ -9,8 +9,22 @@ const AIAgentsPage = () => {
   const { t } = useTranslation();
   const [sectionRef, isVisible] = useScrollAnimation({ threshold: 0.1 });
 
-  // Generate an array from 1 to 13 to map through your agents
-  const agentIds = Array.from({ length: 13 }, (_, i) => i + 1);
+  // Use slug IDs that match translation keys and AgentTemplate
+  const agentIds = [
+    "order-confirmation",
+    "pdm",
+    "content-generation",
+    "virtual-secretary",
+    "all-in-one",
+    "smm",
+    "crm",
+    "order-processing",
+    "kitchen-order",
+    "edi",
+    "complains",
+    "eudr",
+    "dpp",
+  ];
 
   return (
     <section className="min-h-screen bg-white pt-32 pb-24 md:pt-40 md:pb-32">
@@ -48,32 +62,27 @@ const AIAgentsPage = () => {
 
           {/* AI Agents Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {agentIds.map((id) => {
-              // Construct the key (e.g., "agent1", "agent2") to match your JSON structure
-              const agentKey = `agent${id}`;
-
-              const badge = t(`agents.${agentKey}.badge`, {
-                defaultValue: `Agent ${id}`,
+            {agentIds.map((agentId, index) => {
+              const badge = t(`${agentId}.badge`, {
+                defaultValue: `Agent ${index + 1}`,
               });
-              const title = t(`agents.${agentKey}.title`, {
+              const title = t(`${agentId}.title`, {
                 defaultValue: "Coming Soon",
               });
-              const subtitle = t(`agents.${agentKey}.subtitle`, {
+              const subtitle = t(`${agentId}.subtitle`, {
                 defaultValue: "Loading agent details...",
               });
 
               return (
                 <Link
-                  key={id}
-                  // VITAL: This creates the link "/services/ai-agents/agent1"
-                  // Your AgentTemplate will grab "agent1" from the URL to load the data.
-                  to={`/services/ai-agents/${agentKey}`}
+                  key={agentId}
+                  to={`/services/ai-agents/${agentId}`}
                   className="group flex flex-col justify-between bg-white rounded-2xl p-8 border border-slate-200 hover:border-[#2378FF] hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
                 >
                   <div>
                     <div className="flex items-center justify-between mb-6">
                       <div className="w-10 h-10 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-center text-[#2378FF] font-bold text-lg group-hover:bg-[#2378FF] group-hover:text-white transition-colors duration-300">
-                        {id}
+                        {index + 1}
                       </div>
                     </div>
 

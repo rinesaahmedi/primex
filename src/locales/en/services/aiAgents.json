@@ -1,761 +1,874 @@
-{
-  "serviceDetails": {
-    "aiAgents": {
-      "features": [
-        "Claims automation — Process claims from 90 minutes to 70 seconds",
-        "Product data management — Real-time synchronization across marketplaces",
-        "Logistics coordination — Automated tracking and updates",
-        "Customer service workflows — 24/7 automated support",
-        "ERP integration — Seamless connection with existing systems",
-        "Human-in-the-loop oversight — Quality assurance and compliance"
-      ],
-      "benefits": [
-        "Reduce operational costs by up to 80%",
-        "Process claims 10x faster than manual workflows",
-        "24/7 automated processing without extra headcount",
-        "Built on 40+ years of furniture industry expertise",
-        "Multi-language support (DE/EN and more)",
-        "Compliance with industry standards and SLAs"
-      ],
-      "useCases": [
-        "Furniture retailers processing warranty claims",
-        "E-commerce platforms managing product data",
-        "Logistics companies tracking shipments",
-        "Customer service departments handling inquiries"
-      ]
+ {
+    "backToAgentsLink": "Back to all AI Agents",
+  "order-confirmation": {
+  "badge": "AI Agent for Order Confirmation Checking",
+  "title": "Turn Every Order Confirmation into a Guaranteed Agreement",
+  "subtitle": "Prices, quantities, delivery dates – your AI Agent checks every line of every confirmation and compares it with the original order. No more silent errors, no more hidden losses, no more surprises for your customers.",
+  "metrics": {
+    "processingTime": {
+      "value": "Hours to Seconds",
+      "label": "Confirmation check time"
+    },
+    "efficiency": {
+      "value": "100% Reviewed",
+      "label": "Every document checked"
+    },
+    "accuracy": {
+      "value": "Zero Deviations",
+      "label": "All differences caught"
     }
   },
+  "capabilities": {
+    "title": "What the Order Confirmation Agent Does for You",
+    "items": [
+      "Universal Reading: Reads every incoming order confirmation – whether it arrives as a PDF, email, attachment, or via portal.",
+      "Automated Comparison: Automatically compares the confirmation to the original order in your system, line by line.",
+      "Deviation Detection: Detects deviations in price, quantity, delivery date, item number, and more – even in complex documents.",
+      "Instant Alerts: Immediately alerts the right people so you can react before problems reach production or the customer.",
+      "Audit Trail: Documents each check in an audit-proof way, creating transparency and traceability for every order.",
+      "24/7 Operations: Works 24/7 without breaks, ensuring that even peak loads and late-night confirmations are handled reliably."
+    ]
+  },
+  "useCases": {
+    "title": "Where the Order Confirmation Agent Changes the Game",
+    "cards": [
+      {
+        "title": "Stop costly deviations before they hurt your margin",
+        "body": "A small price change, a missing 50 chairs, an unapproved surcharge – these are easy to miss when teams are under pressure or checking only with Excel. The AI Agent catches these discrepancies automatically, so you don’t discover them weeks later on the invoice or when the customer complains."
+      },
+      {
+        "title": "Stabilize your supply chain and protect your planning",
+        "body": "Postponed deliveries and quietly shifted dates can throw off your entire production schedule. The AI Agent flags every changed delivery date and quantity immediately, giving you real planning security and fewer fire-fighting actions in purchasing, logistics, and production."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Stop the silent thief in your order confirmations",
+    "body": "Unnoticed deviations in order confirmations steal money, time, and nerves every single day. The AI Agent for Order Confirmation Checking brings control and security back into your process – protecting your margins, your supply chain, and your customer relationships automatically.",
+    "primary": "Talk to us about this agent",
+    "secondary": "See how it fits your process"
+  },
+  "visuals": {
+    "label": "Confirmation Audit",
+    "overview": {
+      "title": "Full Control",
+      "description": "Shift from invisible risks to visible data."
+    },
+    "capabilities": {
+      "title": "Review and Decide",
+      "description": "No more manual searching."
+    },
+    "useCases": {
+      "title": "Smart Automation",
+      "description": "Replacing Excel marathons."
+    },
+    "cta": {
+      "title": "Strategic Advantage",
+      "description": "Profit, planning, and satisfaction."
+    }
+  }
+},"pdm": {
+  "badge": "Product Data Management AI Agent",
+  "title": "Transform Chaos into Compliance. Turn Spreadsheets into Sales.",
+  "subtitle": "Liberate your team from Excel Hell. This AI Agent enforces marketplace rules, fixes data errors, and optimizes listings for platforms like Otto and Home24.",
+  "metrics": {
+    "processingTime": {
+      "value": "Instant Validation",
+      "label": "Listing check time"
+    },
+    "efficiency": {
+      "value": "100% Rule Coverage",
+      "label": "Every row checked"
+    },
+    "accuracy": {
+      "value": "Fewer Rejections",
+      "label": "High compliance accuracy"
+    }
+  },
+  "capabilities": {
+    "title": "What This Agent Does For You",
+    "items": [
+      "Flawless Naming Conventions: Enforces 'Product Type + Name + Variation' and limits characters while removing banned words.",
+      "Material & Color Accuracy: Lists base materials first, appends 'Dekor' for wood decor colors, and identifies glossy finishes.",
+      "Optimized Bullet Points: Generates a strict 5-bullet structure covering dimensions, versatility, materials, features, and care.",
+      "Technical & Visual Compliance: Detects low-res sketches, enforces measurement formatting (W × H × D cm), and validates files.",
+      "Variation Management: Groups parent and child items correctly and prevents prices or stock from being placed on the parent."
+    ]
+  },
+  "useCases": {
+    "title": "Where the Product Data Management Agent Helps",
+    "cards": [
+      {
+        "title": "Stop Excel Hell and rejected uploads",
+        "body": "Automatically detect forbidden words, format issues, and validation errors before you upload — saving time and avoiding rejections."
+      },
+      {
+        "title": "Get to market faster",
+        "body": "Accelerate listing creation by applying marketplace rules automatically and ensuring every listing is ready for upload on the first try."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Ready to Optimize Your Listings?",
+    "body": "Stop worrying about broken macros and rejected listings. Let the Product Data Management AI Agent handle the details so your team focuses on growth.",
+    "primary": "Start Using This Agent",
+    "secondary": "Talk to Sales"
+  },
+  "visuals": {
+    "label": "Data Manager",
+    "overview": {
+      "title": "Precision at Scale",
+      "description": "First-time pass validation."
+    },
+    "capabilities": {
+      "title": "Before & After",
+      "description": "From naming to variation control."
+    },
+    "useCases": {
+      "title": "Faster Launches",
+      "description": "Replacing Excel Hell."
+    },
+    "cta": {
+      "title": "Turn Data into Sales",
+      "description": "Revenue-focused operations."
+    }
+  }
+},
+    "content-generation": {
+  "badge": "Content & Listing AI Agent",
+  "title": "Unlimited, Marketplace-Ready Content in Minutes.",
+  "subtitle": "Good content sells – but writing it is slow. Every marketplace has strict rules for titles and bullets. This Agent creates optimized, compliant content for all your products in minutes instead of weeks.",
+  "metrics": {
+    "processingTime": {
+      "value": "Minutes vs Weeks",
+      "label": "Time to market"
+    },
+    "efficiency": {
+      "value": "Zero Rejections",
+      "label": "Strict rule adherence"
+    },
+    "accuracy": {
+      "value": "SEO Optimized",
+      "label": "Higher search rankings"
+    }
+  },
+  "capabilities": {
+    "title": "What This Agent Does",
+    "items": [
+      "Creates optimized titles, bullet points, and product descriptions for each marketplace.",
+      "Adapts wording and structure to platform rules (length, no promo words, etc.).",
+      "Generates SEO-friendly texts that are clear and easy to read.",
+      "Reuses templates so similar products get consistent content.",
+      "Creates content in multiple languages automatically."
+    ]
+  },
+  "useCases": {
+    "title": "Key Benefits",
+    "cards": [
+      {
+        "title": "Speed to Market",
+        "body": "New products go live in hours, not weeks. Teams focus on assortment and strategy instead of copy-pasting bullet points."
+      },
+      {
+        "title": "More Visibility, More Sales",
+        "body": "Algorithm-friendly text ensures higher rankings, while lower rejection risks keep your account safe and your listings active."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Unlimited, marketplace-ready content",
+    "body": "You provide base data (attributes, materials, dimensions) – the Agent writes and adapts all content blocks for each sales channel automatically.",
+    "primary": "Start Generating",
+    "secondary": "See Samples"
+  },
+  "visuals": {
+    "label": "Content AI",
+    "overview": {
+      "title": "Content Engine",
+      "description": "From attributes to description."
+    },
+    "capabilities": {
+      "title": "Platform Adapters",
+      "description": "Optimizing for every channel."
+    },
+    "useCases": {
+      "title": "Global Reach",
+      "description": "Multi-language generation."
+    },
+    "cta": {
+      "title": "Scale Assortment",
+      "description": "Launch faster."
+    }
+  }
+},
+    "virtual-secretary": {
+  "badge": "Virtual Secretary AI Agent",
+  "title": "Your Never-Tired Digital Assistant.",
+  "subtitle": "Phones ring, emails pile up, and customers expect instant answers. This Agent answers, sorts, and forwards requests before anyone in the office arrives, ensuring no opportunity is missed.",
+  "metrics": {
+    "processingTime": {
+      "value": "Instant Reply",
+      "label": "Response time"
+    },
+    "efficiency": {
+      "value": "24/7/365",
+      "label": "Always online"
+    },
+    "accuracy": {
+      "value": "Zero Missed Calls",
+      "label": "Every lead captured"
+    }
+  },
+  "capabilities": {
+    "title": "What This Agent Does",
+    "items": [
+      "Answers calls and messages, collects key information, and routes them to the right person.",
+      "Books and confirms appointments, and sends automatic reminders.",
+      "Creates summaries of calls and emails directly in your CRM or ERP.",
+      "Handles routine questions automatically; forwards special cases to staff.",
+      "Works in multiple languages."
+    ]
+  },
+  "useCases": {
+    "title": "Key Benefits",
+    "cards": [
+      {
+        "title": "No more missed customers",
+        "body": "Unanswered calls and late replies mean lost trust. This Agent ensures professional, consistent communication in every contact, day or night."
+      },
+      {
+        "title": "Order instead of chaos",
+        "body": "Employees get pre-sorted, pre-qualified requests. This results in clear calendars, fewer coordination emails, and zero workflow interruptions."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Hire your digital secretary",
+    "body": "The Agent connects to your phone, email, and calendar tools and follows your rules on who should receive what. Works without vacation or sick days.",
+    "primary": "Book a Demo",
+    "secondary": "Contact Team"
+  },
+  "visuals": {
+    "label": "Reception AI",
+    "overview": {
+      "title": "Communication Hub",
+      "description": "Managing calls and emails."
+    },
+    "capabilities": {
+      "title": "Smart Routing",
+      "description": "Directing calls to staff."
+    },
+    "useCases": {
+      "title": "Calendar Sync",
+      "description": "Booking appointments automatically."
+    },
+    "cta": {
+      "title": "Get Started",
+      "description": "Activate your assistant."
+    }
+  }
+},
+   "all-in-one": {
+  "badge": "All-in-One AI Assistant",
+  "title": "One Central AI Brain for Your Business.",
+  "subtitle": "Knowledge is spread across ERP, CRM, email, and people’s heads. When someone leaves or is sick, processes slow down. This Agent connects all your systems to become the central brain that answers questions and guides every team.",
+  "metrics": {
+    "processingTime": {
+      "value": "Instant Answers",
+      "label": "Search time"
+    },
+    "efficiency": {
+      "value": "100% Connected",
+      "label": "ERP, CRM & Email"
+    },
+    "accuracy": {
+      "value": "Full Context",
+      "label": "High quality decisions"
+    }
+  },
+  "capabilities": {
+    "title": "What This Agent Does",
+    "items": [
+      "Connects to ERP, CRM, email, shared folders, and knowledge bases.",
+      "Answers internal questions (e.g., 'Where is this order?', 'What is our rule for…?').",
+      "Creates drafts for emails, offers, protocols, and reports.",
+      "Suggests next steps in processes and reminds teams of open tasks.",
+      "Stores and shares know-how so it never leaves the company."
+    ]
+  },
+  "useCases": {
+    "title": "Key Benefits",
+    "cards": [
+      {
+        "title": "Faster Onboarding",
+        "body": "New colleagues usually need months to learn. With this Agent, they have an instant expert to ask, significantly reducing training time and errors."
+      },
+      {
+        "title": "Stable Processes",
+        "body": "Processes often slow down when staff is sick or leaves. This Agent ensures consistent workflows and high-quality decisions regardless of staff fluctuation."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Less searching, more doing",
+    "body": "The Agent becomes the first place to ask: employees write or speak their question, and it uses company data to answer and act immediately.",
+    "primary": "Book a Demo",
+    "secondary": "Contact Team"
+  },
+  "visuals": {
+    "label": "Company Brain",
+    "overview": {
+      "title": "Knowledge Graph",
+      "description": "Connecting all your systems."
+    },
+    "capabilities": {
+      "title": "Q&A Interface",
+      "description": "Staff asking complex questions."
+    },
+    "useCases": {
+      "title": "Process Guide",
+      "description": "Step-by-step assistance."
+    },
+    "cta": {
+      "title": "Connect Now",
+      "description": "Integrate your data."
+    }
+  }
+},
+   "smm": {
+  "badge": "Social Media Management AI Agent",
+  "title": "Stay Visible and Responsive on Every Channel.",
+  "subtitle": "Customers ask questions via Instagram, Facebook, TikTok, and WhatsApp. Posts must be regular. This Agent plans content and answers instantly without needing a full social media team.",
+  "metrics": {
+    "processingTime": {
+      "value": "Real-time Replies",
+      "label": "Instant response"
+    },
+    "efficiency": {
+      "value": "Auto-Posting",
+      "label": "All major platforms"
+    },
+    "accuracy": {
+      "value": "Unified Voice",
+      "label": "Consistent branding"
+    }
+  },
+  "capabilities": {
+    "title": "What This Agent Does",
+    "items": [
+      "Plans, writes, and schedules posts across all major platforms.",
+      "Answers standard customer questions automatically (delivery time, stock, info).",
+      "Routes complex requests to the right team (sales, service, logistics).",
+      "Tags and forwards hot leads from comments directly into the CRM.",
+      "Monitors reactions and identifies trending topics."
+    ]
+  },
+  "useCases": {
+    "title": "Key Benefits",
+    "cards": [
+      {
+        "title": "Active and Modern Brand Presence",
+        "body": "Your brand looks active and close to the customer. Consistent activity makes you look modern without the manual workload."
+      },
+      {
+        "title": "Turn Comments into Sales",
+        "body": "Faster replies build trust. The Agent captures hot leads immediately, ensuring no sales opportunity is lost in the comments section."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Unified tone of voice across all channels",
+    "body": "Connect your social accounts; the Agent uses agreed content guidelines and workflows to post and respond automatically.",
+    "primary": "Book a Demo",
+    "secondary": "Contact Team"
+  },
+  "visuals": {
+    "label": "Social Hub",
+    "overview": {
+      "title": "Multi-Channel Feed",
+      "description": "All comments in one place."
+    },
+    "capabilities": {
+      "title": "Auto-Reply",
+      "description": "Answering FAQs instantly."
+    },
+    "useCases": {
+      "title": "Lead Capture",
+      "description": "Sending leads to CRM."
+    },
+    "cta": {
+      "title": "Go Live",
+      "description": "Start engaging."
+    }
+  }
+},
+   "crm": {
+  "badge": "CRM Integration AI Agent",
+  "title": "Every Customer Contact in One Place.",
+  "subtitle": "Customer data is scattered across email, phone notes, and Excel. Sales teams often miss the full history. This Agent ensures every lead is captured and synced, so no opportunity is ever lost.",
+  "metrics": {
+    "processingTime": {
+      "value": "Live Sync",
+      "label": "Update speed"
+    },
+    "efficiency": {
+      "value": "360° View",
+      "label": "Complete history"
+    },
+    "accuracy": {
+      "value": "Zero Lost Leads",
+      "label": "Automated capture"
+    }
+  },
+  "capabilities": {
+    "title": "What This Agent Does",
+    "items": [
+      "Reads emails, forms, chat messages, and social media conversations.",
+      "Creates and updates contacts, tickets, and opportunities in your CRM automatically.",
+      "Connects CRM with ERP so customer, order, and service data match.",
+      "Flags urgent cases and assigns them to the right person.",
+      "Gives a 360° view of each customer in seconds."
+    ]
+  },
+  "useCases": {
+    "title": "Key Benefits",
+    "cards": [
+      {
+        "title": "No more double work",
+        "body": "Eliminate manual data entry. With complete customer history, everyone sees the same picture, ending the chaos of scattered notes."
+      },
+      {
+        "title": "Better Service, Better Data",
+        "body": "Faster responses and higher satisfaction. Plus, get reliable reporting and forecasting based on perfect, real-time data."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Stop losing leads",
+    "body": "The Agent sits between your communication channels and CRM, continuously listening, matching, and updating records automatically.",
+    "primary": "Book a Demo",
+    "secondary": "Contact Team"
+  },
+  "visuals": {
+    "label": "CRM Sync",
+    "overview": {
+      "title": "Data Pipeline",
+      "description": "Feeding data to Salesforce/HubSpot."
+    },
+    "capabilities": {
+      "title": "Auto-Entry",
+      "description": "Populating contact fields."
+    },
+    "useCases": {
+      "title": "Customer History",
+      "description": "A full timeline of interactions."
+    },
+    "cta": {
+      "title": "Integrate",
+      "description": "Connect your CRM."
+    }
+  }
+},
 
-  "agents": {
-    "backToAgentsLink": "Back to all AI Agents",
-    "agent1": {
-      "badge": "Product Data Management",
-      "title": "Clean Data, Everywhere.",
-      "subtitle": "Selling online is hard when data is messy. We automate the cleaning, standardizing, and syncing of attributes across all your marketplaces so you stop fixing Excel sheets and start selling.",
-      "metrics": {
-        "processingTime": { "value": "Real-time", "label": "Sync Speed" },
-        "efficiency": { "value": "-80%", "label": "Manual Work" },
-        "accuracy": { "value": "100%", "label": "Compliance" }
-      },
-      "capabilities": {
-        "title": "What this Agent does",
-        "items": [
-          "Reads data from ERP, PIM, Excel, and supplier templates.",
-          "Cleans and standardizes titles, attributes, and materials.",
-          "Checks fields against rules (Amazon, OTTO, Kaufland, etc.).",
-          "Fills missing info and flags critical gaps.",
-          "Synchronizes updated data back into your systems."
-        ]
-      },
-      "useCases": {
-        "title": "Key Benefits",
-        "cards": [
-          {
-            "title": "Zero Blocked Listings",
-            "body": "Fewer invisible products. Ensure every item meets marketplace requirements before upload."
-          },
-          {
-            "title": "Higher Conversion",
-            "body": "Consistent, complete product attributes lead to better search ranking and customer trust."
-          }
-        ]
-      },
-      "cta": {
-        "title": "Ready to fix your data?",
-        "body": "Stop wasting weeks in Excel. Let AI handle the quality checks.",
-        "primary": "Book a Demo",
-        "secondary": "Contact Team"
-      },
-      "visuals": {
-        "label": "Data Manager",
-        "overview": {
-          "title": "Central Dashboard",
-          "description": "All your product data in one view."
-        },
-        "capabilities": {
-          "title": "Auto-Correction",
-          "description": "Fixing attributes automatically."
-        },
-        "useCases": {
-          "title": "Marketplace Sync",
-          "description": "Live status across all channels."
-        },
-        "cta": {
-          "title": "Get Started",
-          "description": "Connect your ERP today."
-        }
-      }
+    "order-processing": {
+  "badge": "AI Agent for Order Processing",
+  "title": "From Incoming Order to Clean ERP Entry.",
+  "subtitle": "Orders arrive as PDFs, Excel files, or emails. Manual entry is slow and error-prone. This Agent validates and enters every order into your ERP instantly, no matter the format.",
+  "metrics": {
+    "processingTime": {
+      "value": "Seconds vs Hours",
+      "label": "Processing speed"
     },
-    "agent2": {
-      "badge": "Content & Listing",
-      "title": "Marketplace Content in Minutes.",
-      "subtitle": "Good content sells, but writing it is slow. Create optimized titles, bullet points, and descriptions for every marketplace instantly, without risking rejection or low rankings.",
-      "metrics": {
-        "processingTime": { "value": "< 2 min", "label": "Per SKU" },
-        "efficiency": { "value": "Multi", "label": "Language" },
-        "accuracy": { "value": "SEO", "label": "Optimized" }
-      },
-      "capabilities": {
-        "title": "What this Agent does",
-        "items": [
-          "Creates optimized titles and descriptions for each marketplace.",
-          "Adapts wording to platform rules (length, forbidden words).",
-          "Generates SEO-friendly text for better ranking.",
-          "Reuses templates for consistent brand voice.",
-          "Creates content in multiple languages automatically."
-        ]
-      },
-      "useCases": {
-        "title": "Key Benefits",
-        "cards": [
-          {
-            "title": "Speed to Market",
-            "body": "New products go live in hours, not weeks. Teams focus on strategy, not copy-pasting."
-          },
-          {
-            "title": "Increased Visibility",
-            "body": "More clicks and sales thanks to keyword-rich, algorithm-friendly text."
-          }
-        ]
-      },
-      "cta": {
-        "title": "Scale your content",
-        "body": "Unlimited, marketplace-ready content for all your products.",
-        "primary": "Start Generating",
-        "secondary": "See Samples"
-      },
-      "visuals": {
-        "label": "Content AI",
-        "overview": {
-          "title": "Listing Creator",
-          "description": "Generating text for Amazon & eBay."
-        },
-        "capabilities": {
-          "title": "SEO Optimization",
-          "description": "Inserting high-value keywords."
-        },
-        "useCases": {
-          "title": "Multi-Language",
-          "description": "Translating listings instantly."
-        },
-        "cta": { "title": "Launch Now", "description": "Push to marketplaces." }
-      }
+    "efficiency": {
+      "value": "90% Less Effort",
+      "label": "Manual work reduced"
     },
-    "agent3": {
-      "badge": "Virtual Secretary",
-      "title": "The Assistant That Never Sleeps.",
-      "subtitle": "Phones ring and emails pile up. Ensure no customer is ignored. Your digital assistant answers, sorts, and forwards requests 24/7/365.",
-      "metrics": {
-        "processingTime": { "value": "Instant", "label": "Reply" },
-        "efficiency": { "value": "24/7", "label": "Availability" },
-        "accuracy": { "value": "100%", "label": "Capture" }
+    "accuracy": {
+      "value": "Zero Errors",
+      "label": "EDI 2.0 Standard"
+    }
+  },
+  "capabilities": {
+    "title": "What This Agent Does",
+    "items": [
+      "Reads every incoming order, no matter the format or channel.",
+      "Transforms all data automatically into a structured, standardised format (EDI 2.0 ready).",
+      "Checks if data is complete and correct; asks for missing information within 30 seconds.",
+      "Writes the validated order directly into your ERP.",
+      "Works 24/7, even at peak times and weekends."
+    ]
+  },
+  "useCases": {
+    "title": "Key Benefits",
+    "cards": [
+      {
+        "title": "Faster Delivery",
+        "body": "Orders are processed immediately, leading to earlier shipping times."
       },
-      "capabilities": {
-        "title": "What this Agent does",
-        "items": [
-          "Answers calls/messages and routes them to the right person.",
-          "Books and confirms appointments automatically.",
-          "Creates call summaries directly in CRM or ERP.",
-          "Handles routine questions without human input.",
-          "Works in multiple languages."
-        ]
-      },
-      "useCases": {
-        "title": "Key Benefits",
-        "cards": [
-          {
-            "title": "Zero Missed Leads",
-            "body": "No more 'missed call = missed customer.' Capture every opportunity."
-          },
-          {
-            "title": " Organized Workflow",
-            "body": "Employees get pre-sorted, pre-qualified requests instead of chaos."
-          }
-        ]
-      },
-      "cta": {
-        "title": "Hire your digital secretary",
-        "body": "Professional communication in every contact, day or night.",
-        "primary": "Book a Demo",
-        "secondary": "Contact Team"
-      },
-      "visuals": {
-        "label": "Reception AI",
-        "overview": {
-          "title": "Communication Hub",
-          "description": "Managing calls and emails."
-        },
-        "capabilities": {
-          "title": "Smart Routing",
-          "description": "Directing calls to staff."
-        },
-        "useCases": {
-          "title": "Calendar Sync",
-          "description": "Booking appointments automatically."
-        },
-        "cta": {
-          "title": "Get Started",
-          "description": "Activate your assistant."
-        }
+      {
+        "title": "Stop Typing Errors",
+        "body": "Eliminate manual data entry mistakes, drastically reducing returns and costly clarifications."
       }
+    ]
+  },
+  "cta": {
+    "title": "Automate your order entry",
+    "body": "You forward all order channels to the Agent; it extracts, validates, and imports orders automatically. No order is lost; everything is traceable.",
+    "primary": "Book a Demo",
+    "secondary": "Contact Team"
+  },
+  "visuals": {
+    "label": "Order Bot",
+    "overview": {
+      "title": "Order Stream",
+      "description": "Incoming PDFs converting to data."
     },
-    "agent4": {
-      "badge": "All-in-One Assistant",
-      "title": "One Brain for Your Business.",
-      "subtitle": "Knowledge is often hidden in heads or silos. This agent connects to your ERP, CRM, and files to become the central brain that answers questions and guides every team.",
-      "metrics": {
-        "processingTime": { "value": "< 5s", "label": "Search" },
-        "efficiency": { "value": "Unified", "label": "Knowledge" },
-        "accuracy": { "value": "Context", "label": "Aware" }
-      },
-      "capabilities": {
-        "title": "What this Agent does",
-        "items": [
-          "Connects to ERP, CRM, email, and knowledge bases.",
-          "Answers internal questions (e.g., 'Where is this order?').",
-          "Drafts emails, offers, protocols, and reports.",
-          "Suggests next steps and reminds teams of tasks.",
-          "Stores know-how so it never leaves the company."
-        ]
-      },
-      "useCases": {
-        "title": "Key Benefits",
-        "cards": [
-          {
-            "title": "Faster Onboarding",
-            "body": "New employees have an instant expert to ask, reducing training time."
-          },
-          {
-            "title": "Stable Processes",
-            "body": "High-quality decisions and consistent workflows, even when staff is away."
-          }
-        ]
-      },
-      "cta": {
-        "title": "Centralize your knowledge",
-        "body": "Less searching, more doing. Empower your team today.",
-        "primary": "Book a Demo",
-        "secondary": "Contact Team"
-      },
-      "visuals": {
-        "label": "Company Brain",
-        "overview": {
-          "title": "Knowledge Graph",
-          "description": "Connecting all your systems."
-        },
-        "capabilities": {
-          "title": "Q&A Interface",
-          "description": "Staff asking complex questions."
-        },
-        "useCases": {
-          "title": "Process Guide",
-          "description": "Step-by-step assistance."
-        },
-        "cta": { "title": "Connect Now", "description": "Integrate your data." }
-      }
+    "capabilities": {
+      "title": "Validation",
+      "description": "Checking stock and prices."
     },
-    "agent5": {
-      "badge": "Social Media Management",
-      "title": "Be Everywhere, Instantly.",
-      "subtitle": "Customers expect instant answers on Instagram and WhatsApp. Stay visible and responsive on every channel without needing a massive social media team.",
-      "metrics": {
-        "processingTime": { "value": "Real-time", "label": "Replies" },
-        "efficiency": { "value": "Auto", "label": "Posting" },
-        "accuracy": { "value": "Brand", "label": "Voice" }
-      },
-      "capabilities": {
-        "title": "What this Agent does",
-        "items": [
-          "Plans, writes, and schedules posts across platforms.",
-          "Answers standard questions (stock, delivery) automatically.",
-          "Routes complex requests to sales or service teams.",
-          "Tags and forwards hot leads into the CRM.",
-          "Monitors reactions and trending topics."
-        ]
-      },
-      "useCases": {
-        "title": "Key Benefits",
-        "cards": [
-          {
-            "title": "Active Presence",
-            "body": "Your brand looks modern and close to the customer with consistent activity."
-          },
-          {
-            "title": "Lead Gen",
-            "body": "Faster replies mean more trust, turning comments into sales."
-          }
-        ]
-      },
-      "cta": {
-        "title": "Boost your social reach",
-        "body": "One unified tone of voice across all channels.",
-        "primary": "Book a Demo",
-        "secondary": "Contact Team"
-      },
-      "visuals": {
-        "label": "Social Hub",
-        "overview": {
-          "title": "Multi-Channel Feed",
-          "description": "All comments in one place."
-        },
-        "capabilities": {
-          "title": "Auto-Reply",
-          "description": "Answering FAQs instantly."
-        },
-        "useCases": {
-          "title": "Lead Capture",
-          "description": "Sending leads to CRM."
-        },
-        "cta": { "title": "Go Live", "description": "Start engaging." }
-      }
+    "useCases": {
+      "title": "ERP Entry",
+      "description": "Creating sales orders automatically."
     },
-    "agent6": {
-      "badge": "CRM Integration",
-      "title": "Every Contact, One Place.",
-      "subtitle": "Customer data is often scattered. We ensure every lead, email, and chat is synced to your CRM, giving your sales team a complete history.",
-      "metrics": {
-        "processingTime": { "value": "Sync", "label": "Live" },
-        "efficiency": { "value": "360°", "label": "View" },
-        "accuracy": { "value": "Zero", "label": "Loss" }
-      },
-      "capabilities": {
-        "title": "What this Agent does",
-        "items": [
-          "Reads emails, forms, chats, and social messages.",
-          "Creates/updates CRM contacts and tickets automatically.",
-          "Connects CRM with ERP for unified data.",
-          "Flags urgent cases for immediate assignment.",
-          "Gives a 360° view of each customer."
-        ]
-      },
-      "useCases": {
-        "title": "Key Benefits",
-        "cards": [
-          {
-            "title": "No Double Work",
-            "body": "Eliminate manual data entry and ensure everyone sees the same picture."
-          },
-          {
-            "title": "Better Service",
-            "body": "Faster responses and higher satisfaction thanks to complete history."
-          }
-        ]
-      },
-      "cta": {
-        "title": "Stop losing leads",
-        "body": "Get reliable reporting and forecasting with perfect data.",
-        "primary": "Book a Demo",
-        "secondary": "Contact Team"
-      },
-      "visuals": {
-        "label": "CRM Sync",
-        "overview": {
-          "title": "Data Pipeline",
-          "description": "Feeding data to Salesforce/HubSpot."
-        },
-        "capabilities": {
-          "title": "Auto-Entry",
-          "description": "Populating contact fields."
-        },
-        "useCases": {
-          "title": "Customer History",
-          "description": "A full timeline of interactions."
-        },
-        "cta": { "title": "Integrate", "description": "Connect your CRM." }
-      }
+    "cta": {
+      "title": "Start Now",
+      "description": "Process orders faster."
+    }
+  }
+},
+    "kitchen-order": {
+  "badge": "Kitchen Order Confirmation AI Agent",
+  "title": "Makes Complex Kitchen Orders Safe.",
+  "subtitle": "Kitchen orders are highly complex. A single wrong front can ruin the project. This Agent verifies every cabinet, front, and handle against the original plan to ensure what you ordered is what you get.",
+  "metrics": {
+    "processingTime": {
+      "value": "Instant Check",
+      "label": "Complex plans"
     },
-    "agent7": {
-      "badge": "Order Processing",
-      "title": "Order to ERP in Seconds.",
-      "subtitle": "Stop typing orders manually. Whether it's a messy PDF, an Excel file, or a WhatsApp message, this agent validates and enters it into your ERP instantly.",
-      "metrics": {
-        "processingTime": { "value": "30s", "label": "Per Order" },
-        "efficiency": { "value": "-90%", "label": "Manual Work" },
-        "accuracy": { "value": "EDI 2.0", "label": "Standard" }
-      },
-      "capabilities": {
-        "title": "What this Agent does",
-        "items": [
-          "Reads incoming orders from any format (PDF, Excel, Email).",
-          "Transforms data into structured EDI 2.0 format.",
-          "Checks completeness; asks for missing info automatically.",
-          "Writes validated orders directly into ERP.",
-          "Works 24/7, even during peaks."
-        ]
-      },
-      "useCases": {
-        "title": "Key Benefits",
-        "cards": [
-          {
-            "title": "Faster Delivery",
-            "body": "Orders are processed immediately, leading to earlier shipping times."
-          },
-          {
-            "title": "Error Reduction",
-            "body": "Far fewer typing mistakes, returns, and clarifications."
-          }
-        ]
-      },
-      "cta": {
-        "title": "Automate your order entry",
-        "body": "No order is lost; everything is traceable.",
-        "primary": "Book a Demo",
-        "secondary": "Contact Team"
-      },
-      "visuals": {
-        "label": "Order Bot",
-        "overview": {
-          "title": "Order Stream",
-          "description": "Incoming PDFs converting to data."
-        },
-        "capabilities": {
-          "title": "Validation",
-          "description": "Checking stock and prices."
-        },
-        "useCases": {
-          "title": "ERP Entry",
-          "description": "Creating sales orders automatically."
-        },
-        "cta": { "title": "Start Now", "description": "Process orders faster." }
-      }
+    "efficiency": {
+      "value": "100% Detail",
+      "label": "Every part checked"
     },
-    "agent8": {
-      "badge": "Order Confirmation Checking",
-      "title": "Stop Hidden Price Errors.",
-      "subtitle": "Suppliers often change prices or dates without warning. This agent compares every confirmation against your order to catch errors before they cost you money.",
-      "metrics": {
-        "processingTime": { "value": "Instant", "label": "Check" },
-        "efficiency": { "value": "100%", "label": "Coverage" },
-        "accuracy": { "value": "High", "label": "Precision" }
+    "accuracy": {
+      "value": "Zero Rework",
+      "label": "Perfect delivery"
+    }
+  },
+  "capabilities": {
+    "title": "What This Agent Does",
+    "items": [
+      "Reads detailed kitchen order confirmations with all positions and options.",
+      "Compares against the original plan and order (articles, sets, measurements, colours).",
+      "Highlights every deviation – even small ones – for quick review.",
+      "Differentiates between acceptable changes and critical errors.",
+      "Creates a clean summary for sales, production, and logistics."
+    ]
+  },
+  "useCases": {
+    "title": "Key Benefits",
+    "cards": [
+      {
+        "title": "Perfect Deliveries",
+        "body": "Drastically fewer wrong or incomplete deliveries mean less rework, fewer on-site corrections, and zero complaints."
       },
-      "capabilities": {
-        "title": "What this Agent does",
-        "items": [
-          "Reads order confirmations from email, PDF, and portals.",
-          "Compares them line-by-line with the ERP purchase order.",
-          "Detects deviations in price, quantity, or date.",
-          "Alerts buyers to critical changes immediately.",
-          "Documents every case for audits."
-        ]
-      },
-      "useCases": {
-        "title": "Key Benefits",
-        "cards": [
-          {
-            "title": "Margin Protection",
-            "body": "No more 'silent' price increases eating into your profits."
-          },
-          {
-            "title": "Production Safety",
-            "body": "Higher planning security for logistics and production teams."
-          }
-        ]
-      },
-      "cta": {
-        "title": "Secure your supply chain",
-        "body": "Fewer complaints and returns because problems are solved early.",
-        "primary": "Book a Demo",
-        "secondary": "Contact Team"
-      },
-      "visuals": {
-        "label": "Audit AI",
-        "overview": {
-          "title": "Comparison View",
-          "description": "PO vs. Confirmation side-by-side."
-        },
-        "capabilities": {
-          "title": "Deviation Alert",
-          "description": "Highlighting price changes."
-        },
-        "useCases": {
-          "title": "Approval Flow",
-          "description": "Buyer accepting/rejecting changes."
-        },
-        "cta": {
-          "title": "Protect Margins",
-          "description": "Start checking automatically."
-        }
+      {
+        "title": "Reliability & Trust",
+        "body": "Sales teams can promise reliability and keep it, building higher trust with kitchen studios and end customers."
       }
+    ]
+  },
+  "cta": {
+    "title": "Your second set of eyes",
+    "body": "The Agent becomes your second set of eyes for every kitchen confirmation, checking all details before production starts.",
+    "primary": "Book a Demo",
+    "secondary": "Contact Team"
+  },
+  "visuals": {
+    "label": "Kitchen AI",
+    "overview": {
+      "title": "Project Scan",
+      "description": "Analyzing complex BOMs."
     },
-    "agent9": {
-      "badge": "Kitchen Order Confirmation",
-      "title": "Flawless Complex Orders.",
-      "subtitle": "Kitchen orders are complex. One wrong cabinet front ruins the project. We verify every position, measurement, and color code to ensure what you ordered is what you get.",
-      "metrics": {
-        "processingTime": { "value": "Fast", "label": "Review" },
-        "efficiency": { "value": "Detail", "label": "Oriented" },
-        "accuracy": { "value": "Zero", "label": "Errors" }
-      },
-      "capabilities": {
-        "title": "What this Agent does",
-        "items": [
-          "Reads detailed kitchen confirmations (positions, options).",
-          "Compares against original plan (articles, measurements).",
-          "Highlights even small deviations for review.",
-          "Differentiates acceptable changes from critical errors.",
-          "Creates a clean summary for sales/production."
-        ]
-      },
-      "useCases": {
-        "title": "Key Benefits",
-        "cards": [
-          {
-            "title": "Perfect Deliveries",
-            "body": "Drastically fewer wrong or incomplete kitchen deliveries."
-          },
-          {
-            "title": "Trust Building",
-            "body": "Higher trust from kitchen studios and end customers."
-          }
-        ]
-      },
-      "cta": {
-        "title": "Eliminate costly returns",
-        "body": "Sales teams can promise reliability – and keep it.",
-        "primary": "Book a Demo",
-        "secondary": "Contact Team"
-      },
-      "visuals": {
-        "label": "Kitchen AI",
-        "overview": {
-          "title": "Project Scan",
-          "description": "Analyzing complex BOMs."
-        },
-        "capabilities": {
-          "title": "Error Spotting",
-          "description": "Flagging wrong dimensions."
-        },
-        "useCases": {
-          "title": "Logistics Sync",
-          "description": "Confirming delivery dates."
-        },
-        "cta": {
-          "title": "Ensure Quality",
-          "description": "Verify your orders."
-        }
-      }
+    "capabilities": {
+      "title": "Error Spotting",
+      "description": "Flagging wrong dimensions."
     },
-    "agent10": {
-      "badge": "EDI 2.0",
-      "title": "Automated B2B Transactions.",
-      "subtitle": "Classic EDI breaks easily. Our EDI 2.0 Agent handles messy documents and format changes automatically, keeping your partner transactions flowing without manual fixes.",
-      "metrics": {
-        "processingTime": { "value": "Live", "label": "Transaction" },
-        "efficiency": { "value": "Auto", "label": "Repair" },
-        "accuracy": { "value": "100%", "label": "Uptime" }
-      },
-      "capabilities": {
-        "title": "What this Agent does",
-        "items": [
-          "Accepts documents in any format (PDF, Excel, CSV, Portal).",
-          "Converts everything to clean EDI 2.0 structure.",
-          "Detects inconsistent data and requests corrections.",
-          "Integrates with SAP, Dynamics, and other ERPs.",
-          "Keeps processes running even with imperfect data."
-        ]
-      },
-      "useCases": {
-        "title": "Key Benefits",
-        "cards": [
-          {
-            "title": "No Firefighting",
-            "body": "End-to-end digital processes without manual intervention."
-          },
-          {
-            "title": "Scalability",
-            "body": "Stable automation even with many different partners and templates."
-          }
-        ]
-      },
-      "cta": {
-        "title": "Upgrade to EDI 2.0",
-        "body": "Fewer process errors, fewer delays, higher throughput.",
-        "primary": "Book a Demo",
-        "secondary": "Contact Team"
-      },
-      "visuals": {
-        "label": "EDI Core",
-        "overview": {
-          "title": "Connection Map",
-          "description": "Linking suppliers and buyers."
-        },
-        "capabilities": {
-          "title": "Data Translation",
-          "description": "PDF to XML conversion."
-        },
-        "useCases": {
-          "title": "Error Handling",
-          "description": "Auto-fixing missing fields."
-        },
-        "cta": { "title": "Connect Partners", "description": "Streamline B2B." }
-      }
+    "useCases": {
+      "title": "Logistics Sync",
+      "description": "Confirming delivery dates."
     },
-    "agent11": {
-      "badge": "Complaints Handling",
-      "title": "Resolve Complaints in 70s.",
-      "subtitle": "Handling complaints is slow and expensive. Our agent reads emails, checks photos, verifies ERP data, and processes the claim—turning angry customers into happy ones in under 2 minutes.",
-      "metrics": {
-        "processingTime": { "value": "70s", "label": "Resolution" },
-        "efficiency": { "value": "-90%", "label": "Cost" },
-        "accuracy": { "value": "Legal", "label": "Compliant" }
-      },
-      "capabilities": {
-        "title": "What this Agent does",
-        "items": [
-          "Monitors inboxes and picks up cases instantly.",
-          "Extracts data (customer, order, reason) from emails/PDFs.",
-          "Analyzes photos to detect damage type.",
-          "Checks assembly instructions and ERP to verify parts.",
-          "Triggers replacement orders and confirms to customer."
-        ]
-      },
-      "useCases": {
-        "title": "Key Benefits",
-        "cards": [
-          {
-            "title": "Customer Delight",
-            "body": "Customers are satisfied in under 2 minutes – 'Faster than Amazon'."
-          },
-          {
-            "title": "Cost Savings",
-            "body": "Up to 90% lower process costs and fully documented cases."
-          }
-        ]
-      },
-      "cta": {
-        "title": "Speed up your service",
-        "body": "Fewer escalations, fewer returns, and better reviews.",
-        "primary": "Book a Demo",
-        "secondary": "Contact Team"
-      },
-      "visuals": {
-        "label": "Service AI",
-        "overview": {
-          "title": "Ticket Board",
-          "description": "Incoming complaints view."
-        },
-        "capabilities": {
-          "title": "Image Analysis",
-          "description": "AI checking damage photos."
-        },
-        "useCases": {
-          "title": "Auto-Resolution",
-          "description": "Sending replacement confirmation."
-        },
-        "cta": { "title": "Solve Faster", "description": "Automate claims." }
-      }
+    "cta": {
+      "title": "Ensure Quality",
+      "description": "Verify your orders."
+    }
+  }
+},
+   "edi": {
+  "badge": "EDI 2.0 AI Agent",
+  "title": "100% Automated Transactions Between Partners.",
+  "subtitle": "Classic EDI is rigid: one tiny difference breaks the process. This Agent accepts documents in any format and converts them into clean EDI 2.0, keeping transactions flowing without manual firefighting.",
+  "metrics": {
+    "processingTime": {
+      "value": "Real-time",
+      "label": "Data translation"
     },
-    "agent12": {
-      "badge": "EUDR Compliance",
-      "title": "Traceable Supply Chains.",
-      "subtitle": "New regulations demand proof of origin. Collect and verify supplier declarations automatically to protect your business from penalties and ensure full transparency.",
-      "metrics": {
-        "processingTime": { "value": "Auto", "label": "Collection" },
-        "efficiency": { "value": "Safe", "label": "Audit" },
-        "accuracy": { "value": "100%", "label": "Traceable" }
-      },
-      "capabilities": {
-        "title": "What this Agent does",
-        "items": [
-          "Collects supplier declarations and certificates.",
-          "Checks data completeness against EUDR rules.",
-          "Flags risky information and requests updates.",
-          "Builds a clear chain-of-custody for products.",
-          "Generates reports for audits."
-        ]
-      },
-      "useCases": {
-        "title": "Key Benefits",
-        "cards": [
-          {
-            "title": "Risk Reduction",
-            "body": "Lower risk of fines and blocked products."
-          },
-          {
-            "title": "Brand Value",
-            "body": "Stronger sustainability positioning and clear proof of compliance."
-          }
-        ]
-      },
-      "cta": {
-        "title": "Automate compliance",
-        "body": "Less manual chasing of documents. Be audit-ready.",
-        "primary": "Book a Demo",
-        "secondary": "Contact Team"
-      },
-      "visuals": {
-        "label": "Compliance Officer",
-        "overview": {
-          "title": "Supply Chain Map",
-          "description": "Visualizing origin data."
-        },
-        "capabilities": {
-          "title": "Doc Verification",
-          "description": "Checking certificates."
-        },
-        "useCases": {
-          "title": "Audit Report",
-          "description": "Generating EUDR docs."
-        },
-        "cta": {
-          "title": "Stay Compliant",
-          "description": "Secure your business."
-        }
-      }
+    "efficiency": {
+      "value": "Auto-Repair",
+      "label": "Fixes data errors"
     },
-    "agent13": {
-      "badge": "Digital Product Passport",
-      "title": "Prepare for Tomorrow.",
-      "subtitle": "(In Development) The EU will soon require Digital Product Passports. Start building structured data now to ensure compliance and competitive advantage later.",
-      "metrics": {
-        "processingTime": { "value": "Future", "label": "Proof" },
-        "efficiency": { "value": "Data", "label": "Ready" },
-        "accuracy": { "value": "EU", "label": "Standard" }
+    "accuracy": {
+      "value": "Any Format",
+      "label": "PDF to EDI 2.0"
+    }
+  },
+  "capabilities": {
+    "title": "What This Agent Does",
+    "items": [
+      "Accepts orders, confirmations, and other documents in any format (PDF, Excel, CSV, portal, email).",
+      "Converts everything into a clean EDI 2.0 structure that your systems understand.",
+      "Detects missing or inconsistent data and requests corrections automatically.",
+      "Keeps the process running – even when data is not perfect.",
+      "Integrates with SAP, Dynamics, and other ERP systems via APIs."
+    ]
+  },
+  "useCases": {
+    "title": "Key Benefits",
+    "cards": [
+      {
+        "title": "No Manual Firefighting",
+        "body": "End-to-end digital processes without manual intervention. The Agent translates and repairs data in real time so transactions never get stuck."
       },
-      "capabilities": {
-        "title": "What this Agent will do",
-        "items": [
-          "Collects info for DPP (materials, origin, repair, recycling).",
-          "Ensures data meets upcoming EU standards.",
-          "Connects suppliers to keep passports updated.",
-          "Provides access for customers and authorities."
-        ]
-      },
-      "useCases": {
-        "title": "Key Benefits",
-        "cards": [
-          {
-            "title": "Early Compliance",
-            "body": "Avoid high manual effort when new rules drop."
-          },
-          {
-            "title": "Circular Economy",
-            "body": "Strong basis for sustainability models and transparency."
-          }
-        ]
-      },
-      "cta": {
-        "title": "Future-proof your data",
-        "body": "Build the foundation for Digital Product Passports today.",
-        "primary": "Join Waitlist",
-        "secondary": "Learn More"
-      },
-      "visuals": {
-        "label": "DPP Builder",
-        "overview": {
-          "title": "Passport View",
-          "description": "Digital twin of the product."
-        },
-        "capabilities": {
-          "title": "Lifecycle Data",
-          "description": "Tracking repair & recycle info."
-        },
-        "useCases": {
-          "title": "QR Code",
-          "description": "Consumer access to data."
-        },
-        "cta": { "title": "Get Ready", "description": "Prepare for DPP." }
+      {
+        "title": "Stable Scalability",
+        "body": "Stable automation even with many different partners and templates, creating a future-proof infrastructure for all your processes."
       }
+    ]
+  },
+  "cta": {
+    "title": "Upgrade to EDI 2.0",
+    "body": "Fewer process errors, fewer delays, higher throughput. The Agent sits between your partners and your ERP to ensure smooth operations.",
+    "primary": "Book a Demo",
+    "secondary": "Contact Team"
+  },
+  "visuals": {
+    "label": "EDI Core",
+    "overview": {
+      "title": "Connection Map",
+      "description": "Linking suppliers and buyers."
+    },
+    "capabilities": {
+      "title": "Data Translation",
+      "description": "PDF to XML conversion."
+    },
+    "useCases": {
+      "title": "Error Handling",
+      "description": "Auto-fixing missing fields."
+    },
+    "cta": {
+      "title": "Connect Partners",
+      "description": "Streamline B2B."
+    }
+  }
+},
+   "complains": {
+  "badge": "Complaints AI Agent – 70 Seconds",
+  "title": "From Complaint to Solution in Under 70 Seconds.",
+  "subtitle": "Handling complaints is slow, frustrating, and expensive. This Agent reads emails, analyzes photos, checks ERP data, and processes the claim—turning angry customers into happy ones faster than Amazon.",
+  "metrics": {
+    "processingTime": {
+      "value": "70 Seconds",
+      "label": "Resolution time"
+    },
+    "efficiency": {
+      "value": "90% Less Cost",
+      "label": "Process savings"
+    },
+    "accuracy": {
+      "value": "100% Documented",
+      "label": "Legally safe"
+    }
+  },
+  "capabilities": {
+    "title": "What This Agent Does",
+    "items": [
+      "Monitors complaint inboxes and portals and picks up new cases instantly.",
+      "Reads emails and PDFs, extracts all relevant data (customer, order, product, reason).",
+      "Analyses attached images, detects damage type and identifies BFQ codes.",
+      "Checks assembly instructions and ERP data to verify the part and cause.",
+      "Fills the complaint in the ERP, triggers replacement orders, and sends confirmation."
+    ]
+  },
+  "useCases": {
+    "title": "Key Benefits",
+    "cards": [
+      {
+        "title": "Faster than Amazon",
+        "body": "Customers are calm and satisfied in under 2 minutes. Fewer escalations, fewer returns, and fewer negative reviews."
+      },
+      {
+        "title": "Slash Process Costs",
+        "body": "A complete complaint handled in ~70 seconds instead of 60–90 minutes. Fully documented and legally safe processes."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Speed up your service",
+    "body": "The Agent takes over from the moment a complaint arrives: it reads, checks, decides next steps, and updates ERP and customer automatically.",
+    "primary": "Book a Demo",
+    "secondary": "Contact Team"
+  },
+  "visuals": {
+    "label": "Service AI",
+    "overview": {
+      "title": "Ticket Board",
+      "description": "Incoming complaints view."
+    },
+    "capabilities": {
+      "title": "Image Analysis",
+      "description": "AI checking damage photos."
+    },
+    "useCases": {
+      "title": "Auto-Resolution",
+      "description": "Sending replacement confirmation."
+    },
+    "cta": {
+      "title": "Solve Faster",
+      "description": "Automate claims."
+    }
+  }
+},
+   "eudr": {
+  "badge": "EUDR Compliance AI Agent",
+  "title": "Protect Your Business from EUDR Penalties.",
+  "subtitle": "New regulations like EUDR demand detailed proof of origin. Collecting this manually is impossible. This Agent collects and verifies supplier declarations automatically to ensure transparent, traceable supply chains.",
+  "metrics": {
+    "processingTime": {
+      "value": "Auto-Collection",
+      "label": "Supplier data"
+    },
+    "efficiency": {
+      "value": "Audit-Ready",
+      "label": "Zero fines"
+    },
+    "accuracy": {
+      "value": "100% Traceable",
+      "label": "Proof of origin"
+    }
+  },
+  "capabilities": {
+    "title": "What This Agent Does",
+    "items": [
+      "Collects and centralises supplier declarations, certificates, and product information.",
+      "Checks data completeness against EUDR requirements.",
+      "Flags risky or missing information and requests updates automatically.",
+      "Builds a clear chain-of-custody for relevant products.",
+      "Generates reports and documentation for audits."
+    ]
+  },
+  "useCases": {
+    "title": "Key Benefits",
+    "cards": [
+      {
+        "title": "Avoid Fines & Blocked Goods",
+        "body": "Lower risk of fines and blocked products. Ensure clear proof of compliance for customers, partners, and authorities."
+      },
+      {
+        "title": "Stronger Brand Positioning",
+        "body": "Less manual chasing of suppliers. Gain stronger sustainability positioning and trust by proving your supply chain is clean."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Your digital compliance manager",
+    "body": "The Agent continuously gathers, checks, and updates all EUDR-relevant information, ensuring you are always audit-ready.",
+    "primary": "Book a Demo",
+    "secondary": "Contact Team"
+  },
+  "visuals": {
+    "label": "Compliance Officer",
+    "overview": {
+      "title": "Supply Chain Map",
+      "description": "Visualizing origin data."
+    },
+    "capabilities": {
+      "title": "Doc Verification",
+      "description": "Checking certificates."
+    },
+    "useCases": {
+      "title": "Audit Report",
+      "description": "Generating EUDR docs."
+    },
+    "cta": {
+      "title": "Stay Compliant",
+      "description": "Secure your business."
+    }
+  }
+},
+    "dpp": {
+  "badge": "Digital Product Passport AI Agent (In Development)",
+  "title": "Prepare Today for Tomorrow’s Rules.",
+  "subtitle": "The EU is introducing Digital Product Passports. Companies that start late will face high manual effort. This Agent builds structured data now to ensure compliance and avoid losing access to key markets.",
+  "metrics": {
+    "processingTime": {
+      "value": "Future Proof",
+      "label": "EU Compliance"
+    },
+    "efficiency": {
+      "value": "Data Ready",
+      "label": "Structured info"
+    },
+    "accuracy": {
+      "value": "Circular Model",
+      "label": "Sustainability"
+    }
+  },
+  "capabilities": {
+    "title": "What This Agent Will Do",
+    "items": [
+      "Collects and structures all information needed for DPP (materials, origin, repairs, recycling).",
+      "Ensures data is complete and in the correct format for upcoming standards.",
+      "Connects with suppliers and internal systems to keep passports updated.",
+      "Provides easy access to product passports for customers, partners, and authorities."
+    ]
+  },
+  "useCases": {
+    "title": "Key Benefits",
+    "cards": [
+      {
+        "title": "Early Compliance",
+        "body": "Avoid high manual effort and risk of lost market access. Lower future workload by building structured data now before the new rules drop."
+      },
+      {
+        "title": "Competitive Advantage",
+        "body": "Transparent, high-quality product information creates a strong basis for circular business models and sustainability initiatives."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Future-proof your data",
+    "body": "This Agent will extend your existing data and compliance agents, using the same infrastructure to build and maintain Digital Product Passports automatically.",
+    "primary": "Join Waitlist",
+    "secondary": "Learn More"
+  },
+  "visuals": {
+    "label": "DPP Builder",
+    "overview": {
+      "title": "Passport View",
+      "description": "Digital twin of the product."
+    },
+    "capabilities": {
+      "title": "Lifecycle Data",
+      "description": "Tracking repair & recycle info."
+    },
+    "useCases": {
+      "title": "QR Code",
+      "description": "Consumer access to data."
+    },
+    "cta": {
+      "title": "Get Ready",
+      "description": "Prepare for DPP."
     }
   }
 }
+  }

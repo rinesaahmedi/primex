@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams, Navigate } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useScrollAnimation } from "../../../utils/useScrollAnimation";
 import {
@@ -14,24 +14,21 @@ import {
 } from "lucide-react";
 
 // =================================================================================
-// 1. ALL IMAGE IMPORTS (Based on your Screenshots)
-// Path: ../../../images/FOTOT E SERVISEVE/...
+// 1. ALL IMAGE IMPORTS
 // =================================================================================
 
 // --- ALL IN ONE ASSISTANT ---
 import allInOne1 from "../../../images/FOTOT E SERVISEVE/ALL IN ONE ASSISTANT/ALL IN ONE ASSISTANT.png";
-// Note: Use exact filename for the AI AGENT one if needed, e.g.:
-// import allInOne2 from "../../../images/FOTOT E SERVISEVE/ALL IN ONE ASSISTANT/ALL IN ONE ASSISTANT AI AGENT.png";
+import allInOne2 from "../../../images/FOTOT E SERVISEVE/ALL IN ONE ASSISTANT/ALL IN ONE ASSISTANT AI AGENT 2.png";
 
 // --- COMPLAINS ---
 import complains1 from "../../../images/FOTOT E SERVISEVE/COMPLAINS/COMPLAINS AGENT.png";
 import complains2 from "../../../images/FOTOT E SERVISEVE/COMPLAINS/COMPLAINS AGENT 2.png";
 
 // --- CONTENT GENERATION ---
-// (Filenames were cut off in screenshot, assumed "CONTENT GENERATION AI AGENT.png")
 import contentGen1 from "../../../images/FOTOT E SERVISEVE/CONTENT GENERATION/CONTENT GENERATION AI AGENT.png";
 import contentGen2 from "../../../images/FOTOT E SERVISEVE/CONTENT GENERATION/CONTENT GENERATION AI AGENT 2.png"; 
-// If the file is actually just "CONTENT GENERATION.png", please remove " AI AGENT" from above.
+import contentGen3 from "../../../images/FOTOT E SERVISEVE/CONTENT GENERATION/CONTENT GENERATION AI AGENT 3.png"; 
 
 // --- CRM INTEGRATION ---
 import crm1 from "../../../images/FOTOT E SERVISEVE/CRM INTEGRATION/CRM INTEGRATION.jpg";
@@ -49,11 +46,14 @@ import eudr1 from "../../../images/FOTOT E SERVISEVE/EUDR/EUDR.png";
 
 // --- KITCHEN ORDER CONFIRMATION ---
 import kitchen1 from "../../../images/FOTOT E SERVISEVE/KITCHEN ORDER CONFIRMATION/KITCHEN ORDER CONFIRMATION.png";
+import kitchen2 from "../../../images/FOTOT E SERVISEVE/KITCHEN ORDER CONFIRMATION/KITCHEN ORDER CONFIRMATION 2.png";
+import kitchen3 from "../../../images/FOTOT E SERVISEVE/KITCHEN ORDER CONFIRMATION/KITCHEN ORDER CONFIRMATION 3.png";
 
 // --- ORDER CONFIRMATION ---
 import orderConf1 from "../../../images/FOTOT E SERVISEVE/ORDER CONFIRMATION/ORDER CONFIRMATION.png";
 import orderConf2 from "../../../images/FOTOT E SERVISEVE/ORDER CONFIRMATION/ORDER CONFIRMATION 2.png";
 import orderConf3 from "../../../images/FOTOT E SERVISEVE/ORDER CONFIRMATION/ORDER CONFIRMATION 3.png";
+import orderConf4 from "../../../images/FOTOT E SERVISEVE/ORDER CONFIRMATION/ORDER CONFIRMATION AGENT 4.png";
 
 // --- ORDER PROCESSING ---
 import orderProc1 from "../../../images/FOTOT E SERVISEVE/ORDER PROCESSING/ORDER PROCESSING.jpg";
@@ -76,174 +76,200 @@ import vs2 from "../../../images/FOTOT E SERVISEVE/VIRTUAL SECRETARY/VIRTUAL SEC
 import vs3 from "../../../images/FOTOT E SERVISEVE/VIRTUAL SECRETARY/VIRTUAL SECRETARY 3.png";
 import vs4 from "../../../images/FOTOT E SERVISEVE/VIRTUAL SECRETARY/VIRTUAL SECRETARY 4.png";
 
-// Placeholder
 const placeholderImg = "https://via.placeholder.com/600x400?text=Agent+Image";
 
 // =================================================================================
-// 2. CONFIGURATION: MAP IDs TO IMAGES
+// 2. CONFIGURATION: MAP JSON KEYS TO IMAGES
 // =================================================================================
 const AGENT_ASSETS = {
-  // agent1: Product Data Management
-  agent1: {
-    main: pdm1,
+  // Agent 1: Order Confirmation (Has 4 images)
+  "order-confirmation": {
+    overview: orderConf1,
+    capabilities: orderConf2,
+    useCases: orderConf3,
+    cta: orderConf4,
+  },
+  
+  // Agent 2: PDM (Has 4 images)
+  "pdm": {
+    overview: pdm1,
     capabilities: pdm2,
     useCases: pdm3,
     cta: pdm4,
   },
 
-  // agent2: Content & Listing
-  agent2: {
-    main: contentGen1,
+  // Agent 3: Content Generation (Has 3 images)
+  "content-generation": {
+    overview: contentGen1,
     capabilities: contentGen2,
+    useCases: contentGen3,
+    cta: contentGen1, // Fallback to main
   },
 
-  // agent3: Virtual Secretary
-  agent3: {
-    main: vs1,
+  // Agent 4: Virtual Secretary (Has 4 images)
+  "virtual-secretary": {
+    overview: vs1,
     capabilities: vs2,
     useCases: vs3,
     cta: vs4,
   },
 
-  // agent4: All-in-One Assistant
-  agent4: {
-    main: allInOne1,
+  // Agent 5: All-in-One (Has 2 images)
+  "all-in-one": {
+    overview: allInOne1,
+    capabilities: allInOne2,
+    useCases: allInOne1, // Fallback
+    cta: allInOne2, // Fallback
   },
 
-  // agent5: Social Media Management
-  agent5: {
-    main: smm1,
+  // Agent 6: Social Media (Has 2 images)
+  "smm": {
+    overview: smm1,
     capabilities: smm2,
+    useCases: smm1, // Fallback
+    cta: smm2, // Fallback
   },
 
-  // agent6: CRM Integration
-  agent6: {
-    main: crm1,
+  // Agent 7: CRM Integration (Has 2 images)
+  "crm": {
+    overview: crm1,
     capabilities: crm2,
+    useCases: crm1,
+    cta: crm2,
   },
 
-  // agent7: Order Processing
-  agent7: {
-    main: orderProc1,
+  // Agent 8: Order Processing (Has 3 images)
+  "order-processing": {
+    overview: orderProc1,
     capabilities: orderProc2,
     useCases: orderProc3,
+    cta: orderProc1,
   },
 
-  // agent8: Order Confirmation Checking
-  agent8: {
-    main: orderConf1,
-    capabilities: orderConf2,
-    useCases: orderConf3,
+  // Agent 9: Kitchen Order (Has 3 images)
+  "kitchen-order": {
+    overview: kitchen1,
+    capabilities: kitchen2,
+    useCases: kitchen3,
+    cta: kitchen1,
   },
 
-  // agent9: Kitchen Order Confirmation
-  agent9: {
-    main: kitchen1,
-  },
-
-  // agent10: EDI 2.0
-  agent10: {
-    main: edi1,
+  // Agent 10: EDI 2.0 (Has 2 images)
+  "edi": {
+    overview: edi1,
     capabilities: edi2,
+    useCases: edi1,
+    cta: edi2,
   },
 
-  // agent11: Complaints Handling
-  agent11: {
-    main: complains1,
+  // Agent 11: Complaints (Has 2 images)
+  "complains": {
+    overview: complains1,
     capabilities: complains2,
+    useCases: complains1,
+    cta: complains2,
   },
 
-  // agent12: EUDR Compliance
-  agent12: {
-    main: eudr1,
+  // Agent 12: EUDR (Has 1 image)
+  "eudr": {
+    overview: eudr1,
+    capabilities: eudr1,
+    useCases: eudr1,
+    cta: eudr1,
   },
 
-  // agent13: Digital Product Passport
-  agent13: {
-    main: dpp1,
+  // Agent 13: DPP (Has 1 image)
+  "dpp": {
+    overview: dpp1,
+    capabilities: dpp1,
+    useCases: dpp1,
+    cta: dpp1,
   },
 
-  // Fallback
   default: {
-    main: placeholderImg,
+    overview: placeholderImg,
+    capabilities: placeholderImg,
+    useCases: placeholderImg,
+    cta: placeholderImg,
   },
+};
+
+// =================================================================================
+// 3. HELPER: MAP URL IDs (agent1) TO JSON KEYS (order-confirmation)
+// =================================================================================
+const resolveAgentId = (urlId) => {
+  const map = {
+    "agent1": "order-confirmation",
+    "agent2": "pdm",
+    "agent3": "content-generation",
+    "agent4": "virtual-secretary",
+    "agent5": "all-in-one",
+    "agent6": "smm",
+    "agent7": "crm",
+    "agent8": "order-processing",
+    "agent9": "kitchen-order",
+    "agent10": "edi",
+    "agent11": "complains",
+    "agent12": "eudr",
+    "agent13": "dpp"
+  };
+  return map[urlId] || urlId;
 };
 
 const AgentTemplate = () => {
   const { t } = useTranslation();
   const { agentId } = useParams();
+  
+  // 1. Resolve the ID
+  const actualId = resolveAgentId(agentId);
+
   const [sectionRef, isVisible] = useScrollAnimation({ threshold: 0.1 });
   const [activeVisual, setActiveVisual] = useState("overview");
 
-  // Validate agentId exists in translation
-  const titleCheck = t(`agents.${agentId}.title`);
-  const translationExists = titleCheck && titleCheck !== `agents.${agentId}.title`;
-  
-  // Get Assets
-  const currentAgentAssets = AGENT_ASSETS[agentId] || AGENT_ASSETS["default"];
+  // 2. Get Assets
+  const currentAgentAssets = AGENT_ASSETS[actualId] || AGENT_ASSETS["default"];
 
-  if (!translationExists) {
-    return <Navigate to="/services/ai-agents" />;
-  }
-
-  const sectionKeys = ["overview", "capabilities", "useCases", "cta"];
-
+  // 3. Scroll Observer
   useEffect(() => {
+    const sectionKeys = ["overview", "capabilities", "useCases", "cta"];
     const observers = [];
+    
     sectionKeys.forEach((key) => {
-      const el = document.getElementById(`${agentId}-${key}`);
+      const el = document.getElementById(`${actualId}-${key}`);
       if (!el) return;
+      
       const observer = new IntersectionObserver(
         ([entry]) => {
-          if (entry.isIntersecting) setActiveVisual(key);
+          if (entry.isIntersecting) {
+            setActiveVisual(key);
+          }
         },
-        { root: null, threshold: 0.4 }
+        { root: null, threshold: 0.4, rootMargin: "-10% 0px -10% 0px" }
       );
       observer.observe(el);
       observers.push(observer);
     });
+    
     return () => observers.forEach((o) => o.disconnect());
-  }, [agentId]);
+  }, [actualId]);
 
-
-  // Helper to safely get image
+  // 4. Helper to safely get image
   const getVisualImage = (sectionKey) => {
-    return currentAgentAssets[sectionKey] || currentAgentAssets.main;
+    return currentAgentAssets[sectionKey] || currentAgentAssets.overview || currentAgentAssets.main || placeholderImg;
   };
 
-  // Dynamic Visuals Data
-  const visuals = {
-    overview: {
-      image: getVisualImage("overview"),
-      title: t(`agents.${agentId}.visuals.overview.title`),
-      description: t(`agents.${agentId}.visuals.overview.description`),
-      label: t(`agents.${agentId}.visuals.label`),
-    },
-    capabilities: {
-      image: getVisualImage("capabilities"),
-      title: t(`agents.${agentId}.visuals.capabilities.title`),
-      description: t(`agents.${agentId}.visuals.capabilities.description`),
-      label: t(`agents.${agentId}.visuals.label`),
-    },
-    useCases: {
-      image: getVisualImage("useCases"),
-      title: t(`agents.${agentId}.visuals.useCases.title`),
-      description: t(`agents.${agentId}.visuals.useCases.description`),
-      label: t(`agents.${agentId}.visuals.label`),
-    },
-    cta: {
-      image: getVisualImage("cta"),
-      title: t(`agents.${agentId}.visuals.cta.title`),
-      description: t(`agents.${agentId}.visuals.cta.description`),
-      label: t(`agents.${agentId}.visuals.label`),
-    },
+  // 5. Construct Visual Data
+  const currentVisual = {
+    image: getVisualImage(activeVisual),
+    title: t(`${actualId}.visuals.${activeVisual}.title`),
+    description: t(`${actualId}.visuals.${activeVisual}.description`),
+    label: t(`${actualId}.visuals.label`),
   };
 
-  const currentVisual = visuals[activeVisual];
-  const capabilities = t(`agents.${agentId}.capabilities.items`, {
+  const capabilities = t(`${actualId}.capabilities.items`, {
     returnObjects: true,
   });
-  const useCaseCards = t(`agents.${agentId}.useCases.cards`, {
+  const useCaseCards = t(`${actualId}.useCases.cards`, {
     returnObjects: true,
   });
 
@@ -251,7 +277,8 @@ const AgentTemplate = () => {
     <section className="min-h-screen bg-white pt-28 pb-24 md:pt-36 md:pb-32">
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid gap-12 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
-          {/* LEFT COLUMN */}
+          
+          {/* LEFT COLUMN (Scrollable Content) */}
           <div>
             <Link
               to="/services/ai-agents"
@@ -259,32 +286,32 @@ const AgentTemplate = () => {
             >
               <ArrowLeft className="w-5 h-5" />
               <span className="font-medium">
-                {t("agents.backToAgentsLink")}
+                {t("backToAgentsLink")}
               </span>
             </Link>
 
-            {/* Overview */}
+            {/* Overview Section */}
             <div
               ref={sectionRef}
-              id={`${agentId}-overview`}
+              id={`${actualId}-overview`}
               className={`mb-12 ${isVisible ? "lift-up-subtle" : ""}`}
             >
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#2378FF]/10 text-[#2378FF] text-sm font-semibold mb-6">
                 <Zap className="w-4 h-4" />
-                <span>{t(`agents.${agentId}.badge`)}</span>
+                <span>{t(`${actualId}.badge`)}</span>
               </div>
               <h1
                 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6"
                 style={{ fontFamily: "var(--font-serif)" }}
               >
-                {t(`agents.${agentId}.title`)}
+                {t(`${actualId}.title`)}
               </h1>
               <p className="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-3xl">
-                {t(`agents.${agentId}.subtitle`)}
+                {t(`${actualId}.subtitle`)}
               </p>
             </div>
 
-            {/* Metrics */}
+            {/* Metrics Section */}
             <div
               className={`grid md:grid-cols-3 gap-6 mb-16 ${
                 isVisible ? "lift-up-subtle" : ""
@@ -293,36 +320,36 @@ const AgentTemplate = () => {
             >
               <div className="bg-gradient-to-br from-[#2378FF] to-[#1f5fcc] rounded-xl p-6 text-white shadow-lg">
                 <Clock className="w-8 h-8 mb-3 opacity-90" />
-                <div className="text-3xl font-bold mb-1">
-                  {t(`agents.${agentId}.metrics.processingTime.value`)}
+                <div className="text-2xl font-bold mb-1">
+                  {t(`${actualId}.metrics.processingTime.value`)}
                 </div>
                 <div className="text-sm opacity-90">
-                  {t(`agents.${agentId}.metrics.processingTime.label`)}
+                  {t(`${actualId}.metrics.processingTime.label`)}
                 </div>
               </div>
               <div className="bg-gradient-to-br from-[#CDABFF] to-[#b894ff] rounded-xl p-6 text-white shadow-lg">
                 <TrendingUp className="w-8 h-8 mb-3 opacity-90" />
-                <div className="text-3xl font-bold mb-1">
-                  {t(`agents.${agentId}.metrics.efficiency.value`)}
+                <div className="text-2xl font-bold mb-1">
+                  {t(`${actualId}.metrics.efficiency.value`)}
                 </div>
                 <div className="text-sm opacity-90">
-                  {t(`agents.${agentId}.metrics.efficiency.label`)}
+                  {t(`${actualId}.metrics.efficiency.label`)}
                 </div>
               </div>
               <div className="bg-gradient-to-br from-[#FADEBC] to-[#f5d4a8] rounded-xl p-6 text-gray-900 shadow-lg">
                 <Shield className="w-8 h-8 mb-3 opacity-80" />
-                <div className="text-3xl font-bold mb-1">
-                  {t(`agents.${agentId}.metrics.accuracy.value`)}
+                <div className="text-2xl font-bold mb-1">
+                  {t(`${actualId}.metrics.accuracy.value`)}
                 </div>
                 <div className="text-sm opacity-80">
-                  {t(`agents.${agentId}.metrics.accuracy.label`)}
+                  {t(`${actualId}.metrics.accuracy.label`)}
                 </div>
               </div>
             </div>
 
-            {/* Capabilities */}
+            {/* Capabilities Section */}
             <div
-              id={`${agentId}-capabilities`}
+              id={`${actualId}-capabilities`}
               className={`mb-16 ${isVisible ? "lift-up-subtle" : ""}`}
               style={{ animationDelay: isVisible ? "0.2s" : "0s" }}
             >
@@ -330,7 +357,7 @@ const AgentTemplate = () => {
                 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6"
                 style={{ fontFamily: "var(--font-serif)" }}
               >
-                {t(`agents.${agentId}.capabilities.title`)}
+                {t(`${actualId}.capabilities.title`)}
               </h2>
               <div className="bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/20 rounded-2xl p-8 border-2 border-slate-200">
                 <div className="grid md:grid-cols-2 gap-4">
@@ -348,9 +375,9 @@ const AgentTemplate = () => {
               </div>
             </div>
 
-            {/* Use Cases */}
+            {/* Use Cases Section */}
             <div
-              id={`${agentId}-useCases`}
+              id={`${actualId}-useCases`}
               className={`mb-16 ${isVisible ? "lift-up-subtle" : ""}`}
               style={{ animationDelay: isVisible ? "0.3s" : "0s" }}
             >
@@ -358,7 +385,7 @@ const AgentTemplate = () => {
                 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6"
                 style={{ fontFamily: "var(--font-serif)" }}
               >
-                {t(`agents.${agentId}.useCases.title`)}
+                {t(`${actualId}.useCases.title`)}
               </h2>
               <div className="grid md:grid-cols-2 gap-6">
                 {Array.isArray(useCaseCards) &&
@@ -381,9 +408,9 @@ const AgentTemplate = () => {
               </div>
             </div>
 
-            {/* CTA */}
+            {/* CTA Section */}
             <div
-              id={`${agentId}-cta`}
+              id={`${actualId}-cta`}
               className={isVisible ? "lift-up-subtle" : ""}
               style={{ animationDelay: isVisible ? "0.4s" : "0s" }}
             >
@@ -392,52 +419,36 @@ const AgentTemplate = () => {
                   className="text-2xl md:text-3xl font-bold mb-4"
                   style={{ fontFamily: "var(--font-serif)" }}
                 >
-                  {t(`agents.${agentId}.cta.title`)}
+                  {t(`${actualId}.cta.title`)}
                 </h3>
                 <p className="text-white/90 mb-8 text-lg">
-                  {t(`agents.${agentId}.cta.body`)}
+                  {t(`${actualId}.cta.body`)}
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <Link
                     to="/business"
                     className="inline-flex items-center justify-center px-8 py-3 bg-white text-[#2378FF] font-semibold rounded-xl hover:bg-white/90 transition-all shadow-lg hover:shadow-xl"
                   >
-                    {t(`agents.${agentId}.cta.primary`)}
+                    {t(`${actualId}.cta.primary`)}
                   </Link>
                   <Link
                     to="/#contact"
                     className="inline-flex items-center justify-center px-8 py-3 border-2 border-white text-white font-semibold rounded-xl hover:bg-white hover:text-[#2378FF] transition-all"
                   >
-                    {t(`agents.${agentId}.cta.secondary`)}
+                    {t(`${actualId}.cta.secondary`)}
                   </Link>
                 </div>
               </div>
             </div>
 
-            {/* Mobile Visual */}
+            {/* Mobile Visual (Visible only on small screens) */}
             <div className="mt-10 md:hidden">
               <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-md">
-                <img
-                  src={currentVisual.image}
-                  alt={currentVisual.title}
-                  className="w-full max-h-[60vh] rounded-2xl mb-4 object-contain"
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* RIGHT COLUMN (Sticky) */}
-          <div className="hidden md:block">
-            <div className="sticky top-28">
-              <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-md transition-all duration-300 flex flex-col gap-3">
-                <p className="text-xs font-semibold uppercase tracking-wide text-slate-500 mb-3">
-                  {currentVisual.label}
-                </p>
-                <div className="bg-white rounded-2xl overflow-hidden w-full">
-                  <img
+                <div className="w-full h-64 overflow-hidden rounded-2xl mb-4">
+                   <img
                     src={currentVisual.image}
                     alt={currentVisual.title}
-                    className="block w-full h-auto max-h-[75vh] rounded-2xl object-contain"
+                    className="w-full h-full object-cover transition-opacity duration-500"
                   />
                 </div>
                 <h3 className="text-xl font-semibold text-slate-900">
@@ -449,9 +460,41 @@ const AgentTemplate = () => {
               </div>
             </div>
           </div>
+
+          {/* RIGHT COLUMN (Sticky Visuals) */}
+          <div className="hidden md:block">
+            <div className="sticky top-28">
+              {/* This container animates when content changes */}
+              <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-md transition-all duration-300 flex flex-col gap-3">
+                <p className="text-xs font-semibold uppercase tracking-wide text-slate-500 mb-2">
+                  {currentVisual.label}
+                </p>
+                
+                {/* Fixed Height Image Container */}
+                <div className="bg-white rounded-2xl overflow-hidden w-full h-64 lg:h-80 shadow-sm border border-slate-100 relative">
+                  {/* We use a key here to force re-render animation on image change if desired, or relying on src switch */}
+                  <img
+                    key={currentVisual.image} 
+                    src={currentVisual.image}
+                    alt={currentVisual.title}
+                    className="w-full h-full object-cover animate-fade-in" 
+                  />
+                </div>
+
+                {/* Dynamic Text Description */}
+                <div className="mt-2" key={activeVisual}>
+                    <h3 className="text-xl font-semibold text-slate-900 animate-slide-up-sm">
+                    {currentVisual.title}
+                    </h3>
+                    <p className="text-sm text-slate-600 mt-1 animate-slide-up-sm" style={{ animationDelay: '0.1s' }}>
+                    {currentVisual.description}
+                    </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-
     </section>
   );
 };
