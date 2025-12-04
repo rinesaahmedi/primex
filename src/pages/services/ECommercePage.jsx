@@ -3,15 +3,56 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useScrollAnimation } from "../../utils/useScrollAnimation";
-import { ArrowLeft, CheckCircle2, ShoppingBag, CreditCard, BarChart, Search } from "lucide-react";
+import { 
+  ArrowLeft, 
+  Database,       
+  ShieldCheck,    
+  TrendingUp,     
+  Users,          
+  CheckCircle2,
+  Rocket,
+  Layers
+} from "lucide-react";
+
+// !!! IMPORT YOUR IMAGE HERE
+// Check your file name in the folder. If it has a space, use the exact name.
+import ecommerceImage from "../../assets/Services/e-commerce.png"; 
 
 const ECommercePage = () => {
   const { t } = useTranslation();
   const [sectionRef, isVisible] = useScrollAnimation({ threshold: 0.1 });
 
+  const services = [
+    {
+      key: "dataManagement",
+      icon: <Database className="w-8 h-8 text-[#2378FF] mb-4" />,
+      bg: "bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-100",
+      textColor: "text-[#2378FF]"
+    },
+    {
+      key: "compliance",
+      icon: <ShieldCheck className="w-8 h-8 text-[#CDABFF] mb-4" />,
+      bg: "bg-gradient-to-br from-purple-50 to-pink-50 border-purple-100",
+      textColor: "text-[#CDABFF]"
+    },
+    {
+      key: "optimization",
+      icon: <TrendingUp className="w-8 h-8 text-[#FADEBC] mb-4" />,
+      bg: "bg-gradient-to-br from-amber-50 to-orange-50 border-amber-100",
+      textColor: "text-[#FADEBC]"
+    },
+    {
+      key: "empowerment",
+      icon: <Users className="w-8 h-8 text-[#2378FF] mb-4" />,
+      bg: "bg-gradient-to-br from-indigo-50 to-blue-50 border-indigo-100",
+      textColor: "text-[#2378FF]"
+    }
+  ];
+
   return (
     <section className="min-h-screen bg-white pt-32 pb-24 md:pt-40 md:pb-32">
-      <div className="max-w-4xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-6"> {/* Increased width slightly for side-by-side layout */}
+        
         <Link
           to="/#services"
           className="inline-flex items-center gap-2 text-[#2378FF] hover:text-[#1f5fcc] mb-8 transition-colors"
@@ -20,81 +61,121 @@ const ECommercePage = () => {
           <span className="font-medium">Back to Services</span>
         </Link>
 
-        <div ref={sectionRef} className={`mb-12 ${isVisible ? 'lift-up-subtle' : ''}`}>
+        {/* Header & Intro Section (Split Layout) */}
+        <div ref={sectionRef} className={`mb-20 ${isVisible ? 'lift-up-subtle' : ''}`}>
           <h1
             className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6"
             style={{ fontFamily: 'var(--font-serif)' }}
           >
-            E-Commerce
+            {t("ecommerceProductData.title")}
           </h1>
-          <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
-            {t("services.items.5.description")}
+          <p className="text-xl md:text-2xl text-gray-700 font-medium mb-12 max-w-3xl">
+            {t("ecommerceProductData.subtitle")}
           </p>
+          
+          {/* SIDE-BY-SIDE LAYOUT: Text Left, Image Right */}
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            
+            {/* Left: Text Content */}
+            <div className="bg-slate-50 p-8 rounded-2xl border-l-4 border-[#2378FF] h-full flex flex-col justify-center">
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                {t("ecommerceProductData.intro.title")}
+              </h3>
+              <p className="text-gray-600 leading-relaxed text-lg">
+                {t("ecommerceProductData.intro.description")}
+              </p>
+              <div className="mt-6 flex items-center gap-2 text-[#2378FF] font-semibold">
+                <Layers className="w-5 h-5" />
+                <span>AI-Driven Precision</span>
+              </div>
+            </div>
+
+            {/* Right: The Image */}
+            <div className="relative group">
+              {/* Decorative offset background */}
+              <div className="absolute top-4 right-4 w-full h-full bg-[#2378FF]/10 rounded-2xl -z-10 transition-transform group-hover:translate-x-2 group-hover:translate-y-2"></div>
+              
+              <div className="rounded-2xl overflow-hidden shadow-xl border border-slate-100 bg-white">
+                 <img 
+                   src={ecommerceImage} 
+                   alt="E-Commerce Management Dashboard" 
+                   className="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105"
+                 />
+              </div>
+            </div>
+
+          </div>
         </div>
 
+        {/* Main Services Grid */}
         <div 
-          className={`mb-12 ${isVisible ? 'lift-up-subtle' : ''}`}
+          className={`mb-16 ${isVisible ? 'lift-up-subtle' : ''}`}
           style={{ animationDelay: isVisible ? '0.1s' : '0s' }}
         >
           <h2
-            className="text-3xl md:text-4xl font-bold text-gray-900 mb-6"
+            className="text-3xl md:text-4xl font-bold text-gray-900 mb-8"
             style={{ fontFamily: 'var(--font-serif)' }}
           >
-            What We Build
+            Our Solutions
           </h2>
           <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 border border-blue-100">
-              <ShoppingBag className="w-8 h-8 text-[#2378FF] mb-4" />
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Custom E-Commerce Sites</h3>
-              <p className="text-gray-600">Tailored online stores that effectively promote your brand and drive sales.</p>
-            </div>
-            <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-6 border border-purple-100">
-              <CreditCard className="w-8 h-8 text-[#CDABFF] mb-4" />
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Payment Integration</h3>
-              <p className="text-gray-600">Secure checkout systems with multiple payment options.</p>
-            </div>
-            <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-6 border border-amber-100">
-              <BarChart className="w-8 h-8 text-[#FADEBC] mb-4" />
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Analytics & Reporting</h3>
-              <p className="text-gray-600">Track performance metrics and make data-driven decisions.</p>
-            </div>
-            <div className="bg-gradient-to-br from-indigo-50 to-blue-50 rounded-2xl p-6 border border-indigo-100">
-              <Search className="w-8 h-8 text-[#2378FF] mb-4" />
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">SEO Optimization</h3>
-              <p className="text-gray-600">Improved search visibility to attract more customers.</p>
-            </div>
+            {services.map((service) => {
+              const features = t(`ecommerceProductData.sections.${service.key}.features`, { returnObjects: true });
+              
+              return (
+                <div key={service.key} className={`${service.bg} rounded-2xl p-8 border hover:shadow-lg transition-shadow duration-300`}>
+                  {service.icon}
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">
+                    {t(`ecommerceProductData.sections.${service.key}.title`)}
+                  </h3>
+                  <p className="text-gray-600 mb-6">
+                    {t(`ecommerceProductData.sections.${service.key}.description`)}
+                  </p>
+                  
+                  {/* Features List */}
+                  <ul className="space-y-3 bg-white/50 p-4 rounded-xl">
+                    {Object.values(features).map((feature, idx) => (
+                      <li key={idx} className="flex items-start gap-3 text-sm text-gray-700 font-medium">
+                        <CheckCircle2 className={`w-5 h-5 ${service.textColor} shrink-0`} />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })}
           </div>
         </div>
 
+        {/* Why Choose PrimEx Section */}
         <div 
-          className={`mb-12 ${isVisible ? 'lift-up-subtle' : ''}`}
+          className={`mb-16 ${isVisible ? 'lift-up-subtle' : ''}`}
           style={{ animationDelay: isVisible ? '0.2s' : '0s' }}
         >
           <h2
-            className="text-3xl md:text-4xl font-bold text-gray-900 mb-6"
+            className="text-3xl md:text-4xl font-bold text-gray-900 mb-8"
             style={{ fontFamily: 'var(--font-serif)' }}
           >
-            Key Benefits
+            {t("ecommerceProductData.whyChoose.title")}
           </h2>
           <div className="bg-white rounded-2xl p-8 border-2 border-slate-200">
-            <ul className="grid md:grid-cols-2 gap-4">
-              {[
-                "Strengthened online presence",
-                "Continuous business growth",
-                "Custom solutions for your brand",
-                "User-friendly shopping experiences",
-                "Scalable platforms that grow with you",
-                "Professional development and support"
-              ].map((benefit, index) => (
-                <li key={index} className="flex items-start gap-3">
-                  <CheckCircle2 className="w-6 h-6 text-[#2378FF] shrink-0 mt-0.5" />
-                  <span className="text-gray-700">{benefit}</span>
-                </li>
+            <div className="grid md:grid-cols-2 gap-8">
+              {t("ecommerceProductData.whyChoose.items", { returnObjects: true }).map((item, index) => (
+                <div key={index} className="flex items-start gap-4">
+                  <div className="p-3 bg-blue-50 rounded-xl shrink-0">
+                    <Rocket className="w-6 h-6 text-[#2378FF]" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-bold text-gray-900 mb-1">{item.title}</h4>
+                    <p className="text-gray-600 leading-relaxed">{item.desc}</p>
+                  </div>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
         </div>
 
+        {/* Call to Action */}
         <div 
           className={`${isVisible ? 'lift-up-subtle' : ''}`}
           style={{ animationDelay: isVisible ? '0.3s' : '0s' }}
@@ -104,10 +185,10 @@ const ECommercePage = () => {
               className="text-2xl md:text-3xl font-bold mb-4"
               style={{ fontFamily: 'var(--font-serif)' }}
             >
-              Ready to get started?
+              Ready to automate your growth?
             </h3>
             <p className="text-white/90 mb-8 text-lg">
-              Let's build your online store and strengthen your digital presence.
+              Stop relying on spreadsheets. Start selling with AI precision.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
@@ -131,4 +212,3 @@ const ECommercePage = () => {
 };
 
 export default ECommercePage;
-

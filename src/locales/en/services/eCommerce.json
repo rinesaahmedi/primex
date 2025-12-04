@@ -1,28 +1,69 @@
 {
-    "serviceDetails": {
-        "eCommerce": {
-            "features": [
-                "Custom e-commerce websites — Tailored to your brand",
-                "Responsive design — Mobile and desktop optimized",
-                "Payment integration — Secure checkout systems",
-                "Inventory management — Real-time stock tracking",
-                "SEO optimization — Improved search visibility",
-                "Analytics and reporting — Track performance metrics"
-            ],
-            "benefits": [
-                "Strengthened online presence",
-                "Continuous business growth",
-                "Custom solutions for your brand",
-                "User-friendly shopping experiences",
-                "Scalable platforms that grow with you",
-                "Professional development and support"
-            ],
-            "useCases": [
-                "Businesses launching online stores",
-                "Companies expanding to e-commerce",
-                "Retailers needing custom platforms",
-                "Brands seeking to improve online presence"
-            ]
+  "ecommerceProductData": {
+    "title": "E-Commerce & Product Data",
+    "subtitle": "Product Data Management & Content: We normalize catalogs, enrich content, localize pricing, and publish to marketplaces, PIM, and ERP systems.",
+    "intro": {
+      "title": "From \"Invisible\" to \"Best-Seller\" with AI precision",
+      "description": "Selling online seems simple, but without perfect product content, nothing works. One missing image or number means your listing becomes invisible. We replace the \"harsh reality\" of manual Excel sheets with AI-driven speed, ensuring your products are visible, compliant, and buyable on every platform."
+    },
+    "sections": {
+      "dataManagement": {
+        "title": "Product Data Management",
+        "description": "Teams waste weeks filling endless Excel sheets. We automate this. Our AI agents optimize your product data in minutes, not weeks, checking thousands of details to ensure accuracy.",
+        "features": {
+          "1": "Automated Content: Data ready in minutes instead of weeks.",
+          "2": "Zero Errors: Elimination of manual entry mistakes.",
+          "3": "24/7 Updates: Your catalog is always current and active."
         }
+      },
+      "compliance": {
+        "title": "Marketplace Compliance",
+        "description": "Amazon, OTTO, and Kaufland have strict rules. One small error leads to instant rejection or account suspension. We ensure every attribute meets platform standards so your listings never get blocked.",
+        "features": {
+          "1": "Platform-Specific Formatting: Tailored for Amazon, OTTO, Kaufland, & Home24.",
+          "2": "EUDR Compliance: Automated checks to protect against penalties.",
+          "3": "Instant Rule Adaptation: We update as fast as platforms change their rules."
+        }
+      },
+      "optimization": {
+        "title": "Listing Optimization",
+        "description": "Don't let your items vanish from search results. We optimize titles and descriptions to ensure you hold the \"Buy Box\"—because losing it means orders collapse overnight.",
+        "features": {
+          "1": "Buy Box Protection: Strategies to keep your offer visible.",
+          "2": "SEO Optimization: Keywords that make products easy to find.",
+          "3": "Visibility Boost: High-quality content that drives sales."
+        }
+      },
+      "empowerment": {
+        "title": "Client Empowerment",
+        "description": "We solve the skills shortage by training your team. We educate your staff to create and manage their own AI agents, fostering independence and reducing long-term costs.",
+        "features": {
+          "1": "AI Training Workshops: Educating your internal teams.",
+          "2": "Custom Agent Setup: Build tools that fit your specific workflow.",
+          "3": "Digital Independence: Reducing reliance on external support."
+        }
+      }
+    },
+    "whyChoose": {
+      "title": "Why choose PrimEx for E-Commerce",
+      "items": [
+        {
+          "title": "Speed",
+          "desc": "Listings go live in hours, not weeks."
+        },
+        {
+          "title": "Cost",
+          "desc": "Costs go down while speed goes up."
+        },
+        {
+          "title": "Focus",
+          "desc": "Your team focuses on strategy, not spreadsheets."
+        },
+        {
+          "title": "Results",
+          "desc": "Retailers using AI surge ahead—the rest fall behind."
+        }
+      ]
     }
+  }
 }
