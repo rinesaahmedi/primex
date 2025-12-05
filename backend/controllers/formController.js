@@ -79,7 +79,7 @@ exports.sendApplyForm = async (req, res) => {
 
     // 1. Send to Owner
     await transporter.sendMail({
-      from: `"PrimeX Careers" <${process.env.SMTP_USER}>`,
+      from: `"PrimEx Careers" <${process.env.SMTP_USER}>`,
       to: process.env.OWNER_EMAIL,
       subject: `Job Application: ${name} - ${position}`,
       html: ownerHtml,
@@ -90,9 +90,9 @@ exports.sendApplyForm = async (req, res) => {
     // 2. Send to Applicant
     if (email) {
       await transporter.sendMail({
-        from: `"PrimeX Careers" <${process.env.SMTP_USER}>`,
+        from: `"PrimEx Careers" <${process.env.SMTP_USER}>`,
         to: email,
-        subject: "We received your application - PrimeX",
+        subject: "We received your application - PrimEx",
         html: applicantHtml,
       });
     }
@@ -157,7 +157,7 @@ exports.sendBusinessInquiry = async (req, res) => {
     `;
 
     await transporter.sendMail({
-      from: `"PrimeX Business" <${process.env.SMTP_USER}>`,
+      from: `"PrimEx Business" <${process.env.SMTP_USER}>`,
       to: process.env.OWNER_EMAIL,
       replyTo: email,
       subject: `Business Inquiry: ${companyName} (${businessType})`,
@@ -166,12 +166,13 @@ exports.sendBusinessInquiry = async (req, res) => {
 
     if (email) {
       await transporter.sendMail({
-        from: `"PrimeX Solutions" <${process.env.SMTP_USER}>`,
+        from: `"PrimEx Solutions" <${process.env.SMTP_USER}>`,
         to: email,
-        subject: "We received your inquiry - PrimeX",
+        subject: "We received your inquiry - PrimEx",
         html: clientHtml,
       });
     }
+    
 
     res.json({ success: true });
   } catch (err) {
