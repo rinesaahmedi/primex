@@ -9,7 +9,7 @@ import AboutPage from "./pages/AboutPage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
-import AppointmentPage from "./pages/AppointmentPage.JSX";
+import AppointmentPage from "./pages/AppointmentPage.jsx";
 
 import JoinUsForm from "./pages/JoinUsForm.jsx";
 import BusinessInquiryForm from "./pages/BusinessInquiryForm.jsx";
