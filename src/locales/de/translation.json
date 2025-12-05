@@ -13,7 +13,6 @@
   "lightMode": "In den hellen Modus wechseln",
   "welcome": "Willkommen auf der Startseite!",
   "intro": "Dies ist der Hauptinhalt der Webseite.",
-
   "_comment": "=== HERO SECTION ===",
   "hero": {
     "kicker": "Maßgeschneiderte KI-Operationen · gebaut von Primex",
@@ -46,7 +45,6 @@
       }
     ]
   },
-
   "_comment": "=== MAIN CONTENT SECTIONS ===",
   "about": {
     "pill": "Über PrimEx",
@@ -130,7 +128,6 @@
       }
     ]
   },
-
   "_comment": "=== PARTNERS & SOCIAL PROOF ===",
   "partnersGrid": {
     "kicker": "Vertrauenswürdiges Netzwerk",
@@ -193,8 +190,7 @@
         "image": ""
       }
     ]
-},
-
+  },
   "_comment": "=== CTA & ENGAGEMENT ===",
   "joinBusiness": {
     "joinLabel": "Karriere",
@@ -244,7 +240,6 @@
       "other": "Sonstiges"
     }
   },
-
   "_comment": "=== FORMS ===",
   "forms": {
     "general": {
@@ -306,15 +301,26 @@
     },
     "legal": {
       "title": "Datenschutzerklärung",
-      "close": "Schließen",
-      "collectionTitle": "1. Datenerfassung",
-      "collectionText": "Wir erfassen personenbezogene Daten...",
-      "usageTitle": "2. Nutzung",
-      "usageText": "Ihre Daten werden nur für die Rekrutierung genutzt...",
-      "securityTitle": "3. Sicherheit",
-      "securityText": "Wir ergreifen Sicherheitsmaßnahmen...",
-      "rightsTitle": "4. Ihre Rechte",
-      "rightsText": "Sie haben das Recht auf Auskunft..."
+      "close": "Schließen & Zurück zum Formular",
+      "intro": "Wir schätzen Ihr Vertrauen und sind verpflichtet, Ihre persönlichen Daten zu schützen. Diese Richtlinie erklärt, wie wir Ihre Informationen während des Rekrutierungsprozesses behandeln.",
+      "sections": {
+        "typesTitle": "1. Daten, die wir erfassen",
+        "typesText": "Wir erfassen personenbezogene Daten, die Sie uns direkt zur Verfügung stellen. Dazu gehören: Identifikatoren (Name, E-Mail, Telefon, Adresse), Berufliche Informationen (Lebenslauf, Anschreiben, Portfolio, Beschäftigungsgeschichte, Ausbildung, Zertifikate) und Social-Media-Profile (z. B. LinkedIn). Wir können auch Daten aus Interviews oder Codierungstests erfassen.",
+        "purposeTitle": "2. Zweck der Verarbeitung",
+        "purposeText": "Ihre Daten werden ausschließlich für Rekrutierungszwecke verarbeitet: Zur Bewertung Ihrer Qualifikationen für die Position; Zur Kommunikation mit Ihnen bezüglich Ihrer Bewerbung und des Interview-Termins; Zur Überprüfung Ihrer Informationen und Durchführung von Hintergrundprüfungen (wo gesetzlich zulässig); und zur Verbesserung unseres Rekrutierungsprozesses.",
+        "basisTitle": "3. Rechtsgrundlage für die Verarbeitung",
+        "basisText": "Wir verarbeiten Ihre personenbezogenen Daten auf Grundlage Ihrer Einwilligung (wenn Sie sich bewerben) und unseres berechtigten Interesses an der Suche nach qualifizierten Kandidaten. Wenn Sie eingestellt werden, basiert die Verarbeitung auf der Notwendigkeit, einen Arbeitsvertrag abzuschließen.",
+        "sharingTitle": "4. Datenweitergabe & Dritte",
+        "sharingText": "Ihre Daten sind streng vertraulich. Sie sind nur für unser internes HR-Team und Einstellungsmanager zugänglich. Wir können Daten mit vertrauenswürdigen Drittanbietern (z. B. Bewerber-Tracking-Systeme, Cloud-Speicher) teilen, die Daten in unserem Auftrag unter strengen Vertraulichkeitsvereinbarungen verarbeiten. Wir verkaufen Ihre Daten nicht.",
+        "retentionTitle": "5. Datenspeicherung",
+        "retentionText": "Wenn Ihre Bewerbung erfolgreich ist, werden Ihre Daten in unsere Mitarbeiterakte übertragen. Wenn sie nicht erfolgreich ist, bewahren wir Ihre Daten für einen Zeitraum von bis zu 12 Monaten auf, um Sie für zukünftige Möglichkeiten zu berücksichtigen. Nach diesem Zeitraum werden Ihre Daten sicher gelöscht, es sei denn, Sie fordern eine frühere Löschung an.",
+        "securityTitle": "6. Sicherheitsmaßnahmen",
+        "securityText": "Wir implementieren branchenübliche technische und organisatorische Maßnahmen zum Schutz Ihrer Daten vor unbefugtem Zugriff, Verlust oder Änderung. Dazu gehören Verschlüsselung, Zugriffskontrollen und regelmäßige Sicherheitsaudits.",
+        "rightsTitle": "7. Ihre Rechte",
+        "rightsText": "Sie haben das Recht auf: Auskunft über die von uns gespeicherten personenbezogenen Daten; Berichtigung unrichtiger Daten; Löschung Ihrer Daten ('Recht auf Vergessenwerden'); Widerruf Ihrer Einwilligung jederzeit; und Widerspruch gegen die Verarbeitung auf Grundlage berechtigter Interessen.",
+        "contactTitle": "8. Kontaktieren Sie uns",
+        "contactText": "Wenn Sie Fragen zu dieser Datenschutzerklärung haben oder Ihre Rechte ausüben möchten, wenden Sie sich bitte an unseren Datenschutzbeauftragten unter privacy@company.com."
+      }
     },
     "business": {
       "sectionLabel": "BUSINESS ANFRAGE",
@@ -332,7 +338,6 @@
       "submit": "Anfrage senden"
     }
   },
-
   "_comment": "=== LEGAL & FOOTER ===",
   "termsPage": {
     "pill": "Rechtlicher Rahmen",
@@ -359,13 +364,34 @@
     "pages": {
       "title": "Seiten",
       "links": [
-        { "name": "Startseite", "hash": "#top" },
-        { "name": "Über uns", "hash": "#about" },
-        { "name": "Dienstleistungen", "hash": "#services" },
-        { "name": "Partner", "hash": "#partners" },
-        { "name": "Kontakt", "hash": "#contact" },
-        { "name": "Zertifikat", "url": "/certificate" },
-        { "name": "Allgemeine Geschäftsbedingungen", "url": "/terms" }
+        {
+          "name": "Startseite",
+          "hash": "#top"
+        },
+        {
+          "name": "Über uns",
+          "hash": "#about"
+        },
+        {
+          "name": "Dienstleistungen",
+          "hash": "#services"
+        },
+        {
+          "name": "Partner",
+          "hash": "#partners"
+        },
+        {
+          "name": "Kontakt",
+          "hash": "#contact"
+        },
+        {
+          "name": "Zertifikat",
+          "url": "/certificate"
+        },
+        {
+          "name": "Allgemeine Geschäftsbedingungen",
+          "url": "/terms"
+        }
       ]
     },
     "hours": {
@@ -386,7 +412,6 @@
     },
     "copyright": "Alle Rechte vorbehalten."
   },
-
   "chatbot": {
     "header_title": "KI-Support-Agent",
     "welcome_message": "Hallo! 👋 Wie kann ich Ihnen heute mit unseren KI-Diensten helfen?",
