@@ -234,6 +234,8 @@ const Header = ({ changeLanguage }) => {
             onClick={(e) => {
               e.preventDefault();
               navigate("/");
+              // Scroll to top when clicking logo
+              window.scrollTo({ top: 0, behavior: "smooth" });
             }}
           >
             <img
@@ -312,19 +314,17 @@ const Header = ({ changeLanguage }) => {
 
       {/* --- Mobile Navigation Menu (Modal Style) --- */}
       <div
-        className={`fixed inset-0 bg-black/50 backdrop-blur-sm transition-all duration-300 md:hidden ${
-          isMobileMenuOpen
-            ? "opacity-100 z-998"
-            : "opacity-0 pointer-events-none z-[-1]"
-        }`}
+        className={`fixed inset-0 bg-black/50 backdrop-blur-sm transition-all duration-300 md:hidden ${isMobileMenuOpen
+          ? "opacity-100 z-998"
+          : "opacity-0 pointer-events-none z-[-1]"
+          }`}
         onClick={() => setIsMobileMenuOpen(false)}
       >
         <div
-          className={`absolute inset-x-4 top-20 bg-white rounded-3xl shadow-2xl transition-all duration-300 md:hidden ${
-            isMobileMenuOpen
-              ? "translate-y-0 opacity-100 scale-100"
-              : "translate-y-4 opacity-0 scale-95"
-          }`}
+          className={`absolute inset-x-4 top-20 bg-white rounded-3xl shadow-2xl transition-all duration-300 md:hidden ${isMobileMenuOpen
+            ? "translate-y-0 opacity-100 scale-100"
+            : "translate-y-4 opacity-0 scale-95"
+            }`}
           onClick={(e) => e.stopPropagation()}
           style={{ maxHeight: "calc(100vh - 120px)" }}
         >
@@ -393,20 +393,18 @@ const Header = ({ changeLanguage }) => {
                   </div>
                   <div className="flex items-center gap-2">
                     <span
-                      className={`px-3 py-1 rounded text-sm font-semibold ${
-                        i18n.language === "en"
-                          ? "bg-[#2378FF] text-white"
-                          : "bg-gray-100 text-gray-600"
-                      }`}
+                      className={`px-3 py-1 rounded text-sm font-semibold ${i18n.language === "en"
+                        ? "bg-[#2378FF] text-white"
+                        : "bg-gray-100 text-gray-600"
+                        }`}
                     >
                       EN
                     </span>
                     <span
-                      className={`px-3 py-1 rounded text-sm font-semibold ${
-                        i18n.language === "de"
-                          ? "bg-[#2378FF] text-white"
-                          : "bg-gray-100 text-gray-600"
-                      }`}
+                      className={`px-3 py-1 rounded text-sm font-semibold ${i18n.language === "de"
+                        ? "bg-[#2378FF] text-white"
+                        : "bg-gray-100 text-gray-600"
+                        }`}
                     >
                       DE
                     </span>
