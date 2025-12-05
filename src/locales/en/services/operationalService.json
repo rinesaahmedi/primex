@@ -67,6 +67,12 @@
           "desc": "We help you optimize internal processes to surge ahead of the competition."
         }
       ]
+    },
+    "cta": {
+      "title": "Ready to optimize your operations?",
+      "description": "Let's discuss how our operational services can streamline your business and boost your efficiency.",
+      "primary": "Get in Touch",
+      "secondary": "Contact Us"
     }
   }
 }

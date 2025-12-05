@@ -62,7 +62,9 @@
     },
     "cta": {
       "title": "Lassen Sie uns Ihren Service-Desk aufbauen",
-      "description": "Wir bieten Support, der Ihre Markenwerte widerspiegelt – von Anfragen über Reklamationen bis zur Kundenbindung."
+      "description": "Wir bieten Support, der Ihre Markenwerte widerspiegelt – von Anfragen über Reklamationen bis zur Kundenbindung.",
+      "primary": "Jetzt starten",
+      "secondary": "Kontakt"
     }
   }
 }

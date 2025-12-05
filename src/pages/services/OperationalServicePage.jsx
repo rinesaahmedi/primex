@@ -198,23 +198,23 @@ const OperationalServicePage = () => {
                 className="text-2xl md:text-3xl font-bold mb-4"
                 style={{ fontFamily: 'var(--font-serif)' }}
               >
-                Ready to optimize your operations?
+                {t("operationalServices.cta.title", "Ready to optimize your operations?")}
               </h3>
               <p className="text-white/90 mb-8 text-lg max-w-2xl">
-                Let's discuss how our operational services can streamline your business and boost your efficiency.
+                {t("operationalServices.cta.description", "Let's discuss how our operational services can streamline your business and boost your efficiency.")}
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link
                   to="/business"
                   className="inline-flex items-center justify-center px-8 py-3 bg-white text-[#2378FF] font-semibold rounded-xl hover:bg-white/90 transition-all shadow-lg hover:shadow-xl"
                 >
-                  Get in Touch
+                  {t("operationalServices.cta.primary", "Get in Touch")}
                 </Link>
                 <Link
                   to="/#contact"
                   className="inline-flex items-center justify-center px-8 py-3 border-2 border-white text-white font-semibold rounded-xl hover:bg-white hover:text-[#2378FF] transition-all"
                 >
-                  Contact Us
+                  {t("operationalServices.cta.secondary", "Contact Us")}
                 </Link>
               </div>
             </div>

@@ -213,13 +213,13 @@ const CustomerSupportPage = () => {
                   to="/business"
                   className="inline-flex items-center justify-center px-8 py-3 bg-white text-[#2378FF] font-semibold rounded-xl hover:bg-white/90 transition-all shadow-lg hover:shadow-xl"
                 >
-                  Get Started
+                  {t("customerSupport.cta.primary", "Get Started")}
                 </Link>
                 <Link
                   to="/#contact"
                   className="inline-flex items-center justify-center px-8 py-3 border-2 border-white text-white font-semibold rounded-xl hover:bg-white hover:text-[#2378FF] transition-all"
                 >
-                  Contact Us
+                  {t("customerSupport.cta.secondary", "Contact Us")}
                 </Link>
               </div>
             </div>

@@ -67,6 +67,12 @@
           "desc": "Wir optimieren Ihre internen Prozesse, damit Sie der Konkurrenz einen Schritt voraus sind."
         }
       ]
+    },
+    "cta": {
+      "title": "Bereit, Ihre Abläufe zu optimieren?",
+      "description": "Lassen Sie uns besprechen, wie unsere operativen Services Ihr Geschäft verschlanken und Ihre Effizienz steigern können.",
+      "primary": "Kontakt aufnehmen",
+      "secondary": "Kontakt"
     }
   }
 }

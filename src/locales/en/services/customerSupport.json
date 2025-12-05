@@ -62,7 +62,9 @@
     },
     "cta": {
       "title": "Let's assemble your service desk",
-      "description": "We deliver support that reflects your brand values handling inquiries, claims, and retention."
+      "description": "We deliver support that reflects your brand values handling inquiries, claims, and retention.",
+      "primary": "Get Started",
+      "secondary": "Contact Us"
     }
   }
 }
