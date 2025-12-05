@@ -1,68 +1,68 @@
 {
   "customerSupport": {
-    "title": "Customer Support",
-    "subtitle": "Multilingual service desks handle inquiries, after-sales care, claims, and retention programs across every channel.",
+    "title": "Kundensupport",
+    "subtitle": "Mehrsprachige Service-Desks bearbeiten Anfragen, After-Sales-Betreuung, Reklamationen und Kundenbindungsprogramme über alle Kanäle hinweg.",
     "intro": {
-      "title": "Multilingual service desks that boost satisfaction",
-      "description": "PrimEx operates 24/7 service desks that handle inquiries, after-sales care, claims, and retention programs across every channel—email, phone, chat, and social. Our multilingual teams (DE, EN, and more) deliver consistent, brand-aligned support that turns customers into advocates."
+      "title": "Mehrsprachige Service-Desks, die die Kundenzufriedenheit steigern",
+      "description": "PrimEx betreibt 24/7-Service-Desks, die Anfragen, After-Sales-Betreuung, Reklamationen und Kundenbindungsprogramme über alle Kanäle hinweg übernehmen – E-Mail, Telefon, Chat und Social Media. Unsere mehrsprachigen Teams (DE, EN und weitere) bieten konsistenten, markenkonformen Support, der Kunden zu echten Fürsprechern macht."
     },
     "highlights": [
-      "24/7 multilingual support",
-      "Omnichannel handling",
-      "Claims & retention"
+      "24/7 mehrsprachiger Support",
+      "Omnichannel-Bearbeitung",
+      "Reklamationen & Kundenbindung"
     ],
     "services": {
       "inquiry": {
-        "title": "Inquiry Management",
-        "description": "Professional multilingual teams handle customer questions, product information requests, and technical support across email, phone, chat, and social channels.",
+        "title": "Anfragenmanagement",
+        "description": "Professionelle mehrsprachige Teams bearbeiten Kundenfragen, Produktinformationsanfragen und technischen Support über E-Mail, Telefon, Chat und soziale Kanäle.",
         "features": [
-          "Multi-channel ticket routing",
-          "First-response time optimization",
-          "Knowledge base integration"
+          "Multichannel-Ticketrouting",
+          "Optimierung der Erstreaktionszeit",
+          "Integration in Wissensdatenbanken"
         ]
       },
       "afterSales": {
-        "title": "After-sales Care",
-        "description": "Proactive follow-up, warranty support, and maintenance guidance ensure customers stay satisfied long after purchase.",
+        "title": "After-Sales-Betreuung",
+        "description": "Proaktive Nachverfolgung, Gewährleistungsunterstützung und Pflegehinweise sorgen dafür, dass Kunden auch lange nach dem Kauf zufrieden bleiben.",
         "features": [
-          "Warranty & service coordination",
-          "Product usage guidance",
-          "Satisfaction surveys & feedback"
+          "Koordination von Garantie & Service",
+          "Anleitung zur Produktnutzung",
+          "Zufriedenheitsumfragen & Feedback"
         ]
       },
       "claims": {
-        "title": "Claims Processing",
-        "description": "Efficient claims handling with clear communication, fast resolution, and documentation that protects both customer and brand.",
+        "title": "Reklamationsbearbeitung",
+        "description": "Effiziente Bearbeitung von Reklamationen mit klarer Kommunikation, schneller Lösung und sauberer Dokumentation – zum Schutz von Kunden und Marke.",
         "features": [
-          "Claims intake & triage",
-          "Resolution workflows",
-          "Documentation & reporting"
+          "Erfassung & Priorisierung von Reklamationen",
+          "Strukturierte Lösungs-Workflows",
+          "Dokumentation & Reporting"
         ]
       },
       "retention": {
-        "title": "Retention Programs",
-        "description": "Loyalty initiatives, win-back campaigns, and personalized outreach that turn one-time buyers into repeat customers.",
+        "title": "Kundenbindungsprogramme",
+        "description": "Treueprogramme, Rückgewinnungsaktionen und personalisierte Ansprache, die einmalige Käufer zu wiederkehrenden Kunden machen.",
         "features": [
-          "Loyalty program management",
-          "Win-back campaigns",
-          "Personalized customer journeys"
+          "Management von Loyalitätsprogrammen",
+          "Win-Back-Kampagnen",
+          "Personalisierte Customer Journeys"
         ]
       }
     },
     "whyChoose": {
-      "title": "Why choose PrimEx customer support",
+      "title": "Warum PrimEx für Kundensupport?",
       "items": [
-        "40+ years of furniture industry expertise",
-        "Multilingual support (DE, EN, and more)",
-        "24/7 availability across time zones",
-        "Brand-aligned communication and tone",
-        "Scalable capacity for peak seasons",
-        "Integrated with your CRM and ticketing systems"
+        "40+ Jahre Expertise in der Möbelindustrie",
+        "Mehrsprachiger Support (DE, EN und mehr)",
+        "24/7-Verfügbarkeit über Zeitzonen hinweg",
+        "Markenkonforme Kommunikation & Tonalität",
+        "Skalierbare Kapazitäten für Hochsaisons",
+        "Integration in Ihr CRM- und Ticketsystem"
       ]
     },
     "cta": {
-      "title": "Let's assemble your service desk",
-      "description": "We deliver support that reflects your brand values handling inquiries, claims, and retention."
+      "title": "Lassen Sie uns Ihren Service-Desk aufbauen",
+      "description": "Wir bieten Support, der Ihre Markenwerte widerspiegelt – von Anfragen über Reklamationen bis zur Kundenbindung."
     }
   }
 }

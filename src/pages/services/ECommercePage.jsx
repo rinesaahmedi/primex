@@ -58,7 +58,9 @@ const ECommercePage = () => {
           className="inline-flex items-center gap-2 text-[#2378FF] hover:text-[#1f5fcc] mb-8 transition-colors"
         >
           <ArrowLeft className="w-5 h-5" />
-          <span className="font-medium">Back to Services</span>
+          <span className="font-medium">
+            {t("services.backTo", "Back to Services")}
+          </span>
         </Link>
 
         {/* Header & Intro Section (Split Layout) */}

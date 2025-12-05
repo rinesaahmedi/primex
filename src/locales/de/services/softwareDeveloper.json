@@ -1,68 +1,68 @@
 {
   "softwareDeveloper": {
     "hero": {
-      "eyebrow": "IT SERVICES",
-      "title": "IT Development & Technical Consulting",
-      "subtitle": "Bridging tradition with the digital future",
-      "description": "Engineers integrate ERPs/CRMs, build custom software, and advise on cybersecurity, infrastructure, and automation roadmaps. We combine over 40 years of furniture industry tradition with state-of-the-art technology. Our team delivers tailored software solutions and integrates virtual agents to collaborate with your people, solving the overload of modern retail."
+      "eyebrow": "IT-DIENSTLEISTUNGEN",
+      "title": "IT-Entwicklung & Technische Beratung",
+      "subtitle": "Tradition trifft digitale Zukunft",
+      "description": "Unsere Ingenieure integrieren ERPs/CRMs, entwickeln individuelle Software und beraten zu Cybersicherheit, Infrastruktur und Automatisierungsstrategien. Wir verbinden über 40 Jahre Tradition in der Möbelbranche mit modernster Technologie. Unser Team liefert maßgeschneiderte Softwarelösungen und integriert virtuelle Agenten, die mit Ihren Mitarbeitern zusammenarbeiten und die Überlastung des modernen Einzelhandels lösen."
     },
     "sections": {
-      "offeringsTitle": "Our Technical Capabilities",
-      "benefitsTitle": "Why choose PrimEx for IT"
+      "offeringsTitle": "Unsere technischen Kompetenzen",
+      "benefitsTitle": "Warum PrimEx für IT?"
     },
     "pillars": [
       {
         "icon": "hammer",
-        "title": "Custom Product Pods",
-        "body": "We provide young, dynamic specialists who bring innovative ideas to complex systems. We spin up cross-functional pods to build digital products with PrimEx furniture-industry context built-in.",
+        "title": "Individuelle Produkt-Teams",
+        "body": "Wir stellen junge, dynamische Spezialisten bereit, die innovative Ideen in komplexe Systeme einbringen. Wir bilden funktionsübergreifende Teams, um digitale Produkte zu entwickeln – mit dem PrimEx-Kontext der Möbelindustrie von Anfang an.",
         "items": [
-          "Web & Mobile Experiences: Custom B2B and B2C interfaces.",
-          "Internal Tooling: Dashboards to visualize data and workflows.",
-          "Marketplace Extensions: Plugins for seamless platform connection."
+          "Web- & Mobile-Erlebnisse: Maßgeschneiderte B2B- und B2C-Oberflächen.",
+          "Interne Tools: Dashboards zur Visualisierung von Daten und Arbeitsabläufen.",
+          "Marktplatz-Erweiterungen: Plugins für nahtlose Plattformanbindung."
         ]
       },
       {
         "icon": "database",
-        "title": "Integration & Data Fabric",
-        "body": "Caught between ERP, phone, and email? We stabilize your stack. Our engineers connect your ERP, CRM, and logistics systems using SAP, Salesforce, Microsoft, and bespoke middleware for real-time data flow.",
+        "title": "Integration & Datenarchitektur",
+        "body": "Gefangen zwischen ERP, Telefon und E-Mail? Wir stabilisieren Ihren Technologie-Stack. Unsere Ingenieure verbinden ERP-, CRM- und Logistiksysteme mit SAP, Salesforce, Microsoft und eigener Middleware für einen Echtzeit-Datenfluss.",
         "items": [
-          "Seamless Connectors: Eliminate data silos between systems.",
-          "Real-time Inventory: Prevent incorrect orders and overselling.",
-          "Unified Architecture: One source of truth for your data."
+          "Nahtlose Konnektoren: Beseitigen Sie Datensilos zwischen Systemen.",
+          "Echtzeit-Bestände: Verhindern Sie falsche Bestellungen und Überverkäufe.",
+          "Einheitliche Architektur: Eine einzige verlässliche Datenquelle."
         ]
       },
       {
         "icon": "cpu",
-        "title": "AI Agent Development",
-        "body": "Solve the shortage of skilled workers. We develop 'Virtual Agents' that work 24/7 to handle unprocessed orders and unanswered offers, empowering your human potential to focus on what matters.",
+        "title": "Entwicklung von KI-Agenten",
+        "body": "Beheben Sie den Fachkräftemangel. Wir entwickeln „Virtuelle Agenten“, die rund um die Uhr unbearbeitete Bestellungen und unbeantwortete Angebote verarbeiten – sodass Ihre Mitarbeiter sich auf das Wesentliche konzentrieren können.",
         "items": [
-          "Workflow Automation: Agents handle repetitive tasks.",
-          "Human-AI Collaboration: Virtual assistants working alongside staff.",
-          "24/7 Operations: Never absent, always working."
+          "Workflow-Automatisierung: Agenten übernehmen wiederkehrende Aufgaben.",
+          "Mensch-KI-Zusammenarbeit: Virtuelle Assistenten, die Seite an Seite arbeiten.",
+          "24/7-Betrieb: Immer verfügbar, niemals abwesend."
         ]
       },
       {
         "icon": "shield-check",
-        "title": "Consulting & Cybersecurity",
-        "body": "We ensure your infrastructure is safe and efficient. We provide high-level consulting on data protection concepts and cybersecurity to protect your business reputation.",
+        "title": "Beratung & Cybersicherheit",
+        "body": "Wir sorgen dafür, dass Ihre Infrastruktur sicher und effizient ist. Wir bieten hochqualifizierte Beratung zu Datenschutzkonzepten und Cybersicherheit, um den Ruf Ihres Unternehmens zu schützen.",
         "items": [
-          "Data Protection Concepts: Compliant with DACH regulations.",
-          "Security Audits: Protecting against digital threats.",
-          "Automation Roadmaps: Strategic planning for digital growth."
+          "Datenschutzkonzepte: Konform mit DACH-Vorschriften.",
+          "Sicherheitsaudits: Schutz vor digitalen Bedrohungen.",
+          "Automatisierungsstrategien: Strategische Planung für digitales Wachstum."
         ]
       }
     ],
     "benefits": [
-      "Young Talent: Kosovo has Europe's youngest, most motivated population (70% under 30).",
-      "Location: Only two hours away from the DACH region by plane.",
-      "Communication: Fluent in English and German for seamless collaboration.",
-      "Efficiency: State-of-the-art infrastructure reducing costs without compromising quality."
+      "Junges Talent: Kosovo hat die jüngste und motivierteste Bevölkerung Europas (70 % unter 30).",
+      "Standort: Nur zwei Flugstunden von der DACH-Region entfernt.",
+      "Kommunikation: Fließend in Englisch und Deutsch für reibungslose Zusammenarbeit.",
+      "Effizienz: Modernste Infrastruktur, die Kosten senkt, ohne Qualität zu verlieren."
     ],
     "cta": {
-      "title": "Ready to modernize your infrastructure?",
-      "body": "Let's build the digital future of your furniture business together.",
-      "primary": "Get in Touch",
-      "secondary": "Contact Us"
+      "title": "Bereit, Ihre Infrastruktur zu modernisieren?",
+      "body": "Lassen Sie uns gemeinsam die digitale Zukunft Ihrer Möbelbranche gestalten.",
+      "primary": "Kontakt aufnehmen",
+      "secondary": "Jetzt anfragen"
     }
   }
 }

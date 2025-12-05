@@ -1,28 +1,69 @@
 {
-    "serviceDetails": {
-        "eCommerce": {
-            "features": [
-                "Individuelle E-Commerce-Websites – exakt auf Ihre Marke zugeschnitten",
-                "Responsives Design – optimiert für Desktop und Mobile",
-                "Zahlungsintegration – sichere Checkout-Prozesse",
-                "Bestandsverwaltung – Echtzeit-Lagerabgleich",
-                "SEO-Optimierung – bessere Sichtbarkeit in der Suche",
-                "Analytics & Reporting – Kennzahlen jederzeit im Blick"
-            ],
-            "benefits": [
-                "Gestärkte Online-Präsenz",
-                "Nachhaltiges Unternehmenswachstum",
-                "Maßgeschneiderte Lösungen für Ihre Marke",
-                "Nutzerfreundliche Einkaufserlebnisse",
-                "Skalierbare Plattformen, die mitwachsen",
-                "Professionelle Entwicklung und Support"
-            ],
-            "useCases": [
-                "Unternehmen, die einen Onlineshop starten",
-                "Firmen, die in den E-Commerce expandieren",
-                "Retailer mit Bedarf an individuellen Plattformen",
-                "Marken, die ihre Online-Präsenz stärken möchten"
-            ]
+  "ecommerceProductData": {
+    "title": "E-Commerce & Produktdaten",
+    "subtitle": "Produktdaten-Management & Content: Wir normalisieren Kataloge, reichern Inhalte an, lokalisieren Preise und veröffentlichen sie auf Marktplätzen, PIM- und ERP-Systemen.",
+    "intro": {
+      "title": "Von „unsichtbar“ zum „Bestseller“ – mit KI-Präzision",
+      "description": "Online zu verkaufen wirkt einfach – doch ohne perfekte Produktdaten funktioniert nichts. Ein fehlendes Bild oder eine Zahl, und Ihr Listing wird unsichtbar. Wir ersetzen die „harte Realität“ manueller Excel-Tabellen durch KI-gestützte Geschwindigkeit und stellen sicher, dass Ihre Produkte sichtbar, regelkonform und kaufbereit auf jeder Plattform erscheinen."
+    },
+    "sections": {
+      "dataManagement": {
+        "title": "Produktdaten-Management",
+        "description": "Teams verbringen Wochen damit, endlose Excel-Tabellen zu füllen. Wir automatisieren diesen Prozess. Unsere KI-Agenten optimieren Ihre Produktdaten in wenigen Minuten – statt in mehreren Wochen – und prüfen tausende Details auf Genauigkeit.",
+        "features": {
+          "1": "Automatisierter Content: Datenbereitstellung in Minuten statt Wochen.",
+          "2": "Null Fehler: Beseitigung manueller Eingabefehler.",
+          "3": "24/7-Aktualisierung: Ihr Katalog bleibt jederzeit aktuell."
         }
+      },
+      "compliance": {
+        "title": "Marketplace-Compliance",
+        "description": "Amazon, OTTO und Kaufland haben strenge Richtlinien. Ein kleiner Fehler führt sofort zu Ablehnungen oder Kontosperrungen. Wir sorgen dafür, dass jedes Attribut den Plattformanforderungen entspricht, damit Ihre Listings nie blockiert werden.",
+        "features": {
+          "1": "Plattformspezifische Formatierung: Optimiert für Amazon, OTTO, Kaufland & Home24.",
+          "2": "EUDR-Compliance: Automatisierte Prüfungen zum Schutz vor Sanktionen.",
+          "3": "Sofortige Regelanpassung: Wir aktualisieren so schnell, wie Plattformen ihre Vorgaben ändern."
+        }
+      },
+      "optimization": {
+        "title": "Listing-Optimierung",
+        "description": "Verhindern Sie, dass Ihre Produkte in den Suchergebnissen verschwinden. Wir optimieren Titel und Beschreibungen, damit Sie die „Buy Box“ behalten – denn ohne sie brechen Bestellungen oft über Nacht ein.",
+        "features": {
+          "1": "Buy-Box-Schutz: Strategien, um Ihr Angebot sichtbar zu halten.",
+          "2": "SEO-Optimierung: Keywords, die Ihre Produkte leicht auffindbar machen.",
+          "3": "Sichtbarkeitssteigerung: Hochwertiger Content, der Verkäufe antreibt."
+        }
+      },
+      "empowerment": {
+        "title": "Empowerment für Kunden",
+        "description": "Wir begegnen dem Fachkräftemangel, indem wir Ihr Team stärken. Wir schulen Ihre Mitarbeiter darin, eigene KI-Agenten zu erstellen und zu verwalten – für mehr Unabhängigkeit und geringere langfristige Kosten.",
+        "features": {
+          "1": "KI-Trainingsworkshops: Schulung Ihrer internen Teams.",
+          "2": "Individuelle Agenten-Einrichtung: Werkzeuge, die zu Ihren Workflows passen.",
+          "3": "Digitale Unabhängigkeit: Weniger Abhängigkeit von externen Ressourcen."
+        }
+      }
+    },
+    "whyChoose": {
+      "title": "Warum PrimEx für E-Commerce?",
+      "items": [
+        {
+          "title": "Geschwindigkeit",
+          "desc": "Listings gehen in Stunden live – nicht in Wochen."
+        },
+        {
+          "title": "Kosten",
+          "desc": "Die Kosten sinken, während die Geschwindigkeit steigt."
+        },
+        {
+          "title": "Fokus",
+          "desc": "Ihr Team konzentriert sich auf Strategie – nicht auf Tabellen."
+        },
+        {
+          "title": "Ergebnisse",
+          "desc": "Händler, die KI nutzen, ziehen vorbei – der Rest bleibt zurück."
+        }
+      ]
     }
+  }
 }

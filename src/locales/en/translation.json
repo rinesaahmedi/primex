@@ -102,6 +102,7 @@
     "mainTitle": "Our Services",
     "intro": "Tailored solutions designed to optimize your business operations and support your growth.",
     "ctaLabel": "View more",
+    "backTo": "Back to Services",
     "items": [
       {
         "title": "AI Automation & Virtual Assistants",

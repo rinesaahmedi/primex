@@ -1,71 +1,70 @@
 {
   "operationalServices": {
+    "title": "Operational Services",
     "hero": {
-      "eyebrow": "OPERATIONAL SERVICES",
-      "title": "Your reliable partner for back-office efficiency",
-      "subtitle": "Back-office teams manage order processing, logistics coordination, procurement, and compliance across the furniture supply chain.\n\nFor over ten years, we have supported the furniture industry in Germany, Austria, and Switzerland. We take the pressure off your internal teams by handling the heavy lifting—from logistics to accounting—allowing you to strengthen your market presence.",
-      "highlights": [
-        "Order Processing",
-        "Logistics & Dropshipping",
-        "Bookkeeping Compliance"
-      ]
+      "eyebrow": "OPERATIONAL SERVICES"
+    },
+    "subtitle": "Backoffice-Teams übernehmen die Auftragsbearbeitung, Logistikkoordination, Beschaffung und Compliance entlang der gesamten Möbel-Lieferkette.",
+    "intro": {
+      "title": "Ihr zuverlässiger Partner für Backoffice-Effizienz",
+      "description": "Seit über zehn Jahren unterstützen wir die Möbelindustrie in Deutschland, Österreich und der Schweiz. Wir entlasten Ihre internen Teams, indem wir das operative Tagesgeschäft übernehmen – von der Logistik bis zur Buchhaltung – damit Sie Ihre Marktpräsenz nachhaltig stärken können."
     },
     "sections": {
       "orderProcessing": {
-        "title": "Order Processing",
-        "description": "Unprocessed orders and incorrect entries frustrate customers. We provide precise, fast, and seamless handling of all orders to ensure timely processing and maximum satisfaction.",
+        "title": "Auftragsbearbeitung",
+        "description": "Unbearbeitete Bestellungen und fehlerhafte Eingaben frustrieren Kunden. Wir sorgen für präzise, schnelle und reibungslose Bearbeitung aller Aufträge, um termingerechte Abläufe und maximale Kundenzufriedenheit zu gewährleisten.",
         "features": {
-          "1": "Fast Processing: Handling high volumes effortlessly.",
-          "2": "Accuracy: Reducing returns caused by order errors.",
-          "3": "Seamless Workflow: Direct integration into your systems."
+          "1": "Schnelle Bearbeitung: Mühelose Bewältigung hoher Volumina.",
+          "2": "Genauigkeit: Weniger Retouren dank fehlerfreier Aufträge.",
+          "3": "Nahtlose Abläufe: Direkte Integration in Ihre Systeme."
         }
       },
       "logistics": {
-        "title": "Logistics & Dropshipping",
-        "description": "We optimize your supply chain. Leveraging cooperation with top partners like Hermes, Anton Röhr, Rhenus, Grabowski, and DHL, we ensure your furniture reaches the customer safely.",
+        "title": "Logistik & Dropshipping",
+        "description": "Wir optimieren Ihre Lieferkette. Durch Kooperationen mit führenden Partnern wie Hermes, Anton Röhr, Rhenus, Grabowski und DHL stellen wir sicher, dass Ihre Möbel sicher und zuverlässig bei den Kunden ankommen.",
         "features": {
-          "1": "Top-Tier Partnerships: Direct coordination with major carriers.",
-          "2": "Supply Chain Optimization: Streamlined distribution workflows.",
-          "3": "Dropshipping Management: Efficient B2C fulfillment."
+          "1": "Top-Partnerschaften: Direkte Koordination mit führenden Logistikdienstleistern.",
+          "2": "Supply-Chain-Optimierung: Effiziente, schlanke Distributionsprozesse.",
+          "3": "Dropshipping-Management: Effektive B2C-Fulfillment-Lösungen."
         }
       },
       "sales": {
         "title": "Sales Management",
-        "description": "We support both traditional stores and online shops. Our team manages global wholesale and retail sales coordination for B2B and B2C channels, ensuring no opportunity is lost.",
+        "description": "Wir unterstützen sowohl stationäre Händler als auch Online-Shops. Unser Team koordiniert den globalen Groß- und Einzelhandel über B2B- und B2C-Kanäle, sodass keine Verkaufschance verloren geht.",
         "features": {
-          "1": "Omnichannel Support: Managing sales across all platforms.",
-          "2": "Revenue Growth: Dedicated teams focused on conversion.",
-          "3": "Market Expansion: Support for entering new territories."
+          "1": "Omnichannel-Unterstützung: Steuerung aller Vertriebskanäle.",
+          "2": "Umsatzsteigerung: Teams mit Fokus auf Konversion.",
+          "3": "Marktexpansion: Unterstützung beim Eintritt in neue Zielmärkte."
         }
       },
       "bookkeeping": {
-        "title": "Bookkeeping",
-        "description": "Transparency and accuracy for your success. We manage your financial records and reporting, ensuring full compliance with international accounting standards.",
+        "title": "Buchhaltung",
+        "description": "Transparenz und Genauigkeit als Grundlage Ihres Erfolgs. Wir verwalten Ihre Finanzdaten und Berichte – vollständig konform mit internationalen Rechnungslegungsstandards.",
         "features": {
-          "1": "Transaction Recording: Precise financial tracking.",
-          "2": "Reporting: Clear, actionable financial insights.",
-          "3": "Compliance: Adherence to DACH and international regulations."
+          "1": "Transaktionsaufzeichnung: Präzise finanzielle Nachverfolgung.",
+          "2": "Reporting: Klare und verwertbare finanzielle Einblicke.",
+          "3": "Compliance: Einhaltung der DACH- und internationalen Vorschriften."
         }
       }
     },
     "whyChoose": {
-      "title": "Why choose PrimEx for Operations",
+      "title": "Warum PrimEx für Operations?",
       "items": [
         {
-          "title": "Experience",
-          "desc": "40+ years of family tradition in the furniture business."
+          "title": "Erfahrung",
+          "desc": "40+ Jahre Familientradition in der Möbelbranche."
         },
         {
-          "title": "Cost-Efficiency",
-          "desc": "High-quality services at fair prices via our Kosovo location."
+          "title": "Kosteneffizienz",
+          "desc": "Hochwertige Dienstleistungen zu fairen Preisen dank unseres Standorts im Kosovo."
         },
         {
-          "title": "Flexibility",
-          "desc": "Individual solutions tailored to your specific needs."
+          "title": "Flexibilität",
+          "desc": "Individuelle Lösungen, präzise auf Ihre Bedürfnisse zugeschnitten."
         },
         {
           "title": "Vision",
-          "desc": "We help you optimize internal processes to surge ahead of the competition."
+          "desc": "Wir optimieren Ihre internen Prozesse, damit Sie der Konkurrenz einen Schritt voraus sind."
         }
       ]
     }
