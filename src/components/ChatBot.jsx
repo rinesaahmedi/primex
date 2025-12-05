@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { useTranslation } from "react-i18next";
+import { apiUrl } from "../apiBase";
 
 const ChatBot = () => {
   const { t, i18n } = useTranslation();
@@ -76,7 +77,7 @@ const ChatBot = () => {
     try {
       audioPlayerRef.current.pause();
 
-      const response = await fetch("http://localhost:5000/api/speak", {
+      const response = await fetch(apiUrl("/api/speak"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -128,7 +129,7 @@ const ChatBot = () => {
       }));
 
     try {
-      const response = await fetch("http://localhost:5000/api/chat", {
+      const response = await fetch(apiUrl("/api/chat"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

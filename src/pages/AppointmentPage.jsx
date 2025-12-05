@@ -3,6 +3,7 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import axios from "axios";
 import { useTranslation } from "react-i18next"; // Added import
+import { apiUrl } from "../apiBase";
 
 // Simple Checkmark Icon Component
 const CheckIcon = ({ className }) => (
@@ -61,7 +62,9 @@ const AppointmentPage = () => {
 
     axios
       .get(
-        `http://localhost:5000/api/unavailable-dates?year=${year}&month=${month}&tzOffset=${tzOffset}`
+        apiUrl(
+          `/api/unavailable-dates?year=${year}&month=${month}&tzOffset=${tzOffset}`
+        )
       )
       .then((response) => {
         setUnavailableDates(response.data);
@@ -78,7 +81,9 @@ const AppointmentPage = () => {
 
     axios
       .get(
-        `http://localhost:5000/api/available-slots?date=${formattedDate}&tzOffset=${tzOffset}`
+        apiUrl(
+          `/api/available-slots?date=${formattedDate}&tzOffset=${tzOffset}`
+        )
       )
       .then((response) => {
         setAvailableSlots(response.data);
@@ -167,7 +172,7 @@ const AppointmentPage = () => {
     };
 
     axios
-      .post("http://localhost:5000/api/book-appointment", bookingData)
+      .post(apiUrl("/api/book-appointment"), bookingData)
       .then((response) => {
         setIsBooking(false);
         // You might want to use a translated success message instead of backend response

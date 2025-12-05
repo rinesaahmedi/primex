@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
+import { apiUrl } from "../apiBase";
 
 const BusinessInquiryForm = () => {
   const { t } = useTranslation();
@@ -102,14 +103,11 @@ const BusinessInquiryForm = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch(
-        "http://localhost:5000/send-business-inquiry",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
-        }
-      );
+      const response = await fetch(apiUrl("/send-business-inquiry"), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
       const result = await response.json();
 
