@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useScrollAnimation } from "../utils/useScrollAnimation";
 
@@ -23,9 +23,40 @@ const partnerLogos = [
 export default function PartnersGrid() {
     const { t } = useTranslation();
     const [sectionRef, isVisible] = useScrollAnimation({ threshold: 0.1 });
+    const [isTouching, setIsTouching] = useState(false);
+    const scrollContainerRef = useRef(null);
+    const timeoutRef = useRef(null);
 
-    // Duplicate logos for seamless infinite scroll
-    const duplicatedLogos = [...partnerLogos, ...partnerLogos];
+    // Duplicate logos multiple times for seamless infinite scroll
+    // Using 3 sets ensures continuous flow without white space gaps
+    const duplicatedLogos = [...partnerLogos, ...partnerLogos, ...partnerLogos];
+
+    const handleTouchStart = () => {
+        setIsTouching(true);
+        // Clear any existing timeout
+        if (timeoutRef.current) {
+            clearTimeout(timeoutRef.current);
+        }
+    };
+
+    const handleTouchEnd = () => {
+        // Resume animation after a short delay
+        if (timeoutRef.current) {
+            clearTimeout(timeoutRef.current);
+        }
+        timeoutRef.current = setTimeout(() => {
+            setIsTouching(false);
+        }, 1500);
+    };
+
+    // Cleanup timeout on unmount
+    useEffect(() => {
+        return () => {
+            if (timeoutRef.current) {
+                clearTimeout(timeoutRef.current);
+            }
+        };
+    }, []);
 
     return (
         <section id="partners" className="w-full py-20 bg-white overflow-hidden">
@@ -44,20 +75,27 @@ export default function PartnersGrid() {
             </div>
 
             {/* Infinite Slider - Full width with narrow margins */}
-            <div className="relative overflow-hidden px-2">
-                <div className="flex partners-scroll gap-16 items-center">
-                    {duplicatedLogos.map((partner, index) => (
-                        <div
-                            key={`${partner.name}-${index}`}
-                            className="shrink-0 flex items-center justify-center h-48 md:h-64 lg:h-72"
-                        >
-                            <img
-                                src={partner.logo}
-                                alt={partner.name}
-                                className="max-h-40 md:max-h-56 lg:max-h-64 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
-                            />
-                        </div>
-                    ))}
+            <div className="relative overflow-hidden">
+                <div className="partners-scroll-wrapper">
+                    <div
+                        ref={scrollContainerRef}
+                        className={`flex partners-scroll gap-8 md:gap-16 items-center ${isTouching ? 'partners-scroll-paused' : ''}`}
+                        onTouchStart={handleTouchStart}
+                        onTouchEnd={handleTouchEnd}
+                    >
+                        {duplicatedLogos.map((partner, index) => (
+                            <div
+                                key={`${partner.name}-${index}`}
+                                className="shrink-0 flex items-center justify-center h-48 md:h-64 lg:h-72"
+                            >
+                                <img
+                                    src={partner.logo}
+                                    alt={partner.name}
+                                    className="max-h-40 md:max-h-56 lg:max-h-64 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
+                                />
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>

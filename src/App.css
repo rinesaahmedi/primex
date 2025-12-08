@@ -195,18 +195,55 @@
 }
 
 /* Partners infinite scroll animation */
+.partners-scroll-wrapper {
+  overflow: hidden;
+  width: 100%;
+}
+
 @keyframes scroll {
   0% {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
 
   100% {
-    transform: translateX(-50%);
+    transform: translate3d(calc(-100% / 3), 0, 0);
   }
 }
 
 .partners-scroll {
-  animation: scroll 18s linear infinite;
+  display: flex;
+  animation: scroll 12s linear infinite;
+  will-change: transform;
+  width: max-content;
+}
+
+/* Pause animation when touching on mobile */
+.partners-scroll-paused {
+  animation-play-state: paused !important;
+}
+
+/* Mobile: Enable touch scrolling */
+@media (max-width: 768px) {
+  .partners-scroll-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    touch-action: pan-x;
+  }
+
+  .partners-scroll-wrapper::-webkit-scrollbar {
+    display: none;
+  }
+
+  .partners-scroll {
+    cursor: grab;
+    touch-action: pan-x;
+  }
+
+  .partners-scroll:active {
+    cursor: grabbing;
+  }
 }
 
 /* Scroll animations - subtle lift and blur using transitions */
@@ -257,6 +294,7 @@
 
 /* Floating animation for hero glows */
 @keyframes float {
+
   0%,
   100% {
     transform: translateY(0px);
