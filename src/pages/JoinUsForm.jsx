@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
+import { apiUrl } from "../apiBase";
 
 function JoinUsForm() {
   const { t } = useTranslation();
@@ -221,7 +222,7 @@ function JoinUsForm() {
       if (formData.cvFile) fd.append("cv", formData.cvFile);
 
       // NOTE: Ensure this URL is correct for your environment
-      const response = await fetch("http://localhost:5000/send-apply-form", {
+      const response = await fetch(apiUrl("/send-apply-form"), {
         method: "POST",
         body: fd,
       });

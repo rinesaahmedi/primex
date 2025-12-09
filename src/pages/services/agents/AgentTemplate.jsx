@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef, useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useScrollAnimation } from "../../../utils/useScrollAnimation";
@@ -11,6 +11,8 @@ import {
   Database,
   TrendingUp,
   Activity,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 
 // =================================================================================
@@ -225,9 +227,42 @@ const AgentTemplate = () => {
 
   const [sectionRef, isVisible] = useScrollAnimation({ threshold: 0.1 });
   const [activeVisual, setActiveVisual] = useState("overview");
+  
+  // Mobile gallery state
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+  const galleryRef = useRef(null);
 
   // 2. Get Assets
   const currentAgentAssets = AGENT_ASSETS[actualId] || AGENT_ASSETS["default"];
+  
+  // Get all unique images for mobile gallery (memoized)
+  const galleryImages = useMemo(() => {
+    const images = [];
+    const seen = new Set();
+    const sections = ["overview", "capabilities", "useCases", "cta"];
+    
+    sections.forEach((section) => {
+      const img = currentAgentAssets[section];
+      if (img && !seen.has(img)) {
+        seen.add(img);
+        images.push({
+          image: img,
+          title: t(`${actualId}.visuals.${section}.title`),
+          description: t(`${actualId}.visuals.${section}.description`),
+          section: section,
+        });
+      }
+    });
+    
+    return images;
+  }, [actualId, currentAgentAssets, t]);
+
+  // Reset gallery index when agent changes
+  useEffect(() => {
+    setCurrentImageIndex(0);
+  }, [actualId]);
 
   // 3. Scroll Observer
   useEffect(() => {
@@ -264,6 +299,49 @@ const AgentTemplate = () => {
     title: t(`${actualId}.visuals.${activeVisual}.title`),
     description: t(`${actualId}.visuals.${activeVisual}.description`),
     label: t(`${actualId}.visuals.label`),
+  };
+
+  // Mobile gallery swipe handlers
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe && currentImageIndex < galleryImages.length - 1) {
+      setCurrentImageIndex(currentImageIndex + 1);
+    }
+    if (isRightSwipe && currentImageIndex > 0) {
+      setCurrentImageIndex(currentImageIndex - 1);
+    }
+  };
+
+  const goToNext = () => {
+    if (currentImageIndex < galleryImages.length - 1) {
+      setCurrentImageIndex(currentImageIndex + 1);
+    }
+  };
+
+  const goToPrevious = () => {
+    if (currentImageIndex > 0) {
+      setCurrentImageIndex(currentImageIndex - 1);
+    }
+  };
+
+  const goToImage = (index) => {
+    setCurrentImageIndex(index);
   };
 
   const capabilities = t(`${actualId}.capabilities.items`, {
@@ -441,22 +519,102 @@ const AgentTemplate = () => {
               </div>
             </div>
 
-            {/* Mobile Visual (Visible only on small screens) */}
+            {/* Mobile Gallery (Visible only on small screens) */}
             <div className="mt-10 md:hidden">
               <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-md">
-                <div className="w-full h-64  overflow-hidden rounded-2xl mb-4">
-                   <img
-                    src={currentVisual.image}
-                    alt={currentVisual.title}
-                    className="w-full h-full object-cover transition-opacity duration-500"
-                  />
+                {/* Gallery Container */}
+                <div className="relative">
+                  {/* Image Container with Swipe */}
+                  <div
+                    ref={galleryRef}
+                    className="relative w-full h-64 overflow-hidden rounded-2xl mb-4"
+                    onTouchStart={onTouchStart}
+                    onTouchMove={onTouchMove}
+                    onTouchEnd={onTouchEnd}
+                  >
+                    {/* Image Slider */}
+                    <div
+                      className="flex transition-transform duration-300 ease-out h-full"
+                      style={{
+                        transform: `translateX(-${currentImageIndex * 100}%)`,
+                      }}
+                    >
+                      {galleryImages.map((item, index) => (
+                        <div
+                          key={index}
+                          className="min-w-full h-full flex-shrink-0"
+                        >
+                          <img
+                            src={item.image}
+                            alt={item.title}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Navigation Arrows */}
+                    {galleryImages.length > 1 && (
+                      <>
+                        {currentImageIndex > 0 && (
+                          <button
+                            onClick={goToPrevious}
+                            className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-2 shadow-lg transition-all z-10"
+                            aria-label="Previous image"
+                          >
+                            <ChevronLeft className="w-5 h-5 text-[#2378FF]" />
+                          </button>
+                        )}
+                        {currentImageIndex < galleryImages.length - 1 && (
+                          <button
+                            onClick={goToNext}
+                            className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-2 shadow-lg transition-all z-10"
+                            aria-label="Next image"
+                          >
+                            <ChevronRight className="w-5 h-5 text-[#2378FF]" />
+                          </button>
+                        )}
+                      </>
+                    )}
+
+                    {/* Image Counter */}
+                    {galleryImages.length > 1 && (
+                      <div className="absolute bottom-2 right-2 bg-black/60 text-white text-xs px-2 py-1 rounded-full">
+                        {currentImageIndex + 1} / {galleryImages.length}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Navigation Dots */}
+                  {galleryImages.length > 1 && (
+                    <div className="flex justify-center gap-2 mb-4">
+                      {galleryImages.map((_, index) => (
+                        <button
+                          key={index}
+                          onClick={() => goToImage(index)}
+                          className={`transition-all rounded-full ${
+                            index === currentImageIndex
+                              ? "w-8 h-2 bg-[#2378FF]"
+                              : "w-2 h-2 bg-slate-300 hover:bg-slate-400"
+                          }`}
+                          aria-label={`Go to image ${index + 1}`}
+                        />
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Current Image Info */}
+                  {galleryImages[currentImageIndex] && (
+                    <div>
+                      <h3 className="text-xl font-semibold text-slate-900 mb-2">
+                        {galleryImages[currentImageIndex].title}
+                      </h3>
+                      <p className="text-sm text-slate-600">
+                        {galleryImages[currentImageIndex].description}
+                      </p>
+                    </div>
+                  )}
                 </div>
-                <h3 className="text-xl font-semibold text-slate-900">
-                  {currentVisual.title}
-                </h3>
-                <p className="text-sm text-slate-600">
-                  {currentVisual.description}
-                </p>
               </div>
             </div>
           </div>

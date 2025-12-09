@@ -674,7 +674,7 @@
   "complains": {
     "badge": "Reklamations-AI Agent – 70 Sekunden",
     "title": "Von der Reklamation zur Lösung in unter 70 Sekunden.",
-    "subtitle": "Reklamationsbearbeitung ist langsam und teuer. Dieser Agent liest E-Mails, analysiert Fotos, prüft ERP-Daten und bearbeitet den Fall – schneller als Amazon.",
+    "subtitle": "Die Bearbeitung von Reklamationen ist langsam, frustrierend und kostspielig. Dieser Agent liest E-Mails, analysiert Fotos, überprüft ERP-Daten und verarbeitet die Reklamation – damit Sie Probleme schnell lösen und unzufriedene Kunden wieder zufriedenstellen können.",
     "metrics": {
       "processingTime": {
         "value": "70 Sekunden",
@@ -703,7 +703,7 @@
       "title": "Hauptvorteile",
       "cards": [
         {
-          "title": "Schneller als Amazon",
+          "title": "Geschwindigkeit, die zufriedenstellt",
           "body": "Kunden sind in unter 2 Minuten zufrieden. Weniger Eskalationen, weniger Retouren und weniger negative Bewertungen."
         },
         {
@@ -806,7 +806,7 @@
     }
   },
   "dpp": {
-    "badge": "Digitaler Produktpass AI Agent (In Entwicklung)",
+    "badge": "Digitaler Produktpass AI Agent",
     "title": "Bereiten Sie sich heute auf die Regeln von morgen vor.",
     "subtitle": "Die EU führt digitale Produktpässe ein. Wer spät startet, riskiert hohen manuellen Aufwand. Dieser Agent baut strukturierte Daten jetzt auf, um Compliance zu sichern.",
     "metrics": {

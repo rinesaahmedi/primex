@@ -674,7 +674,7 @@
    "complains": {
   "badge": "Complaints AI Agent – 70 Seconds",
   "title": "From Complaint to Solution in Under 70 Seconds.",
-  "subtitle": "Handling complaints is slow, frustrating, and expensive. This Agent reads emails, analyzes photos, checks ERP data, and processes the claim—turning angry customers into happy ones faster than Amazon.",
+  "subtitle": "Handling complaints is slow, frustrating, and expensive. This Agent reads emails, analyzes photos, checks ERP data, and processes the claim—helping you resolve issues quickly and turn unhappy customers into satisfied ones.",
   "metrics": {
     "processingTime": {
       "value": "70 Seconds",
@@ -703,7 +703,7 @@
     "title": "Key Benefits",
     "cards": [
       {
-        "title": "Faster than Amazon",
+        "title": "Speed That Satisfies",
         "body": "Customers are calm and satisfied in under 2 minutes. Fewer escalations, fewer returns, and fewer negative reviews."
       },
       {
@@ -806,7 +806,7 @@
   }
 },
     "dpp": {
-  "badge": "Digital Product Passport AI Agent (In Development)",
+  "badge": "Digital Product Passport AI Agent",
   "title": "Prepare Today for Tomorrow’s Rules.",
   "subtitle": "The EU is introducing Digital Product Passports. Companies that start late will face high manual effort. This Agent builds structured data now to ensure compliance and avoid losing access to key markets.",
   "metrics": {

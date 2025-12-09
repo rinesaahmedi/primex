@@ -6,7 +6,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "node backend/server.cjs"
   },
   "dependencies": {
     "@azure/identity": "^4.13.0",
