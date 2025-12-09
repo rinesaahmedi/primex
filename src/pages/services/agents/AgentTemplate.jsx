@@ -444,7 +444,7 @@ const AgentTemplate = () => {
             {/* Mobile Visual (Visible only on small screens) */}
             <div className="mt-10 md:hidden">
               <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-md">
-                <div className="w-full h-64 overflow-hidden rounded-2xl mb-4">
+                <div className="w-full h-64  overflow-hidden rounded-2xl mb-4">
                    <img
                     src={currentVisual.image}
                     alt={currentVisual.title}
@@ -471,7 +471,7 @@ const AgentTemplate = () => {
                 </p>
                 
                 {/* Fixed Height Image Container */}
-                <div className="bg-white rounded-2xl overflow-hidden w-full h-64 lg:h-80 shadow-sm border border-slate-100 relative">
+                <div className="bg-white rounded-2xl overflow-hidden w-full h-64 lg:h-104 shadow-sm border border-slate-100 relative">
                   {/* We use a key here to force re-render animation on image change if desired, or relying on src switch */}
                   <img
                     key={currentVisual.image} 
