@@ -19,66 +19,64 @@ import {
 // 1. ALL IMAGE IMPORTS
 // =================================================================================
 
-// --- ALL IN ONE ASSISTANT ---
-// import allInOne1 from "../../../images/FOTOT/ALL IN ONE ASSISTANT/ALL-IN-ONE AGENT.png";
-// import allInOne2 from "../../../images/FOTOT/ALL IN ONE ASSISTANT/ALL IN ONE ASSISTANT AI AGENT 2(3).jpg";
+// // --- ALL IN ONE ASSISTANT ---
+import allInOne1 from "../../../images/FOTOT E SERVISEVE/ALL IN ONE ASSISTANT/ALL IN ONE ASSISTANT.jpg";
+import allInOne2 from "../../../images/FOTOT/ALL IN ONE ASISSTANT/2.png";
 
-// --- COMPLAINS ---
-import complains1 from "../../../images/FOTOT/COMPLAINS/COMPLAINS AGENT 1.png";
-import complains2 from "../../../images/FOTOT/COMPLAINS/COMPLAINS AGENT 2.png";
+// // --- COMPLAINS ---
+import complains1 from "../../../images/FOTOT/COMPLAINTS/1.png";
+import complains2 from "../../../images/FOTOT/COMPLAINTS/2.png";
 
-// --- CONTENT GENERATION ---
+
+// // --- CONTENT GENERATION ---
 import contentGen1 from "../../../images/FOTOT E SERVISEVE/CONTENT GENERATION/CONTENT GENERATION AI AGENT.png";
 import contentGen2 from "../../../images/FOTOT E SERVISEVE/CONTENT GENERATION/CONTENT GENERATION AI AGENT 2.png"; 
-import contentGen3 from "../../../images/FOTOT/CONTENT GENERATION/CONTENT GENERATION3 (3).jpg"; 
 
-// --- CRM INTEGRATION ---
-import crm1 from "../../../images/FOTOT/CRM INTEGRATION/CRM INTEGRATION_1_388x318.jpg";
-import crm2 from "../../../images/FOTOT/CRM INTEGRATION/CRM INTEGRATION_2_388x318.jpg.png";
+// // --- CRM INTEGRATION ---
+import crm1 from "../../../images/FOTOT/CRM INTEGRATION/1.jpg";
+import crm2 from "../../../images/FOTOT/CRM INTEGRATION/2.jpg";
 
-// --- DPP ---
-import dpp1 from "../../../images/FOTOT/DPP/DIGITAL PRODUCT PASSPORT.png";
+// // --- DPP ---
+import dpp1 from "../../../images/FOTOT/DPP/1.png";
 
-// --- EDI 2.0 ---
-import edi1 from "../../../images/FOTOT/EDI 2.0/EDI 2.0 (1).png";
-import edi2 from "../../../images/FOTOT/EDI 2.0/EDI 2.0 (2).png";
+// // --- EDI 2.0 ---
+import edi1 from "../../../images/FOTOT/EDI 2.0/1.png";
+import edi2 from "../../../images/FOTOT/EDI 2.0/2.png";
 
-// --- EUDR ---
+// // --- EUDR ---
 import eudr1 from "../../../images/FOTOT/EUDR/EUDR 1.jpg";
 import eudr2 from "../../../images/FOTOT/EUDR/EUDR 2.jpg";
 import eudr3 from "../../../images/FOTOT/EUDR/EUDR 3.jpg";
 
-// --- KITCHEN ORDER CONFIRMATION ---
-import kitchen1 from "../../../images/FOTOT E SERVISEVE/KITCHEN ORDER CONFIRMATION/KITCHEN ORDER CONFIRMATION.png";
-import kitchen2 from "../../../images/FOTOT/KITCHEN CONFIRMATION(WITHOUT STAR ICON).png";
-import kitchen3 from "../../../images/FOTOT/KITCHEN ORDER CONFIRMATION/KITCHEN ORDER CONFIRMATION3(3).jpg";
+// // --- KITCHEN ORDER CONFIRMATION ---
+import kitchen1 from "../../../images/FOTOT/KITCHEN ORDER CONFIRMATION/1.png";
+import kitchen2 from "../../../images/FOTOT E SERVISEVE/KITCHEN ORDER CONFIRMATION/IMAGE.png";
 
-// --- ORDER CONFIRMATION ---
-import orderConf1 from "../../../images/FOTOT/ORDER CONFIRMATION/ORDER CONFIRMATION(1).jpg";
-import orderConf2 from "../../../images/FOTOT/ORDER CONFIRMATION/ORDER CONFIRMATION_2 (388x318).jpg";
+
+// // --- ORDER CONFIRMATION ---
+import orderConf1 from "../../../images/FOTOT/ORDER CONFIRMATION/1.jpg"
+import orderConf2 from "../../../images/FOTOT/ORDER CONFIRMATION/2.jpg";
 import orderConf3 from "../../../images/FOTOT E SERVISEVE/ORDER CONFIRMATION/ORDER CONFIRMATION 3.png";
 import orderConf4 from "../../../images/FOTOT E SERVISEVE/ORDER CONFIRMATION/ORDER CONFIRMATION AGENT 4.png";
 
-// --- ORDER PROCESSING ---
+// // --- ORDER PROCESSING ---
 import orderProc1 from "../../../images/FOTOT/ORDER PROCESSING/ORDER PROCESSING.png";
-import orderProc2 from "../../../images/FOTOT/ORDER PROCESSING/ORDER PROCESSING 2.png";
+import orderProc2 from "../../../images/FOTOT E SERVISEVE/ORDER PROCESSING/ORDER PROCESSING 2.png";
 import orderProc3 from "../../../images/FOTOT/ORDER PROCESSING/ORDER PROCESSING 3.png";
 
-// --- PDM ---
-import pdm1 from "../../../images/FOTOT/PDM/PDM.jpg";
-import pdm2 from "../../../images/FOTOT/PDM/PDM 2.png";
-import pdm3 from "../../../images/FOTOT/PDM/PDM 3.png";
-import pdm4 from "../../../images/FOTOT E SERVISEVE/PDM/PDM 4.png";
+// // --- PDM ---
+import pdm1 from "../../../images/FOTOT/PDM/1.png";
+import pdm2 from "../../../images/FOTOT/PDM/2.png";
+import pdm3 from "../../../images/FOTOT/PDM/3.png";
 
-// --- SMM (Social Media) ---
-import smm1 from "../../../images/FOTOT/SMM/SOCIAL MEDIA AGENT 1(1).png";
-import smm2 from "../../../images/FOTOT/SMM/SOCIAL MEDIA AGENT 2(2).png";
+// // --- SMM (Social Media) ---
+import smm1 from "../../../images/FOTOT/SMM/1.png";
+import smm2 from "../../../images/FOTOT/SMM/2.png";
 
-// --- VIRTUAL SECRETARY ---
+// // --- VIRTUAL SECRETARY ---
 import vs1 from "../../../images/FOTOT E SERVISEVE/VIRTUAL SECRETARY/VIRTUAL SECRETARY.png";
 import vs2 from "../../../images/FOTOT E SERVISEVE/VIRTUAL SECRETARY/VIRTUAL SECRETARY 2.png";
 import vs3 from "../../../images/FOTOT E SERVISEVE/VIRTUAL SECRETARY/VIRTUAL SECRETARY 3.png";
-import vs4 from "../../../images/FOTOT/VIRTUAL SECRETARY/VIRTUAL SECRETARY 4.jpg";
 
 const placeholderImg = "https://via.placeholder.com/600x400?text=Agent+Image";
 
@@ -99,14 +97,14 @@ const AGENT_ASSETS = {
     overview: pdm1,
     capabilities: pdm2,
     useCases: pdm3,
-    cta: pdm4,
+    cta: pdm3,
   },
 
   // Agent 3: Content Generation (Has 3 images)
   "content-generation": {
-    overview: contentGen1,
+    overview: contentGen2,
     capabilities: contentGen2,
-    useCases: contentGen3,
+    useCases: contentGen1,
     cta: contentGen1, // Fallback to main
   },
 
@@ -115,30 +113,30 @@ const AGENT_ASSETS = {
     overview: vs1,
     capabilities: vs2,
     useCases: vs3,
-    cta: vs4,
+    cta: vs3,
   },
 
   // Agent 5: All-in-One (Has 2 images)
   "all-in-one": {
     overview: allInOne1,
-    capabilities: allInOne2,
-    useCases: allInOne1, // Fallback
+    capabilities: allInOne1,
+    useCases: allInOne2, // Fallback
     cta: allInOne2, // Fallback
   },
 
   // Agent 6: Social Media (Has 2 images)
   "smm": {
     overview: smm1,
-    capabilities: smm2,
-    useCases: smm1, // Fallback
+    capabilities: smm1,
+    useCases: smm2, // Fallback
     cta: smm2, // Fallback
   },
 
   // Agent 7: CRM Integration (Has 2 images)
   "crm": {
     overview: crm1,
-    capabilities: crm2,
-    useCases: crm1,
+    capabilities: crm1,
+    useCases: crm2,
     cta: crm2,
   },
 
@@ -147,39 +145,39 @@ const AGENT_ASSETS = {
     overview: orderProc1,
     capabilities: orderProc2,
     useCases: orderProc3,
-    cta: orderProc1,
+    cta: orderProc3,
   },
 
   // Agent 9: Kitchen Order (Has 3 images)
   "kitchen-order": {
     overview: kitchen1,
-    capabilities: kitchen2,
-    useCases: kitchen3,
-    cta: kitchen1,
+    capabilities: kitchen1,
+    useCases: kitchen2,
+    cta: kitchen2,
   },
 
   // Agent 10: EDI 2.0 (Has 2 images)
   "edi": {
     overview: edi1,
-    capabilities: edi2,
-    useCases: edi1,
+    capabilities: edi1,
+    useCases: edi2,
     cta: edi2,
   },
 
   // Agent 11: Complaints (Has 2 images)
   "complains": {
     overview: complains1,
-    capabilities: complains2,
-    useCases: complains1,
+    capabilities: complains1,
+    useCases: complains2,
     cta: complains2,
   },
 
   // Agent 12: EUDR (Has 1 image)
   "eudr": {
     overview: eudr1,
-    capabilities: eudr1,
-    useCases: eudr1,
-    cta: eudr1,
+    capabilities: eudr2,
+    useCases: eudr3,
+    cta: eudr3,
   },
 
   // Agent 13: DPP (Has 1 image)
@@ -625,7 +623,7 @@ const AgentTemplate = () => {
           <div className="hidden md:block">
             <div className="sticky top-28">
               {/* This container animates when content changes */}
-              <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-md transition-all duration-300 flex flex-col gap-3">
+              <div className="rounded-3xl border border-slate-200 bg-slate-50 py-6 px-4 shadow-md transition-all duration-300 flex flex-col gap-3">
                 <p className="text-xs font-semibold uppercase tracking-wide text-slate-500 mb-2">
                   {currentVisual.label}
                 </p>
