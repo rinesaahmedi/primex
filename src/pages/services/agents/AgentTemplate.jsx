@@ -20,63 +20,65 @@ import {
 // =================================================================================
 
 // --- ALL IN ONE ASSISTANT ---
-import allInOne1 from "../../../images/FOTOT E SERVISEVE/ALL IN ONE ASSISTANT/ALL IN ONE ASSISTANT.png";
-import allInOne2 from "../../../images/FOTOT E SERVISEVE/ALL IN ONE ASSISTANT/ALL IN ONE ASSISTANT AI AGENT 2.png";
+import allInOne1 from "../../../images/FOTOT/ALL IN ONE ASSISTANT/ALL IN ONE AGENT.png";
+import allInOne2 from "../../../images/FOTOT/ALL IN ONE ASSISTANT/ALL IN ONE ASSISTANT AI AGENT 2(3).png";
 
 // --- COMPLAINS ---
-import complains1 from "../../../images/FOTOT E SERVISEVE/COMPLAINS/COMPLAINS AGENT.png";
-import complains2 from "../../../images/FOTOT E SERVISEVE/COMPLAINS/COMPLAINS AGENT 2.png";
+import complains1 from "../../../images/FOTOT/COMPLAINS/COMPLAINS AGENT 1.png";
+import complains2 from "../../../images/FOTOT/COMPLAINS/COMPLAINS AGENT 2.png";
 
 // --- CONTENT GENERATION ---
-import contentGen1 from "../../../images/FOTOT E SERVISEVE/CONTENT GENERATION/CONTENT GENERATION AI AGENT.png";
-import contentGen2 from "../../../images/FOTOT E SERVISEVE/CONTENT GENERATION/CONTENT GENERATION AI AGENT 2.png"; 
-import contentGen3 from "../../../images/FOTOT E SERVISEVE/CONTENT GENERATION/CONTENT GENERATION AI AGENT 3.png"; 
+import contentGen1 from "../../../images/FOTOT/CONTENT GENERATION/CONTENT GENERATION AI AGENT.png";
+import contentGen2 from "../../../images/FOTOT/CONTENT GENERATION/CONTENT GENERATION AI AGENT 2.png"; 
+import contentGen3 from "../../../images/FOTOT/CONTENT GENERATION/CONTENT GENERATION AI AGENT 3.png"; 
 
 // --- CRM INTEGRATION ---
-import crm1 from "../../../images/FOTOT E SERVISEVE/CRM INTEGRATION/CRM INTEGRATION.jpg";
-import crm2 from "../../../images/FOTOT E SERVISEVE/CRM INTEGRATION/CRM INTEGRATION 2.jpg.png";
+import crm1 from "../../../images/FOTOT/CRM INTEGRATION/CRM INTEGRATION_1_388x318.jpg";
+import crm2 from "../../../images/FOTOT/CRM INTEGRATION/CRM INTEGRATION_2_388x318.jpg.png";
 
 // --- DPP ---
-import dpp1 from "../../../images/FOTOT E SERVISEVE/DPP/DIGITAL PRODUCT PASSPORT.png";
+import dpp1 from "../../../images/FOTOT/DPP/DIGITAL PRODUCT PASSPORT.png";
 
 // --- EDI 2.0 ---
-import edi1 from "../../../images/FOTOT E SERVISEVE/EDI 2.0/EDI 2.0.png";
-import edi2 from "../../../images/FOTOT E SERVISEVE/EDI 2.0/EDI 2.0 -2.png";
+import edi1 from "../../../images/FOTOT/EDI 2.0/EDI 2.0 (1).png";
+import edi2 from "../../../images/FOTOT/EDI 2.0/EDI 2.0 (2).png";
 
 // --- EUDR ---
-import eudr1 from "../../../images/FOTOT E SERVISEVE/EUDR/EUDR.png";
+import eudr1 from "../../../images/FOTOT/EUDR/EUDR 1.png";
+import eudr1 from "../../../images/FOTOT/EUDR/EUDR 2.png";
+import eudr1 from "../../../images/FOTOT/EUDR/EUDR 3.png";
 
 // --- KITCHEN ORDER CONFIRMATION ---
 import kitchen1 from "../../../images/FOTOT E SERVISEVE/KITCHEN ORDER CONFIRMATION/KITCHEN ORDER CONFIRMATION.png";
 import kitchen2 from "../../../images/FOTOT E SERVISEVE/KITCHEN ORDER CONFIRMATION/KITCHEN ORDER CONFIRMATION 2.png";
-import kitchen3 from "../../../images/FOTOT E SERVISEVE/KITCHEN ORDER CONFIRMATION/KITCHEN ORDER CONFIRMATION 3.png";
+import kitchen3 from "../../../images/FOTOT/KITCHEN ORDER CONFIRMATION/KITCHEN ORDER CONFIRMATION3(3).png";
 
 // --- ORDER CONFIRMATION ---
-import orderConf1 from "../../../images/FOTOT E SERVISEVE/ORDER CONFIRMATION/ORDER CONFIRMATION.png";
-import orderConf2 from "../../../images/FOTOT E SERVISEVE/ORDER CONFIRMATION/ORDER CONFIRMATION 2.png";
-import orderConf3 from "../../../images/FOTOT E SERVISEVE/ORDER CONFIRMATION/ORDER CONFIRMATION 3.png";
-import orderConf4 from "../../../images/FOTOT E SERVISEVE/ORDER CONFIRMATION/ORDER CONFIRMATION AGENT 4.png";
+import orderConf1 from "../../../images/FOTOT/ORDER CONFIRMATION/ORDER CONFIRMATION.png";
+import orderConf2 from "../../../images/FOTOT/ORDER CONFIRMATION/ORDER CONFIRMATION 2.png";
+import orderConf3 from "../../../images/FOTOT/ORDER CONFIRMATION/ORDER CONFIRMATION 3.png";
+import orderConf4 from "../../../images/FOTOT/ORDER CONFIRMATION/ORDER CONFIRMATION AGENT 4.png";
 
 // --- ORDER PROCESSING ---
-import orderProc1 from "../../../images/FOTOT E SERVISEVE/ORDER PROCESSING/ORDER PROCESSING.jpg";
-import orderProc2 from "../../../images/FOTOT E SERVISEVE/ORDER PROCESSING/ORDER PROCESSING 2.jpg.png";
-import orderProc3 from "../../../images/FOTOT E SERVISEVE/ORDER PROCESSING/ORDER PROCESSING 3.jpg.png";
+import orderProc1 from "../../../images/FOTOT/ORDER PROCESSING/ORDER PROCESSING.jpg";
+import orderProc2 from "../../../images/FOTOT/ORDER PROCESSING/ORDER PROCESSING 2.jpg.png";
+import orderProc3 from "../../../images/FOTOT/ORDER PROCESSING/ORDER PROCESSING 3.jpg.png";
 
 // --- PDM ---
-import pdm1 from "../../../images/FOTOT E SERVISEVE/PDM/PDM.png";
-import pdm2 from "../../../images/FOTOT E SERVISEVE/PDM/PDM 2.png";
-import pdm3 from "../../../images/FOTOT E SERVISEVE/PDM/PDM 3.png";
-import pdm4 from "../../../images/FOTOT E SERVISEVE/PDM/PDM 4.png";
+import pdm1 from "../../../images/FOTOT/PDM/PDM.png";
+import pdm2 from "../../../images/FOTOT/PDM/PDM 2.png";
+import pdm3 from "../../../images/FOTOT/PDM/PDM 3.png";
+import pdm4 from "../../../images/FOTOT/PDM/PDM 4.png";
 
 // --- SMM (Social Media) ---
-import smm1 from "../../../images/FOTOT E SERVISEVE/SMM/SOCIAL MEDIA AGENT.png";
-import smm2 from "../../../images/FOTOT E SERVISEVE/SMM/SOCIAL MEDIA AGENT 2.png";
+import smm1 from "../../../images/FOTOT/SMM/SOCIAL MEDIA AGENT.png";
+import smm2 from "../../../images/FOTOT/SMM/SOCIAL MEDIA AGENT 2.png";
 
 // --- VIRTUAL SECRETARY ---
-import vs1 from "../../../images/FOTOT E SERVISEVE/VIRTUAL SECRETARY/VIRTUAL SECRETARY.png";
-import vs2 from "../../../images/FOTOT E SERVISEVE/VIRTUAL SECRETARY/VIRTUAL SECRETARY 2.png";
-import vs3 from "../../../images/FOTOT E SERVISEVE/VIRTUAL SECRETARY/VIRTUAL SECRETARY 3.png";
-import vs4 from "../../../images/FOTOT E SERVISEVE/VIRTUAL SECRETARY/VIRTUAL SECRETARY 4.png";
+import vs1 from "../../../images/FOTOT/VIRTUAL SECRETARY/VIRTUAL SECRETARY.png";
+import vs2 from "../../../images/FOTOT/VIRTUAL SECRETARY/VIRTUAL SECRETARY 2.png";
+import vs3 from "../../../images/FOTOT/VIRTUAL SECRETARY/VIRTUAL SECRETARY 3.png";
+import vs4 from "../../../images/FOTOT/VIRTUAL SECRETARY/VIRTUAL SECRETARY 4.png";
 
 const placeholderImg = "https://via.placeholder.com/600x400?text=Agent+Image";
 
