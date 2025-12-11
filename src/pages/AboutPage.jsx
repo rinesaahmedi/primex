@@ -196,7 +196,7 @@ const AboutPage = () => {
               {/* ------------------- 2. OUR EXPERTISE ------------------- */}
               <TimelineCard
                 title={t("about.expertise.title")}
-                description="We design and execute operational workflows tailored to furniture and retail businesses."
+                description={t("about.expertise.description")}
                 listItems={expertise}
                 delay={100}
               />

@@ -631,7 +631,7 @@ const AgentTemplate = () => {
                 </p>
                 
                 {/* Fixed Height Image Container */}
-                <div className="bg-white rounded-2xl overflow-hidden w-full h-64 lg:h-80 shadow-sm border border-slate-100 relative">
+                <div className="bg-white rounded-2xl overflow-hidden w-full h-64 lg:h-104 shadow-sm border border-slate-100 relative">
                   {/* We use a key here to force re-render animation on image change if desired, or relying on src switch */}
                   <img
                     key={currentVisual.image} 
