@@ -24,22 +24,20 @@ const ChatBot = () => {
     },
   ]);
 
-  // --- NEW: Lock Body Scroll when Chat is Open ---
+  // --- FIX 1: Lock Background Scroll ---
+  // This prevents the main site from scrolling when the chatbot is open
   useEffect(() => {
     if (isOpen) {
-      // Prevent scrolling on the background body
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow = "hidden"; // Lock scroll
+      // iOS specific fix to prevent rubber-banding if needed, 
+      // but overflow: hidden usually works for the body.
     } else {
-      // Re-enable scrolling
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = "unset"; // Unlock scroll
     }
-
-    // Cleanup function to ensure scroll is restored if component unmounts
     return () => {
       document.body.style.overflow = "unset";
     };
   }, [isOpen]);
-  // ----------------------------------------------
 
   useEffect(() => {
     if (messages.length === 1 && messages[0].sender === "bot") {
@@ -169,7 +167,7 @@ const ChatBot = () => {
   return (
     <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-[1000] flex flex-col items-end font-sans">
       {isOpen && (
-        <div className="mb-4 w-[calc(100vw-32px)] sm:w-[350px] h-[80vh] sm:h-[500px] max-h-[600px] bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden animate-fade-in-up">
+        <div className="mb-4 w-[calc(100vw-32px)] sm:w-[350px] h-[500px] max-h-[80vh] bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden animate-fade-in-up">
           {/* HEADER */}
           <div className="bg-[#1e105c] p-4 flex justify-between items-center text-white shrink-0 shadow-md z-10">
             <div className="flex items-center gap-2">
@@ -213,11 +211,9 @@ const ChatBot = () => {
             </div>
           </div>
 
-          {/* INPUT AREA - UPDATED FOR MOBILE FIX */}
+          {/* INPUT AREA */}
           <div className="p-2 sm:p-3 bg-white border-t border-gray-100 shrink-0">
-            <div className="flex items-center flex-nowrap gap-1 md:gap-2">
-              
-              {/* Voice Button */}
+            <div className="flex items-center gap-1.5 md:gap-2">
               <button
                 onClick={handleVoiceToggle}
                 className={`p-2 rounded-full transition-all shrink-0 ${isVoiceOn ? "bg-green-100 text-green-600" : "text-gray-400"}`}
@@ -227,7 +223,6 @@ const ChatBot = () => {
                 </svg>
               </button>
 
-              {/* Mic/Listen Button */}
               <button
                 onClick={startListening}
                 className={`p-2 rounded-full transition-all shrink-0 ${isListening ? "bg-red-500 text-white animate-pulse" : "text-gray-400"}`}
@@ -238,27 +233,28 @@ const ChatBot = () => {
                 </svg>
               </button>
 
-              {/* Input Field - Added min-w-0 to prevent overflow */}
+              {/* FIX 2: PREVENT ZOOM */}
+              {/* Changed text-sm to text-base (16px) on mobile, and text-sm on desktop */}
+              {/* Added min-w-0 to prevent flexbox overflow */}
               <input
                 type="text"
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
                 onKeyDown={handleKeyPress}
                 placeholder={isListening ? t("chatbot.listening") : t("chatbot.type_placeholder")}
-                className="flex-1 min-w-0 px-3 py-2 bg-gray-100 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-[#1e105c]/50 text-gray-700"
+                className="flex-1 min-w-0 px-3 py-2 bg-gray-100 rounded-full text-base md:text-sm focus:outline-none focus:ring-2 focus:ring-[#1e105c]/50 text-gray-700"
               />
 
-              {/* Send Button - Strictly set to shrink-0 */}
               <button
                 onClick={() => handleSendMessage()}
                 disabled={!inputText.trim() || isTyping}
-                className={`flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full text-white transition-all shadow-md ${
+                className={`flex items-center justify-center w-10 h-10 rounded-full text-white transition-all shadow-md shrink-0 ${
                   !inputText.trim() ? "bg-gray-300" : "bg-[#1e105c]"
                 }`}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 translate-x-0.5" // translate-x-0.5 visually centers the paper plane icon better
+                  className="h-5 w-5 translate-x-0.5" // Small fix to visually center the arrow
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
