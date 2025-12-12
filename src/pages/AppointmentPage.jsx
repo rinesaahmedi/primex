@@ -85,8 +85,10 @@ const AppointmentPage = () => {
           `/api/available-slots?date=${formattedDate}&tzOffset=${tzOffset}`
         )
       )
-      .then((response) => {
-        setAvailableSlots(response.data);
+      .then(({ data }) => {
+        // Guard against non-array responses so rendering doesn't break
+        const slots = Array.isArray(data) ? data : data?.availableSlots;
+        setAvailableSlots(slots || []);
       })
       .catch((error) =>
         console.error("Error fetching available slots:", error)
@@ -314,7 +316,8 @@ const AppointmentPage = () => {
                   </span>
                 </h3>
 
-                {availableSlots.length === 0 ? (
+                {/* Ensure slots is always an array to avoid map() errors */}
+                {(!Array.isArray(availableSlots) || availableSlots.length === 0) ? (
                   <div className="flex flex-col items-center justify-center h-56 text-gray-400 border-2 border-dashed border-gray-100 rounded-2xl bg-gray-50">
                     <p className="font-medium">{t("appointment.noSlots")}</p>
                   </div>
