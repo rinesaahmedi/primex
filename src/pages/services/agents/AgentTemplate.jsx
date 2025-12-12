@@ -286,16 +286,62 @@ const AgentTemplate = () => {
     return () => observers.forEach((o) => o.disconnect());
   }, [actualId]);
 
-  // 4. Helper to safely get image
-  const getVisualImage = (sectionKey) => {
-    return currentAgentAssets[sectionKey] || currentAgentAssets.overview || currentAgentAssets.main || placeholderImg;
+  // 4. Section data & summaries used in the sticky visual panel
+  const capabilities = t(`${actualId}.capabilities.items`, {
+    returnObjects: true,
+  });
+  const useCaseCards = t(`${actualId}.useCases.cards`, {
+    returnObjects: true,
+  });
+
+  const capabilitiesSummary = Array.isArray(capabilities)
+    ? capabilities.slice(0, 3).join(" ")
+    : "";
+  const useCasesSummary = Array.isArray(useCaseCards)
+    ? useCaseCards
+        .slice(0, 2)
+        .map((card) => `${card.title}: ${card.body}`)
+        .join(" ")
+    : "";
+
+  const shortenText = (text, maxChars = 130) => {
+    if (!text) return "";
+    if (text.length <= maxChars) return text;
+    const truncated = text.slice(0, maxChars);
+    const lastSpace = truncated.lastIndexOf(" ");
+    const safeCut = lastSpace > 0 ? truncated.slice(0, lastSpace) : truncated;
+    return safeCut;
   };
 
-  // 5. Construct Visual Data
+  const sectionTexts = {
+    overview: {
+      title: t(`${actualId}.title`),
+      description: shortenText(t(`${actualId}.subtitle`)),
+    },
+    capabilities: {
+      title: t(`${actualId}.capabilities.title`),
+      description: shortenText(capabilitiesSummary),
+    },
+    useCases: {
+      title: t(`${actualId}.useCases.title`),
+      description: shortenText(useCasesSummary),
+    },
+    cta: {
+      title: t(`${actualId}.cta.title`),
+      description: shortenText(t(`${actualId}.cta.body`)),
+    },
+  };
+
+  const getSectionText = (section) =>
+    sectionTexts[section] || sectionTexts.overview;
+
+  // 5. Visual Data
   const currentVisual = {
-    image: getVisualImage(activeVisual),
-    title: t(`${actualId}.visuals.${activeVisual}.title`),
-    description: t(`${actualId}.visuals.${activeVisual}.description`),
+    image:
+      currentAgentAssets[activeVisual] ||
+      currentAgentAssets.overview ||
+      placeholderImg,
+    ...getSectionText(activeVisual),
     label: t(`${actualId}.visuals.label`),
   };
 
@@ -341,13 +387,6 @@ const AgentTemplate = () => {
   const goToImage = (index) => {
     setCurrentImageIndex(index);
   };
-
-  const capabilities = t(`${actualId}.capabilities.items`, {
-    returnObjects: true,
-  });
-  const useCaseCards = t(`${actualId}.useCases.cards`, {
-    returnObjects: true,
-  });
 
   return (
     <section className="min-h-screen bg-white pt-28 pb-24 md:pt-36 md:pb-32">
