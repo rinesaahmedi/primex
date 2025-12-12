@@ -24,6 +24,23 @@ const ChatBot = () => {
     },
   ]);
 
+  // --- NEW: Lock Body Scroll when Chat is Open ---
+  useEffect(() => {
+    if (isOpen) {
+      // Prevent scrolling on the background body
+      document.body.style.overflow = "hidden";
+    } else {
+      // Re-enable scrolling
+      document.body.style.overflow = "unset";
+    }
+
+    // Cleanup function to ensure scroll is restored if component unmounts
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen]);
+  // ----------------------------------------------
+
   useEffect(() => {
     if (messages.length === 1 && messages[0].sender === "bot") {
       setMessages([{ ...messages[0], text: t("chatbot.welcome_message") }]);
@@ -152,7 +169,7 @@ const ChatBot = () => {
   return (
     <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-[1000] flex flex-col items-end font-sans">
       {isOpen && (
-        <div className="mb-4 w-[calc(100vw-32px)] sm:w-[350px] h-[500px] max-h-[70vh] bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden animate-fade-in-up">
+        <div className="mb-4 w-[calc(100vw-32px)] sm:w-[350px] h-[80vh] sm:h-[500px] max-h-[600px] bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden animate-fade-in-up">
           {/* HEADER */}
           <div className="bg-[#1e105c] p-4 flex justify-between items-center text-white shrink-0 shadow-md z-10">
             <div className="flex items-center gap-2">
@@ -166,7 +183,7 @@ const ChatBot = () => {
             </button>
           </div>
 
-          {/* MESSAGES - ADDED overscroll-contain TO FIX BACKGROUND SCROLL */}
+          {/* MESSAGES */}
           <div className="flex-1 bg-gray-50 p-4 overflow-y-auto overscroll-contain touch-pan-y">
             <div className="flex flex-col gap-3">
               {messages.map((msg) => (
@@ -196,19 +213,21 @@ const ChatBot = () => {
             </div>
           </div>
 
-          {/* INPUT AREA */}
-          <div className="p-3 bg-white border-t border-gray-100 shrink-0">
-            <div className="flex items-center gap-1.5 md:gap-2">
+          {/* INPUT AREA - UPDATED FOR MOBILE FIX */}
+          <div className="p-2 sm:p-3 bg-white border-t border-gray-100 shrink-0">
+            <div className="flex items-center flex-nowrap gap-1 md:gap-2">
+              
+              {/* Voice Button */}
               <button
                 onClick={handleVoiceToggle}
                 className={`p-2 rounded-full transition-all shrink-0 ${isVoiceOn ? "bg-green-100 text-green-600" : "text-gray-400"}`}
               >
-                {/* SVG code same as yours */}
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
                   <path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 001.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06zM18.584 5.106a.75.75 0 011.06 0c3.808 3.807 3.808 9.98 0 13.788a.75.75 0 11-1.06-1.06 8.25 8.25 0 000-11.668.75.75 0 010-1.06z" />
                 </svg>
               </button>
 
+              {/* Mic/Listen Button */}
               <button
                 onClick={startListening}
                 className={`p-2 rounded-full transition-all shrink-0 ${isListening ? "bg-red-500 text-white animate-pulse" : "text-gray-400"}`}
@@ -219,6 +238,7 @@ const ChatBot = () => {
                 </svg>
               </button>
 
+              {/* Input Field - Added min-w-0 to prevent overflow */}
               <input
                 type="text"
                 value={inputText}
@@ -228,17 +248,17 @@ const ChatBot = () => {
                 className="flex-1 min-w-0 px-3 py-2 bg-gray-100 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-[#1e105c]/50 text-gray-700"
               />
 
-              {/* FIXED SEND BUTTON: Added flex-shrink-0 and flex centering */}
+              {/* Send Button - Strictly set to shrink-0 */}
               <button
                 onClick={() => handleSendMessage()}
                 disabled={!inputText.trim() || isTyping}
-                className={`flex items-center justify-center w-10 h-10 rounded-full text-white transition-all shadow-md shrink-0 ${
+                className={`flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full text-white transition-all shadow-md ${
                   !inputText.trim() ? "bg-gray-300" : "bg-[#1e105c]"
                 }`}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 block" 
+                  className="h-5 w-5 translate-x-0.5" // translate-x-0.5 visually centers the paper plane icon better
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
