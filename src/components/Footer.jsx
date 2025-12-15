@@ -10,8 +10,8 @@ import InstagramIcon from "../images/instagram.png";
 const LinkedInIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="20"
-    height="20"
+    width="18"
+    height="18"
     viewBox="0 0 24 24"
     fill="currentColor"
     className="text-white"
@@ -25,35 +25,23 @@ const Footer = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  /** -----------------------------
-   * Smooth scroll for hash links
-   * ----------------------------*/
   const handleHashNavigation = (e, hash) => {
     e.preventDefault();
     const destination = hash || "#";
-
     const scrollToTarget = () => {
       if (destination === "#" || destination === "#top") {
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth",
-        });
+        window.scrollTo({ top: 0, behavior: "smooth" });
         return;
       }
-
       const element = document.querySelector(destination);
       if (element) {
         const headerOffset = 80;
         const elementPosition = element.getBoundingClientRect().top;
         const offsetPosition =
           elementPosition + window.pageYOffset - headerOffset;
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth",
-        });
+        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
       }
     };
-
     if (location.pathname !== "/") {
       navigate("/");
       setTimeout(scrollToTarget, 150);
@@ -62,9 +50,6 @@ const Footer = () => {
     }
   };
 
-  /** -----------------------------
-   * Translation Data
-   * ----------------------------*/
   const companyDescription = t("footer.company.description");
   const pageLinks = t("footer.pages.links", { returnObjects: true }) || [];
   const hours = t("footer.hours.times", { returnObjects: true }) || [];
@@ -73,37 +58,39 @@ const Footer = () => {
   const contactEmail = t("footer.contact.email");
   const contactPhone = t("footer.contact.phone");
   const contactLocation = t("footer.contact.location");
+  const contactLocationEU = t("footer.contactEU.location"); // Ensure this key exists in JSON
 
-  const socialTitle = t("footer.social.title");
   const copyright = t("footer.copyright");
 
   return (
-    <footer className="bg-gradient-to-br from-[#081333] via-[#123a78] to-[#081333] text-white">
-      <div className="max-w-6xl mx-auto px-6 py-16">
+    <footer className="bg-gradient-to-br from-[#081333] via-[#123a78] to-[#081333] text-white text-sm">
+      {/* Reduced py-16 to py-10 for less height */}
+      <div className="max-w-6xl mx-auto px-6 py-10">
         {/* ================= TOP GRID ================= */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-          {/* -------- COMPANY -------- */}
+        {/* Reduced gap-12 to gap-8, mb-12 to mb-8 */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+          {/* -------- COL 1: COMPANY -------- */}
           <div>
             <img
               src={PrimexLogo}
               alt="PrimEx"
-              className="mb-6 w-40 brightness-0 invert"
+              className="mb-4 w-32 brightness-0 invert"
             />
-            <p className="text-slate-300 leading-relaxed">
+            <p className="text-slate-300 leading-relaxed max-w-xs">
               {companyDescription}
             </p>
           </div>
 
-          {/* -------- PAGES -------- */}
+          {/* -------- COL 2: PAGES -------- */}
           <div>
-            {/* CHANGED: Translated Title */}
-            <h4 className="text-lg font-semibold mb-4">
+            <h4 className="text-base font-semibold mb-3 text-white uppercase tracking-wide">
               {t("footer.pages.title")}
             </h4>
-
-            <ul className="space-y-3">
+            <ul className="space-y-2">
               {pageLinks.map((link, i) => {
                 const key = `${link.name}-${i}`;
+                const classes =
+                  "text-slate-300 hover:text-[#2378FF] transition inline-block";
 
                 if (link.external && link.url) {
                   return (
@@ -112,50 +99,43 @@ const Footer = () => {
                         href={link.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-slate-300 hover:text-[#2378FF] transition"
+                        className={classes}
                       >
                         {link.name}
                       </a>
                     </li>
                   );
                 }
-
                 if (link.hash) {
                   return (
                     <li key={key}>
                       <a
                         href={link.hash}
                         onClick={(e) => handleHashNavigation(e, link.hash)}
-                        className="text-slate-300 hover:text-[#2378FF] transition cursor-pointer"
+                        className={`${classes} cursor-pointer`}
                       >
                         {link.name}
                       </a>
                     </li>
                   );
                 }
-
                 if (link.url) {
                   return (
                     <li key={key}>
-                      <Link
-                        to={link.url}
-                        className="text-slate-300 hover:text-[#2378FF] transition"
-                      >
+                      <Link to={link.url} className={classes}>
                         {link.name}
                       </Link>
                     </li>
                   );
                 }
-
                 return null;
               })}
             </ul>
           </div>
 
-          {/* -------- WORKING HOURS -------- */}
+          {/* -------- COL 3: WORKING HOURS -------- */}
           <div>
-            {/* CHANGED: Translated Title */}
-            <h4 className="text-lg font-semibold mb-4">
+            <h4 className="text-base font-semibold mb-3 text-white uppercase tracking-wide">
               {t("footer.hours.title")}
             </h4>
             <ul className="space-y-2">
@@ -167,80 +147,104 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* -------- CONTACT -------- */}
+          {/* -------- COL 4: CONTACT (Merged & Compact) -------- */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">{contactTitle}</h4>
-
-            <div className="flex flex-col gap-4">
-              <a
-                href={`mailto:${contactEmail}`}
-                className="text-slate-300 hover:text-[#2378FF] transition"
-              >
-                {contactEmail}
-              </a>
-
-              <a
-                href={`tel:${contactPhone.replace(/\s/g, "")}`}
-                className="text-slate-300 hover:text-[#2378FF] transition"
-              >
-                {contactPhone}
-              </a>
-
-              <a
-                href="https://maps.app.goo.gl/1AvD5MdteLP1Zy5n8"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#2378FF] hover:underline"
-              >
-                {contactLocation}
-              </a>
+            {/* Kosovo */}
+            <div className="mb-6">
+              <h4 className="text-base font-semibold mb-3 text-white uppercase tracking-wide">
+                {contactTitle}
+              </h4>
+              <div className="flex flex-col gap-1.5">
+                <a
+                  href={`mailto:${contactEmail}`}
+                  className="text-slate-300 hover:text-[#2378FF] transition"
+                >
+                  {contactEmail}
+                </a>
+                <a
+                  href={`tel:${contactPhone.replace(/\s/g, "")}`}
+                  className="text-slate-300 hover:text-[#2378FF] transition"
+                >
+                  {contactPhone}
+                </a>
+                <a
+                  href="https://maps.app.goo.gl/1AvD5MdteLP1Zy5n8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-slate-300 hover:text-[#2378FF] transition"
+                >
+                  {contactLocation}
+                </a>
+              </div>
             </div>
 
-            {/* -------- SOCIAL -------- */}
-            <div className="mt-6">
-              <h4 className="text-lg font-semibold mb-4">{socialTitle}</h4>
-              <div className="flex space-x-4">
+            {/* EU */}
+            <div>
+              <h4 className="text-base font-semibold mb-2 text-white uppercase tracking-wide">
+                {t("footer.contactEU.title", "Contact EU")}
+              </h4>
+              <div className="flex flex-col gap-1 text-slate-300">
                 <a
-                  href="https://www.facebook.com/primexeu"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-lg bg-white/10 hover:bg-[#2378FF] flex items-center justify-center transition"
+                  href="mailto:info@mendex.ai"
+                  className="text-slate-300 hover:text-[#2378FF] transition"
                 >
-                  <img
-                    src={FacebookIcon}
-                    alt="Facebook"
-                    className="w-5 h-5 brightness-0 invert"
-                  />
+                  info@mendex.ai
                 </a>
-
+                {/* Cleaned up Address Block */}
                 <a
-                  href="https://www.instagram.com/primex.eu/"
+                  href="https://www.google.com/maps/place/Hometrend+GmbH/@52.1133923,8.6765307,17z"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-lg bg-white/10 hover:bg-[#2378FF] flex items-center justify-center transition"
+                  className="hover:text-[#2378FF] transition leading-snug mt-1"
                 >
-                  <img
-                    src={InstagramIcon}
-                    alt="Instagram"
-                    className="w-5 h-5 brightness-0 invert"
-                  />
-                </a>
-                <a
-                  href="https://www.linkedin.com/company/primexeu/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-lg bg-white/10 hover:bg-[#2378FF] flex items-center justify-center transition-all"
-                >
-                  <LinkedInIcon />
+                  <span className="block">{contactLocationEU}</span>
                 </a>
               </div>
             </div>
           </div>
         </div>
 
-        {/* ================= BOTTOM ================= */}
-        <div className="border-t border-slate-700 pt-8 text-center">
-          <p className="text-slate-400 text-sm">© 2025 PrimEx. {copyright}</p>
+        {/* ================= BOTTOM BAR (Copyright + Socials) ================= */}
+        {/* Reduced pt-8 to pt-6 */}
+        <div className="border-t border-slate-600 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-slate-400 text-xs">© 2025 PrimEx. {copyright}</p>
+
+          {/* Social Icons Moved Here to save vertical space above */}
+          <div className="flex space-x-3">
+            <a
+              href="https://www.facebook.com/primexeu"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-8 h-8 rounded bg-white/10 hover:bg-[#2378FF] flex items-center justify-center transition"
+            >
+              <img
+                src={FacebookIcon}
+                alt="Facebook"
+                className="w-4 h-4 brightness-0 invert"
+              />
+            </a>
+
+            <a
+              href="https://www.instagram.com/primex.eu/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-8 h-8 rounded bg-white/10 hover:bg-[#2378FF] flex items-center justify-center transition"
+            >
+              <img
+                src={InstagramIcon}
+                alt="Instagram"
+                className="w-4 h-4 brightness-0 invert"
+              />
+            </a>
+            <a
+              href="https://www.linkedin.com/company/primexeu/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-8 h-8 rounded bg-white/10 hover:bg-[#2378FF] flex items-center justify-center transition"
+            >
+              <LinkedInIcon />
+            </a>
+          </div>
         </div>
       </div>
     </footer>

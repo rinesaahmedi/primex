@@ -331,6 +331,9 @@
     "imageAlt": "GDPR Certificate"
   },
   "footer": {
+    "contactEU": {
+      "title": "Kontakt EU"
+    },
     "company": {
       "name": "PrimEx",
       "description": "Connecting businesses with top talent and optimizing operations through intelligent solutions."
@@ -356,6 +359,11 @@
       "email": "info@primexeu.com",
       "phone": "+383 49 937 863",
       "location": "7 Shtatori, Fushë Kosovë 12010"
+    },
+    "contactEU": {
+      "title": "Kontakt EU",
+      "email": "info@mendex.ai",
+      "location": "Germany, modeco GmbH Weddigenuffer 2 32052 Herford"
     },
     "social": {
       "title": "Follow Us On"
