@@ -66,19 +66,19 @@
       "items": [
         "Operative Beratung",
 
-"Strategische Planung",
+        "Strategische Planung",
 
-"Marktexpansion",
+        "Marktexpansion",
 
-"Prozessoptimierung",
+        "Prozessoptimierung",
 
-"Virtuelle Assistenz & Administrative Unterstützung",
-"Design- & Kreativdienstleistungen",
-"Kundenservice",
-"Auftragsabwicklung",
-"Produktdaten- & Content-Management",
-"Logistik & Dropshipping",
-"IT-Lösungen & Softwareentwicklung"
+        "Virtuelle Assistenz & Administrative Unterstützung",
+        "Design- & Kreativdienstleistungen",
+        "Kundenservice",
+        "Auftragsabwicklung",
+        "Produktdaten- & Content-Management",
+        "Logistik & Dropshipping",
+        "IT-Lösungen & Softwareentwicklung"
       ]
     },
     "aiEvolution": {
@@ -166,7 +166,7 @@
   "partners": {
     "testimonials": [
       {
-        "quote": "Wir haben die Bearbeitungszeit von 90 Minuten auf 70 Sekunden reduziert. Ich brauche länger, um mir mein Mittagessen auszusuchen.",
+        "quote": "Wir haben 90 Minuten auf 70 Sekunden reduziert – Geschwindigkeit, die beeindruckt.",
         "company": "Hidden",
         "person": "Hidden",
         "role": "Hidden",
@@ -174,27 +174,6 @@
       },
       {
         "quote": "Die KI hat die Schadensfotos analysiert und das Ticket geschlossen, noch bevor ich überhaupt meine Lesebrille finden konnte.",
-        "company": "Hidden",
-        "person": "Hidden",
-        "role": "Hidden",
-        "image": ""
-      },
-      {
-        "quote": "Endlich eine Automatisierung, die 'Möbel' versteht. Sie unterscheidet eine fehlende Schraube von einem gebrochenen Stuhlbein, ohne nachzufragen.",
-        "company": "Hidden",
-        "person": "Hidden",
-        "role": "Hidden",
-        "image": ""
-      },
-      {
-        "quote": "Die ERP-Integration lief so reibungslos, dass unser IT-Leiter heute tatsächlich gelächelt hat. Wir stehen immer noch unter Schock.",
-        "company": "Hidden",
-        "person": "Hidden",
-        "role": "Hidden",
-        "image": ""
-      },
-      {
-        "quote": "Früher graute uns vor dem Posteingang am Montagmorgen. Heute erledigt der PrimEx-Agent das Chaos, während wir unseren Kaffee trinken.",
         "company": "Hidden",
         "person": "Hidden",
         "role": "Hidden",
@@ -407,10 +386,7 @@
     },
     "hours": {
       "title": "Öffnungszeiten",
-      "times": [
-        "Mo - Fr: 08:00 - 16:30",
-        "Sa - So: Geschlossen"
-      ]
+      "times": ["Mo - Fr: 08:00 - 16:30", "Sa - So: Geschlossen"]
     },
     "contact": {
       "title": "Kontakt",

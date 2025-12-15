@@ -67,17 +67,16 @@
       "description": "We design and execute operational workflows tailored to furniture and retail businesses.",
       "items": [
         "•  Operational Consulting",
-"•  Strategic Planning",
-"•  Market Expansion",
-"•  Process Optimization",
-"•  Virtual Secretary & Administrative Support",
-"•  Design & Creative Services",
-"•  Customer Service",
-"•  Order Processing",
-"•  Product Data & Content Management",
-"•  Logistics & Dropshipping",
-"•  IT Solutions & Software Development"
-
+        "•  Strategic Planning",
+        "•  Market Expansion",
+        "•  Process Optimization",
+        "•  Virtual Secretary & Administrative Support",
+        "•  Design & Creative Services",
+        "•  Customer Service",
+        "•  Order Processing",
+        "•  Product Data & Content Management",
+        "•  Logistics & Dropshipping",
+        "•  IT Solutions & Software Development"
       ]
     },
     "aiEvolution": {
@@ -148,7 +147,7 @@
   "partners": {
     "testimonials": [
       {
-        "quote": "We went from 90-minute claim cycles to 70 seconds. I’ve spent longer deciding what sandwich to eat for lunch.",
+        "quote": "We’ve reduced 90 minutes to 70 seconds – speed that impresses.",
         "company": "Hidden",
         "person": "Hidden",
         "role": "Hidden",
@@ -160,30 +159,9 @@
         "person": "Hidden",
         "role": "Hidden",
         "image": ""
-      },
-      {
-        "quote": "Finally, an automation tool that actually speaks 'furniture'. It knows a missing screw from a broken leg without asking.",
-        "company": "Hidden",
-        "person": "Hidden",
-        "role": "Hidden",
-        "image": ""
-      },
-      {
-        "quote": "It connects to our ERP so seamlessly, our IT director actually smiled today. We’re still in shock.",
-        "company": "Hidden",
-        "person": "Hidden",
-        "role": "Hidden",
-        "image": ""
-      },
-      {
-        "quote": "We used to dread Monday morning inboxes. Now the PrimEx agent handles the chaos while we drink our coffee.",
-        "company": "Hidden",
-        "person": "Hidden",
-        "role": "Hidden",
-        "image": ""
       }
     ]
-},
+  },
 
   "_comment": "=== CTA & ENGAGEMENT ===",
   "joinBusiness": {

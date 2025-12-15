@@ -11,6 +11,12 @@
       "Omnichannel-Bearbeitung",
       "Reklamationen & Kundenbindung"
     ],
+    "imageAlt": "PrimEx Kundenservice-Team Dashboard",
+    "badge": {
+      "label": "Reaktionszeit",
+      "value": "Optimiert 24/7"
+    },
+    "deliverTitle": "Unsere Leistungen",
     "services": {
       "inquiry": {
         "title": "Anfragenmanagement",

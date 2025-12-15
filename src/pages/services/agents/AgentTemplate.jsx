@@ -29,7 +29,7 @@ import complains2 from "../../../images/agents/agent-complaints-2.png";
 
 // // --- CONTENT GENERATION ---
 import contentGen1 from "../../../images/agents/agent-content-gen-1.png";
-import contentGen2 from "../../../images/agents/agent-content-gen-2.png"; 
+import contentGen2 from "../../../images/agents/agent-content-gen-2.png";
 
 // // --- CRM INTEGRATION ---
 import crm1 from "../../../images/agents/agent-crm-1.jpg";
@@ -89,9 +89,9 @@ const AGENT_ASSETS = {
     useCases: orderConf3,
     cta: orderConf4,
   },
-  
+
   // Agent 2: PDM (Has 4 images)
-  "pdm": {
+  pdm: {
     overview: pdm1,
     capabilities: pdm2,
     useCases: pdm3,
@@ -123,7 +123,7 @@ const AGENT_ASSETS = {
   },
 
   // Agent 6: Social Media (Has 2 images)
-  "smm": {
+  smm: {
     overview: smm1,
     capabilities: smm1,
     useCases: smm2, // Fallback
@@ -131,7 +131,7 @@ const AGENT_ASSETS = {
   },
 
   // Agent 7: CRM Integration (Has 2 images)
-  "crm": {
+  crm: {
     overview: crm1,
     capabilities: crm1,
     useCases: crm2,
@@ -155,7 +155,7 @@ const AGENT_ASSETS = {
   },
 
   // Agent 10: EDI 2.0 (Has 2 images)
-  "edi": {
+  edi: {
     overview: edi1,
     capabilities: edi1,
     useCases: edi1,
@@ -163,7 +163,7 @@ const AGENT_ASSETS = {
   },
 
   // Agent 11: Complaints (Has 2 images)
-  "complains": {
+  complains: {
     overview: complains1,
     capabilities: complains1,
     useCases: complains2,
@@ -171,7 +171,7 @@ const AGENT_ASSETS = {
   },
 
   // Agent 12: EUDR (Has 1 image)
-  "eudr": {
+  eudr: {
     overview: eudr1,
     capabilities: eudr2,
     useCases: eudr3,
@@ -179,7 +179,7 @@ const AGENT_ASSETS = {
   },
 
   // Agent 13: DPP (Has 1 image)
-  "dpp": {
+  dpp: {
     overview: dpp1,
     capabilities: dpp1,
     useCases: dpp1,
@@ -199,19 +199,19 @@ const AGENT_ASSETS = {
 // =================================================================================
 const resolveAgentId = (urlId) => {
   const map = {
-    "agent1": "order-confirmation",
-    "agent2": "pdm",
-    "agent3": "content-generation",
-    "agent4": "virtual-secretary",
-    "agent5": "all-in-one",
-    "agent6": "smm",
-    "agent7": "crm",
-    "agent8": "order-processing",
-    "agent9": "kitchen-order",
-    "agent10": "edi",
-    "agent11": "complains",
-    "agent12": "eudr",
-    "agent13": "dpp"
+    agent1: "order-confirmation",
+    agent2: "pdm",
+    agent3: "content-generation",
+    agent4: "virtual-secretary",
+    agent5: "all-in-one",
+    agent6: "smm",
+    agent7: "crm",
+    agent8: "order-processing",
+    agent9: "kitchen-order",
+    agent10: "edi",
+    agent11: "complains",
+    agent12: "eudr",
+    agent13: "dpp",
   };
   return map[urlId] || urlId;
 };
@@ -219,13 +219,13 @@ const resolveAgentId = (urlId) => {
 const AgentTemplate = () => {
   const { t } = useTranslation();
   const { agentId } = useParams();
-  
+
   // 1. Resolve the ID
   const actualId = resolveAgentId(agentId);
 
   const [sectionRef, isVisible] = useScrollAnimation({ threshold: 0.1 });
   const [activeVisual, setActiveVisual] = useState("overview");
-  
+
   // Mobile gallery state
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [touchStart, setTouchStart] = useState(null);
@@ -234,13 +234,13 @@ const AgentTemplate = () => {
 
   // 2. Get Assets
   const currentAgentAssets = AGENT_ASSETS[actualId] || AGENT_ASSETS["default"];
-  
+
   // Get all unique images for mobile gallery (memoized)
   const galleryImages = useMemo(() => {
     const images = [];
     const seen = new Set();
     const sections = ["overview", "capabilities", "useCases", "cta"];
-    
+
     sections.forEach((section) => {
       const img = currentAgentAssets[section];
       if (img && !seen.has(img)) {
@@ -253,7 +253,7 @@ const AgentTemplate = () => {
         });
       }
     });
-    
+
     return images;
   }, [actualId, currentAgentAssets, t]);
 
@@ -266,11 +266,11 @@ const AgentTemplate = () => {
   useEffect(() => {
     const sectionKeys = ["overview", "capabilities", "useCases", "cta"];
     const observers = [];
-    
+
     sectionKeys.forEach((key) => {
       const el = document.getElementById(`${actualId}-${key}`);
       if (!el) return;
-      
+
       const observer = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) {
@@ -282,7 +282,7 @@ const AgentTemplate = () => {
       observer.observe(el);
       observers.push(observer);
     });
-    
+
     return () => observers.forEach((o) => o.disconnect());
   }, [actualId]);
 
@@ -359,7 +359,7 @@ const AgentTemplate = () => {
 
   const onTouchEnd = () => {
     if (!touchStart || !touchEnd) return;
-    
+
     const distance = touchStart - touchEnd;
     const isLeftSwipe = distance > minSwipeDistance;
     const isRightSwipe = distance < -minSwipeDistance;
@@ -392,7 +392,6 @@ const AgentTemplate = () => {
     <section className="min-h-screen bg-white pt-28 pb-24 md:pt-36 md:pb-32">
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid gap-12 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
-          
           {/* LEFT COLUMN (Scrollable Content) */}
           <div>
             <Link
@@ -400,9 +399,7 @@ const AgentTemplate = () => {
               className="inline-flex items-center gap-2 text-[#2378FF] hover:text-[#1f5fcc] mb-8 transition-colors"
             >
               <ArrowLeft className="w-5 h-5" />
-              <span className="font-medium">
-                {t("backToAgentsLink")}
-              </span>
+              <span className="font-medium">{t("backToAgentsLink")}</span>
             </Link>
 
             {/* Overview Section */}
@@ -664,30 +661,44 @@ const AgentTemplate = () => {
                 <p className="text-xs font-semibold uppercase tracking-wide text-slate-500 mb-2">
                   {currentVisual.label}
                 </p>
-                
+
                 {/* Fixed Height Image Container */}
                 <div className="bg-white rounded-2xl overflow-hidden w-full h-64 lg:h-104 shadow-sm border border-slate-100 relative">
                   {/* We use a key here to force re-render animation on image change if desired, or relying on src switch */}
                   <img
-                    key={currentVisual.image} 
+                    key={currentVisual.image}
                     src={currentVisual.image}
                     alt={currentVisual.title}
-                    className="w-full h-full object-cover animate-fade-in" 
+                    className="w-full h-full object-cover animate-fade-in"
                   />
                 </div>
 
                 {/* Dynamic Text Description */}
                 <div className="mt-2" key={activeVisual}>
-                    <h3 className="text-xl font-semibold text-slate-900 animate-slide-up-sm">
+                  <h3 className="text-xl font-semibold text-slate-900 animate-slide-up-sm">
                     {currentVisual.title}
-                    </h3>
-                    <p className="text-sm text-slate-600 mt-1 animate-slide-up-sm" style={{ animationDelay: '0.1s' }}>
+                  </h3>
+                  <p
+                    className="text-sm text-slate-600 mt-1 animate-slide-up-sm"
+                    style={{ animationDelay: "0.1s" }}
+                  >
                     {currentVisual.description}
-                    </p>
+                  </p>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+
+        {/* BOTTOM NAVIGATION: Back to All Agents */}
+        <div className="mt-16 flex justify-center border-t border-slate-100 pt-8">
+          <Link
+            to="/services/ai-agents"
+            className="inline-flex items-center gap-2 text-gray-500 hover:text-[#2378FF] transition-colors py-2 px-6 rounded-lg hover:bg-slate-50"
+          >
+            <ArrowLeft className="w-5 h-5" />
+            <span className="font-medium">{t("backToAgentsLink")}</span>
+          </Link>
         </div>
       </div>
     </section>

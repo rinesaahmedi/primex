@@ -11,6 +11,12 @@
       "Omnichannel handling",
       "Claims & retention"
     ],
+    "imageAlt": "PrimEx Customer Support Team Dashboard",
+    "badge": {
+      "label": "Response Time",
+      "value": "Optimized 24/7"
+    },
+    "deliverTitle": "What we deliver",
     "services": {
       "inquiry": {
         "title": "Inquiry Management",

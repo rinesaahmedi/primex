@@ -4,7 +4,13 @@
       "eyebrow": "IT SERVICES",
       "title": "IT Development & Technical Consulting",
       "subtitle": "Bridging tradition with the digital future",
-      "description": "Engineers integrate ERPs/CRMs, build custom software, and advise on cybersecurity, infrastructure, and automation roadmaps. We combine over 40 years of furniture industry tradition with state-of-the-art technology. Our team delivers tailored software solutions and integrates virtual agents to collaborate with your people, solving the overload of modern retail."
+      "description": "Engineers integrate ERPs/CRMs, build custom software, and advise on cybersecurity, infrastructure, and automation roadmaps. We combine over 40 years of furniture industry tradition with state-of-the-art technology. Our team delivers tailored software solutions and integrates virtual agents to collaborate with your people, solving the overload of modern retail.",
+      "tags": {
+        "pods": "Custom Team",
+        "security": "Cybersecurity",
+        "integration": "Integration"
+      },
+      "imageBadge": "SYSTEMS ACTIVE"
     },
     "sections": {
       "offeringsTitle": "Our Technical Capabilities",
@@ -53,8 +59,8 @@
       }
     ],
     "benefits": [
-      "Young Talent: Kosovo has Europe's youngest, most motivated population (70% under 30).",
-      "Location: Only two hours away from the DACH region by plane.",
+      "Young Talent: Young, motivated, and ready for challenges.",
+      "We offer customized solutions that precisely meet your needs and drive innovation.",
       "Communication: Fluent in English and German for seamless collaboration.",
       "Efficiency: State-of-the-art infrastructure reducing costs without compromising quality."
     ],

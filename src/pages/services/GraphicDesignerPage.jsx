@@ -1,4 +1,3 @@
-// src/pages/services/GraphicDesignerPage.jsx
 import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -13,12 +12,13 @@ import {
   Sparkles,
   Layers,
   MonitorPlay,
-  MousePointer2
+  MousePointer2,
 } from "lucide-react";
 
 // Make sure this path is correct based on your folder structure
 import graphicImage from "../../assets/Services/graphic-design-3D-visualization.png";
 
+// Maps JSON keys (render, cad, kitchen) to Lucide Icons
 const iconMap = {
   render: Clapperboard,
   cad: PenTool,
@@ -29,6 +29,7 @@ const GraphicDesignerPage = () => {
   const { t } = useTranslation();
   const [sectionRef, isVisible] = useScrollAnimation({ threshold: 0.1 });
 
+  // Fetch the nested object safely
   const serviceData = useMemo(
     () =>
       t("serviceDetails.graphicDesigner", {
@@ -37,12 +38,14 @@ const GraphicDesignerPage = () => {
     [t]
   );
 
+  // Destructure with fallbacks to prevent errors if JSON is missing
   const hero = serviceData.hero || {};
   const pillars = serviceData.pillars || [];
   const sections = serviceData.sections || {};
   const benefits = serviceData.benefits || [];
   const cta = serviceData.cta || {};
 
+  // Pillar aesthetic configuration
   const pillarColors = [
     { from: "from-blue-50", to: "to-indigo-50", icon: "text-[#2378FF]" },
     { from: "from-purple-50", to: "to-pink-50", icon: "text-[#CDABFF]" },
@@ -52,7 +55,6 @@ const GraphicDesignerPage = () => {
   return (
     <section className="min-h-screen bg-white pt-32 pb-24 md:pt-40 md:pb-32 overflow-hidden">
       <div className="max-w-6xl mx-auto px-6">
-        
         {/* Navigation */}
         <Link
           to="/#services"
@@ -67,7 +69,9 @@ const GraphicDesignerPage = () => {
         {/* --- CREATIVE HERO SECTION --- */}
         <div
           ref={sectionRef}
-          className={`mb-24 grid lg:grid-cols-2 gap-12 items-center ${isVisible ? "lift-up-subtle" : ""}`}
+          className={`mb-24 grid lg:grid-cols-2 gap-12 items-center ${
+            isVisible ? "lift-up-subtle" : ""
+          }`}
         >
           {/* Left Column: Text */}
           <div className="relative z-10">
@@ -79,7 +83,7 @@ const GraphicDesignerPage = () => {
                 </p>
               </div>
             )}
-            
+
             {hero.title && (
               <h1
                 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight"
@@ -88,7 +92,7 @@ const GraphicDesignerPage = () => {
                 {hero.title}
               </h1>
             )}
-            
+
             {hero.subtitle && (
               <p className="text-lg md:text-xl text-gray-600 leading-relaxed whitespace-pre-line border-l-4 border-purple-200 pl-6 mb-8">
                 {hero.subtitle}
@@ -112,60 +116,58 @@ const GraphicDesignerPage = () => {
 
           {/* Right Column: Creative Visual Showcase */}
           <div className="relative group perspective-1000">
-            
-            {/* 1. Background Grid Pattern (Blueprint look) */}
+            {/* 1. Background Grid Pattern */}
             <div className="absolute inset-0 bg-[linear-gradient(#e5e7eb_1px,transparent_1px),linear-gradient(90deg,#e5e7eb_1px,transparent_1px)] bg-[size:20px_20px] rounded-3xl -z-10 transform rotate-3 scale-110 opacity-50"></div>
-            
-            {/* 2. Abstract Blob behind image */}
+
+            {/* 2. Abstract Blob */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-blue-100 via-purple-100 to-pink-100 rounded-full blur-3xl opacity-60 -z-10"></div>
 
-            {/* 3. The Main Image Container */}
+            {/* 3. The Main Image */}
             <div className="relative bg-white rounded-2xl p-2 shadow-2xl border border-slate-100 transform transition-transform duration-700 group-hover:rotate-1 group-hover:scale-[1.01]">
               <div className="rounded-xl overflow-hidden relative">
-                <img 
-                  src={graphicImage} 
-                  alt="Graphic Design & 3D Visualization Portfolio" 
+                <img
+                  src={graphicImage}
+                  alt="Graphic Design & 3D Visualization Portfolio"
                   className="w-full h-auto object-cover"
                 />
-                
-                {/* Overlay Gradient on Image */}
+
+                {/* Overlay Gradient */}
                 <div className="absolute inset-0 bg-gradient-to-tr from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </div>
 
-              {/* 4. Floating 'UI Elements' to look like design software */}
-              
-              {/* Top Right Badge */}
+              {/* 4. Floating 'UI Elements' */}
               <div className="absolute -top-6 -right-6 bg-white p-3 rounded-xl shadow-lg border border-slate-100 flex items-center gap-3 animate-float-slow hidden md:flex">
                 <div className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center">
                   <MonitorPlay className="w-5 h-5 text-blue-500" />
                 </div>
                 <div>
-                  <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">RENDER</p>
+                  <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">
+                    RENDER
+                  </p>
                   <p className="text-sm font-bold text-gray-800">4K Ready</p>
                 </div>
               </div>
 
-              {/* Bottom Left Badge */}
               <div className="absolute -bottom-6 -left-4 bg-white p-3 rounded-xl shadow-lg border border-slate-100 flex items-center gap-3 animate-float-delayed hidden md:flex">
                 <div className="w-10 h-10 bg-purple-50 rounded-lg flex items-center justify-center">
                   <Layers className="w-5 h-5 text-purple-500" />
                 </div>
                 <div>
-                  <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">LAYERS</p>
+                  <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">
+                    LAYERS
+                  </p>
                   <p className="text-sm font-bold text-gray-800">Organized</p>
                 </div>
               </div>
 
-              {/* Cursor Icon overlay */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 drop-shadow-lg">
                 <MousePointer2 className="w-12 h-12 fill-white/20" />
               </div>
             </div>
           </div>
         </div>
-        {/* --- END HERO SECTION --- */}
 
-
+        {/* --- PILLARS SECTION --- */}
         <div
           className={`mb-16 ${isVisible ? "lift-up-subtle" : ""}`}
           style={{ animationDelay: isVisible ? "0.1s" : "0s" }}
@@ -179,7 +181,9 @@ const GraphicDesignerPage = () => {
             </h2>
           )}
           {sections.offeringsSubtitle && (
-            <p className="text-gray-500 mb-8 max-w-2xl">{sections.offeringsSubtitle}</p>
+            <p className="text-gray-500 mb-8 max-w-2xl">
+              {sections.offeringsSubtitle}
+            </p>
           )}
 
           <div className="grid md:grid-cols-3 gap-6">
@@ -191,17 +195,21 @@ const GraphicDesignerPage = () => {
                   key={index}
                   className={`group bg-gradient-to-br ${colors.from} ${colors.to} rounded-2xl p-8 border border-white shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1`}
                 >
-                  <div className={`w-12 h-12 rounded-xl bg-white/60 flex items-center justify-center mb-6 shadow-sm`}>
+                  <div
+                    className={`w-12 h-12 rounded-xl bg-white/60 flex items-center justify-center mb-6 shadow-sm`}
+                  >
                     <Icon className={`w-6 h-6 ${colors.icon}`} />
                   </div>
-                  
+
                   {pillar.title && (
                     <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-[#2378FF] transition-colors">
                       {pillar.title}
                     </h3>
                   )}
                   {pillar.body && (
-                    <p className="text-gray-600 mb-4 leading-relaxed">{pillar.body}</p>
+                    <p className="text-gray-600 mb-4 leading-relaxed">
+                      {pillar.body}
+                    </p>
                   )}
                   {pillar.items && pillar.items.length > 0 && (
                     <div className="pt-4 border-t border-white/50">
@@ -221,6 +229,7 @@ const GraphicDesignerPage = () => {
           </div>
         </div>
 
+        {/* --- BENEFITS SECTION --- */}
         <div
           className={`mb-16 ${isVisible ? "lift-up-subtle" : ""}`}
           style={{ animationDelay: isVisible ? "0.2s" : "0s" }}
@@ -236,7 +245,10 @@ const GraphicDesignerPage = () => {
           <div className="bg-white rounded-2xl p-8 border-2 border-slate-200">
             <ul className="grid md:grid-cols-2 gap-x-8 gap-y-4">
               {benefits.map((benefit, index) => (
-                <li key={index} className="flex items-start gap-3 p-2 hover:bg-slate-50 rounded-lg transition-colors">
+                <li
+                  key={index}
+                  className="flex items-start gap-3 p-2 hover:bg-slate-50 rounded-lg transition-colors"
+                >
                   <CheckCircle2 className="w-5 h-5 text-[#2378FF] shrink-0 mt-0.5" />
                   <span className="text-gray-700 font-medium">{benefit}</span>
                 </li>
@@ -245,6 +257,7 @@ const GraphicDesignerPage = () => {
           </div>
         </div>
 
+        {/* --- CTA SECTION --- */}
         <div
           className={`${isVisible ? "lift-up-subtle" : ""}`}
           style={{ animationDelay: isVisible ? "0.3s" : "0s" }}
@@ -252,7 +265,7 @@ const GraphicDesignerPage = () => {
           <div className="bg-gradient-to-br from-[#081333] via-[#1659bd] to-[#fadebc] rounded-2xl p-8 md:p-12 text-white relative overflow-hidden">
             {/* Background Art */}
             <div className="absolute right-0 bottom-0 opacity-10">
-               <PenTool className="w-64 h-64 -mr-10 -mb-10 text-white" />
+              <PenTool className="w-64 h-64 -mr-10 -mb-10 text-white" />
             </div>
 
             <div className="relative z-10">
@@ -265,8 +278,11 @@ const GraphicDesignerPage = () => {
                 </h3>
               )}
               {cta.body && (
-                <p className="text-white/90 mb-8 text-lg max-w-2xl">{cta.body}</p>
+                <p className="text-white/90 mb-8 text-lg max-w-2xl">
+                  {cta.body}
+                </p>
               )}
+
               <div className="flex flex-wrap gap-4">
                 {cta.primary && (
                   <Link
@@ -274,6 +290,14 @@ const GraphicDesignerPage = () => {
                     className="inline-flex items-center justify-center px-8 py-3 bg-white text-[#2378FF] font-semibold rounded-xl hover:bg-white/90 transition-all shadow-lg hover:shadow-xl"
                   >
                     {cta.primary}
+                  </Link>
+                )}
+                {cta.secondary && (
+                  <Link
+                    to="/#contact" // Assuming portfolio link or contact
+                    className="inline-flex items-center justify-center px-8 py-3 border-2 border-white text-white font-semibold rounded-xl hover:bg-white/10 transition-all"
+                  >
+                    {cta.secondary}
                   </Link>
                 )}
               </div>

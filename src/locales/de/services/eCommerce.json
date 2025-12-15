@@ -6,6 +6,8 @@
       "title": "Von „unsichtbar“ zum „Bestseller“ – mit KI-Präzision",
       "description": "Online zu verkaufen wirkt einfach – doch ohne perfekte Produktdaten funktioniert nichts. Ein fehlendes Bild oder eine Zahl, und Ihr Listing wird unsichtbar. Wir ersetzen die „harte Realität“ manueller Excel-Tabellen durch KI-gestützte Geschwindigkeit und stellen sicher, dass Ihre Produkte sichtbar, regelkonform und kaufbereit auf jeder Plattform erscheinen."
     },
+    "aiTag": "KI-gestützte Präzision",
+    "solutionsTitle": "Unsere Lösungen",
     "sections": {
       "dataManagement": {
         "title": "Produktdaten-Management",
@@ -18,7 +20,7 @@
       },
       "compliance": {
         "title": "Marketplace-Compliance",
-        "description": "Amazon, OTTO und Kaufland haben strenge Richtlinien. Ein kleiner Fehler führt sofort zu Ablehnungen oder Kontosperrungen. Wir sorgen dafür, dass jedes Attribut den Plattformanforderungen entspricht, damit Ihre Listings nie blockiert werden.",
+        "description": "Amazon, OTTO, Kaufland und weitere Plattformen haben strenge Richtlinien. Ein kleiner Fehler kann sofort zu Ablehnungen oder Kontosperrungen führen. Wir stellen sicher, dass jedes Attribut den Plattformanforderungen entspricht, damit Ihre Listings niemals blockiert werden. ",
         "features": {
           "1": "Plattformspezifische Formatierung: Optimiert für Amazon, OTTO, Kaufland & Home24.",
           "2": "EUDR-Compliance: Automatisierte Prüfungen zum Schutz vor Sanktionen.",
@@ -30,7 +32,7 @@
         "description": "Verhindern Sie, dass Ihre Produkte in den Suchergebnissen verschwinden. Wir optimieren Titel und Beschreibungen, damit Sie die „Buy Box“ behalten – denn ohne sie brechen Bestellungen oft über Nacht ein.",
         "features": {
           "1": "Buy-Box-Schutz: Strategien, um Ihr Angebot sichtbar zu halten.",
-          "2": "SEO-Optimierung: Keywords, die Ihre Produkte leicht auffindbar machen.",
+          "2": "SEO/GEO-Optimierung: Keywords, die Ihre Produkte leicht auffindbar machen.",
           "3": "Sichtbarkeitssteigerung: Hochwertiger Content, der Verkäufe antreibt."
         }
       },
@@ -64,6 +66,12 @@
           "desc": "Händler, die KI nutzen, ziehen vorbei – der Rest bleibt zurück."
         }
       ]
+    },
+    "cta": {
+      "title": " Bereit, Ihr Wachstum zu automatisieren?",
+      "subtitle": "Hören Sie auf, sich auf Tabellenkalkulationen zu verlassen. Beginnen Sie mit präzisem Verkauf durch KI.",
+      "btnPrimary": "Jetzt anfragen",
+      "btnContact": "Kontaktieren Sie uns."
     }
   }
 }

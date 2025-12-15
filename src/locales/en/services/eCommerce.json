@@ -6,6 +6,8 @@
       "title": "From \"Invisible\" to \"Best-Seller\" with AI precision",
       "description": "Selling online seems simple, but without perfect product content, nothing works. One missing image or number means your listing becomes invisible. We replace the \"harsh reality\" of manual Excel sheets with AI-driven speed, ensuring your products are visible, compliant, and buyable on every platform."
     },
+    "aiTag": "AI-Driven Precision",
+    "solutionsTitle": "Our Solutions",
     "sections": {
       "dataManagement": {
         "title": "Product Data Management",
@@ -18,9 +20,9 @@
       },
       "compliance": {
         "title": "Marketplace Compliance",
-        "description": "Amazon, OTTO, and Kaufland have strict rules. One small error leads to instant rejection or account suspension. We ensure every attribute meets platform standards so your listings never get blocked.",
+        "description": "Amazon, OTTO, Kaufland, and other platforms have strict guidelines. A small mistake can lead to rejections or account suspensions. We ensure that every attribute complies with platform requirements, so your listings are never blocked.",
         "features": {
-          "1": "Platform-Specific Formatting: Tailored for Amazon, OTTO, Kaufland, & Home24.",
+          "1": "Platform-Specific Formatting: Optimized for Amazon, OTTO, Kaufland, and other platforms.",
           "2": "EUDR Compliance: Automated checks to protect against penalties.",
           "3": "Instant Rule Adaptation: We update as fast as platforms change their rules."
         }
@@ -30,7 +32,7 @@
         "description": "Don't let your items vanish from search results. We optimize titles and descriptions to ensure you hold the \"Buy Box\"—because losing it means orders collapse overnight.",
         "features": {
           "1": "Buy Box Protection: Strategies to keep your offer visible.",
-          "2": "SEO Optimization: Keywords that make products easy to find.",
+          "2": "SEO/GEO Optimization: Keywords that make products easy to find.",
           "3": "Visibility Boost: High-quality content that drives sales."
         }
       },
@@ -64,6 +66,12 @@
           "desc": "Retailers using AI surge ahead—the rest fall behind."
         }
       ]
+    },
+    "cta": {
+      "title": "Ready to automate your growth?",
+      "subtitle": "Stop relying on spreadsheets. Start selling with AI precision.",
+      "btnPrimary": "Get in Touch",
+      "btnContact": "Contact Us"
     }
   }
 }
