@@ -686,8 +686,8 @@
   },
   "complains": {
     "badge": "Reklamations-AI Agent – 70 Sekunden",
-    "title": "Von der Reklamation zur Lösung in unter 70 Sekunden.",
-    "subtitle": "Die Bearbeitung von Reklamationen ist langsam, frustrierend und kostspielig. Dieser Agent liest E-Mails, analysiert Fotos, überprüft ERP-Daten und verarbeitet die Reklamation – damit Sie Probleme schnell lösen und unzufriedene Kunden wieder zufriedenstellen können.",
+    "title": "Reklamationen in unter 70 Sekunden bearbeiten",
+    "subtitle": "Die Bearbeitung von Reklamationen ist langsam, frustrierend und kostspielig. Dieser Agent liest E-Mails, analysiert Fotos, überprüft ERPDaten und verarbeitet die Reklamation damit Sie Probleme schnell lösen und unzufriedene Kunden wieder zufriedenstellen können.",
     "metrics": {
       "processingTime": {
         "value": "70 Sekunden",
@@ -732,7 +732,7 @@
       "secondary": "Team kontaktieren"
     },
     "visuals": {
-      "label": "Service AI",
+      "label": "Service KI",
       "overview": {
         "title": "Ticket-Board",
         "description": "Eingehende Reklamationen."

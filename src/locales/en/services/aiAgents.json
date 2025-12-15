@@ -687,8 +687,8 @@
 },
    "complains": {
   "badge": "Complaints AI Agent – 70 Seconds",
-  "title": "From Complaint to Solution in Under 70 Seconds.",
-  "subtitle": "Handling complaints is slow, frustrating, and expensive. This Agent reads emails, analyzes photos, checks ERP data, and processes the claim—helping you resolve issues quickly and turn unhappy customers into satisfied ones.",
+  "title": " Address complaints within 70 seconds",
+  "subtitle": "Handling complaints is slow, frustrating, and expensive. This Agent reads emails, analyzes photos, checks ERP data, and processes the claim helping you resolve issues quickly and turn unhappy customers into satisfied ones.",
   "metrics": {
     "processingTime": {
       "value": "70 Seconds",
