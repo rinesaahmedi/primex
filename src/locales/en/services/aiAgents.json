@@ -800,7 +800,7 @@
     "secondary": "Contact Team"
   },
   "visuals": {
-    "label": "Compliance Officer",
+    "label": "Compliance AI Agent",
     "overview": {
       "title": "Supply Chain Map",
       "description": "Visualizing origin data."
@@ -866,7 +866,7 @@
     "secondary": "Learn More"
   },
   "visuals": {
-    "label": "DPP Builder",
+    "label": "DPP AI Agent",
     "overview": {
       "title": "Passport View",
       "description": "Digital twin of the product."

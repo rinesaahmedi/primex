@@ -752,7 +752,7 @@
     }
   },
   "eudr": {
-    "badge": "EUDR Compliance AI Agent",
+    "badge": "EUDR Compliance KI Agent",
     "title": "Schützen Sie Ihr Unternehmen vor EUDR-Strafen.",
     "subtitle": "Neue Vorschriften wie EUDR verlangen detaillierte Herkunftsnachweise. Dieser Agent sammelt und verifiziert Lieferantenerklärungen automatisch für transparente Lieferketten.",
     "metrics": {
@@ -799,7 +799,7 @@
       "secondary": "Team kontaktieren"
     },
     "visuals": {
-      "label": "Compliance Officer",
+      "label": "Compliance KI Agent",
       "overview": {
         "title": "Lieferketten-Karte",
         "description": "Visualisierung von Herkunftsdaten."
@@ -865,7 +865,7 @@
       "secondary": "Mehr erfahren"
     },
     "visuals": {
-      "label": "DPP Builder",
+      "label": "DPP KI Agent",
       "overview": {
         "title": "Pass-Ansicht",
         "description": "Digitaler Zwilling des Produkts."
