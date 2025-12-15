@@ -104,11 +104,11 @@
     "capabilities": {
       "title": "Was dieser Agent für Sie tut",
       "items": [
-        "Fehlerfreie Namenskonventionen: Setzt 'Produkttyp + Name + Variation' durch, begrenzt Zeichen und entfernt verbotene Wörter.",
-        "Material- & Farbgenauigkeit: Listet Basismaterialien zuerst, ergänzt 'Dekor' für Holzdekore und identifiziert Hochglanzoberflächen korrekt.",
-        "Optimierte Aufzählungspunkte: Generiert eine strikte 5-Punkte-Struktur, die Maße, Vielseitigkeit, Materialien, Funktionen und Pflege abdeckt.",
-        "Technische & Visuelle Compliance: Erkennt niedrig aufgelöste Skizzen, erzwingt Maßformatierung (B × H × T cm) und validiert Dateien.",
-        "Variationsmanagement: Gruppiert Eltern- und Kind-Artikel korrekt und verhindert, dass Preise oder Bestände auf dem Elternartikel platziert werden."
+        "Fehlerfreie Namensgebung: Setzt klare Regeln für Produkttitel, begrenzt Zeichen und entfernt verbotene Wörter.",
+        "Genauigkeit bei Materialien & Farben: Listet Materialien und dekore korrekt, identifiziert oberflächen.",
+        "Optimierte Aufzählungspunkte: Erstellt eine klare Struktur mit Punkten: Maße, Vielseitigkeit, Materialien, Funktionen, Pflege.... ",
+        "Technische & Visuelle Einhaltung: Erkennt fehlerhafte Skizzen, erzwingt korrekte Maße und überprüft Dateiformate.",
+        "Variationsmanagement: Gruppiert Artikel korrekt und verhindert Fehler bei Preisen oder Beständen."
       ]
     },
     "useCases": {
