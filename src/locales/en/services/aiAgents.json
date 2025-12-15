@@ -104,11 +104,11 @@
   "capabilities": {
     "title": "What This Agent Does For You",
     "items": [
-      "Flawless Naming Conventions: Enforces 'Product Type + Name + Variation' and limits characters while removing banned words.",
-      "Material & Color Accuracy: Lists base materials first, appends 'Dekor' for wood decor colors, and identifies glossy finishes.",
-      "Optimized Bullet Points: Generates a strict 5-bullet structure covering dimensions, versatility, materials, features, and care.",
-      "Technical & Visual Compliance: Detects low-res sketches, enforces measurement formatting (W × H × D cm), and validates files.",
-      "Variation Management: Groups parent and child items correctly and prevents prices or stock from being placed on the parent."
+      "Error-Free Naming: Enforces clear rules for product titles, limits character count, and removes prohibited words.",
+      "Accuracy in Materials & Colors: Correctly lists materials and finishes, identifies surfaces. ",
+      "Optimized Bullet Points: Creates a clear structure with bullet points: dimensions, versatility, materials, features, care instructions... ",
+      "Technical & Visual Compliance: Identifies faulty sketches, ensures correct measurements, and checks file formats. ",
+      "Product Variation Control: Ensures correct item grouping and prevents pricing or inventory errors. "
     ]
   },
   "useCases": {
