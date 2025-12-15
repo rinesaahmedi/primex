@@ -1,7 +1,22 @@
 {
+   "services": {
+    "backTo": "Zurück zu Services"
+  },
+  "aiAgentsPage": {
+    "tagline": "13 Spezialisierte Agenten",
+    "title": "Unsere AI Workforce",
+    "description": "Stärken Sie Ihr Unternehmen mit unseren fortschrittlichen KI-Lösungen, die entwickelt wurden, um wesentliche Prozesse zu automatisieren. So kann sich Ihr Team auf Innovationen konzentrieren, während wir die komplexen Aufgaben übernehmen.",
+    "viewCapabilities": "Funktionen ansehen",
+    "cta": {
+      "title": " Nicht sicher, welcher Agent für Ihr Unternehmen der richtige ist?",
+      "description": "Wir analysieren Ihre aktuellen Arbeitsabläufe und zeigen Ihnen exakt, welche Agenten Ihre Effizienz steigern und gleichzeitig Zeit und Kosten sparen.",
+      "schedule": "Kostenlosen Termin vereinbaren",
+      "contact": "Kontaktieren Sie uns"
+    }
+  },
   "backToAgentsLink": "Zurück zu allen AI Agents",
   "order-confirmation": {
-    "badge": "AI Agent für die Auftragsbestätigungsprüfung",
+    "badge": "KI Agent für die Auftragsbestätigungsprüfung",
     "title": "Machen Sie jede Auftragsbestätigung zu einer garantierten Vereinbarung",
     "subtitle": "Preise, Mengen, Liefertermine – Ihr AI Agent prüft jede Zeile jeder Bestätigung und vergleicht sie mit der ursprünglichen Bestellung. Keine stillen Fehler, keine versteckten Verluste, keine Überraschungen mehr für Ihre Kunden.",
     "metrics": {
@@ -21,20 +36,20 @@
     "capabilities": {
       "title": "Was der Auftragsbestätigungs-Agent für Sie tut",
       "items": [
-        "Universelles Lesen: Liest jede eingehende Auftragsbestätigung – egal ob PDF, E-Mail, Anhang oder via Portal.",
+        "Liest jede eingehende Auftragsbestätigung – unabhängig davon, ob sie als PDF, E-Mail, Anhang oder über ein Portal kommt.",
         "Automatischer Abgleich: Vergleicht die Bestätigung automatisch Zeile für Zeile mit der ursprünglichen Bestellung in Ihrem System.",
         "Abweichungserkennung: Erkennt Abweichungen bei Preis, Menge, Lieferdatum, Artikelnummer und mehr – auch in komplexen Dokumenten.",
         "Sofortige Warnungen: Alarmiert sofort die richtigen Personen, damit Sie reagieren können, bevor Probleme die Produktion oder den Kunden erreichen.",
-        "Revisionssicheres Protokoll: Dokumentiert jede Prüfung revisionssicher und schafft Transparenz und Rückverfolgbarkeit für jeden Auftrag.",
-        "24/7 Betrieb: Arbeitet rund um die Uhr ohne Pausen und stellt sicher, dass auch Lastspitzen und späte Bestätigungen zuverlässig bearbeitet werden."
+        "Lückenlose Dokumentation: Erfasst jede Prüfung und garantiert vollständige Rückverfolgbarkeit.",
+        "24/7 Service: Garantiert eine zuverlässige Bearbeitung, egal zu welcher Tages- oder Nachtzeit."
       ]
     },
     "useCases": {
       "title": "Wo der Agent das Spiel verändert",
       "cards": [
         {
-          "title": "Stoppen Sie kostspielige Abweichungen, bevor sie Ihre Marge verletzen",
-          "body": "Eine kleine Preisänderung, 50 fehlende Stühle, ein nicht genehmigter Aufschlag – das wird leicht übersehen, wenn Teams unter Druck stehen oder nur mit Excel prüfen. Der AI Agent fängt diese Diskrepanzen automatisch ab, sodass Sie sie nicht erst Wochen später auf der Rechnung entdecken."
+          "title": "Stoppen Sie teure Fehler frühzeitig:",
+          "body": "Kleine Preisabweichungen oder fehlende Artikel können leicht übersehen werden. Der AI Agent findet diese Unstimmigkeiten automatisch, bevor sie Ihre Marge beeinträchtigen. "
         },
         {
           "title": "Stabilisieren Sie Ihre Lieferkette und schützen Sie Ihre Planung",
@@ -70,8 +85,8 @@
   },
   "pdm": {
     "badge": "Produktdatenmanagement AI Agent",
-    "title": "Verwandeln Sie Chaos in Compliance. Machen Sie Tabellen zu Umsätzen.",
-    "subtitle": "Befreien Sie Ihr Team aus der Excel-Hölle. Dieser AI Agent setzt Marktplatzregeln durch, korrigiert Datenfehler und optimiert Listings für Plattformen wie Otto und Home24.",
+    "title": "Verwandeln Sie Chaos in Ordnung und steigern Sie den Umsatz",
+    "subtitle": "Befreien Sie Ihr Team von der Excel-Arbeit. Der AI Agent sorgt für die Einhaltung der Marktplatzregeln, korrigiert Datenfehler und optimiert Ihre Listings.",
     "metrics": {
       "processingTime": {
         "value": "Sofortige Validierung",

@@ -9,7 +9,6 @@ const AIAgentsPage = () => {
   const { t } = useTranslation();
   const [sectionRef, isVisible] = useScrollAnimation({ threshold: 0.1 });
 
-  // Use slug IDs that match translation keys and AgentTemplate
   const agentIds = [
     "order-confirmation",
     "pdm",
@@ -47,24 +46,25 @@ const AIAgentsPage = () => {
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#2378FF]/10 text-[#2378FF] text-sm font-semibold mb-6">
             <Zap className="w-4 h-4" />
-            <span>13 Specialized Agents</span>
+            <span>{t("aiAgentsPage.tagline", "13 Specialized Agents")}</span>
           </div>
           <h2
             className="text-3xl md:text-5xl font-bold text-gray-900 mb-6"
             style={{ fontFamily: "var(--font-serif)" }}
           >
-            Our AI Workforce
+            {t("aiAgentsPage.title", "Our AI Workforce")}
           </h2>
           <p className="text-xl text-gray-600 mb-12 max-w-3xl leading-relaxed">
-            Stop trying to do everything with one tool. Explore our specialized
-            AI agents, each trained to automate a specific complex process in
-            your company—from cleaning product data to handling complaints in
-            seconds.
+            {t(
+              "aiAgentsPage.description",
+              "Stop trying to do everything with one tool. Explore our specialized AI agents, each trained to automate a specific complex process in your company."
+            )}
           </p>
 
           {/* AI Agents Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {agentIds.map((agentId, index) => {
+              // Note: The structure expects keys like "order-confirmation.badge"
               const badge = t(`${agentId}.badge`, {
                 defaultValue: `Agent ${index + 1}`,
               });
@@ -100,7 +100,9 @@ const AIAgentsPage = () => {
                   </div>
 
                   <div className="flex items-center text-[#2378FF] font-semibold text-sm group-hover:gap-2 transition-all mt-auto pt-4 border-t border-slate-100">
-                    <span>View Capabilities</span>
+                    <span>
+                      {t("aiAgentsPage.viewCapabilities", "View Capabilities")}
+                    </span>
                     <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </Link>
@@ -119,24 +121,26 @@ const AIAgentsPage = () => {
               className="text-3xl md:text-4xl font-bold mb-6"
               style={{ fontFamily: "var(--font-serif)" }}
             >
-              Not sure which Agent you need?
+              {t("aiAgentsPage.cta.title", "Not sure which Agent you need?")}
             </h3>
             <p className="text-white/90 mb-10 text-lg max-w-2xl mx-auto">
-              We can analyze your current workflows and tell you exactly which
-              agents will save you the most time and money.
+              {t(
+                "aiAgentsPage.cta.description",
+                "We can analyze your current workflows and tell you exactly which agents will save you the most time and money."
+              )}
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link
                 to="/business"
                 className="inline-flex items-center justify-center px-8 py-4 bg-white text-[#2378FF] font-bold rounded-xl hover:bg-white/90 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
               >
-                Schedule a Consultation
+                {t("aiAgentsPage.cta.schedule", "Schedule a Consultation")}
               </Link>
               <Link
                 to="/#contact"
                 className="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-bold rounded-xl hover:bg-white/10 transition-all"
               >
-                Contact Us
+                {t("aiAgentsPage.cta.contact", "Contact Us")}
               </Link>
             </div>
           </div>

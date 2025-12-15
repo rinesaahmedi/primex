@@ -1,6 +1,22 @@
  {
-    "backToAgentsLink": "Back to all AI Agents",
-  "order-confirmation": {
+  
+  "services": {
+    "backTo": "Back to Services"
+  },
+  "aiAgentsPage": {
+    "tagline": "13 Specialized Agents",
+    "title": "Our AI Workforce",
+    "description": " Empower your business with our advanced AI solutions, designed to automate essential processes. This allows your team to focus on innovation while we handle the complex tasks",
+    "viewCapabilities": "View Capabilities",
+    "cta": {
+      "title": "Not sure which agent is right for your business?",
+      "description": "We analyze your current workflows and show you exactly which agents will increase your efficiency while saving you time and money. ",
+      "schedule": "Arrange a free appointment",
+      "contact": "Contact Us"
+    }
+  },
+  "backToAgentsLink": "Back to all AI Agents",
+   "order-confirmation": {
   "badge": "AI Agent for Order Confirmation Checking",
   "title": "Turn Every Order Confirmation into a Guaranteed Agreement",
   "subtitle": "Prices, quantities, delivery dates – your AI Agent checks every line of every confirmation and compares it with the original order. No more silent errors, no more hidden losses, no more surprises for your customers.",
@@ -21,20 +37,20 @@
   "capabilities": {
     "title": "What the Order Confirmation Agent Does for You",
     "items": [
-      "Universal Reading: Reads every incoming order confirmation – whether it arrives as a PDF, email, attachment, or via portal.",
+      "Reads every incoming order confirmation – regardless of whether it comes as a PDF, email, attachment or via a portal.",
       "Automated Comparison: Automatically compares the confirmation to the original order in your system, line by line.",
       "Deviation Detection: Detects deviations in price, quantity, delivery date, item number, and more – even in complex documents.",
       "Instant Alerts: Immediately alerts the right people so you can react before problems reach production or the customer.",
-      "Audit Trail: Documents each check in an audit-proof way, creating transparency and traceability for every order.",
-      "24/7 Operations: Works 24/7 without breaks, ensuring that even peak loads and late-night confirmations are handled reliably."
+      "Clear Documentation: Keeps a full record of every inspection, ensuring full transparency.",
+      "24/7 Reliability: Operates seamlessly day and night, ensuring all tasks are handled efficiently."
     ]
   },
   "useCases": {
     "title": "Where the Order Confirmation Agent Changes the Game",
     "cards": [
       {
-        "title": "Stop costly deviations before they hurt your margin",
-        "body": "A small price change, a missing 50 chairs, an unapproved surcharge – these are easy to miss when teams are under pressure or checking only with Excel. The AI Agent catches these discrepancies automatically, so you don’t discover them weeks later on the invoice or when the customer complains."
+        "title": "Avoid Expensive Errors:",
+        "body": " Catch price shifts, missing inventory, and unapproved fees instantly, so you're never surprised by a costly invoice."
       },
       {
         "title": "Stabilize your supply chain and protect your planning",
@@ -69,8 +85,8 @@
   }
 },"pdm": {
   "badge": "Product Data Management AI Agent",
-  "title": "Transform Chaos into Compliance. Turn Spreadsheets into Sales.",
-  "subtitle": "Liberate your team from Excel Hell. This AI Agent enforces marketplace rules, fixes data errors, and optimizes listings for platforms like Otto and Home24.",
+  "title": "From Chaos to Compliance",
+  "subtitle": "Say goodbye to spreadsheet struggles. Our AI Agent enforces rules, corrects data errors, and optimizes listings for platforms.",
   "metrics": {
     "processingTime": {
       "value": "Instant Validation",
