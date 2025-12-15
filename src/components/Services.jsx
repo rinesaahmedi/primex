@@ -4,12 +4,12 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
-  Cpu,
-  BarChart3,
-  Headset,
-  ShoppingBag,
-  Palette,
-  Code,
+  Bot,            // Replaces Cpu (for AI Agents)
+  ClipboardList,  // Replaces BarChart3 (for Operations/Lists)
+  Headset,        // Kept (for Support)
+  ShoppingBag,           // Replaces ShoppingBag (for Product Data/PIM)
+  PenTool,        // Replaces Palette (for Technical Design)
+  Code,       // Replaces Code (for IT/Dev)
 } from "lucide-react";
 import { useScrollAnimation } from "../utils/useScrollAnimation";
 
@@ -21,27 +21,21 @@ export default function Services() {
   const LAYOUT = "max-w-7xl mx-auto lg:px-12";
 
   const serviceIcons = [
-    Cpu, // 1. AI Automation (Processing/Intelligence)
-    BarChart3, // 2. Operational Services (Sales/Finance metrics)
-    Headset, // 3. Customer Support (The standard symbol for support)
-    ShoppingBag, // 4. E-commerce (Retail/Products)
-    Palette, // 5. Design (Creativity/Color)
-    Code, // 6. IT Development (Coding/Engineering)
+    Bot,            // 1. AI Automation
+    ClipboardList,  // 2. Operational Services
+    Headset,        // 3. Customer Support
+    ShoppingBag,           // 4. E-commerce & Product Data
+    PenTool,        // 5. Design & 3D Visualization
+    Code,       // 6. IT Development
   ];
-  // Map service titles to slugs (matching the order in translation.json)
-  // 1. AI Automation & Virtual Assistants
-  // 2. Operational Services
-  // 3. Customer Support
-  // 4. E-commerce & Product Data
-  // 5. Design & 3D Visualization
-  // 6. IT Development & Technical Consulting
+
   const serviceSlugs = [
-    "ai-agents", // 1. AI Automation & Virtual Assistants
-    "operational-service", // 2. Operational Services
-    "customer-support", // 3. Customer Support
-    "e-commerce", // 4. E-commerce & Product Data
-    "graphic-designer", // 5. Design & 3D Visualization
-    "software-developer", // 6. IT Development & Technical Consulting
+    "ai-agents", 
+    "operational-service", 
+    "customer-support", 
+    "e-commerce", 
+    "graphic-designer", 
+    "software-developer", 
   ];
 
   return (
