@@ -173,7 +173,7 @@
       "items": [
         "Erstellt optimierte Titel, Bullet Points und Produktbeschreibungen für jeden Marktplatz.",
         "Passt Wortwahl und Struktur an Plattformregeln an (Länge, keine Werbewörter usw.).",
-        "Generiert SEO-freundliche Texte, die klar und leicht lesbar sind.",
+        "Generiert SEO/GEO- freundliche Texte, die klar und leicht lesbar sind.",
         "Verwendet Vorlagen wieder, damit ähnliche Produkte konsistenten Content erhalten.",
         "Erstellt Content automatisch in mehreren Sprachen."
       ]
@@ -218,7 +218,7 @@
     }
   },
   "virtual-secretary": {
-    "badge": "Virtuelles Sekretariat AI Agent",
+    "badge": "Virtuelles Sekretariat KI Agent",
     "title": "Ihr unermüdlicher digitaler Assistent.",
     "subtitle": "Telefone klingeln, E-Mails stapeln sich und Kunden erwarten sofortige Antworten. Dieser Agent antwortet, sortiert und leitet Anfragen weiter, bevor jemand im Büro ist.",
     "metrics": {
@@ -259,7 +259,7 @@
       ]
     },
     "cta": {
-      "title": "Stellen Sie Ihre digitale Sekretärin ein",
+      "title": "KI Sekretariat – Jetzt loslegen, Effizienz gewinnen",
       "body": "Der Agent verbindet sich mit Telefon, E-Mail und Kalender und folgt Ihren Regeln. Arbeitet ohne Urlaub oder Krankheitstage.",
       "primary": "Demo buchen",
       "secondary": "Team kontaktieren"
@@ -285,7 +285,7 @@
     }
   },
   "all-in-one": {
-    "badge": "All-in-One AI Assistent",
+    "badge": "Alles-in-einem KI Assistent",
     "title": "Ein zentrales KI-Gehirn für Ihr Unternehmen.",
     "subtitle": "Wissen ist über ERP, CRM, E-Mail und in den Köpfen verteilt. Wenn jemand krank ist, verlangsamen sich Prozesse. Dieser Agent verbindet alle Systeme und wird zum zentralen Gehirn, das Fragen beantwortet und jedes Team anleitet.",
     "metrics": {
@@ -306,7 +306,6 @@
       "title": "Was dieser Agent tut",
       "items": [
         "Verbindet sich mit ERP, CRM, E-Mail, gemeinsamen Ordnern und Wissensdatenbanken.",
-        "Beantwortet interne Fragen (z.B. 'Wo ist dieser Auftrag?', 'Was ist unsere Regel für…?').",
         "Erstellt Entwürfe für E-Mails, Angebote, Protokolle und Berichte.",
         "Schlägt nächste Schritte in Prozessen vor und erinnert Teams an offene Aufgaben.",
         "Speichert und teilt Know-how, damit es das Unternehmen nie verlässt."
@@ -353,7 +352,7 @@
   },
   "smm": {
     "badge": "Social Media Management AI Agent",
-    "title": "Bleiben Sie auf jedem Kanal sichtbar und reaktionsschnell.",
+    "title": "Seien Sie auf allen Kanälen stets sichtbar und aktiv",
     "subtitle": "Kunden stellen Fragen über Instagram, Facebook, TikTok und WhatsApp. Dieser Agent plant Inhalte und antwortet sofort, ohne ein riesiges Social-Media-Team zu benötigen.",
     "metrics": {
       "processingTime": {
@@ -394,7 +393,7 @@
     },
     "cta": {
       "title": "Einheitliche 'Tone of Voice' auf allen Kanälen",
-      "body": "Verbinden Sie Ihre Social-Accounts; der Agent nutzt vereinbarte Richtlinien, um automatisch zu posten und zu antworten.",
+      "body": "Verbinden Sie Ihre Social-Accounts der Agent nutzt vereinbarte Richtlinien, um automatisch zu posten und zu antworten.",
       "primary": "Demo buchen",
       "secondary": "Team kontaktieren"
     },
@@ -419,9 +418,9 @@
     }
   },
   "crm": {
-    "badge": "CRM Integration AI Agent",
-    "title": "Jeder Kundenkontakt an einem Ort.",
-    "subtitle": "Kundendaten sind über E-Mail, Telefonnotizen und Excel verstreut. Dieser Agent stellt sicher, dass jeder Lead erfasst und synchronisiert wird, damit keine Chance verloren geht.",
+    "badge": "CRM-Integrations KI-Agent",
+    "title": "Kundenkontakte an einem Ort verwalten",
+    "subtitle": "E-Mail, Telefonnotizen und Excel sind oft unübersichtlich. Dieser Agent erfasst und synchronisiert jeden Lead, um keine Möglichkeit zu verpassen. ",
     "metrics": {
       "processingTime": {
         "value": "Live-Sync",
@@ -442,8 +441,7 @@
         "Liest E-Mails, Formulare, Chat-Nachrichten und Social-Media-Konversationen.",
         "Erstellt und aktualisiert Kontakte, Tickets und Verkaufschancen im CRM automatisch.",
         "Verbindet CRM mit ERP, damit Kunden-, Auftrags- und Servicedaten übereinstimmen.",
-        "Markiert dringende Fälle und weist sie der richtigen Person zu.",
-        "Liefert eine 360°-Ansicht jedes Kunden in Sekunden."
+        "Markiert dringende Fälle und weist sie der richtigen Person zu."
       ]
     },
     "useCases": {
@@ -492,7 +490,7 @@
     "metrics": {
       "processingTime": {
         "value": "Sekunden statt Stunden",
-        "label": "Verarbeitungsgeschwindigkeit"
+        "label": "Geschwindigkeit"
       },
       "efficiency": {
         "value": "90% weniger Aufwand",
@@ -528,12 +526,12 @@
     },
     "cta": {
       "title": "Automatisieren Sie Ihren Auftragseingang",
-      "body": "Sie leiten alle Aufträge an den Agenten weiter; er extrahiert, validiert und importiert sie automatisch. Kein Auftrag geht verloren; alles ist rückverfolgbar.",
+      "body": "Sie leiten alle Aufträge an den Agenten weiter er extrahiert, validiert und importiert sie automatisch. Kein Auftrag geht verloren alles ist rückverfolgbar.",
       "primary": "Demo buchen",
       "secondary": "Team kontaktieren"
     },
     "visuals": {
-      "label": "Auftrags-Bot",
+      "label": "Auftrags-Agent",
       "overview": {
         "title": "Auftragsstrom",
         "description": "Eingehende PDFs werden zu Daten."
@@ -600,7 +598,7 @@
       "secondary": "Team kontaktieren"
     },
     "visuals": {
-      "label": "Küchen AI",
+      "label": "Küchen KI Agent",
       "overview": {
         "title": "Projekt-Scan",
         "description": "Analyse komplexer Stücklisten."
@@ -621,8 +619,8 @@
   },
   "edi": {
     "badge": "EDI 2.0 AI Agent",
-    "title": "100% automatisierte Transaktionen zwischen Partnern.",
-    "subtitle": "Klassisches EDI ist starr. Dieser Agent akzeptiert Dokumente in jedem Format und konvertiert sie in sauberes EDI 2.0, sodass Transaktionen ohne manuelles Eingreifen fließen.",
+    "title": "100% automatisierte Transaktionen zwischen Partnern",
+    "subtitle": "Klassisches EDI ist unflexibel. Dieser KI-Agent akzeptiert Dokumente in jedem Format und konvertiert sie automatisch in EDI 2.0, sodass Transaktionen ganz ohne manuelle Eingriffe durchgeführt werden.",
     "metrics": {
       "processingTime": {
         "value": "Echtzeit",
@@ -644,7 +642,7 @@
         "Konvertiert alles in eine saubere EDI 2.0 Struktur, die Ihre Systeme verstehen.",
         "Erkennt fehlende oder inkonsistente Daten und fordert Korrekturen automatisch an.",
         "Hält den Prozess am Laufen – auch wenn Daten nicht perfekt sind.",
-        "Integriert sich via APIs in SAP, Dynamics und andere ERP-Systeme."
+        "Integration über APIs in alle ERP-Systeme"
       ]
     },
     "useCases": {

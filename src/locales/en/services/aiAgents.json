@@ -173,7 +173,7 @@
     "items": [
       "Creates optimized titles, bullet points, and product descriptions for each marketplace.",
       "Adapts wording and structure to platform rules (length, no promo words, etc.).",
-      "Generates SEO-friendly texts that are clear and easy to read.",
+      "Generates SEO/GEO- friendly texts that are clear and easy to read.",
       "Reuses templates so similar products get consistent content.",
       "Creates content in multiple languages automatically."
     ]
@@ -259,7 +259,7 @@
     ]
   },
   "cta": {
-    "title": "Hire your digital secretary",
+    "title": "AI Secretary – Get started now, boost efficiency",
     "body": "The Agent connects to your phone, email, and calendar tools and follows your rules on who should receive what. Works without vacation or sick days.",
     "primary": "Book a Demo",
     "secondary": "Contact Team"
@@ -306,7 +306,6 @@
     "title": "What This Agent Does",
     "items": [
       "Connects to ERP, CRM, email, shared folders, and knowledge bases.",
-      "Answers internal questions (e.g., 'Where is this order?', 'What is our rule for…?').",
       "Creates drafts for emails, offers, protocols, and reports.",
       "Suggests next steps in processes and reminds teams of open tasks.",
       "Stores and shares know-how so it never leaves the company."
@@ -353,7 +352,7 @@
 },
    "smm": {
   "badge": "Social Media Management AI Agent",
-  "title": "Stay Visible and Responsive on Every Channel.",
+  "title": " Stay visible and engaged across all channels",
   "subtitle": "Customers ask questions via Instagram, Facebook, TikTok, and WhatsApp. Posts must be regular. This Agent plans content and answers instantly without needing a full social media team.",
   "metrics": {
     "processingTime": {
@@ -420,8 +419,8 @@
 },
    "crm": {
   "badge": "CRM Integration AI Agent",
-  "title": "Every Customer Contact in One Place.",
-  "subtitle": "Customer data is scattered across email, phone notes, and Excel. Sales teams often miss the full history. This Agent ensures every lead is captured and synced, so no opportunity is ever lost.",
+  "title": "Customer Contacts in One Place",
+  "subtitle": "Emails, phone notes, and Excel are often disorganized. This agent captures and synchronizes every lead to ensure no opportunity is missed.",
   "metrics": {
     "processingTime": {
       "value": "Live Sync",
@@ -442,8 +441,7 @@
       "Reads emails, forms, chat messages, and social media conversations.",
       "Creates and updates contacts, tickets, and opportunities in your CRM automatically.",
       "Connects CRM with ERP so customer, order, and service data match.",
-      "Flags urgent cases and assigns them to the right person.",
-      "Gives a 360° view of each customer in seconds."
+      "Flags urgent cases and assigns them to the right person."
     ]
   },
   "useCases": {
@@ -529,12 +527,12 @@
   },
   "cta": {
     "title": "Automate your order entry",
-    "body": "You forward all order channels to the Agent; it extracts, validates, and imports orders automatically. No order is lost; everything is traceable.",
+    "body": "You forward all order channels to the Agent it extracts, validates, and imports orders automatically. No order is lost everything is traceable.",
     "primary": "Book a Demo",
     "secondary": "Contact Team"
   },
   "visuals": {
-    "label": "Order Bot",
+    "label": "Order Agent",
     "overview": {
       "title": "Order Stream",
       "description": "Incoming PDFs converting to data."
@@ -601,7 +599,7 @@
     "secondary": "Contact Team"
   },
   "visuals": {
-    "label": "Kitchen AI",
+    "label": "Kitchen AI Agent",
     "overview": {
       "title": "Project Scan",
       "description": "Analyzing complex BOMs."
@@ -622,8 +620,8 @@
 },
    "edi": {
   "badge": "EDI 2.0 AI Agent",
-  "title": "100% Automated Transactions Between Partners.",
-  "subtitle": "Classic EDI is rigid: one tiny difference breaks the process. This Agent accepts documents in any format and converts them into clean EDI 2.0, keeping transactions flowing without manual firefighting.",
+  "title": "100% Automated Transactions Between Partners",
+  "subtitle": "Traditional EDI is inflexible. This AI agent accepts documents in any format and automatically converts them to EDI 2.0, enabling transactions to be completed without manual intervention.",
   "metrics": {
     "processingTime": {
       "value": "Real-time",
@@ -645,7 +643,7 @@
       "Converts everything into a clean EDI 2.0 structure that your systems understand.",
       "Detects missing or inconsistent data and requests corrections automatically.",
       "Keeps the process running – even when data is not perfect.",
-      "Integrates with SAP, Dynamics, and other ERP systems via APIs."
+      "Integration via APIs into all ERP Systems."
     ]
   },
   "useCases": {
