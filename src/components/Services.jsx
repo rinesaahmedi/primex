@@ -4,12 +4,12 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
-  Bot,            // Replaces Cpu (for AI Agents)
-  ClipboardList,  // Replaces BarChart3 (for Operations/Lists)
-  Headset,        // Kept (for Support)
-  ShoppingBag,           // Replaces ShoppingBag (for Product Data/PIM)
-  PenTool,        // Replaces Palette (for Technical Design)
-  Code,       // Replaces Code (for IT/Dev)
+  Bot,
+  ClipboardList,
+  Headset,
+  ShoppingBag,
+  PenTool,
+  Code,
 } from "lucide-react";
 import { useScrollAnimation } from "../utils/useScrollAnimation";
 
@@ -21,12 +21,12 @@ export default function Services() {
   const LAYOUT = "max-w-7xl mx-auto lg:px-12";
 
   const serviceIcons = [
-    Bot,            // 1. AI Automation
-    ClipboardList,  // 2. Operational Services
-    Headset,        // 3. Customer Support
-    ShoppingBag,           // 4. E-commerce & Product Data
-    PenTool,        // 5. Design & 3D Visualization
-    Code,       // 6. IT Development
+    Bot,
+    ClipboardList,
+    Headset,
+    ShoppingBag,
+    PenTool,
+    Code,
   ];
 
   const serviceSlugs = [
@@ -82,7 +82,7 @@ export default function Services() {
                          }`}
                 style={{ transitionDelay: `${0.2 + index * 0.1}s` }}
               >
-                {/* Icon slot - top left, popping out */}
+                {/* Icon slot */}
                 {IconComponent && (
                   <div className="absolute -top-5 left-5">
                     <span className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-[#2378FF] border border-slate-100 shadow-[0_15px_45px_rgba(8,13,35,0.15)] group-hover:shadow-[0_25px_55px_rgba(8,13,35,0.18)] transition-all duration-300">
@@ -91,8 +91,8 @@ export default function Services() {
                   </div>
                 )}
 
-                {/* Text content */}
-                <div className="flex-1 px-5 pt-12 pb-4 md:px-5 md:pt-14 md:pb-5">
+                {/* Text content - Added 'flex flex-col' here */}
+                <div className="flex-1 flex flex-col px-5 pt-12 pb-4 md:px-5 md:pt-14 md:pb-5">
                   <h3 className="text-xl font-semibold text-slate-900 mb-3">
                     {service.title}
                   </h3>
@@ -100,9 +100,9 @@ export default function Services() {
                     {service.description}
                   </p>
 
-                  {/* CTA */}
+                  {/* CTA - Changed 'mt-5' to 'mt-auto pt-5' */}
                   <div
-                    className="mt-5 flex items-center text-[#2378FF] font-semibold text-sm
+                    className="mt-auto pt-5 flex items-center text-[#2378FF] font-semibold text-sm
                              opacity-0 translate-y-2
                              group-hover:opacity-100 group-hover:translate-y-0
                              focus-visible:opacity-100 focus-visible:translate-y-0

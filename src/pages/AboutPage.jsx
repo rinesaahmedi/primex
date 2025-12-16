@@ -21,14 +21,18 @@ const AboutPage = () => {
     <div className="bg-gray-50 overflow-x-hidden font-sans text-gray-800">
       {/* -------------------------------------------------------
          HERO SECTION: Impact & Branding
-         UPDATES: Added min-h-[85vh], flex items-center, and increased padding
       -------------------------------------------------------- */}
-      <section className="relative min-h-[65vh] flex items-center pt-40 pb-24 lg:pt-42 lg:pb-36 bg-[#0B1120] text-white">
-        {/* Background Gradients - Made slightly larger for the bigger space */}
+      <section className="relative min-h-[65vh] flex items-center pt-40 pb-24 lg:pt-48 lg:pb-40 bg-[#0B1120] text-white">
+        {/* Background Gradients */}
         <div className="absolute top-0 right-0 w-[700px] h-[600px] bg-[#2378FF]/20 blur-[120px] rounded-full pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#CDABFF]/10 blur-[100px] rounded-full pointer-events-none" />
 
-        <div className="container mx-auto px-6 max-w-7xl relative z-10 grid lg:grid-cols-2 gap-16 items-center">
+        {/* 
+           UPDATE: 
+           1. Increased padding: px-6 -> md:px-12 lg:px-20 
+           2. Adjusted gap: gap-12 on lg, gap-20 on xl to save space on 1150px screens
+        */}
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10 grid lg:grid-cols-2 gap-12 xl:gap-20 items-center">
           {/* Text Content */}
           <div data-aos="fade-right">
             <span className="inline-block py-1 px-3 rounded-full bg-[#2378FF]/20 border border-[#2378FF]/50 text-[#60A5FA] text-xs font-bold tracking-widest uppercase mb-8">
@@ -53,7 +57,7 @@ const AboutPage = () => {
           </div>
 
           {/* Image Composition */}
-          {/* UPDATE: Added lg:scale-110 to increase image size by 10% on large screens */}
+          {/* Kept the scale, but the increased container padding will prevent it from touching edges */}
           <div className="relative lg:scale-110" data-aos="zoom-in" data-aos-delay="200">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/10 group">
               <img
@@ -72,7 +76,8 @@ const AboutPage = () => {
          SECTION 2: Who We Are (The Narrative)
       -------------------------------------------------------- */}
       <section className="py-24 bg-white">
-        <div className="container mx-auto px-6 max-w-4xl text-center">
+        {/* UPDATE: Added md:px-12 to ensure breathing room */}
+        <div className="container mx-auto px-6 md:px-12 max-w-4xl text-center">
           <div data-aos="fade-up">
             <h2
               className="text-3xl md:text-4xl font-bold text-gray-900 mb-6"
@@ -94,7 +99,8 @@ const AboutPage = () => {
          SECTION 3: Expertise (Grid Layout)
       -------------------------------------------------------- */}
       <section className="py-20 bg-gray-50 border-t border-gray-200">
-        <div className="container mx-auto px-6 max-w-7xl">
+        {/* UPDATE: Added lg:px-16 for laptop spacing */}
+        <div className="container mx-auto px-6 md:px-12 lg:px-16 max-w-7xl">
           <div className="text-center mb-16" data-aos="fade-up">
             <h2
               className="text-3xl md:text-4xl font-bold text-gray-900 mb-4"
@@ -149,7 +155,8 @@ const AboutPage = () => {
         <div className="absolute top-[-50px] right-[-50px] w-64 h-64 bg-purple-500/20 rounded-full blur-[80px]" />
         <div className="absolute bottom-[-50px] left-[-50px] w-64 h-64 bg-blue-500/20 rounded-full blur-[80px]" />
 
-        <div className="container mx-auto px-6 max-w-6xl relative z-10">
+        {/* UPDATE: Added lg:px-16 for laptop spacing */}
+        <div className="container mx-auto px-6 md:px-12 lg:px-16 max-w-6xl relative z-10">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             
             {/* Left: Text */}
@@ -204,7 +211,8 @@ const AboutPage = () => {
          SECTION 5: Vision & Why PrimEx (Bento Grid)
       -------------------------------------------------------- */}
       <section className="py-20 bg-white">
-        <div className="container mx-auto px-6 max-w-7xl">
+        {/* UPDATE: Added lg:px-16 for laptop spacing */}
+        <div className="container mx-auto px-6 md:px-12 lg:px-16 max-w-7xl">
           <div className="grid lg:grid-cols-3 gap-8">
             
             {/* Why Primex - Spans 2 Columns */}
