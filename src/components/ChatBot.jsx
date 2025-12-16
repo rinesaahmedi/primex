@@ -24,20 +24,9 @@ const ChatBot = () => {
     },
   ]);
 
-  // --- FIX 1: Lock Background Scroll ---
-  // This prevents the main site from scrolling when the chatbot is open
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden"; // Lock scroll
-      // iOS specific fix to prevent rubber-banding if needed, 
-      // but overflow: hidden usually works for the body.
-    } else {
-      document.body.style.overflow = "unset"; // Unlock scroll
-    }
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [isOpen]);
+  // --- REMOVED: The useEffect that locked document.body.style.overflow was here. ---
+  // Now the page will scroll freely on desktop, but the chat internal scroll won't trigger page scroll 
+  // because of the 'overscroll-contain' class used below.
 
   useEffect(() => {
     if (messages.length === 1 && messages[0].sender === "bot") {
@@ -182,6 +171,10 @@ const ChatBot = () => {
           </div>
 
           {/* MESSAGES */}
+          {/* 
+              NOTE: 'overscroll-contain' here ensures that when you reach the end of the chat, 
+              the scroll event does NOT bubble up to the body. 
+          */}
           <div className="flex-1 bg-gray-50 p-4 overflow-y-auto overscroll-contain touch-pan-y">
             <div className="flex flex-col gap-3">
               {messages.map((msg) => (
@@ -233,9 +226,6 @@ const ChatBot = () => {
                 </svg>
               </button>
 
-              {/* FIX 2: PREVENT ZOOM */}
-              {/* Changed text-sm to text-base (16px) on mobile, and text-sm on desktop */}
-              {/* Added min-w-0 to prevent flexbox overflow */}
               <input
                 type="text"
                 value={inputText}
