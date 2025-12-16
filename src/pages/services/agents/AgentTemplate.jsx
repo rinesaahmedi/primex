@@ -32,8 +32,8 @@ import contentGen1 from "../../../images/agents/agent-content-gen-1.png";
 import contentGen2 from "../../../images/agents/agent-content-gen-2.png";
 
 // // --- CRM INTEGRATION ---
-import crm1 from "../../../images/agents/agent-crm-1.jpg";
-import crm2 from "../../../images/agents/agent-crm-2.jpg";
+import crm1 from "../../../images/agents/agent-crm-1.png";
+import crm2 from "../../../images/agents/agent-crm-2.png";
 
 // // --- DPP ---
 import dpp1 from "../../../images/agents/agent-dpp-1.png";
@@ -55,7 +55,7 @@ import kitchen3 from "../../../images/agents/agent-kitchen-3.png";
 import orderConf1 from "../../../images/agents/agent-order-confirmation-1.jpg";
 import orderConf2 from "../../../images/agents/agent-order-confirmation-2.jpg";
 import orderConf3 from "../../../images/agents/agent-order-confirmation-3.png";
-import orderConf4 from "../../../images/agents/agent-order-confirmation-4.png";
+import orderConf4 from "../../../images/agents/agent-order-confirmation-4.jpg";
 
 // // --- ORDER PROCESSING ---
 import orderProc1 from "../../../images/agents/agent-order-processing-1.png";
@@ -64,7 +64,7 @@ import orderProc3 from "../../../images/agents/agent-order-processing-3.png";
 
 // // --- PDM ---
 import pdm1 from "../../../images/agents/agent-pdm-1.png";
-import pdm2 from "../../../images/agents/agent-pdm-2.png";
+import pdm2 from "../../../images/agents/agent-pdm-2.jpg";
 import pdm3 from "../../../images/agents/agent-pdm-3.png";
 
 // // --- SMM (Social Media) ---
