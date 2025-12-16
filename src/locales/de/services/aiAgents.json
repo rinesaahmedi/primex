@@ -4,7 +4,7 @@
   },
   "aiAgentsPage": {
     "tagline": "13 Spezialisierte Agenten",
-    "title": "Unsere AI Workforce",
+    "title": "Unsere KI-Agenten",
     "description": "Stärken Sie Ihr Unternehmen mit unseren fortschrittlichen KI-Lösungen, die entwickelt wurden, um wesentliche Prozesse zu automatisieren. So kann sich Ihr Team auf Innovationen konzentrieren, während wir die komplexen Aufgaben übernehmen.",
     "viewCapabilities": "Funktionen ansehen",
     "cta": {
@@ -14,11 +14,11 @@
       "contact": "Kontaktieren Sie uns"
     }
   },
-  "backToAgentsLink": "Zurück zu allen AI Agents",
+  "backToAgentsLink": "Zurück zu allen KI-Agenten",
   "order-confirmation": {
     "badge": "KI Agent für die Auftragsbestätigungsprüfung",
     "title": "Machen Sie jede Auftragsbestätigung zu einer garantierten Vereinbarung",
-    "subtitle": "Preise, Mengen, Liefertermine – Ihr AI Agent prüft jede Zeile jeder Bestätigung und vergleicht sie mit der ursprünglichen Bestellung. Keine stillen Fehler, keine versteckten Verluste, keine Überraschungen mehr für Ihre Kunden.",
+    "subtitle": "Preise, Mengen, Liefertermine – Ihr KI Agent prüft jede Zeile jeder Bestätigung und vergleicht sie mit der ursprünglichen Bestellung. Keine stillen Fehler, keine versteckten Verluste, keine Überraschungen mehr für Ihre Kunden.",
     "metrics": {
       "processingTime": {
         "value": "Stunden zu Sekunden",
@@ -49,17 +49,17 @@
       "cards": [
         {
           "title": "Stoppen Sie teure Fehler frühzeitig:",
-          "body": "Kleine Preisabweichungen oder fehlende Artikel können leicht übersehen werden. Der AI Agent findet diese Unstimmigkeiten automatisch, bevor sie Ihre Marge beeinträchtigen. "
+          "body": "Kleine Preisabweichungen oder fehlende Artikel können leicht übersehen werden. Der KI Agent findet diese Unstimmigkeiten automatisch, bevor sie Ihre Marge beeinträchtigen. "
         },
         {
           "title": "Stabilisieren Sie Ihre Lieferkette und schützen Sie Ihre Planung",
-          "body": "Verschobene Lieferungen und stillschweigend geänderte Termine können Ihren gesamten Produktionsplan durcheinanderbringen. Der AI Agent markiert jedes geänderte Lieferdatum und jede Menge sofort, was Ihnen echte Planungssicherheit gibt."
+          "body": "Verschobene Lieferungen und stillschweigend geänderte Termine können Ihren gesamten Produktionsplan durcheinanderbringen. Der KI Agent markiert jedes geänderte Lieferdatum und jede Menge sofort, was Ihnen echte Planungssicherheit gibt."
         }
       ]
     },
     "cta": {
       "title": "Stoppen Sie den stillen Dieb in Ihren Auftragsbestätigungen",
-      "body": "Unbemerkte Abweichungen in Auftragsbestätigungen stehlen jeden Tag Geld, Zeit und Nerven. Der AI Agent für die Auftragsbestätigungsprüfung bringt Kontrolle und Sicherheit in Ihren Prozess zurück.",
+      "body": "Unbemerkte Abweichungen in Auftragsbestätigungen stehlen jeden Tag Geld, Zeit und Nerven. Der KI Agent für die Auftragsbestätigungsprüfung bringt Kontrolle und Sicherheit in Ihren Prozess zurück.",
       "primary": "Sprechen Sie mit uns",
       "secondary": "Prozess ansehen"
     },
@@ -84,9 +84,9 @@
     }
   },
   "pdm": {
-    "badge": "Produktdatenmanagement AI Agent",
+    "badge": "Produktdatenmanagement KI Agent",
     "title": "Verwandeln Sie Chaos in Ordnung und steigern Sie den Umsatz",
-    "subtitle": "Befreien Sie Ihr Team von der Excel-Arbeit. Der AI Agent sorgt für die Einhaltung der Marktplatzregeln, korrigiert Datenfehler und optimiert Ihre Listings.",
+    "subtitle": "Befreien Sie Ihr Team von der Excel-Arbeit. Der KI Agent sorgt für die Einhaltung der Marktplatzregeln, korrigiert Datenfehler und optimiert Ihre Listings.",
     "metrics": {
       "processingTime": {
         "value": "Sofortige Validierung",
@@ -126,7 +126,7 @@
     },
     "cta": {
       "title": "Bereit, Ihre Listings zu optimieren?",
-      "body": "Hören Sie auf, sich über kaputte Makros und abgelehnte Listings zu sorgen. Lassen Sie den PDM AI Agent die Details regeln, damit Ihr Team sich auf Wachstum konzentrieren kann.",
+      "body": "Hören Sie auf, sich über kaputte Makros und abgelehnte Listings zu sorgen. Lassen Sie den PDM KI Agent die Details regeln, damit Ihr Team sich auf Wachstum konzentrieren kann.",
       "primary": "Diesen Agenten nutzen",
       "secondary": "Vertrieb kontaktieren"
     },
@@ -151,7 +151,7 @@
     }
   },
   "content-generation": {
-    "badge": "Content & Listing AI Agent",
+    "badge": "Content & Listing KI Agent",
     "title": "Unbegrenzter, marktplatzfertiger Content in Minuten.",
     "subtitle": "Guter Content verkauft – aber das Schreiben dauert. Jeder Marktplatz hat strenge Regeln. Dieser Agent erstellt optimierten, konformen Content für alle Ihre Produkte in Minuten statt Wochen.",
     "metrics": {
@@ -198,7 +198,7 @@
       "secondary": "Beispiele ansehen"
     },
     "visuals": {
-      "label": "Content AI",
+      "label": "Content KI",
       "overview": {
         "title": "Content-Maschine",
         "description": "Vom Attribut zur Beschreibung."
@@ -265,7 +265,7 @@
       "secondary": "Team kontaktieren"
     },
     "visuals": {
-      "label": "Empfangs-AI",
+      "label": "Empfangs-KI",
       "overview": {
         "title": "Kommunikations-Hub",
         "description": "Verwaltung von Anrufen & E-Mails."
@@ -351,7 +351,7 @@
     }
   },
   "smm": {
-    "badge": "Social Media Management AI Agent",
+    "badge": "Social Media KI Agent",
     "title": "Seien Sie auf allen Kanälen stets sichtbar und aktiv",
     "subtitle": "Kunden stellen Fragen über Instagram, Facebook, TikTok und WhatsApp. Dieser Agent plant Inhalte und antwortet sofort, ohne ein riesiges Social-Media-Team zu benötigen.",
     "metrics": {
@@ -484,7 +484,7 @@
     }
   },
   "order-processing": {
-    "badge": "AI Agent für Auftragserfassung",
+    "badge": "KI Agent für Auftragserfassung",
     "title": "Vom Auftragseingang zur sauberen ERP-Erfassung.",
     "subtitle": "Aufträge kommen als PDF, Excel oder E-Mail. Manuelle Eingabe ist langsam und fehleranfällig. Dieser Agent validiert und erfasst jeden Auftrag sofort in Ihrem ERP, egal in welchem Format.",
     "metrics": {
@@ -551,7 +551,7 @@
     }
   },
   "kitchen-order": {
-    "badge": "Küchenauftragsbestätigungs AI Agent",
+    "badge": "Küchenauftragsbestätigungs KI Agent",
     "title": "Macht komplexe Küchenaufträge sicher.",
     "subtitle": "Küchenaufträge sind hochkomplex. Eine falsche Front kann das Projekt ruinieren. Dieser Agent verifiziert jeden Schrank, jede Front und jeden Griff gegen den ursprünglichen Plan.",
     "metrics": {
@@ -618,7 +618,7 @@
     }
   },
   "edi": {
-    "badge": "EDI 2.0 AI Agent",
+    "badge": "EDI 2.0 KI Agent",
     "title": "100% automatisierte Transaktionen zwischen Partnern",
     "subtitle": "Klassisches EDI ist unflexibel. Dieser KI-Agent akzeptiert Dokumente in jedem Format und konvertiert sie automatisch in EDI 2.0, sodass Transaktionen ganz ohne manuelle Eingriffe durchgeführt werden.",
     "metrics": {
@@ -685,7 +685,7 @@
     }
   },
   "complains": {
-    "badge": "Reklamations-AI Agent – 70 Sekunden",
+    "badge": "Reklamations-KI Agent – 70 Sekunden",
     "title": "Reklamationen in unter 70 Sekunden bearbeiten",
     "subtitle": "Die Bearbeitung von Reklamationen ist langsam, frustrierend und kostspielig. Dieser Agent liest E-Mails, analysiert Fotos, überprüft ERPDaten und verarbeitet die Reklamation damit Sie Probleme schnell lösen und unzufriedene Kunden wieder zufriedenstellen können.",
     "metrics": {
@@ -819,7 +819,7 @@
     }
   },
   "dpp": {
-    "badge": "Digitaler Produktpass AI Agent",
+    "badge": "Digitaler Produktpass KI Agent",
     "title": "Bereiten Sie sich heute auf die Regeln von morgen vor.",
     "subtitle": "Die EU führt digitale Produktpässe ein. Wer spät startet, riskiert hohen manuellen Aufwand. Dieser Agent baut strukturierte Daten jetzt auf, um Compliance zu sichern.",
     "metrics": {

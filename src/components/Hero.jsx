@@ -40,12 +40,12 @@ const Hero = () => {
           >
             <p className="hero-eyebrow">{t("hero.headline.emphasis")}</p>
             <h1 className="hero-headline">
-              <span className="hero-headline__emphasis">
+              <div className="hero-headline__emphasis">
                 {t("hero.headline.emphasis")}
-              </span>{" "}
-              <span className="hero-headline__gradient">
+              </div>{" "}
+              <div className="hero-headline__gradient">
                 {t("hero.headline.rest")}
-              </span>
+              </div>
             </h1>
           </div>
 
