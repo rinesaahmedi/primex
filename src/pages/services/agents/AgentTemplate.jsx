@@ -238,25 +238,31 @@ const AgentTemplate = () => {
   // Get all unique images for mobile gallery (memoized)
   const galleryImages = useMemo(() => {
     const images = [];
+    // 1. Create a Set to track images we have already added
     const seen = new Set();
     const sections = ["overview", "capabilities", "useCases", "cta"];
-
+ 
     sections.forEach((section) => {
       const img = currentAgentAssets[section];
+     
+      // 2. Only add the image if it is NOT in the 'seen' Set yet
       if (img && !seen.has(img)) {
+       
+        // 3. Add to Set so we don't add it again
         seen.add(img);
+ 
         images.push({
           image: img,
+          // This will grab the title/desc from the FIRST section where this image appears
           title: t(`${actualId}.visuals.${section}.title`),
           description: t(`${actualId}.visuals.${section}.description`),
           section: section,
         });
       }
     });
-
+ 
     return images;
   }, [actualId, currentAgentAssets, t]);
-
   // Reset gallery index when agent changes
   useEffect(() => {
     setCurrentImageIndex(0);
@@ -390,7 +396,7 @@ const AgentTemplate = () => {
 
   return (
     <section className="min-h-screen bg-white pt-28 pb-24 md:pt-36 md:pb-32">
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-2">
         <div className="grid gap-12 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
           {/* LEFT COLUMN (Scrollable Content) */}
           <div>
@@ -423,37 +429,48 @@ const AgentTemplate = () => {
               </p>
             </div>
 
-            {/* Metrics Section */}
+           {/* Metrics Section */}
             <div
-              className={`grid md:grid-cols-3 gap-6 mb-16 ${
+              className={`grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-2 mb-16 -mx-10 ${
                 isVisible ? "lift-up-subtle" : ""
               }`}
               style={{ animationDelay: isVisible ? "0.1s" : "0s" }}
             >
-              <div className="bg-gradient-to-br from-[#2378FF] to-[#1f5fcc] rounded-xl p-6 text-white shadow-lg">
-                <Clock className="w-8 h-8 mb-3 opacity-90" />
-                <div className="text-2xl font-bold mb-1">
-                  {t(`${actualId}.metrics.processingTime.value`)}
+              {/* Box 1: Blue */}
+              <div className="bg-gradient-to-br from-[#2378FF] to-[#1f5fcc] rounded-xl py-6 p-2 text-white shadow-lg flex flex-col justify-between min-h-[200px]">
+                <div>
+                  <Clock className="w-10 h-10 mb-4 opacity-90" />
+                  <div className="text-2xl font-semibold mb-2  break-words">
+                    {t(`${actualId}.metrics.processingTime.value`)}
+                  </div>
                 </div>
-                <div className="text-sm opacity-90">
+                <div className="text-base font-medium opacity-90 leading-tight">
                   {t(`${actualId}.metrics.processingTime.label`)}
                 </div>
               </div>
-              <div className="bg-gradient-to-br from-[#CDABFF] to-[#b894ff] rounded-xl p-6 text-white shadow-lg">
-                <TrendingUp className="w-8 h-8 mb-3 opacity-90" />
-                <div className="text-2xl font-bold mb-1">
-                  {t(`${actualId}.metrics.efficiency.value`)}
+
+              {/* Box 2: Purple */}
+              <div className="bg-gradient-to-br from-[#CDABFF] to-[#b894ff] rounded-xl py-6 p-2 text-white shadow-lg flex flex-col justify-between min-h-[200px]">
+                <div>
+                  <TrendingUp className="w-10 h-10 mb-4 opacity-90" />
+                  <div className="text-2xl font-semibold mb-2  break-words">
+                    {t(`${actualId}.metrics.efficiency.value`)}
+                  </div>
                 </div>
-                <div className="text-sm opacity-90">
+                <div className="text-base font-medium opacity-90 leading-tight">
                   {t(`${actualId}.metrics.efficiency.label`)}
                 </div>
               </div>
-              <div className="bg-gradient-to-br from-[#FADEBC] to-[#f5d4a8] rounded-xl p-6 text-gray-900 shadow-lg">
-                <Shield className="w-8 h-8 mb-3 opacity-80" />
-                <div className="text-2xl font-bold mb-1">
-                  {t(`${actualId}.metrics.accuracy.value`)}
+
+              {/* Box 3: Beige - This one handles the wrapping issue */}
+              <div className="bg-gradient-to-br from-[#FADEBC] to-[#f5d4a8] rounded-xl py-6 p-2 text-gray-900 shadow-lg flex flex-col justify-between min-h-[200px] sm:col-span-2 xl:col-span-1">
+                <div>
+                  <Shield className="w-10 h-10 mb-4 opacity-80" />
+                  <div className="text-2xl font-semibold mb-2 break-words">
+                    {t(`${actualId}.metrics.accuracy.value`)}
+                  </div>
                 </div>
-                <div className="text-sm opacity-80">
+                <div className="text-base font-medium opacity-80 leading-tight">
                   {t(`${actualId}.metrics.accuracy.label`)}
                 </div>
               </div>
