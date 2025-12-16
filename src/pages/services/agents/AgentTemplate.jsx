@@ -294,7 +294,6 @@ const AgentTemplate = () => {
                 <p className="text-white/90 mb-8 text-lg">{t(`${actualId}.cta.body`)}</p>
                 <div className="flex flex-wrap gap-4">
                   <Link to="/business" className="inline-flex items-center justify-center px-8 py-3 bg-white text-[#2378FF] font-semibold rounded-xl hover:bg-white/90 transition-all shadow-lg hover:shadow-xl">{t(`${actualId}.cta.primary`)}</Link>
-                  <Link to="/#contact" className="inline-flex items-center justify-center px-8 py-3 border-2 border-white text-white font-semibold rounded-xl hover:bg-white hover:text-[#2378FF] transition-all">{t(`${actualId}.cta.secondary`)}</Link>
                 </div>
               </div>
             </div>

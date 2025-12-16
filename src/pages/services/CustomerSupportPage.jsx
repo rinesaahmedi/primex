@@ -241,12 +241,7 @@ const CustomerSupportPage = () => {
                 >
                   {t("customerSupport.cta.primary")}
                 </Link>
-                <Link
-                  to="/#contact"
-                  className="inline-flex items-center justify-center px-8 py-3 border-2 border-white text-white font-semibold rounded-xl hover:bg-white hover:text-[#2378FF] transition-all"
-                >
-                  {t("customerSupport.cta.secondary")}
-                </Link>
+                
               </div>
             </div>
           </div>
