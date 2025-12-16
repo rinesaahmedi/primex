@@ -245,14 +245,14 @@ const bookAppointment = async (req, res) => {
                     <p>We look forward to speaking with you!</p>
                 </div>
                 <div style="${footerStyle}">
-                    <p>Prim Appointments<br>
+                    <p>PrimEx Appointments<br>
                     <em>Please do not reply to this automated email.</em></p>
                 </div>
             </div>
         `;
 
         await transporter.sendMail({
-            from: `"PrimEx Appointments" <${process.env.SMTP_USER}>`,
+            from: `"PrimEx Team" <${process.env.SMTP_USER}>`,
             to: email,
             subject: `✅ Appointment Confirmed: ${date} @ ${time}`,
             html: clientHtml
