@@ -64,7 +64,7 @@
       "secondary": "Prozess ansehen"
     },
     "visuals": {
-      "label": "Bestätigungs-Audit",
+      "label": "Bestätigungs Agent",
       "overview": {
         "title": "Volle Kontrolle",
         "description": "Von unsichtbaren Risiken zu sichtbaren Daten."
@@ -531,7 +531,7 @@
       "secondary": "Team kontaktieren"
     },
     "visuals": {
-      "label": "Auftrags-Agent",
+      "label": "Auftrags Agent",
       "overview": {
         "title": "Auftragsstrom",
         "description": "Eingehende PDFs werden zu Daten."

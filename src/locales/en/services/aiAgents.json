@@ -65,7 +65,7 @@
     "secondary": "See how it fits your process"
   },
   "visuals": {
-    "label": "Confirmation Audit",
+    "label": "Agent Confirmation",
     "overview": {
       "title": "Full Control",
       "description": "Shift from invisible risks to visible data."
@@ -666,7 +666,7 @@
     "secondary": "Contact Team"
   },
   "visuals": {
-    "label": "EDI Core",
+    "label": "EDI AGENT",
     "overview": {
       "title": "Connection Map",
       "description": "Linking suppliers and buyers."
