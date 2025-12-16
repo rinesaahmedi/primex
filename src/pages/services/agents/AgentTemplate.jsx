@@ -431,11 +431,11 @@ const AgentTemplate = () => {
 
            {/* Metrics Section */}
             <div
-              className={`grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-3 gap-2 mb-16 -mx-10 ${
-                isVisible ? "lift-up-subtle" : ""
-              }`}
-              style={{ animationDelay: isVisible ? "0.1s" : "0s" }}
-            >
+          className={`grid md:grid-cols-3 gap-6 mb-16 ${
+            isVisible ? "lift-up-subtle" : ""
+          }`}
+          style={{ animationDelay: isVisible ? "0.1s" : "0s" }}
+        >
               {/* Box 1: Blue */}
               <div className="bg-gradient-to-br from-[#2378FF] to-[#1f5fcc] rounded-xl py-6 p-2 text-white shadow-lg flex flex-col justify-between min-h-[200px]">
                 <div>
