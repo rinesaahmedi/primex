@@ -431,7 +431,7 @@ const AgentTemplate = () => {
 
            {/* Metrics Section */}
             <div
-              className={`grid grid-cols-1 md:grid-cols-3 gap-4 mb-16 -mx-10 ${
+              className={`grid grid-cols-1 md:grid-cols-3 gap-4 mb-16 lg:-mx-10 ${
                 isVisible ? "lift-up-subtle" : ""
               }`}
               style={{ animationDelay: isVisible ? "0.1s" : "0s" }}
