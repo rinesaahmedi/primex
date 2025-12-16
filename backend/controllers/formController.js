@@ -11,9 +11,6 @@ const formatText = (text) => {
 // ==================================================================
 exports.sendApplyForm = async (req, res) => {
   try {
-    // 1. Check if file exists (Optional, depending on if you want it mandatory on backend too)
-    // Note: React 'validateForm' already checks this, but good to be safe.
-
     const {
       name = "N/A",
       email = "N/A",
@@ -24,29 +21,55 @@ exports.sendApplyForm = async (req, res) => {
       description = "",
     } = req.body;
 
-    console.log("Received Application from:", name); // Debugging
+    console.log("Received Application from:", name);
 
-    // --- A. HTML for the COMPANY (Owner) ---
+    // --- A. HTML for the COMPANY (Owner) - PROFESSIONAL CARD STYLE ---
     const ownerHtml = `
-      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden;">
-        <div style="background-color: #2563eb; padding: 20px; text-align: center;">
-          <h2 style="color: #ffffff; margin: 0;">New Job Application</h2>
-          <p style="color: #e0e7ff; margin: 5px 0 0;">Position: ${position}</p>
+      <div style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 600px; margin: 20px auto; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+        <!-- Header -->
+        <div style="background-color: #2563eb; padding: 24px; text-align: center;">
+          <h2 style="color: #ffffff; margin: 0; font-size: 20px; font-weight: 600; letter-spacing: 0.5px;">New Job Application</h2>
+          <p style="color: #dbeafe; margin: 5px 0 0; font-size: 14px; font-weight: 500;">Position: ${position}</p>
         </div>
-        <div style="padding: 20px; background-color: #f9fafb;">
-          <table style="width: 100%; border-collapse: collapse;">
-            <tr><td style="padding: 8px; font-weight: bold; color: #555; width: 30%;">Name:</td><td style="padding: 8px; color: #333;">${name}</td></tr>
-            <tr style="background-color: #f3f4f6;"><td style="padding: 8px; font-weight: bold; color: #555;">Email:</td><td style="padding: 8px; color: #333;"><a href="mailto:${email}" style="color: #2563eb;">${email}</a></td></tr>
-            <tr><td style="padding: 8px; font-weight: bold; color: #555;">Phone:</td><td style="padding: 8px; color: #333;">${phone}</td></tr>
-            <tr style="background-color: #f3f4f6;"><td style="padding: 8px; font-weight: bold; color: #555;">Country:</td><td style="padding: 8px; color: #333;">${country}</td></tr>
-            <tr><td style="padding: 8px; font-weight: bold; color: #555;">LinkedIn:</td><td style="padding: 8px; color: #333;"><a href="${linkedin}" target="_blank" style="color: #2563eb;">View Profile</a></td></tr>
+        
+        <!-- Content Body -->
+        <div style="padding: 32px;">
+          <table style="width: 100%; border-collapse: separate; border-spacing: 0;">
+            <tr>
+              <td style="padding: 10px 0; border-bottom: 1px solid #f1f5f9; color: #64748b; font-size: 12px; font-weight: 700; text-transform: uppercase; width: 30%; vertical-align: top;">Candidate</td>
+              <td style="padding: 10px 0; border-bottom: 1px solid #f1f5f9; color: #0f172a; font-size: 14px; font-weight: 500;">${name}</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 0; border-bottom: 1px solid #f1f5f9; color: #64748b; font-size: 12px; font-weight: 700; text-transform: uppercase; vertical-align: top;">Email</td>
+              <td style="padding: 10px 0; border-bottom: 1px solid #f1f5f9; color: #0f172a; font-size: 14px;"><a href="mailto:${email}" style="color: #2563eb; text-decoration: none;">${email}</a></td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 0; border-bottom: 1px solid #f1f5f9; color: #64748b; font-size: 12px; font-weight: 700; text-transform: uppercase; vertical-align: top;">Phone</td>
+              <td style="padding: 10px 0; border-bottom: 1px solid #f1f5f9; color: #0f172a; font-size: 14px;">${phone}</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 0; border-bottom: 1px solid #f1f5f9; color: #64748b; font-size: 12px; font-weight: 700; text-transform: uppercase; vertical-align: top;">Country</td>
+              <td style="padding: 10px 0; border-bottom: 1px solid #f1f5f9; color: #0f172a; font-size: 14px;">${country}</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 0; border-bottom: 1px solid #f1f5f9; color: #64748b; font-size: 12px; font-weight: 700; text-transform: uppercase; vertical-align: top;">LinkedIn</td>
+              <td style="padding: 10px 0; border-bottom: 1px solid #f1f5f9; color: #0f172a; font-size: 14px;">
+                 <a href="${linkedin}" target="_blank" style="background-color: #f1f5f9; color: #2563eb; padding: 4px 8px; border-radius: 4px; text-decoration: none; font-size: 12px; font-weight: 600;">View Profile &rarr;</a>
+              </td>
+            </tr>
           </table>
-          <div style="margin-top: 20px; background: #fff; padding: 15px; border-left: 4px solid #2563eb; border-radius: 4px;">
-            <p style="margin: 0; font-weight: bold; color: #555;">Cover Letter:</p>
-            <p style="margin-top: 10px; color: #333; line-height: 1.6;">${formatText(
-              description
-            )}</p>
+
+          <div style="margin-top: 24px;">
+            <p style="color: #64748b; font-size: 12px; font-weight: 700; text-transform: uppercase; margin-bottom: 8px;">Candidate Introduction</p>
+            <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 16px; color: #334155; font-size: 14px; line-height: 1.6;">
+              ${formatText(description)}
+            </div>
           </div>
+        </div>
+        
+        <!-- Footer -->
+        <div style="background-color: #f8fafc; padding: 15px; text-align: center; border-top: 1px solid #e2e8f0;">
+           <p style="margin: 0; color: #94a3b8; font-size: 12px;">See attachment for CV</p>
         </div>
       </div>
     `;
@@ -118,25 +141,54 @@ exports.sendBusinessInquiry = async (req, res) => {
       message = "",
     } = req.body;
 
+    // --- A. HTML for the COMPANY (Owner) - PROFESSIONAL CARD STYLE ---
     const ownerHtml = `
-      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #333; border-radius: 8px; overflow: hidden;">
-        <div style="background-color: #1e3a8a; padding: 20px; text-align: center;">
-          <h2 style="color: #ffffff; margin: 0;">New Business Inquiry</h2>
-          <p style="color: #93c5fd; margin: 5px 0 0;">${companyName}</p>
+      <div style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 600px; margin: 20px auto; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+        <!-- Header -->
+        <div style="background-color: #0f172a; padding: 24px; text-align: center;">
+          <h2 style="color: #ffffff; margin: 0; font-size: 20px; font-weight: 600; letter-spacing: 0.5px;">New Business Inquiry</h2>
+          <p style="color: #94a3b8; margin: 5px 0 0; font-size: 14px; font-weight: 500;">${companyName}</p>
         </div>
-        <div style="padding: 20px; background-color: #fff;">
-          <table style="width: 100%; border-collapse: collapse;">
-            <tr><td style="padding: 8px; font-weight: bold; color: #555; width: 35%;">Contact Person:</td><td style="padding: 8px;">${contactPerson}</td></tr>
-            <tr style="background-color: #f3f4f6;"><td style="padding: 8px; font-weight: bold; color: #555;">Email:</td><td style="padding: 8px;"><a href="mailto:${email}">${email}</a></td></tr>
-            <tr><td style="padding: 8px; font-weight: bold; color: #555;">Phone:</td><td style="padding: 8px;">${phone}</td></tr>
-            <tr style="background-color: #f3f4f6;"><td style="padding: 8px; font-weight: bold; color: #555;">Service Interest:</td><td style="padding: 8px; color: #1e3a8a; font-weight: bold;">${businessType}</td></tr>
+
+        <!-- Content Body -->
+        <div style="padding: 32px;">
+          <table style="width: 100%; border-collapse: separate; border-spacing: 0;">
+            <tr>
+              <td style="padding: 10px 0; border-bottom: 1px solid #f1f5f9; color: #64748b; font-size: 12px; font-weight: 700; text-transform: uppercase; width: 30%; vertical-align: top;">Contact</td>
+              <td style="padding: 10px 0; border-bottom: 1px solid #f1f5f9; color: #0f172a; font-size: 14px; font-weight: 500;">${contactPerson}</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 0; border-bottom: 1px solid #f1f5f9; color: #64748b; font-size: 12px; font-weight: 700; text-transform: uppercase; vertical-align: top;">Company</td>
+              <td style="padding: 10px 0; border-bottom: 1px solid #f1f5f9; color: #0f172a; font-size: 14px;">${companyName}</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 0; border-bottom: 1px solid #f1f5f9; color: #64748b; font-size: 12px; font-weight: 700; text-transform: uppercase; vertical-align: top;">Email</td>
+              <td style="padding: 10px 0; border-bottom: 1px solid #f1f5f9; color: #0f172a; font-size: 14px;"><a href="mailto:${email}" style="color: #2563eb; text-decoration: none;">${email}</a></td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 0; border-bottom: 1px solid #f1f5f9; color: #64748b; font-size: 12px; font-weight: 700; text-transform: uppercase; vertical-align: top;">Phone</td>
+              <td style="padding: 10px 0; border-bottom: 1px solid #f1f5f9; color: #0f172a; font-size: 14px;">${phone}</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 0; border-bottom: 1px solid #f1f5f9; color: #64748b; font-size: 12px; font-weight: 700; text-transform: uppercase; vertical-align: top;">Interest</td>
+              <td style="padding: 10px 0; border-bottom: 1px solid #f1f5f9; color: #0f172a; font-size: 14px;">
+                <span style="background-color: #dbeafe; color: #1e40af; padding: 4px 10px; border-radius: 99px; font-size: 11px; font-weight: 700; text-transform: uppercase;">${businessType}</span>
+              </td>
+            </tr>
           </table>
-          <div style="margin-top: 20px; background: #f9fafb; padding: 15px; border: 1px solid #e5e7eb; border-radius: 4px;">
-            <p style="margin: 0 0 10px 0; font-weight: bold; color: #555;">Message:</p>
-            <p style="margin: 0; color: #333; white-space: pre-line;">${formatText(
-              message
-            )}</p>
+
+          <!-- Message Section -->
+          <div style="margin-top: 24px;">
+            <p style="color: #64748b; font-size: 12px; font-weight: 700; text-transform: uppercase; margin-bottom: 8px;">Inquiry Message</p>
+            <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 16px; color: #334155; font-size: 14px; line-height: 1.6;">
+              ${formatText(message)}
+            </div>
           </div>
+        </div>
+        
+        <!-- Footer -->
+        <div style="background-color: #f8fafc; padding: 15px; text-align: center; border-top: 1px solid #e2e8f0;">
+           <p style="margin: 0; color: #94a3b8; font-size: 12px;">Lead generated via PrimEx Website</p>
         </div>
       </div>
     `;
@@ -172,7 +224,6 @@ exports.sendBusinessInquiry = async (req, res) => {
         html: clientHtml,
       });
     }
-    
 
     res.json({ success: true });
   } catch (err) {
