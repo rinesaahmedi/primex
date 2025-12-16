@@ -21,30 +21,31 @@ const AboutPage = () => {
     <div className="bg-gray-50 overflow-x-hidden font-sans text-gray-800">
       {/* -------------------------------------------------------
          HERO SECTION: Impact & Branding
+         UPDATES: Added min-h-[85vh], flex items-center, and increased padding
       -------------------------------------------------------- */}
-      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 bg-[#0B1120] text-white">
-        {/* Background Gradients */}
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#2378FF]/20 blur-[120px] rounded-full pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#CDABFF]/10 blur-[100px] rounded-full pointer-events-none" />
+      <section className="relative min-h-[65vh] flex items-center pt-40 pb-24 lg:pt-42 lg:pb-36 bg-[#0B1120] text-white">
+        {/* Background Gradients - Made slightly larger for the bigger space */}
+        <div className="absolute top-0 right-0 w-[700px] h-[600px] bg-[#2378FF]/20 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#CDABFF]/10 blur-[100px] rounded-full pointer-events-none" />
 
-        <div className="container mx-auto px-6 max-w-7xl relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+        <div className="container mx-auto px-6 max-w-7xl relative z-10 grid lg:grid-cols-2 gap-16 items-center">
           {/* Text Content */}
           <div data-aos="fade-right">
-            <span className="inline-block py-1 px-3 rounded-full bg-[#2378FF]/20 border border-[#2378FF]/50 text-[#60A5FA] text-xs font-bold tracking-widest uppercase mb-6">
+            <span className="inline-block py-1 px-3 rounded-full bg-[#2378FF]/20 border border-[#2378FF]/50 text-[#60A5FA] text-xs font-bold tracking-widest uppercase mb-8">
               {t("about.pill")}
             </span>
             <h1
-              className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6"
+              className="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight mb-8"
               style={{ fontFamily: "var(--font-serif)" }}
             >
               {t("about.mainTitle")}
             </h1>
-            <p className="text-lg text-gray-300 mb-8 leading-relaxed max-w-lg">
+            <p className="text-xl text-gray-300 mb-10 leading-relaxed max-w-lg">
               {t("about.storySubtitle")}
             </p>
             <div className="flex flex-wrap gap-4">
               <div className="pl-4 border-l-4 border-[#2378FF]">
-                <p className="text-white font-semibold">
+                <p className="text-white font-semibold text-lg">
                   {t("about.tagline")}
                 </p>
               </div>
@@ -52,7 +53,8 @@ const AboutPage = () => {
           </div>
 
           {/* Image Composition */}
-          <div className="relative" data-aos="zoom-in" data-aos-delay="200">
+          {/* UPDATE: Added lg:scale-110 to increase image size by 10% on large screens */}
+          <div className="relative lg:scale-110" data-aos="zoom-in" data-aos-delay="200">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/10 group">
               <img
                 src={pxBranding}
@@ -69,7 +71,7 @@ const AboutPage = () => {
       {/* -------------------------------------------------------
          SECTION 2: Who We Are (The Narrative)
       -------------------------------------------------------- */}
-      <section className="py-20 bg-white">
+      <section className="py-24 bg-white">
         <div className="container mx-auto px-6 max-w-4xl text-center">
           <div data-aos="fade-up">
             <h2
@@ -241,12 +243,6 @@ const AboutPage = () => {
               <p className="text-lg md:text-xl font-medium leading-relaxed">
                 &ldquo;{t("about.visionMission.description")}&rdquo;
               </p>
-              
-              <div className="mt-8 pt-6 border-t border-white/20">
-                 <button className="text-white text-sm font-semibold tracking-wide uppercase hover:underline underline-offset-4">
-                    {t("about.ctaButton")} &rarr;
-                 </button>
-              </div>
             </div>
 
           </div>

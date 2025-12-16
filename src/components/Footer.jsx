@@ -192,7 +192,7 @@ const Footer = () => {
                 </a>
                 {/* Cleaned up Address Block */}
                 <a
-                  href="https://www.google.com/maps/place/Hometrend+GmbH/@52.1133923,8.6765307,17z"
+                  href="https://maps.app.goo.gl/MGjLPUpX3i8kUUUH6"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-[#2378FF] transition leading-snug mt-1"
