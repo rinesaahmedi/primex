@@ -431,46 +431,40 @@ const AgentTemplate = () => {
 
            {/* Metrics Section */}
             <div
-          className={`grid md:grid-cols-3 gap-6 mb-16 ${
-            isVisible ? "lift-up-subtle" : ""
-          }`}
-          style={{ animationDelay: isVisible ? "0.1s" : "0s" }}
-        >
+              className={`grid grid-cols-1 md:grid-cols-3 gap-4 mb-16 -mx-10 ${
+                isVisible ? "lift-up-subtle" : ""
+              }`}
+              style={{ animationDelay: isVisible ? "0.1s" : "0s" }}
+            >
               {/* Box 1: Blue */}
-              <div className="bg-gradient-to-br from-[#2378FF] to-[#1f5fcc] rounded-xl py-6 p-2 text-white shadow-lg flex flex-col justify-between min-h-[200px]">
-                <div>
-                  <Clock className="w-10 h-10 mb-4 opacity-90" />
-                  <div className="text-2xl font-semibold mb-2  break-words">
-                    {t(`${actualId}.metrics.processingTime.value`)}
-                  </div>
+              <div className="bg-gradient-to-br from-[#2378FF] to-[#1f5fcc] rounded-xl px-2 py-6 text-white shadow-lg flex flex-col justify-between min-h-[180px] gap-7">
+                <Clock className="w-10 h-10 opacity-90" />
+                <div className="text-2xl font-bold break-words w-full">
+                  {t(`${actualId}.metrics.processingTime.value`)}
                 </div>
-                <div className="text-base font-medium opacity-90 leading-tight">
+                <div className="text-sm font-medium opacity-90 leading-tight">
                   {t(`${actualId}.metrics.processingTime.label`)}
                 </div>
               </div>
 
               {/* Box 2: Purple */}
-              <div className="bg-gradient-to-br from-[#CDABFF] to-[#b894ff] rounded-xl py-6 p-2 text-white shadow-lg flex flex-col justify-between min-h-[200px]">
-                <div>
-                  <TrendingUp className="w-10 h-10 mb-4 opacity-90" />
-                  <div className="text-2xl font-semibold mb-2  break-words">
-                    {t(`${actualId}.metrics.efficiency.value`)}
-                  </div>
+              <div className="bg-gradient-to-br from-[#CDABFF] to-[#b894ff] rounded-xl px-2 py-6 text-white shadow-lg flex flex-col justify-between min-h-[180px] gap-7">
+                <TrendingUp className="w-10 h-10 opacity-90" />
+                <div className="text-2xl font-semibold break-words w-full">
+                  {t(`${actualId}.metrics.efficiency.value`)}
                 </div>
-                <div className="text-base font-medium opacity-90 leading-tight">
+                <div className="text-sm font-medium opacity-90 leading-tight">
                   {t(`${actualId}.metrics.efficiency.label`)}
                 </div>
               </div>
 
-              {/* Box 3: Beige - This one handles the wrapping issue */}
-              <div className="bg-gradient-to-br from-[#FADEBC] to-[#f5d4a8] rounded-xl py-6 p-2 text-gray-900 shadow-lg flex flex-col justify-between min-h-[200px] sm:col-span-2 xl:col-span-1">
-                <div>
-                  <Shield className="w-10 h-10 mb-4 opacity-80" />
-                  <div className="text-2xl font-semibold mb-2 break-words">
-                    {t(`${actualId}.metrics.accuracy.value`)}
-                  </div>
+              {/* Box 3: Beige */}
+              <div className="bg-gradient-to-br from-[#FADEBC] to-[#f5d4a8] rounded-xl px-2 py-6 text-gray-900 shadow-lg flex flex-col justify-between min-h-[180px] gap-7">
+                <Shield className="w-10 h-10 opacity-80" />
+                <div className="text-2xl font-semibold break-words w-full">
+                  {t(`${actualId}.metrics.accuracy.value`)}
                 </div>
-                <div className="text-base font-medium opacity-80 leading-tight">
+                <div className="text-sm font-medium opacity-80 leading-tight">
                   {t(`${actualId}.metrics.accuracy.label`)}
                 </div>
               </div>
@@ -483,7 +477,7 @@ const AgentTemplate = () => {
               style={{ animationDelay: isVisible ? "0.2s" : "0s" }}
             >
               <h2
-                className="text-3xl md:text-4xl font-bold text-gray-900 mb-6"
+                className="text-3xl md:text-4xl font-semibold text-gray-900 mb-6"
                 style={{ fontFamily: "var(--font-serif)" }}
               >
                 {t(`${actualId}.capabilities.title`)}
