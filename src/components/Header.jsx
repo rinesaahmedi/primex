@@ -5,7 +5,7 @@ import primexLogo from "../assets/primex-logo.png";
 import primexLogoWhite from "../assets/primex-logo-white.png";
 import CalendarIcon from "../assets/svgs/calendarIcone";
 
-// Icons (Inline SVGs to avoid installing external libraries like react-icons)
+// Icons
 const MenuIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -67,7 +67,7 @@ const Header = ({ changeLanguage }) => {
   const [isLangOpen, setIsLangOpen] = useState(false);
   const langMenuRef = useRef(null);
 
-  // Check if we're on a white background page (service pages, about, etc.)
+  // White background pages check
   const isWhitePage =
     location.pathname.startsWith("/services") ||
     location.pathname === "/about" ||
@@ -97,6 +97,7 @@ const Header = ({ changeLanguage }) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // Language persistence logic
   const hasInitializedLanguage = useRef(false);
 
   const getStoredLanguage = () => {
@@ -118,44 +119,34 @@ const Header = ({ changeLanguage }) => {
     }
   };
 
-  // Auto-detect preferred language (runs once on mount)
   useEffect(() => {
     if (hasInitializedLanguage.current || typeof window === "undefined") {
       return;
     }
-
     const storedLang = getStoredLanguage();
-
     if (storedLang && storedLang !== i18n.language) {
       changeLanguage(storedLang);
       hasInitializedLanguage.current = true;
       return;
     }
-
     const browserLangs =
       window.navigator.languages?.length > 0
         ? window.navigator.languages
         : [window.navigator.language];
-
     const normalized = browserLangs
       .filter(Boolean)
       .map((lang) => lang.toLowerCase());
-
     const germanLocales = ["de", "de-de", "de-at", "de-ch"];
     const prefersGerman = normalized.some((lang) =>
       germanLocales.includes(lang)
     );
-
     const preferredLanguage = prefersGerman ? "de" : "en";
-
     if (preferredLanguage !== i18n.language) {
       changeLanguage(preferredLanguage);
     }
-
     hasInitializedLanguage.current = true;
   }, [changeLanguage, i18n.language]);
 
-  // Handle Language Selection
   const handleLanguageSelect = (lang) => {
     setStoredLanguage(lang);
     changeLanguage(lang);
@@ -169,14 +160,10 @@ const Header = ({ changeLanguage }) => {
     { href: "#contact", label: t("contactUs") },
   ];
 
-  // Handle smooth scroll navigation
   const handleNavClick = (e, href) => {
     e.preventDefault();
-
-    // If we're not on the home page, navigate to home first
     if (location.pathname !== "/") {
       navigate("/");
-      // Wait for navigation, then scroll to section
       setTimeout(() => {
         const element = document.querySelector(href);
         if (element) {
@@ -191,7 +178,6 @@ const Header = ({ changeLanguage }) => {
         }
       }, 100);
     } else {
-      // We're on the home page, just scroll to the section
       const element = document.querySelector(href);
       if (element) {
         const headerOffset = 80;
@@ -204,17 +190,14 @@ const Header = ({ changeLanguage }) => {
         });
       }
     }
-    // Close mobile menu if open
     setIsMobileMenuOpen(false);
   };
 
   const overlayMode = !isScrolled && !isMobileMenuOpen && !isWhitePage;
-
   const headerBgClass =
     isScrolled || isMobileMenuOpen || isWhitePage
       ? "bg-white shadow-md"
       : "bg-transparent";
-
   const textColorClass = overlayMode ? "text-white" : "text-black";
   const isWhiteLogo = overlayMode;
   const logoSrc = isWhiteLogo ? primexLogoWhite : primexLogo;
@@ -227,14 +210,13 @@ const Header = ({ changeLanguage }) => {
       style={{ zIndex: 1000 }}
     >
       <div className="container mx-auto flex justify-between items-center px-12">
-        {/* --- Left: Logo --- */}
+        {/* Logo */}
         <div className="text-3xl font-bold z-50">
           <a
             href="/"
             onClick={(e) => {
               e.preventDefault();
               navigate("/");
-              // Scroll to top when clicking logo
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
           >
@@ -246,7 +228,7 @@ const Header = ({ changeLanguage }) => {
           </a>
         </div>
 
-        {/* --- Desktop Navigation --- */}
+        {/* Desktop Navigation */}
         <div className="hidden md:flex space-x-6 items-center">
           {navLinks.map((link) => (
             <a
@@ -259,7 +241,7 @@ const Header = ({ changeLanguage }) => {
             </a>
           ))}
 
-          {/* Custom Language Switcher */}
+          {/* Desktop Language Switcher */}
           <div className="relative" ref={langMenuRef}>
             <button
               onClick={() => setIsLangOpen(!isLangOpen)}
@@ -270,8 +252,6 @@ const Header = ({ changeLanguage }) => {
                 {i18n.language || "EN"}
               </span>
             </button>
-
-            {/* Dropdown */}
             {isLangOpen && (
               <div
                 className={`absolute top-full right-0 mt-2 w-24 rounded-lg shadow-xl overflow-hidden border ${borderColorClass} ${dropdownBgClass}`}
@@ -292,7 +272,7 @@ const Header = ({ changeLanguage }) => {
             )}
           </div>
 
-          {/* Calendar Icon (Desktop) */}
+          {/* Desktop Calendar Icon */}
           <Link to="/appointments">
             <button
               className="flex items-center space-x-2 p-2 rounded-full hover:bg-gray-200 transition-all"
@@ -303,7 +283,7 @@ const Header = ({ changeLanguage }) => {
           </Link>
         </div>
 
-        {/* --- Mobile Menu Toggle Button --- */}
+        {/* Mobile Menu Toggle */}
         <button
           className="md:hidden z-50 focus:outline-none"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -312,103 +292,94 @@ const Header = ({ changeLanguage }) => {
         </button>
       </div>
 
-      {/* --- Mobile Navigation Menu (Modal Style) --- */}
+      {/* --- Mobile Navigation Menu (Floating Card Style) --- */}
       <div
-        className={`fixed inset-0 bg-black/50 backdrop-blur-sm transition-all duration-300 md:hidden ${isMobileMenuOpen
-          ? "opacity-100 z-998"
-          : "opacity-0 pointer-events-none z-[-1]"
-          }`}
+        className={`fixed inset-0 bg-black/50 backdrop-blur-sm transition-all duration-300 md:hidden ${
+          isMobileMenuOpen
+            ? "opacity-100 z-998"
+            : "opacity-0 pointer-events-none z-[-1]"
+        }`}
         onClick={() => setIsMobileMenuOpen(false)}
       >
         <div
-          className={`absolute inset-x-4 top-20 bg-white rounded-3xl shadow-2xl transition-all duration-300 md:hidden ${isMobileMenuOpen
-            ? "translate-y-0 opacity-100 scale-100"
-            : "translate-y-4 opacity-0 scale-95"
-            }`}
+          className={`absolute inset-x-4 top-20 bg-white rounded-3xl shadow-2xl transition-all duration-300 md:hidden flex flex-col ${
+            isMobileMenuOpen
+              ? "translate-y-0 opacity-100 scale-100"
+              : "translate-y-4 opacity-0 scale-95"
+          }`}
           onClick={(e) => e.stopPropagation()}
           style={{ maxHeight: "calc(100vh - 120px)" }}
         >
-          <div className="flex flex-col max-h-full">
-            {/* Close Button */}
-            <div className="flex justify-end p-4 border-b border-gray-200">
-              <button
+          {/* Menu Header / Close */}
+          <div className="flex justify-between p-4 border-b border-gray-100">
+             {/* Spacer for alignment */}
+             <div></div> 
+            <button
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+              aria-label={t("closeMenu")}
+            >
+              <CloseIcon />
+            </button>
+          </div>
+
+          {/* Menu Links */}
+          <div className="flex-1 px-2 py-4 overflow-y-auto">
+            <nav className="space-y-1">
+              {navLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  onClick={(e) => {
+                    handleNavClick(e, link.href);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="block px-6 py-4 text-lg font-medium text-gray-800 hover:bg-gray-50 rounded-xl transition-colors"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+          </div>
+
+          {/* --- FIXED BOTTOM PART --- */}
+          <div className="p-6 bg-gray-50 rounded-b-3xl border-t border-gray-100 mt-auto">
+            <div className="flex flex-col gap-4">
+              {/* 1. Appointment Button */}
+              <Link
+                to="/appointments"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
-                aria-label={t("closeMenu")}
+                className="w-full flex items-center justify-center gap-3 px-4 py-3.5 bg-[#2378FF] text-white rounded-xl shadow-md hover:bg-blue-600 active:scale-[0.98] transition-all"
               >
-                <CloseIcon />
-              </button>
-            </div>
-            {/* Navigation Links */}
-            <div className="flex-1 px-6 py-6 overflow-y-auto">
-              <nav className="space-y-1">
-                {navLinks.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    onClick={(e) => {
-                      handleNavClick(e, link.href);
-                      setIsMobileMenuOpen(false);
-                    }}
-                    className="block px-4 py-4 text-base font-medium text-gray-900 hover:bg-gray-50 rounded-lg transition-colors"
-                  >
-                    {link.label}
-                  </a>
-                ))}
-              </nav>
-            </div>
+                <div className="text-white">
+                  <CalendarIcon />
+                </div>
+                <span className="text-lg font-bold">
+                  {t("bookAppointment") || "Termin buchen"}
+                </span>
+              </Link>
 
-            {/* Separator */}
-            <div className="border-t border-gray-200"></div>
-
-            {/* Mobile Actions: Calendar & Language */}
-            <div className="px-6 py-6 bg-white">
-              <div className="space-y-4">
-                {/* --- ADDED: Calendar Button for Mobile --- */}
-                <Link
-                  to="/appointments"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="w-full flex items-center justify-center gap-3 px-4 py-3 bg-[#2378FF] text-white rounded-lg hover:bg-blue-700 transition-colors shadow-md"
-                >
-                  <div className="text-white">
-                    <CalendarIcon />
-                  </div>
-                  <span className="text-base font-bold">
-                    {t("bookAppointment") || "Book Appointment"}
-                  </span>
-                </Link>
-
-                {/* Language Switcher */}
+              {/* 2. New Clean Language Switcher (Segmented Control) */}
+              <div className="bg-white p-1.5 rounded-xl border border-gray-200 flex shadow-sm">
                 <button
-                  onClick={() =>
-                    handleLanguageSelect(i18n.language === "en" ? "de" : "en")
-                  }
-                  className="w-full flex items-center justify-between px-4 py-3 bg-white border-2 border-gray-200 rounded-lg hover:border-[#2378FF] transition-colors"
+                  onClick={() => handleLanguageSelect("en")}
+                  className={`flex-1 py-2.5 text-sm font-bold rounded-lg transition-all duration-200 ${
+                    i18n.language === "en"
+                      ? "bg-gray-900 text-white shadow-md"
+                      : "text-gray-500 hover:bg-gray-50 hover:text-gray-900"
+                  }`}
                 >
-                  <div className="flex items-center gap-3">
-                    <GlobeIcon className="text-gray-600" />
-                    <span className="text-base font-semibold text-gray-900">
-                      {i18n.language === "en" ? t("english") : t("german")}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span
-                      className={`px-3 py-1 rounded text-sm font-semibold ${i18n.language === "en"
-                        ? "bg-[#2378FF] text-white"
-                        : "bg-gray-100 text-gray-600"
-                        }`}
-                    >
-                      EN
-                    </span>
-                    <span
-                      className={`px-3 py-1 rounded text-sm font-semibold ${i18n.language === "de"
-                        ? "bg-[#2378FF] text-white"
-                        : "bg-gray-100 text-gray-600"
-                        }`}
-                    >
-                      DE
-                    </span>
-                  </div>
+                  English
+                </button>
+                <button
+                  onClick={() => handleLanguageSelect("de")}
+                  className={`flex-1 py-2.5 text-sm font-bold rounded-lg transition-all duration-200 ${
+                    i18n.language === "de"
+                      ? "bg-gray-900 text-white shadow-md"
+                      : "text-gray-500 hover:bg-gray-50 hover:text-gray-900"
+                  }`}
+                >
+                  Deutsch
                 </button>
               </div>
             </div>
