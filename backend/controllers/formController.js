@@ -60,14 +60,14 @@ exports.sendApplyForm = async (req, res) => {
         <div style="padding: 30px; background-color: #ffffff;">
           <p style="font-size: 16px; color: #333; margin-top: 0;">Hi <strong>${name}</strong>,</p>
           <p style="font-size: 16px; color: #555; line-height: 1.6;">
-            Thank you for applying to PrimeX for the <strong style="color: #2563eb;">${position}</strong> role.
+            Thank you for applying to PrimEx for the <strong style="color: #2563eb;">${position}</strong> role.
           </p>
           <div style="background-color: #f3f4f6; padding: 15px; border-left: 4px solid #2563eb; margin: 20px 0; border-radius: 4px;">
             <p style="margin: 0; color: #555; font-size: 14px;">
               Our team will review your application and get back to you shortly if your profile matches our needs.
             </p>
           </div>
-          <p style="font-size: 16px; color: #333;">Best regards,<br><strong>PrimeX HR Team</strong></p>
+          <p style="font-size: 16px; color: #333;">Best regards,<br><strong>PrimEx HR Team</strong></p>
         </div>
       </div>
     `;
@@ -149,9 +149,9 @@ exports.sendBusinessInquiry = async (req, res) => {
         <div style="padding: 30px; background-color: #ffffff;">
           <p style="font-size: 16px; color: #333; margin-top: 0;">Hi <strong>${contactPerson}</strong>,</p>
           <p style="font-size: 16px; color: #555; line-height: 1.6;">
-            Thank you for reaching out to PrimeX regarding <strong>${businessType}</strong>.
+            Thank you for reaching out to PrimEx regarding <strong>${businessType}</strong>.
           </p>
-          <p style="font-size: 16px; color: #333;">Best regards,<br><strong>PrimeX Business Team</strong></p>
+          <p style="font-size: 16px; color: #333;">Best regards,<br><strong>PrimEx Business Team</strong></p>
         </div>
       </div>
     `;
