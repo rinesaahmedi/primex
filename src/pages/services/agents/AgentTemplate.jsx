@@ -479,7 +479,7 @@ const AgentTemplate = () => {
                       {galleryImages.map((item, index) => (
                         <div
                           key={index}
-                          className="min-w-full h-full flex-shrink-0 flex items-center justify-center p-2"
+                          className="min-w-full h-full  flex items-center justify-center p-2"
                         >
                           <img
                             src={item.image}
