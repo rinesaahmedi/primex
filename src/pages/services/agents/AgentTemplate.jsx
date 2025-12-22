@@ -461,11 +461,11 @@ const AgentTemplate = () => {
             <div className="mt-10 md:hidden">
               <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-md">
                 <div className="relative">
-                  {/* Container: Aspect Ratio 4:3 ensures better fit on mobile screens. */}
-                  {/* Image: 'object-cover' fills the frame to avoid empty bands on mobile. */}
+                  {/* Container: Fixed height keeps the slider stable without cropping images. */}
+                  {/* Image: 'object-contain' shows the full image without cutting edges. */}
                   <div
                     ref={galleryRef}
-                    className="relative w-full aspect-[4/3] overflow-hidden rounded-2xl mb-4 bg-slate-100 border border-slate-100 shadow-sm"
+                    className="relative w-full h-[240px] sm:h-[280px] overflow-hidden rounded-2xl mb-4 bg-white border border-slate-100 shadow-sm"
                     onTouchStart={onTouchStart}
                     onTouchMove={onTouchMove}
                     onTouchEnd={onTouchEnd}
@@ -484,7 +484,7 @@ const AgentTemplate = () => {
                             <img
                               src={item.image}
                               alt={item.title}
-                              className="w-full h-full object-cover object-center"
+                              className="w-full h-full object-contain"
                             />
                         </div>
                       ))}
