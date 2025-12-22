@@ -136,12 +136,7 @@ const AIAgentsPage = () => {
               >
                 {t("aiAgentsPage.cta.schedule", "Schedule a Consultation")}
               </Link>
-              <Link
-                to="/#contact"
-                className="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-bold rounded-xl hover:bg-white/10 transition-all"
-              >
-                {t("aiAgentsPage.cta.contact", "Contact Us")}
-              </Link>
+             
             </div>
           </div>
         </div>
