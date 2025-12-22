@@ -56,20 +56,60 @@ const placeholderImg = "https://via.placeholder.com/600x400?text=Agent+Image";
 // 2. CONFIGURATION
 // =================================================================================
 const AGENT_ASSETS = {
-  "order-confirmation": { overview: orderConf1, capabilities: orderConf2, useCases: orderConf3, cta: orderConf4 },
+  "order-confirmation": {
+    overview: orderConf1,
+    capabilities: orderConf2,
+    useCases: orderConf3,
+    cta: orderConf4,
+  },
   pdm: { overview: pdm1, capabilities: pdm2, useCases: pdm3, cta: pdm3 },
-  "content-generation": { overview: contentGen2, capabilities: contentGen2, useCases: contentGen1, cta: contentGen1 },
-  "virtual-secretary": { overview: vs1, capabilities: vs2, useCases: vs3, cta: vs3 },
-  "all-in-one": { overview: allInOne1, capabilities: allInOne1, useCases: allInOne2, cta: allInOne2 },
+  "content-generation": {
+    overview: contentGen2,
+    capabilities: contentGen2,
+    useCases: contentGen1,
+    cta: contentGen1,
+  },
+  "virtual-secretary": {
+    overview: vs1,
+    capabilities: vs2,
+    useCases: vs3,
+    cta: vs3,
+  },
+  "all-in-one": {
+    overview: allInOne1,
+    capabilities: allInOne1,
+    useCases: allInOne2,
+    cta: allInOne2,
+  },
   smm: { overview: smm1, capabilities: smm1, useCases: smm2, cta: smm2 },
   crm: { overview: crm1, capabilities: crm1, useCases: crm2, cta: crm2 },
-  "order-processing": { overview: orderProc1, capabilities: orderProc2, useCases: orderProc3, cta: orderProc3 },
-  "kitchen-order": { overview: kitchen1, capabilities: kitchen2, useCases: kitchen3, cta: kitchen3 },
+  "order-processing": {
+    overview: orderProc1,
+    capabilities: orderProc2,
+    useCases: orderProc3,
+    cta: orderProc3,
+  },
+  "kitchen-order": {
+    overview: kitchen1,
+    capabilities: kitchen2,
+    useCases: kitchen3,
+    cta: kitchen3,
+  },
   edi: { overview: edi1, capabilities: edi1, useCases: edi1, cta: edi1 },
-  complains: { overview: complains1, capabilities: complains1, useCases: complains2, cta: complains2 },
+  complains: {
+    overview: complains1,
+    capabilities: complains1,
+    useCases: complains2,
+    cta: complains2,
+  },
   eudr: { overview: eudr1, capabilities: eudr2, useCases: eudr3, cta: eudr3 },
   dpp: { overview: dpp1, capabilities: dpp1, useCases: dpp1, cta: dpp1 },
-  default: { overview: placeholderImg, capabilities: placeholderImg, useCases: placeholderImg, cta: placeholderImg },
+  default: {
+    overview: placeholderImg,
+    capabilities: placeholderImg,
+    useCases: placeholderImg,
+    cta: placeholderImg,
+  },
 };
 
 const resolveAgentId = (urlId) => {
@@ -107,14 +147,29 @@ const AgentTemplate = () => {
 
   const currentAgentAssets = AGENT_ASSETS[actualId] || AGENT_ASSETS["default"];
 
+  // =================================================================================
+  // REFINED GALLERY LOGIC
+  // 1. Filter out generic placeholders if real images exist.
+  // 2. Ensure 1:1 mapping (Unique Image -> Unique Title).
+  // =================================================================================
   const galleryImages = useMemo(() => {
     const images = [];
     const seen = new Set();
     const sections = ["overview", "capabilities", "useCases", "cta"];
- 
+
     sections.forEach((section) => {
       const img = currentAgentAssets[section];
-      if (img && !seen.has(img)) {
+
+      // Skip if it's strictly a placeholder and we want to avoid duplicates
+      // Note: We check if it is the placeholderImg const
+      if (!img) return;
+
+      // Ensure we don't show the exact same image twice in a row
+      if (!seen.has(img)) {
+        // If image is placeholder, only add it if it's the very first one (fallback)
+        // otherwise skip it to keep the gallery clean.
+        if (img === placeholderImg && seen.size > 0) return;
+
         seen.add(img);
         images.push({
           image: img,
@@ -154,11 +209,20 @@ const AgentTemplate = () => {
     return () => observers.forEach((o) => o.disconnect());
   }, [actualId]);
 
-  const capabilities = t(`${actualId}.capabilities.items`, { returnObjects: true });
+  const capabilities = t(`${actualId}.capabilities.items`, {
+    returnObjects: true,
+  });
   const useCaseCards = t(`${actualId}.useCases.cards`, { returnObjects: true });
 
-  const capabilitiesSummary = Array.isArray(capabilities) ? capabilities.slice(0, 3).join(" ") : "";
-  const useCasesSummary = Array.isArray(useCaseCards) ? useCaseCards.slice(0, 2).map((card) => `${card.title}: ${card.body}`).join(" ") : "";
+  const capabilitiesSummary = Array.isArray(capabilities)
+    ? capabilities.slice(0, 3).join(" ")
+    : "";
+  const useCasesSummary = Array.isArray(useCaseCards)
+    ? useCaseCards
+        .slice(0, 2)
+        .map((card) => `${card.title}: ${card.body}`)
+        .join(" ")
+    : "";
 
   const shortenText = (text, maxChars = 130) => {
     if (!text) return "";
@@ -169,16 +233,32 @@ const AgentTemplate = () => {
   };
 
   const sectionTexts = {
-    overview: { title: t(`${actualId}.title`), description: shortenText(t(`${actualId}.subtitle`)) },
-    capabilities: { title: t(`${actualId}.capabilities.title`), description: shortenText(capabilitiesSummary) },
-    useCases: { title: t(`${actualId}.useCases.title`), description: shortenText(useCasesSummary) },
-    cta: { title: t(`${actualId}.cta.title`), description: shortenText(t(`${actualId}.cta.body`)) },
+    overview: {
+      title: t(`${actualId}.title`),
+      description: shortenText(t(`${actualId}.subtitle`)),
+    },
+    capabilities: {
+      title: t(`${actualId}.capabilities.title`),
+      description: shortenText(capabilitiesSummary),
+    },
+    useCases: {
+      title: t(`${actualId}.useCases.title`),
+      description: shortenText(useCasesSummary),
+    },
+    cta: {
+      title: t(`${actualId}.cta.title`),
+      description: shortenText(t(`${actualId}.cta.body`)),
+    },
   };
 
-  const getSectionText = (section) => sectionTexts[section] || sectionTexts.overview;
+  const getSectionText = (section) =>
+    sectionTexts[section] || sectionTexts.overview;
 
   const currentVisual = {
-    image: currentAgentAssets[activeVisual] || currentAgentAssets.overview || placeholderImg,
+    image:
+      currentAgentAssets[activeVisual] ||
+      currentAgentAssets.overview ||
+      placeholderImg,
     ...getSectionText(activeVisual),
     label: t(`${actualId}.visuals.label`),
   };
@@ -199,12 +279,15 @@ const AgentTemplate = () => {
     const distance = touchStart - touchEnd;
     const isLeftSwipe = distance > minSwipeDistance;
     const isRightSwipe = distance < -minSwipeDistance;
-    if (isLeftSwipe && currentImageIndex < galleryImages.length - 1) setCurrentImageIndex(currentImageIndex + 1);
-    if (isRightSwipe && currentImageIndex > 0) setCurrentImageIndex(currentImageIndex - 1);
+    if (isLeftSwipe && currentImageIndex < galleryImages.length - 1)
+      setCurrentImageIndex(currentImageIndex + 1);
+    if (isRightSwipe && currentImageIndex > 0)
+      setCurrentImageIndex(currentImageIndex - 1);
   };
 
   const goToNext = () => {
-    if (currentImageIndex < galleryImages.length - 1) setCurrentImageIndex(currentImageIndex + 1);
+    if (currentImageIndex < galleryImages.length - 1)
+      setCurrentImageIndex(currentImageIndex + 1);
   };
 
   const goToPrevious = () => {
@@ -217,21 +300,30 @@ const AgentTemplate = () => {
     <section className="min-h-screen bg-white pt-28 pb-24 md:pt-36 md:pb-32">
       <div className="max-w-6xl mx-auto px-2">
         <div className="grid gap-12 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
-          
           {/* LEFT COLUMN */}
           <div>
-            <Link to="/services/ai-agents" className="inline-flex items-center gap-2 text-[#2378FF] hover:text-[#1f5fcc] mb-8 transition-colors">
+            <Link
+              to="/services/ai-agents"
+              className="inline-flex items-center gap-2 text-[#2378FF] hover:text-[#1f5fcc] mb-8 transition-colors"
+            >
               <ArrowLeft className="w-5 h-5" />
               <span className="font-medium">{t("backToAgentsLink")}</span>
             </Link>
 
             {/* Overview */}
-            <div ref={sectionRef} id={`${actualId}-overview`} className={`mb-12 ${isVisible ? "lift-up-subtle" : ""}`}>
+            <div
+              ref={sectionRef}
+              id={`${actualId}-overview`}
+              className={`mb-12 ${isVisible ? "lift-up-subtle" : ""}`}
+            >
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#2378FF]/10 text-[#2378FF] text-sm font-semibold mb-6">
                 <Zap className="w-4 h-4" />
                 <span>{t(`${actualId}.badge`)}</span>
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-serif)" }}>
+              <h1
+                className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6"
+                style={{ fontFamily: "var(--font-serif)" }}
+              >
                 {t(`${actualId}.title`)}
               </h1>
               <p className="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-3xl">
@@ -240,90 +332,159 @@ const AgentTemplate = () => {
             </div>
 
             {/* Metrics */}
-            <div className={`grid grid-cols-1 md:grid-cols-3 gap-4 mb-16 lg:-mx-10 ${isVisible ? "lift-up-subtle" : ""}`} style={{ animationDelay: isVisible ? "0.1s" : "0s" }}>
+            <div
+              className={`grid grid-cols-1 md:grid-cols-3 gap-4 mb-16 lg:-mx-10 ${
+                isVisible ? "lift-up-subtle" : ""
+              }`}
+              style={{ animationDelay: isVisible ? "0.1s" : "0s" }}
+            >
               <div className="bg-gradient-to-br from-[#2378FF] to-[#1f5fcc] rounded-xl px-2 py-6 text-white shadow-lg flex flex-col justify-between min-h-[180px] gap-7">
                 <Clock className="w-10 h-10 opacity-90" />
-                <div className="text-2xl font-bold break-words w-full">{t(`${actualId}.metrics.processingTime.value`)}</div>
-                <div className="text-sm font-medium opacity-90 leading-tight">{t(`${actualId}.metrics.processingTime.label`)}</div>
+                <div className="text-2xl font-bold break-words w-full">
+                  {t(`${actualId}.metrics.processingTime.value`)}
+                </div>
+                <div className="text-sm font-medium opacity-90 leading-tight">
+                  {t(`${actualId}.metrics.processingTime.label`)}
+                </div>
               </div>
               <div className="bg-gradient-to-br from-[#CDABFF] to-[#b894ff] rounded-xl px-2 py-6 text-white shadow-lg flex flex-col justify-between min-h-[180px] gap-7">
                 <TrendingUp className="w-10 h-10 opacity-90" />
-                <div className="text-2xl font-semibold break-words w-full">{t(`${actualId}.metrics.efficiency.value`)}</div>
-                <div className="text-sm font-medium opacity-90 leading-tight">{t(`${actualId}.metrics.efficiency.label`)}</div>
+                <div className="text-2xl font-semibold break-words w-full">
+                  {t(`${actualId}.metrics.efficiency.value`)}
+                </div>
+                <div className="text-sm font-medium opacity-90 leading-tight">
+                  {t(`${actualId}.metrics.efficiency.label`)}
+                </div>
               </div>
               <div className="bg-gradient-to-br from-[#FADEBC] to-[#f5d4a8] rounded-xl px-2 py-6 text-gray-900 shadow-lg flex flex-col justify-between min-h-[180px] gap-7">
                 <Shield className="w-10 h-10 opacity-80" />
-                <div className="text-2xl font-semibold break-words w-full">{t(`${actualId}.metrics.accuracy.value`)}</div>
-                <div className="text-sm font-medium opacity-80 leading-tight">{t(`${actualId}.metrics.accuracy.label`)}</div>
+                <div className="text-2xl font-semibold break-words w-full">
+                  {t(`${actualId}.metrics.accuracy.value`)}
+                </div>
+                <div className="text-sm font-medium opacity-80 leading-tight">
+                  {t(`${actualId}.metrics.accuracy.label`)}
+                </div>
               </div>
             </div>
 
             {/* Capabilities */}
-            <div id={`${actualId}-capabilities`} className={`mb-16 ${isVisible ? "lift-up-subtle" : ""}`} style={{ animationDelay: isVisible ? "0.2s" : "0s" }}>
-              <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-6" style={{ fontFamily: "var(--font-serif)" }}>{t(`${actualId}.capabilities.title`)}</h2>
+            <div
+              id={`${actualId}-capabilities`}
+              className={`mb-16 ${isVisible ? "lift-up-subtle" : ""}`}
+              style={{ animationDelay: isVisible ? "0.2s" : "0s" }}
+            >
+              <h2
+                className="text-3xl md:text-4xl font-semibold text-gray-900 mb-6"
+                style={{ fontFamily: "var(--font-serif)" }}
+              >
+                {t(`${actualId}.capabilities.title`)}
+              </h2>
               <div className="bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/20 rounded-2xl p-8 border-2 border-slate-200">
                 <div className="grid md:grid-cols-2 gap-4">
-                  {Array.isArray(capabilities) && capabilities.map((feature, index) => (
-                    <div key={index} className="flex items-start gap-3 bg-white/60 rounded-lg p-4">
-                      <CheckCircle2 className="w-6 h-6 text-[#2378FF] shrink-0 mt-0.5" />
-                      <span className="text-gray-700">{feature}</span>
-                    </div>
-                  ))}
+                  {Array.isArray(capabilities) &&
+                    capabilities.map((feature, index) => (
+                      <div
+                        key={index}
+                        className="flex items-start gap-3 bg-white/60 rounded-lg p-4"
+                      >
+                        <CheckCircle2 className="w-6 h-6 text-[#2378FF] shrink-0 mt-0.5" />
+                        <span className="text-gray-700">{feature}</span>
+                      </div>
+                    ))}
                 </div>
               </div>
             </div>
 
             {/* Use Cases */}
-            <div id={`${actualId}-useCases`} className={`mb-16 ${isVisible ? "lift-up-subtle" : ""}`} style={{ animationDelay: isVisible ? "0.3s" : "0s" }}>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-serif)" }}>{t(`${actualId}.useCases.title`)}</h2>
+            <div
+              id={`${actualId}-useCases`}
+              className={`mb-16 ${isVisible ? "lift-up-subtle" : ""}`}
+              style={{ animationDelay: isVisible ? "0.3s" : "0s" }}
+            >
+              <h2
+                className="text-3xl md:text-4xl font-bold text-gray-900 mb-6"
+                style={{ fontFamily: "var(--font-serif)" }}
+              >
+                {t(`${actualId}.useCases.title`)}
+              </h2>
               <div className="grid md:grid-cols-2 gap-6">
-                {Array.isArray(useCaseCards) && useCaseCards.map((card, index) => (
-                  <div key={index} className="bg-white rounded-xl p-6 border-2 border-slate-200">
-                    {index === 0 ? <Database className="w-8 h-8 text-[#2378FF] mb-4" /> : <Activity className="w-8 h-8 text-[#CDABFF] mb-4" />}
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3">{card.title}</h3>
-                    <p className="text-gray-600">{card.body}</p>
-                  </div>
-                ))}
+                {Array.isArray(useCaseCards) &&
+                  useCaseCards.map((card, index) => (
+                    <div
+                      key={index}
+                      className="bg-white rounded-xl p-6 border-2 border-slate-200"
+                    >
+                      {index === 0 ? (
+                        <Database className="w-8 h-8 text-[#2378FF] mb-4" />
+                      ) : (
+                        <Activity className="w-8 h-8 text-[#CDABFF] mb-4" />
+                      )}
+                      <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                        {card.title}
+                      </h3>
+                      <p className="text-gray-600">{card.body}</p>
+                    </div>
+                  ))}
               </div>
             </div>
 
             {/* CTA */}
-            <div id={`${actualId}-cta`} className={isVisible ? "lift-up-subtle" : ""} style={{ animationDelay: isVisible ? "0.4s" : "0s" }}>
+            <div
+              id={`${actualId}-cta`}
+              className={isVisible ? "lift-up-subtle" : ""}
+              style={{ animationDelay: isVisible ? "0.4s" : "0s" }}
+            >
               <div className="bg-gradient-to-br from-[#081333] via-[#1659bd] to-[#fadebc] rounded-2xl p-8 md:p-12 text-white">
-                <h3 className="text-2xl md:text-3xl font-bold mb-4" style={{ fontFamily: "var(--font-serif)" }}>{t(`${actualId}.cta.title`)}</h3>
-                <p className="text-white/90 mb-8 text-lg">{t(`${actualId}.cta.body`)}</p>
+                <h3
+                  className="text-2xl md:text-3xl font-bold mb-4"
+                  style={{ fontFamily: "var(--font-serif)" }}
+                >
+                  {t(`${actualId}.cta.title`)}
+                </h3>
+                <p className="text-white/90 mb-8 text-lg">
+                  {t(`${actualId}.cta.body`)}
+                </p>
                 <div className="flex flex-wrap gap-4">
-                  <Link to="/business" className="inline-flex items-center justify-center px-8 py-3 bg-white text-[#2378FF] font-semibold rounded-xl hover:bg-white/90 transition-all shadow-lg hover:shadow-xl">{t(`${actualId}.cta.primary`)}</Link>
+                  <Link
+                    to="/business"
+                    className="inline-flex items-center justify-center px-8 py-3 bg-white text-[#2378FF] font-semibold rounded-xl hover:bg-white/90 transition-all shadow-lg hover:shadow-xl"
+                  >
+                    {t(`${actualId}.cta.primary`)}
+                  </Link>
                 </div>
               </div>
             </div>
 
             {/* ========================================================= */}
-            {/* MOBILE GALLERY */}
+            {/* MOBILE GALLERY (Updated Visuals & Logic) */}
             {/* ========================================================= */}
             <div className="mt-10 md:hidden">
               <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-md">
                 <div className="relative">
-                  
-                  {/* Container: Taller height (approx 26rem/416px) matching desktop */}
+                  {/* Container: Aspect Ratio 4:3 ensures better fit on mobile screens. */}
+                  {/* Image: 'object-contain' ensures whole image is visible (no cropping). */}
                   <div
                     ref={galleryRef}
-                    className="relative w-full h-[26rem] overflow-hidden rounded-2xl mb-4 bg-white border border-slate-100 shadow-sm"
+                    className="relative w-full aspect-[4/3] overflow-hidden rounded-2xl mb-4 bg-slate-100 border border-slate-100 shadow-sm"
                     onTouchStart={onTouchStart}
                     onTouchMove={onTouchMove}
                     onTouchEnd={onTouchEnd}
                   >
                     <div
                       className="flex transition-transform duration-300 ease-out h-full"
-                      style={{ transform: `translateX(-${currentImageIndex * 100}%)` }}
+                      style={{
+                        transform: `translateX(-${currentImageIndex * 100}%)`,
+                      }}
                     >
                       {galleryImages.map((item, index) => (
-                        <div key={index} className="min-w-full h-full flex-shrink-0">
-                          {/* Image: object-center ensures larger images are centered */}
+                        <div
+                          key={index}
+                          className="min-w-full h-full flex-shrink-0 flex items-center justify-center p-2"
+                        >
                           <img
                             src={item.image}
                             alt={item.title}
-                            className="w-full h-full object-cover object-center"
+                            className="w-full h-full object-contain"
                           />
                         </div>
                       ))}
@@ -333,13 +494,19 @@ const AgentTemplate = () => {
                     {galleryImages.length > 1 && (
                       <>
                         {currentImageIndex > 0 && (
-                          <button onClick={goToPrevious} className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-2 shadow-lg transition-all z-10">
-                            <ChevronLeft className="w-5 h-5 text-[#2378FF]" />
+                          <button
+                            onClick={goToPrevious}
+                            className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-2 shadow-lg transition-all z-10 text-[#2378FF]"
+                          >
+                            <ChevronLeft className="w-5 h-5" />
                           </button>
                         )}
                         {currentImageIndex < galleryImages.length - 1 && (
-                          <button onClick={goToNext} className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-2 shadow-lg transition-all z-10">
-                            <ChevronRight className="w-5 h-5 text-[#2378FF]" />
+                          <button
+                            onClick={goToNext}
+                            className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-2 shadow-lg transition-all z-10 text-[#2378FF]"
+                          >
+                            <ChevronRight className="w-5 h-5" />
                           </button>
                         )}
                       </>
@@ -359,16 +526,25 @@ const AgentTemplate = () => {
                         <button
                           key={index}
                           onClick={() => goToImage(index)}
-                          className={`transition-all rounded-full ${index === currentImageIndex ? "w-8 h-2 bg-[#2378FF]" : "w-2 h-2 bg-slate-300 hover:bg-slate-400"}`}
+                          className={`transition-all rounded-full ${
+                            index === currentImageIndex
+                              ? "w-8 h-2 bg-[#2378FF]"
+                              : "w-2 h-2 bg-slate-300 hover:bg-slate-400"
+                          }`}
                         />
                       ))}
                     </div>
                   )}
 
+                  {/* Text Description for the Active Image */}
                   {galleryImages[currentImageIndex] && (
-                    <div>
-                      <h3 className="text-xl font-semibold text-slate-900 mb-2">{galleryImages[currentImageIndex].title}</h3>
-                      <p className="text-sm text-slate-600">{galleryImages[currentImageIndex].description}</p>
+                    <div className="animate-fade-in min-h-[100px]">
+                      <h3 className="text-xl font-semibold text-slate-900 mb-2">
+                        {galleryImages[currentImageIndex].title}
+                      </h3>
+                      <p className="text-sm text-slate-600">
+                        {galleryImages[currentImageIndex].description}
+                      </p>
                     </div>
                   )}
                 </div>
@@ -377,14 +553,15 @@ const AgentTemplate = () => {
             {/* ========================================================= */}
             {/* END MOBILE GALLERY                                        */}
             {/* ========================================================= */}
-
           </div>
 
           {/* RIGHT COLUMN (Sticky Visuals) */}
-          <div className="hidden md:block">
+          <div className="hidden md:block md:-mt-6">
             <div className="sticky top-28">
-              <div className="rounded-3xl border border-slate-200 bg-slate-50 py-6 px-4 shadow-md transition-all duration-300 flex flex-col gap-3">
-                <p className="text-xs font-semibold uppercase tracking-wide text-slate-500 mb-2">{currentVisual.label}</p>
+              <div className="rounded-3xl border border-slate-200 bg-slate-50 p-4 md:px-6 shadow-md transition-all duration-300 flex flex-col gap-2">
+                <p className="text-xs font-semibold uppercase tracking-wide text-slate-500 ">
+                  {currentVisual.label}
+                </p>
                 <div className="bg-white rounded-2xl overflow-hidden w-full h-64 lg:h-104 shadow-sm border border-slate-100 relative">
                   <img
                     key={currentVisual.image}
@@ -393,9 +570,16 @@ const AgentTemplate = () => {
                     className="w-full h-full object-cover object-center animate-fade-in"
                   />
                 </div>
-                <div className="mt-2" key={activeVisual}>
-                  <h3 className="text-xl font-semibold text-slate-900 animate-slide-up-sm">{currentVisual.title}</h3>
-                  <p className="text-sm text-slate-600 mt-1 animate-slide-up-sm" style={{ animationDelay: "0.1s" }}>{currentVisual.description}</p>
+                <div key={activeVisual}>
+                  <h3 className="text-xl font-semibold text-slate-900 animate-slide-up-sm">
+                    {currentVisual.title}
+                  </h3>
+                  <p
+                    className="text-sm text-slate-600 mt-1 animate-slide-up-sm"
+                    style={{ animationDelay: "0.1s" }}
+                  >
+                    {currentVisual.description}
+                  </p>
                 </div>
               </div>
             </div>
@@ -403,7 +587,10 @@ const AgentTemplate = () => {
         </div>
 
         <div className="mt-16 flex justify-center border-t border-slate-100 pt-8">
-          <Link to="/services/ai-agents" className="inline-flex items-center gap-2 text-gray-500 hover:text-[#2378FF] transition-colors py-2 px-6 rounded-lg hover:bg-slate-50">
+          <Link
+            to="/services/ai-agents"
+            className="inline-flex items-center gap-2 text-gray-500 hover:text-[#2378FF] transition-colors py-2 px-6 rounded-lg hover:bg-slate-50"
+          >
             <ArrowLeft className="w-5 h-5" />
             <span className="font-medium">{t("backToAgentsLink")}</span>
           </Link>
