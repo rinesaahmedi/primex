@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useScrollAnimation } from "../utils/useScrollAnimation";
+import partnerPhoto from "../images/PrimEx logo slogan.jpg";
 
 export default function PartnerTestimonials() {
   const { t } = useTranslation();
@@ -17,6 +18,7 @@ export default function PartnerTestimonials() {
 
   // We no longer need 'const current = ...' because we map all of them below
 
+  // This section animates in, stacks every quote on top of each other, and exposes carousel controls.
   return (
     <section className="relative w-full py-20 md:py-28 bg-white">
       <div ref={sectionRef} className="max-w-5xl mx-auto px-6">
@@ -31,7 +33,7 @@ export default function PartnerTestimonials() {
             4. The container stretches to fit the TALLEST quote.
             5. We use opacity to show/hide, so the layout never jumps.
           */}
-          <div className="relative grid grid-cols-1 mb-16 max-w-4xl mx-auto items-center">
+          {/* <div className="relative grid grid-cols-1 mb-16 max-w-4xl mx-auto items-center">
             {testimonials.map((testimonial, i) => (
               <div 
                 key={i} 
@@ -52,7 +54,7 @@ export default function PartnerTestimonials() {
           </div>
 
           {/* Navigation */}
-          <div className="flex items-center justify-center gap-6">
+          {/* <div className="flex items-center justify-center gap-6">
             <button
               onClick={prev}
               className="w-12 h-12 rounded-full bg-slate-50 text-slate-600 hover:bg-[#2378FF] hover:text-white transition-all flex items-center justify-center border border-slate-200 hover:border-transparent"
@@ -83,6 +85,15 @@ export default function PartnerTestimonials() {
             >
               <ChevronRight className="w-6 h-6" />
             </button>
+          </div>  */}
+
+          {/* Showcase photo (only the requested path) */}
+          <div className="flex justify-center">
+            <img
+              src={partnerPhoto}
+              alt="PrimEx branding"
+              className="w-full max-w-4xl object-contain"
+            />
           </div>
         </div>
       </div>
