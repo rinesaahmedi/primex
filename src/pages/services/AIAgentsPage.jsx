@@ -131,7 +131,7 @@ const AIAgentsPage = () => {
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link
-                to="/business"
+                to="/appointments"
                 className="inline-flex items-center justify-center px-8 py-4 bg-white text-[#2378FF] font-bold rounded-xl hover:bg-white/90 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
               >
                 {t("aiAgentsPage.cta.schedule", "Schedule a Consultation")}
