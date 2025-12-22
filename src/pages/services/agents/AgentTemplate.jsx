@@ -462,10 +462,10 @@ const AgentTemplate = () => {
               <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-md">
                 <div className="relative">
                   {/* Container: Fixed height keeps the slider stable without cropping images. */}
-                  {/* Image: 'object-contain' shows the full image without cutting edges. */}
+                  {/* Image: Force object-fit via inline style to avoid missing class issues on hosting. */}
                   <div
                     ref={galleryRef}
-                    className="relative w-full h-[240px] sm:h-[280px] overflow-hidden rounded-2xl mb-4 bg-white border border-slate-100 shadow-sm"
+                    className="relative w-full h-60 sm:h-72 overflow-hidden rounded-2xl mb-4 bg-white border border-slate-100 shadow-sm"
                     onTouchStart={onTouchStart}
                     onTouchMove={onTouchMove}
                     onTouchEnd={onTouchEnd}
@@ -484,7 +484,8 @@ const AgentTemplate = () => {
                             <img
                               src={item.image}
                               alt={item.title}
-                              className="w-full h-full object-contain"
+                              className="w-full h-full"
+                              style={{ objectFit: "contain" }}
                             />
                         </div>
                       ))}
