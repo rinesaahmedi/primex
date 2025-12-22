@@ -24,6 +24,7 @@ const AppointmentPage = () => {
   const [availableSlots, setAvailableSlots] = useState([]);
   const [selectedTime, setSelectedTime] = useState("");
   const [showForm, setShowForm] = useState(false);
+  const [notification, setNotification] = useState(null);
 
   // Stores dates (YYYY-MM-DD) that have 0 slots available
   const [unavailableDates, setUnavailableDates] = useState([]);
@@ -149,7 +150,10 @@ const AppointmentPage = () => {
 
     if (!selectedTopics || selectedTopics.length === 0) {
       setIsBooking(false);
-      alert(t("appointment.alerts.selectTopic")); // Translated alert
+      setNotification({
+        type: "error",
+        message: t("appointment.alerts.selectTopic"),
+      });
       return;
     }
 
@@ -177,8 +181,10 @@ const AppointmentPage = () => {
       .post(apiUrl("/api/book-appointment"), bookingData)
       .then((response) => {
         setIsBooking(false);
-        // You might want to use a translated success message instead of backend response
-        alert(response.data.message || t("appointment.alerts.success"));
+        setNotification({
+          type: "success",
+          message: response.data.message || t("appointment.alerts.success"),
+        });
 
         setName("");
         setEmail("");
@@ -193,9 +199,18 @@ const AppointmentPage = () => {
       })
       .catch((error) => {
         setIsBooking(false);
-        alert(error.response?.data?.message || t("appointment.alerts.error"));
+        setNotification({
+          type: "error",
+          message: error.response?.data?.message || t("appointment.alerts.error"),
+        });
       });
   };
+
+  useEffect(() => {
+    if (!notification) return;
+    const timer = setTimeout(() => setNotification(null), 4500);
+    return () => clearTimeout(timer);
+  }, [notification]);
 
   return (
     <>
@@ -272,6 +287,35 @@ const AppointmentPage = () => {
           opacity: 0.9;
         }
       `}</style>
+
+      {notification && (
+        <div className="fixed top-24 left-1/2 -translate-x-1/2 z-[9999] w-[92%] max-w-lg">
+          <div
+            className={`flex items-start gap-3 rounded-2xl border px-4 py-3 shadow-lg backdrop-blur-sm ${
+              notification.type === "success"
+                ? "bg-green-50/95 border-green-200 text-green-900"
+                : "bg-red-50/95 border-red-200 text-red-900"
+            }`}
+            role="status"
+            aria-live="polite"
+          >
+            <span className="text-sm font-semibold">
+              {notification.type === "success"
+                ? t("appointment.alerts.success")
+                : t("appointment.alerts.error")}
+            </span>
+            <span className="text-sm">{notification.message}</span>
+            <button
+              type="button"
+              onClick={() => setNotification(null)}
+              className="ml-auto text-xs font-semibold uppercase tracking-wide opacity-70 hover:opacity-100"
+              aria-label={t("appointment.alerts.dismiss", "Dismiss")}
+            >
+              {t("appointment.alerts.dismiss", "Dismiss")}
+            </button>
+          </div>
+        </div>
+      )}
 
       <div className="montserrat-app min-h-screen bg-gray-50 flex flex-col items-center pt-32 pb-12 px-4 sm:px-6 lg:px-8 text-gray-800">
         <div className="w-full max-w-6xl bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100 flex flex-col md:flex-row min-h-[500px]">

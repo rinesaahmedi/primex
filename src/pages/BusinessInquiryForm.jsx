@@ -19,6 +19,7 @@ const BusinessInquiryForm = () => {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [notification, setNotification] = useState(null);
   const dropdownRef = useRef(null);
 
   const businessOptions = [
@@ -112,7 +113,10 @@ const BusinessInquiryForm = () => {
       const result = await response.json();
 
       if (result.success) {
-        alert(t("forms.alerts.success"));
+        setNotification({
+          type: "success",
+          message: t("forms.alerts.success"),
+        });
         setFormData({
           companyName: "",
           contactPerson: "",
@@ -124,15 +128,27 @@ const BusinessInquiryForm = () => {
         });
         setErrors({});
       } else {
-        alert(t("forms.alerts.error"));
+        setNotification({
+          type: "error",
+          message: t("forms.alerts.error"),
+        });
       }
     } catch (error) {
       console.error("Error:", error);
-      alert(t("forms.alerts.genericError"));
+      setNotification({
+        type: "error",
+        message: t("forms.alerts.genericError"),
+      });
     } finally {
       setIsSubmitting(false);
     }
   };
+
+  useEffect(() => {
+    if (!notification) return;
+    const timer = setTimeout(() => setNotification(null), 4500);
+    return () => clearTimeout(timer);
+  }, [notification]);
 
   const ErrorMsg = ({ field }) =>
     errors[field] ? (
@@ -143,6 +159,29 @@ const BusinessInquiryForm = () => {
 
   return (
     <section className="bg-gradient-to-br from-[#081333] via-[#1659bd] to-[#ffffff] text-white py-16 md:py-24 min-h-screen">
+      {notification && (
+        <div className="fixed top-24 left-1/2 -translate-x-1/2 z-[9999] w-[92%] max-w-lg">
+          <div
+            className={`flex items-start gap-3 rounded-2xl border px-4 py-3 shadow-lg backdrop-blur-sm ${
+              notification.type === "success"
+                ? "bg-emerald-50/95 border-emerald-200 text-emerald-900"
+                : "bg-rose-50/95 border-rose-200 text-rose-900"
+            }`}
+            role="status"
+            aria-live="polite"
+          >
+            <span className="text-sm font-semibold">{notification.message}</span>
+            <button
+              type="button"
+              onClick={() => setNotification(null)}
+              className="ml-auto text-xs font-semibold uppercase tracking-wide opacity-70 hover:opacity-100"
+              aria-label={t("forms.alerts.dismiss", "Dismiss")}
+            >
+              {t("forms.alerts.dismiss", "Dismiss")}
+            </button>
+          </div>
+        </div>
+      )}
       <div className="max-w-6xl mx-auto px-6 py-10">
         {/* Header Section */}
         <div className="text-center mb-12 md:mb-16 max-w-3xl mx-auto">

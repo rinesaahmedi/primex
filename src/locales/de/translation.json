@@ -218,7 +218,8 @@
     "alerts": {
       "selectTopic": "Bitte wählen Sie mindestens ein Thema aus",
       "error": "Fehler bei der Terminbuchung",
-      "success": "Termin erfolgreich gebucht!"
+      "success": "Termin erfolgreich gebucht!",
+      "dismiss": "Schliessen"
     },
     "topics": {
       "orderManagement": "Auftragsmanagement & Logistik",
@@ -246,7 +247,8 @@
     "alerts": {
       "success": "✅ Erfolgreich gesendet!",
       "error": "❌ Senden fehlgeschlagen. Bitte versuchen Sie es erneut.",
-      "genericError": "❌ Ein Fehler ist aufgetreten. Bitte später versuchen."
+      "genericError": "�?O Ein Fehler ist aufgetreten. Bitte spA?ter versuchen.",
+      "dismiss": "Schliessen"
     },
     "options": {
       "orderManagement": "Auftragsmanagement & Logistik",
@@ -410,3 +412,4 @@
     "type_placeholder": "Nachricht eingeben..."
   }
 }
+

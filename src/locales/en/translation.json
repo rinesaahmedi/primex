@@ -200,7 +200,8 @@
     "alerts": {
       "selectTopic": "Please select at least one topic",
       "error": "Error booking appointment",
-      "success": "Appointment booked successfully!"
+      "success": "Appointment booked successfully!",
+      "dismiss": "Dismiss"
     },
     "topics": {
       "orderManagement": "Order Management & Logistics",
@@ -229,7 +230,8 @@
     "alerts": {
       "success": "✅ Successfully sent!",
       "error": "❌ Failed to send. Please try again.",
-      "genericError": "❌ An error occurred. Please try again later."
+      "genericError": "�?O An error occurred. Please try again later.",
+      "dismiss": "Dismiss"
     },
     "options": {
       "orderManagement": "Order Management & Logistics",
@@ -382,3 +384,4 @@
     "type_placeholder": "Type a message..."
   }
 }
+
