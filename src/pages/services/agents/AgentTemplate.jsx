@@ -462,7 +462,7 @@ const AgentTemplate = () => {
               <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-md">
                 <div className="relative">
                   {/* Container: Aspect Ratio 4:3 ensures better fit on mobile screens. */}
-                  {/* Image: 'object-contain' ensures whole image is visible (no cropping). */}
+                  {/* Image: 'object-cover' fills the frame to avoid empty bands on mobile. */}
                   <div
                     ref={galleryRef}
                     className="relative w-full aspect-[4/3] overflow-hidden rounded-2xl mb-4 bg-slate-100 border border-slate-100 shadow-sm"
@@ -481,11 +481,11 @@ const AgentTemplate = () => {
                           key={index}
                           className="min-w-full h-full  flex items-center justify-center p-2"
                         >
-                          <img
-                            src={item.image}
-                            alt={item.title}
-                            className="w-full h-full object-contain"
-                          />
+                            <img
+                              src={item.image}
+                              alt={item.title}
+                              className="w-full h-full object-cover object-center"
+                            />
                         </div>
                       ))}
                     </div>
