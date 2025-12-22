@@ -379,7 +379,7 @@
       ]
     },
     "useCases": {
-      "title": "Hauptvorteile",
+      "title": "Automatische Antwort",
       "cards": [
         {
           "title": "Aktive und moderne Markenpräsenz",
@@ -392,7 +392,7 @@
       ]
     },
     "cta": {
-      "title": "Einheitliche 'Tone of Voice' auf allen Kanälen",
+      "title": "Automatische Antwort",
       "body": "Verbinden Sie Ihre Social-Accounts der Agent nutzt vereinbarte Richtlinien, um automatisch zu posten und zu antworten.",
       "primary": "Demo buchen",
       "secondary": "Team kontaktieren"
@@ -665,7 +665,7 @@
       "secondary": "Team kontaktieren"
     },
     "visuals": {
-      "label": "EDI Core",
+      "label": "EDI AGENT",
       "overview": {
         "title": "Verbindungsplan",
         "description": "Verknüpfung von Lieferanten & Käufern."

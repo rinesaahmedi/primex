@@ -379,7 +379,7 @@
     ]
   },
   "useCases": {
-    "title": "Key Benefits",
+    "title": "Auto-Reply",
     "cards": [
       {
         "title": "Active and Modern Brand Presence",
@@ -392,7 +392,7 @@
     ]
   },
   "cta": {
-    "title": "Unified tone of voice across all channels",
+    "title": "Auto-Reply",
     "body": "Connect your social accounts; the Agent uses agreed content guidelines and workflows to post and respond automatically.",
     "primary": "Book a Demo",
     "secondary": "Contact Team"
