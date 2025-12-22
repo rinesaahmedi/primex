@@ -733,7 +733,7 @@
     "secondary": "Contact Team"
   },
   "visuals": {
-    "label": "Service AI",
+    "label": "Service AI Agent",
     "overview": {
       "title": "Ticket Board",
       "description": "Incoming complaints view."
