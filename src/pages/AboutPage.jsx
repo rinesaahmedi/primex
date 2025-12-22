@@ -1,9 +1,8 @@
 // src/pages/AboutPage.jsx
-import React, { useEffect } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion"; // Import framer-motion
 import pxBranding from "../images/40.jpg";
-import AOS from "aos";
-import "aos/dist/aos.css";
 
 const AboutPage = () => {
   const { t } = useTranslation();
@@ -13,9 +12,44 @@ const AboutPage = () => {
   const aiFeatures = t("about.aiAgent.features", { returnObjects: true }) || [];
   const whyPrimex = t("about.whyPrimex.points", { returnObjects: true }) || [];
 
-  useEffect(() => {
-    AOS.init({ duration: 800, once: true, offset: 50 });
-  }, []);
+  // --- Animation Variants ---
+  
+  // 1. Standard Fade Up (for text blocks)
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 40 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { duration: 0.6, ease: "easeOut" } 
+    }
+  };
+
+  // 2. Stagger Container (for lists/grids)
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2, // Time between each item appearing
+      }
+    }
+  };
+
+  // 3. Child Item Animation (for items inside a staggered container)
+  const itemFade = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+  };
+
+  // 4. Hero Image Entrance
+  const scaleIn = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: { 
+      opacity: 1, 
+      scale: 1, 
+      transition: { duration: 0.8, ease: "easeOut" } 
+    }
+  };
 
   return (
     <div className="bg-gray-50 overflow-x-hidden font-sans text-gray-800">
@@ -23,52 +57,74 @@ const AboutPage = () => {
          HERO SECTION: Impact & Branding
       -------------------------------------------------------- */}
       <section className="relative min-h-[65vh] flex items-center pt-40 pb-24 lg:pt-48 lg:pb-40 bg-[#0B1120] text-white">
-        {/* Background Gradients */}
-        <div className="absolute top-0 right-0 w-[700px] h-[600px] bg-[#2378FF]/20 blur-[120px] rounded-full pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#CDABFF]/10 blur-[100px] rounded-full pointer-events-none" />
+        {/* Background Gradients - Added subtle pulse animation */}
+        <motion.div 
+          animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0.8, 0.5] }}
+          transition={{ duration: 8, repeat: Infinity }}
+          className="absolute top-0 right-0 w-[700px] h-[600px] bg-[#2378FF]/20 blur-[120px] rounded-full pointer-events-none" 
+        />
+        <motion.div 
+          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
+          transition={{ duration: 10, repeat: Infinity, delay: 1 }}
+          className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#CDABFF]/10 blur-[100px] rounded-full pointer-events-none" 
+        />
 
-        {/* 
-           UPDATE: 
-           1. Increased padding: px-6 -> md:px-12 lg:px-20 
-           2. Adjusted gap: gap-12 on lg, gap-20 on xl to save space on 1150px screens
-        */}
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10 grid lg:grid-cols-2 gap-12 xl:gap-20 items-center">
-          {/* Text Content */}
-          <div data-aos="fade-right">
-            <span className="inline-block py-1 px-3 rounded-full bg-[#2378FF]/20 border border-[#2378FF]/50 text-[#60A5FA] text-xs font-bold tracking-widest uppercase mb-8">
+          {/* Text Content - Animated on Load */}
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={staggerContainer}
+          >
+            <motion.span 
+              variants={fadeInUp}
+              className="inline-block py-1 px-3 rounded-full bg-[#2378FF]/20 border border-[#2378FF]/50 text-[#60A5FA] text-xs font-bold tracking-widest uppercase mb-8"
+            >
               {t("about.pill")}
-            </span>
-            <h1
+            </motion.span>
+            <motion.h1
+              variants={fadeInUp}
               className="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight mb-8"
               style={{ fontFamily: "var(--font-serif)" }}
             >
               {t("about.mainTitle")}
-            </h1>
-            <p className="text-xl text-gray-300 mb-10 leading-relaxed max-w-lg">
+            </motion.h1>
+            <motion.p 
+              variants={fadeInUp}
+              className="text-xl text-gray-300 mb-10 leading-relaxed max-w-lg"
+            >
               {t("about.storySubtitle")}
-            </p>
-            <div className="flex flex-wrap gap-4">
+            </motion.p>
+            <motion.div variants={fadeInUp} className="flex flex-wrap gap-4">
               <div className="pl-4 border-l-4 border-[#2378FF]">
                 <p className="text-white font-semibold text-lg">
                   {t("about.tagline")}
                 </p>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
-          {/* Image Composition */}
-          {/* Kept the scale, but the increased container padding will prevent it from touching edges */}
-          <div className="relative lg:scale-110" data-aos="zoom-in" data-aos-delay="200">
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/10 group">
+          {/* Image Composition - Animated Scale & Float */}
+          <motion.div 
+            initial="hidden"
+            animate="visible"
+            variants={scaleIn}
+            className="relative lg:scale-110"
+          >
+            {/* Added a floating Y animation to the image container */}
+            <motion.div 
+              animate={{ y: [0, -15, 0] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/10 group"
+            >
               <img
                 src={pxBranding}
                 alt={t("about.imageAlt")}
                 className="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105"
               />
-              {/* Overlay Gradient */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#0B1120] via-transparent to-transparent opacity-60" />
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
@@ -76,9 +132,14 @@ const AboutPage = () => {
          SECTION 2: Who We Are (The Narrative)
       -------------------------------------------------------- */}
       <section className="py-24 bg-white">
-        {/* UPDATE: Added md:px-12 to ensure breathing room */}
         <div className="container mx-auto px-6 md:px-12 max-w-4xl text-center">
-          <div data-aos="fade-up">
+          {/* Triggers animation when 30% of element is in view */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={fadeInUp}
+          >
             <h2
               className="text-3xl md:text-4xl font-bold text-gray-900 mb-6"
               style={{ fontFamily: "var(--font-serif)" }}
@@ -91,7 +152,7 @@ const AboutPage = () => {
             <p className="text-gray-600 leading-relaxed text-lg mx-auto max-w-2xl">
               {t("about.whoWeAre.additional")}
             </p>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -99,9 +160,14 @@ const AboutPage = () => {
          SECTION 3: Expertise (Grid Layout)
       -------------------------------------------------------- */}
       <section className="py-20 bg-gray-50 border-t border-gray-200">
-        {/* UPDATE: Added lg:px-16 for laptop spacing */}
         <div className="container mx-auto px-6 md:px-12 lg:px-16 max-w-7xl">
-          <div className="text-center mb-16" data-aos="fade-up">
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            className="text-center mb-16"
+          >
             <h2
               className="text-3xl md:text-4xl font-bold text-gray-900 mb-4"
               style={{ fontFamily: "var(--font-serif)" }}
@@ -111,18 +177,22 @@ const AboutPage = () => {
             <p className="text-gray-600 max-w-2xl mx-auto">
               {t("about.expertise.description")}
             </p>
-          </div>
+          </motion.div>
 
-          {/* Expertise Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Expertise Grid - Staggered Appearance */}
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            variants={staggerContainer}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
             {expertise.map((item, idx) => (
-              <div
+              <motion.div
                 key={idx}
-                data-aos="fade-up"
-                data-aos-delay={idx * 50}
+                variants={itemFade}
                 className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:border-[#2378FF]/30 transition-all duration-300 flex items-start gap-4"
               >
-                {/* Custom Check Icon */}
                 <div className="mt-1 flex-shrink-0 w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-[#2378FF]">
                   <svg
                     className="w-4 h-4"
@@ -139,11 +209,11 @@ const AboutPage = () => {
                   </svg>
                 </div>
                 <span className="text-gray-800 font-medium">
-                  {item.replace(/•\s*/g, "")} {/* Cleaning bullet points if in JSON */}
+                  {item.replace(/•\s*/g, "")}
                 </span>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -151,16 +221,28 @@ const AboutPage = () => {
          SECTION 4: AI Evolution (Dark Mode Contrast)
       -------------------------------------------------------- */}
       <section className="py-24 bg-[#0F172A] text-white relative overflow-hidden">
-        {/* Decorative Circles */}
-        <div className="absolute top-[-50px] right-[-50px] w-64 h-64 bg-purple-500/20 rounded-full blur-[80px]" />
-        <div className="absolute bottom-[-50px] left-[-50px] w-64 h-64 bg-blue-500/20 rounded-full blur-[80px]" />
+        {/* Decorative Circles - Pulsing */}
+        <motion.div 
+          animate={{ scale: [1, 1.2, 1] }} 
+          transition={{ duration: 4, repeat: Infinity }}
+          className="absolute top-[-50px] right-[-50px] w-64 h-64 bg-purple-500/20 rounded-full blur-[80px]" 
+        />
+        <motion.div 
+          animate={{ scale: [1, 1.3, 1] }} 
+          transition={{ duration: 5, repeat: Infinity, delay: 0.5 }}
+          className="absolute bottom-[-50px] left-[-50px] w-64 h-64 bg-blue-500/20 rounded-full blur-[80px]" 
+        />
 
-        {/* UPDATE: Added lg:px-16 for laptop spacing */}
         <div className="container mx-auto px-6 md:px-12 lg:px-16 max-w-6xl relative z-10">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             
-            {/* Left: Text */}
-            <div data-aos="fade-right">
+            {/* Left: Text - Fades in from Left */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+            >
               <div className="inline-flex items-center gap-2 mb-4 text-purple-300 font-semibold tracking-wide text-sm uppercase">
                 <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
                 Innovation
@@ -183,13 +265,23 @@ const AboutPage = () => {
                   Seamless integration of automated intelligence into daily workflows.
                 </p>
               </div>
-            </div>
+            </motion.div>
 
-            {/* Right: Feature Cards */}
-            <div className="space-y-4" data-aos="fade-left">
+            {/* Right: Feature Cards - Staggered from Right */}
+            <motion.div 
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+              className="space-y-4"
+            >
               {aiFeatures.map((feature, idx) => (
-                <div
+                <motion.div
                   key={idx}
+                  variants={{
+                    hidden: { opacity: 0, x: 50 },
+                    visible: { opacity: 1, x: 0, transition: { duration: 0.5 } }
+                  }}
                   className="group flex items-center gap-4 p-5 bg-[#1E293B] rounded-xl border border-gray-700 hover:border-[#2378FF] transition-all duration-300 hover:bg-[#1E293B]/80"
                 >
                   <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#2378FF] to-purple-600 flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform">
@@ -200,9 +292,9 @@ const AboutPage = () => {
                   <span className="text-lg font-medium text-gray-200 group-hover:text-white">
                     {feature}
                   </span>
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -211,12 +303,20 @@ const AboutPage = () => {
          SECTION 5: Vision & Why PrimEx (Bento Grid)
       -------------------------------------------------------- */}
       <section className="py-20 bg-white">
-        {/* UPDATE: Added lg:px-16 for laptop spacing */}
         <div className="container mx-auto px-6 md:px-12 lg:px-16 max-w-7xl">
-          <div className="grid lg:grid-cols-3 gap-8">
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="grid lg:grid-cols-3 gap-8"
+          >
             
-            {/* Why Primex - Spans 2 Columns */}
-            <div className="lg:col-span-2 bg-blue-50/50 rounded-3xl p-8 md:p-12 border border-blue-100" data-aos="fade-up">
+            {/* Why Primex - Spans 2 Columns - Pop in Effect */}
+            <motion.div 
+              variants={scaleIn}
+              className="lg:col-span-2 bg-blue-50/50 rounded-3xl p-8 md:p-12 border border-blue-100"
+            >
               <h3
                 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8"
                 style={{ fontFamily: "var(--font-serif)" }}
@@ -234,15 +334,13 @@ const AboutPage = () => {
                   </div>
                 ))}
               </div>
-            </div>
+            </motion.div>
 
-            {/* Vision - Spans 1 Column */}
-            <div 
+            {/* Vision - Spans 1 Column - Pop in with Delay */}
+            <motion.div
+              variants={scaleIn}
               className="bg-[#2378FF] text-white rounded-3xl p-8 md:p-12 flex flex-col justify-center relative overflow-hidden"
-              data-aos="fade-up"
-              data-aos-delay="200"
             >
-              {/* Abstract Design Element */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-bl-full" />
               
               <h3 className="text-xl font-bold mb-4 uppercase tracking-wider opacity-90">
@@ -251,9 +349,9 @@ const AboutPage = () => {
               <p className="text-lg md:text-xl font-medium leading-relaxed">
                 &ldquo;{t("about.visionMission.description")}&rdquo;
               </p>
-            </div>
+            </motion.div>
 
-          </div>
+          </motion.div>
         </div>
       </section>
     </div>
