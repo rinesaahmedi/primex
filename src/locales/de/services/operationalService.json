@@ -9,6 +9,7 @@
       "title": "Ihr zuverlässiger Partner für Backoffice-Effizienz",
       "description": "Seit über zehn Jahren unterstützen wir die Möbelindustrie in Deutschland, Österreich und der Schweiz. Wir entlasten Ihre internen Teams, indem wir das operative Tagesgeschäft übernehmen – von der Logistik bis zur Buchhaltung – damit Sie Ihre Marktpräsenz nachhaltig stärken können."
     },
+    "sectionsTitle": "Leistungsdetails",
     "sections": {
       "orderProcessing": {
         "title": "Auftragsbearbeitung",
@@ -71,7 +72,7 @@
     "cta": {
       "title": "Bereit, Ihre Abläufe zu optimieren?",
       "description": "Lassen Sie uns besprechen, wie unsere operativen Services Ihr Geschäft verschlanken und Ihre Effizienz steigern können.",
-      "primary": "Kontakt aufnehmen",
+      "primary": "Kontaktieren Sie uns",
       "secondary": "Kontakt"
     }
   }

@@ -93,7 +93,7 @@
         "label": "Prüfzeit pro Listing"
       },
       "efficiency": {
-        "value": "100% Regelabdeckung",
+        "value": "100% Regelkonform",
         "label": "Jede Zeile geprüft"
       },
       "accuracy": {
@@ -732,7 +732,7 @@
       "secondary": "Team kontaktieren"
     },
     "visuals": {
-      "label": "Service KI",
+      "label": "Service KI Agent",
       "overview": {
         "title": "Ticket-Board",
         "description": "Eingehende Reklamationen."

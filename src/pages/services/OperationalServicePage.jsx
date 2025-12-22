@@ -128,7 +128,7 @@ const OperationalServicePage = () => {
             className="text-3xl md:text-4xl font-bold text-gray-900 mb-8"
             style={{ fontFamily: 'var(--font-serif)' }}
           >
-            Service Details
+            {t("operationalServices.sectionsTitle", "Service Details")}
           </h2>
           <div className="grid md:grid-cols-2 gap-6">
             {services.map((service) => {

@@ -9,7 +9,17 @@
           "Photorealistic renderings & CGI animation",
           "Brand-safe graphic design & CAD documentation",
           "Certified Carat kitchen specialists"
-        ]
+        ],
+        "floatingLabels": {
+          "render": {
+            "title": "RENDER",
+            "subtitle": "4K Ready"
+          },
+          "layers": {
+            "title": "LAYERS",
+            "subtitle": "Organized"
+          }
+        }
       },
       "sections": {
         "offeringsTitle": "What we create",

@@ -142,9 +142,17 @@ const GraphicDesignerPage = () => {
                 </div>
                 <div>
                   <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">
-                    RENDER
+                    {t(
+                      "serviceDetails.graphicDesigner.hero.floatingLabels.render.title",
+                      "RENDER"
+                    )}
                   </p>
-                  <p className="text-sm font-bold text-gray-800">4K Ready</p>
+                  <p className="text-sm font-bold text-gray-800">
+                    {t(
+                      "serviceDetails.graphicDesigner.hero.floatingLabels.render.subtitle",
+                      "4K Ready"
+                    )}
+                  </p>
                 </div>
               </div>
 
@@ -154,9 +162,17 @@ const GraphicDesignerPage = () => {
                 </div>
                 <div>
                   <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">
-                    LAYERS
+                    {t(
+                      "serviceDetails.graphicDesigner.hero.floatingLabels.layers.title",
+                      "LAYERS"
+                    )}
                   </p>
-                  <p className="text-sm font-bold text-gray-800">Organized</p>
+                  <p className="text-sm font-bold text-gray-800">
+                    {t(
+                      "serviceDetails.graphicDesigner.hero.floatingLabels.layers.subtitle",
+                      "Organized"
+                    )}
+                  </p>
                 </div>
               </div>
 

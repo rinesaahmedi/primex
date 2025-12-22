@@ -9,7 +9,17 @@
           "Fotorealistische Renderings & CGI-Animationen",
           "Marken-sichere Grafikdesigns & CAD-Dokumentation",
           "Zertifizierte Carat-Küchenexpert:innen"
-        ]
+        ],
+        "floatingLabels": {
+          "render": {
+            "title": "RENDER",
+            "subtitle": "4k-Bereit"
+          },
+          "layers": {
+            "title": "Ebenen",
+            "subtitle": "organisiert"
+          }
+        }
       },
       "sections": {
         "offeringsTitle": "Was wir produzieren",
